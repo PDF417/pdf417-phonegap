@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="mobi.pdf417.Pdf417Scanner"
+    version="1.0.1">
+
+    <name>Pdf417Scanner</name>
+    <description>Scans Barcodes.</description>
+    <license>MIT</license>
+
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>    
+
+    <js-module src="www/pdf417scanner.js" name="Pdf417Scanner">
+        <clobbers target="cordova.plugins.pdf417Scanner" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Pdf417Scanner">
+                <param name="android-package" value="com.phonegap.plugins.pdf417.Pdf417Scanner" />
+            </feature>
+        </config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity
+            android:name="mobi.pdf417.activity.Pdf417ScanActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="mobi.pdf417.activity.Pdf417ScanActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+			</activity>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.CAMERA" />
+            <uses-permission android:name="android.permission.FLASHLIGHT" />
+            
+            <uses-feature android:name="android.hardware.camera" />
+			<uses-feature android:name="android.hardware.camera.autofocus" />
+			<uses-feature android:name="android.hardware.camera.flash" />
+			<uses-feature
+				android:glEsVersion="0x00020000"
+				android:required="false" >
+			</uses-feature>
+        </config-file>
+
+        <source-file src="src/android/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="src/com/phonegap/plugins/pdf417" />
+    </platform>
+</plugin>
