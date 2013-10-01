@@ -1,0 +1,1 @@
+{"prepare_queue":{"installed":[],"uninstalled":[]},"config_munge":{"framework":{"libstdc++.dylib":{"false":1},"libz.dylib":{"false":1},"libiconv.dylib":{"false":1},"CoreVideo.framework":{"false":1},"OpenGLES.framework":{"false":1}}},"installed_plugins":{"mobi.pdf417.Pdf417Scanner":{"PACKAGE_NAME":"mobi.pdf417.demo"}},"dependent_plugins":{}}

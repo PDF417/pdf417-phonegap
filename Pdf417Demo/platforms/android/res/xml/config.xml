@@ -28,7 +28,4 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
-    <feature name="Pdf417Scanner">
-        <param name="android-package" value="com.phonegap.plugins.pdf417.Pdf417Scanner" />
-    </feature>
 </widget>

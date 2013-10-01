@@ -50,4 +50,27 @@
 
         <source-file src="src/android/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="src/com/phonegap/plugins/pdf417" />
     </platform>
+
+    <platform name="ios">
+        <source-file src="src/ios/CDVpdf417.m" />
+        <header-file src="src/ios/CDVpdf417.h" />
+
+        <header-file src="src/ios/pdf417.embeddedframework/pdf417.framework/Headers/DetectionStatus.h" />
+        <header-file src="src/ios/pdf417.embeddedframework/pdf417.framework/Headers/PPApp.h" />
+        <header-file src="src/ios/pdf417.embeddedframework/pdf417.framework/Headers/PPBarcode.h" />
+        <header-file src="src/ios/pdf417.embeddedframework/pdf417.framework/Headers/PPBarcodeCoordinator.h" />
+        <header-file src="src/ios/pdf417.embeddedframework/pdf417.framework/Headers/PPScanningResult.h" />
+        <header-file src="src/ios/pdf417.embeddedframework/pdf417.framework/Headers/PPSettings.h" />
+
+        <resource-file src="src/ios/pdf417.embeddedframework/pdf417.framework//Resources/" />
+
+        <source-file src="src/ios/pdf417.embeddedframework/pdf417.framework/pdf417" framework="true" />
+
+        <framework src="libstdc++.dylib" />
+        <framework src="libz.dylib" />
+        <framework src="libiconv.dylib" />
+
+        <framework src="CoreVideo.framework" />
+        <framework src="OpenGLES.framework" />
+    </platform>
 </plugin>

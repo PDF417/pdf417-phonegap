@@ -46,7 +46,7 @@ var app = {
                     if (data.cancelled == true) {
 						resultDiv.innerHTML = "Cancelled!";
 					} else {
-						resultDiv.innerHTML = "Result: " + data.data + " (" + data.type + ")";
+						resultDiv.text = data.data + " (" + data.type + ")";
 					}
                 },
                 // Register the errorHandler

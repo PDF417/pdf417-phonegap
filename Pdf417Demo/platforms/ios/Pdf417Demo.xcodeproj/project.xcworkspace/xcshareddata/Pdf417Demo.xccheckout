@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>04EF0D3C-0BEB-46B6-9DC1-8BE36654397B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Pdf417Demo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FD3B45D4-D98A-4B02-9134-5D030CA1BA4C</key>
+		<string>ssh://baba.instantcom.net/ljudva/pdf417phonegap.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Pdf417Demo/platforms/ios/Pdf417Demo.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FD3B45D4-D98A-4B02-9134-5D030CA1BA4C</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://baba.instantcom.net/ljudva/pdf417phonegap.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FD3B45D4-D98A-4B02-9134-5D030CA1BA4C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FD3B45D4-D98A-4B02-9134-5D030CA1BA4C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>pdf417phonegap</string>
+		</dict>
+	</array>
+</dict>
+</plist>

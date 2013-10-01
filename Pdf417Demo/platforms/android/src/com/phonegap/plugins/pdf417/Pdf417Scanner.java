@@ -12,17 +12,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Base64;
 import android.util.Log;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.PluginResult;
+
 import mobi.pdf417.Pdf417MobiSettings;
 import mobi.pdf417.activity.Pdf417ScanActivity;
 import net.photopay.barcode.BarcodeDetailedData;
-import net.photopay.barcode.BarcodeElement;
 import net.photopay.base.BaseBarcodeActivity;
 
 public class Pdf417Scanner extends CordovaPlugin {
@@ -66,14 +67,32 @@ public class Pdf417Scanner extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
         this.callbackContext = callbackContext;
+
+        /*if (action.equals(ENCODE)) {
+            JSONObject obj = args.optJSONObject(0);
+            if (obj != null) {
+                String type = obj.optString(TYPE);
+                String data = obj.optString(DATA);
+
+                // If the type is null then force the type to text
+                if (type == null) {
+                    type = TEXT_TYPE;
+                }
+
+                if (data == null) {
+                    callbackContext.error("User did not specify data to encode");
+                    return true;
+                }
+
+                encode(type, data);
+            } else {
+                callbackContext.error("User did not specify data to encode");
+                return true;
+            }
+        } */
         
         if (action.equals(SCAN)) {
-        	cordova.getActivity().runOnUiThread(new Runnable() {
-                public void run() {
-                	scan();
-                }
-            });
-        	            
+            scan();
         } else {
             return false;
         }
@@ -119,67 +138,38 @@ public class Pdf417Scanner extends CordovaPlugin {
 		if (requestCode == REQUEST_CODE) {
 			
 			if (resultCode == BaseBarcodeActivity.RESULT_OK) {
-				Log.d(LOG_TAG, "Activity result OK");
-				
+			
 				// read scanned barcode type (PDF417 or QR code)
 				String barcodeType = data.getStringExtra(BaseBarcodeActivity.EXTRAS_BARCODE_TYPE);
 				// read the data contained in barcode
 				String barcodeData = data.getStringExtra(BaseBarcodeActivity.EXTRAS_RESULT);
 				// read raw barcode data
-				BarcodeDetailedData rawData = data.getParcelableExtra(BaseBarcodeActivity.EXTRAS_RAW_RESULT);			
-				
-				final JSONObject obj = new JSONObject();
+				BarcodeDetailedData rawData = data.getParcelableExtra(BaseBarcodeActivity.EXTRAS_RAW_RESULT);				
+					
+				JSONObject obj = new JSONObject();
 				try {
 					obj.put(TYPE, barcodeType);
 					obj.put(DATA, barcodeData);
-					
-					if (rawData != null) {
-						// Add raw data and elements if the exist
-						if (rawData.getAllData() != null) {
-							String rawDataBase64 = Base64.encodeToString(rawData.getAllData(), Base64.DEFAULT);
-							obj.put(RAW_DATA, rawDataBase64);
-						}
-						if (rawData.getElements() != null) {
-							JSONArray elements = new JSONArray();
-							for (int i = 0; i < rawData.getElements().size(); i++) {
-								BarcodeElement element = rawData.getElements().get(i);
-							
-								JSONObject jsonElement = new JSONObject();
-								String rawDataBase64 = Base64.encodeToString(element.getElementBytes(), Base64.DEFAULT);
-								jsonElement.put(RAW_DATA, rawDataBase64);
-								jsonElement.put(TYPE, element.getElementType());
-								elements.put(i, jsonElement);
-							}
-							obj.put(ELEMENTS, elements);
-						}
-					}
+					//obj.put(RAW_DATA, XXXXX);
+					//obj.put(RAW_DATA, XXXXX);
 					
 					obj.put(CANCELLED, false);
 					
 				} catch (JSONException e) {
 					Log.d(LOG_TAG, "This should never happen");
 				}
-				
-				cordova.getActivity().runOnUiThread(new Runnable() {
-		            public void run() {
-		            	callbackContext.success(obj);
-		            }
-		        });
+				//this.success(new PluginResult(PluginResult.Status.OK, obj), this.callback);
+				this.callbackContext.success(obj);
 					
 			} else if (resultCode == BaseBarcodeActivity.RESULT_CANCELED) {
-				final JSONObject obj = new JSONObject();
+				JSONObject obj = new JSONObject();
                 try {
                     obj.put(CANCELLED, true);
                     
                 } catch (JSONException e) {
                     Log.d(LOG_TAG, "This should never happen");
                 }
-                
-                cordova.getActivity().runOnUiThread(new Runnable() {
-		            public void run() {
-		            	callbackContext.success(obj);
-		            }
-		        });
+                this.callbackContext.success(obj);
                 
 			} else {
 				this.callbackContext.error("Unexpected error");
