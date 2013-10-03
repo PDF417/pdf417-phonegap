@@ -5,7 +5,10 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
+		1907927170BC4BFB988F3AA7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A26179AB01C45218048EE1A /* OpenGLES.framework */; };
+		192293205CF248BCB0B056D9 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D529185381ED47249E9C87D0 /* libiconv.dylib */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -39,21 +42,20 @@
 		30A0434914DC770100060A13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30A0434614DC770100060A13 /* Localizable.strings */; };
 		30E5649213A7FCAF007403D8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E5649113A7FCAF007403D8 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
+		361FACDA5D1E40E39FABF3ED /* CDVpdf417.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4280F5372B43E7ACA6B3D5 /* CDVpdf417.m */; };
+		393C12A74E9E4B948546D45E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E35D8743725426D9DB43E4A /* libz.dylib */; };
+		4F49F57ED6524EC9B545F073 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD1F96CB0A0420E806F0C5C /* libc++.dylib */; };
 		5AA0E66D1729F45B000DC89A /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AA0E66C1729F45B000DC89A /* OpenAL.framework */; };
 		5AA0E66F1729F460000DC89A /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AA0E66E1729F460000DC89A /* ImageIO.framework */; };
 		5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE5B34173C68D80009041E /* CoreLocation.framework */; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
+		ADF3C6CB17FDD106007495EB /* pdf417.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADF3C6C617FDD106007495EB /* pdf417.framework */; };
+		ADF3C6CC17FDD106007495EB /* de.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADF3C6C817FDD106007495EB /* de.strings */; };
+		ADF3C6CD17FDD106007495EB /* en.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADF3C6C917FDD106007495EB /* en.strings */; };
+		ADF3C6CE17FDD106007495EB /* hr.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADF3C6CA17FDD106007495EB /* hr.strings */; };
+		C0B17B4C1AEB4194AD04901D /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F76965CFC3E405D9795130B /* CoreVideo.framework */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		F840E1F1165FE0F500CFE078 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F840E1F0165FE0F500CFE078 /* config.xml */; };
-		4B5CD8D19C2B4B3882C1E540 /* CDVpdf417.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF98B0CCAD84539B6A75E04 /* CDVpdf417.m */; };
-		46EA5BE29AA24B5BB1E0D347 /* pdf417 in Resources */ = {isa = PBXBuildFile; fileRef = B02C68D1D69B4323B1A8E95C /* pdf417 */; };
-		64D2A47833A04E59B2B5A535 /* pdf417 in Resources */ = {isa = PBXBuildFile; fileRef = FA86F0C9F74C4E98B54856A6 /* pdf417 */; };
-		A6BFFD02597F42128922703B /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = D451094839F9465A84FC088B /* Resources */; };
-		F5C9381E472748148FEDF77C /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72857827383146C2991096CD /* libstdc++.dylib */; };
-		237E971A2F244407815564A6 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80935EF550E14E2BB837C272 /* libz.dylib */; };
-		11F922F0057D4936B048C4EA /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6D8442B6D84DC4B04003D8 /* libiconv.dylib */; };
-		8CB5AA171FF545729B4F6195 /* CoreVideo.framework in Resources */ = {isa = PBXBuildFile; fileRef = 27C935B0DEA44ACF93899DA4 /* CoreVideo.framework */; };
-		548B15B0CA784DC3A8C6A442 /* OpenGLES.framework in Resources */ = {isa = PBXBuildFile; fileRef = C61EBFEB38FF4D81A006770C /* OpenGLES.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,13 +79,13 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* Pdf417Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pdf417Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Pdf417Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pdf417Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1F766FDD13BBADB100FB74C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		1F766FE013BBADB100FB74C0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = "CordovaLib/CordovaLib.xcodeproj"; sourceTree = "<group>"; };
+		301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
 		301BF56E109A69640062928A /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = SOURCE_ROOT; };
 		301BF5B4109A6A2B0062928A /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		301BF5B6109A6A2B0062928A /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
@@ -112,29 +114,24 @@
 		30E5649113A7FCAF007403D8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		30FC414816E50CA1004E6F35 /* icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72@2x.png"; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Pdf417Demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pdf417Demo-Prefix.pch"; sourceTree = "<group>"; };
+		3E35D8743725426D9DB43E4A /* libz.dylib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		4A26179AB01C45218048EE1A /* OpenGLES.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		5A4280F5372B43E7ACA6B3D5 /* CDVpdf417.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVpdf417.m; path = mobi.pdf417.Pdf417Scanner/CDVpdf417.m; sourceTree = "<group>"; };
 		5AA0E66C1729F45B000DC89A /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		5AA0E66E1729F460000DC89A /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		5AEE5B34173C68D80009041E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		74236B5CF70247EC8D851300 /* CDVpdf417.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVpdf417.h; path = mobi.pdf417.Pdf417Scanner/CDVpdf417.h; sourceTree = "<group>"; };
+		7BD1F96CB0A0420E806F0C5C /* libc++.dylib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Pdf417Demo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pdf417Demo-Info.plist"; path = "../Pdf417Demo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8F76965CFC3E405D9795130B /* CoreVideo.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		ADF3C6C617FDD106007495EB /* pdf417.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pdf417.framework; sourceTree = "<group>"; };
+		ADF3C6C817FDD106007495EB /* de.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = de.strings; sourceTree = "<group>"; };
+		ADF3C6C917FDD106007495EB /* en.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = en.strings; sourceTree = "<group>"; };
+		ADF3C6CA17FDD106007495EB /* hr.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = hr.strings; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
-		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "Pdf417Demo/config.xml"; sourceTree = "<group>"; };
-		9FF98B0CCAD84539B6A75E04 /* CDVpdf417.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVpdf417.m"; path = "mobi.pdf417.Pdf417Scanner/CDVpdf417.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		B02C68D1D69B4323B1A8E95C /* pdf417 */ = {isa = PBXFileReference; lastKnownFileType = unknown; name = "pdf417"; path = "mobi.pdf417.Pdf417Scanner/pdf417"; sourceTree = "<group>"; fileEncoding = 4; };
-		FA86F0C9F74C4E98B54856A6 /* pdf417 */ = {isa = PBXFileReference; lastKnownFileType = unknown; name = "pdf417"; path = "Pdf417Demo/Plugins/mobi.pdf417.Pdf417Scanner/pdf417"; sourceTree = "<group>"; fileEncoding = 4; };
-		3D460951FC484AF788E737A4 /* CDVpdf417.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVpdf417.h"; path = "mobi.pdf417.Pdf417Scanner/CDVpdf417.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		53AD1E8F16E14388BD88E242 /* DetectionStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DetectionStatus.h"; path = "mobi.pdf417.Pdf417Scanner/DetectionStatus.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		360437E2EA2342789BD12987 /* PPApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PPApp.h"; path = "mobi.pdf417.Pdf417Scanner/PPApp.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		6FB03BE32DEE44339DEE973E /* PPBarcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PPBarcode.h"; path = "mobi.pdf417.Pdf417Scanner/PPBarcode.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		7A1D2BB6455C47B182AB6F07 /* PPBarcodeCoordinator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PPBarcodeCoordinator.h"; path = "mobi.pdf417.Pdf417Scanner/PPBarcodeCoordinator.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		0AD43B43DFAC4BD3B587CC92 /* PPScanningResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PPScanningResult.h"; path = "mobi.pdf417.Pdf417Scanner/PPScanningResult.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		98284413BE6D498CAEAF2DEC /* PPSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PPSettings.h"; path = "mobi.pdf417.Pdf417Scanner/PPSettings.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		D451094839F9465A84FC088B /* Resources */ = {isa = PBXFileReference; lastKnownFileType = unknown; name = "Resources"; path = "Resources"; sourceTree = "<group>"; fileEncoding = 4; };
-		72857827383146C2991096CD /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; fileEncoding = 4; };
-		80935EF550E14E2BB837C272 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libz.dylib"; path = "usr/lib/libz.dylib"; sourceTree = SDKROOT; fileEncoding = 4; };
-		3E6D8442B6D84DC4B04003D8 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libiconv.dylib"; path = "usr/lib/libiconv.dylib"; sourceTree = SDKROOT; fileEncoding = 4; };
-		27C935B0DEA44ACF93899DA4 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreVideo.framework"; path = "System/Library/Frameworks/CoreVideo.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
-		C61EBFEB38FF4D81A006770C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "OpenGLES.framework"; path = "System/Library/Frameworks/OpenGLES.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		D529185381ED47249E9C87D0 /* libiconv.dylib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = Pdf417Demo/config.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,12 +158,12 @@
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
 				30E5649213A7FCAF007403D8 /* CoreMedia.framework in Frameworks */,
 				5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */,
-				64D2A47833A04E59B2B5A535 /* pdf417 in Resources */,
-				F5C9381E472748148FEDF77C /* libstdc++.dylib in Frameworks */,
-				237E971A2F244407815564A6 /* libz.dylib in Frameworks */,
-				11F922F0057D4936B048C4EA /* libiconv.dylib in Frameworks */,
-				8CB5AA171FF545729B4F6195 /* CoreVideo.framework in Resources */,
-				548B15B0CA784DC3A8C6A442 /* OpenGLES.framework in Resources */,
+				4F49F57ED6524EC9B545F073 /* libc++.dylib in Frameworks */,
+				393C12A74E9E4B948546D45E /* libz.dylib in Frameworks */,
+				ADF3C6CB17FDD106007495EB /* pdf417.framework in Frameworks */,
+				192293205CF248BCB0B056D9 /* libiconv.dylib in Frameworks */,
+				C0B17B4C1AEB4194AD04901D /* CoreVideo.framework in Frameworks */,
+				1907927170BC4BFB988F3AA7 /* OpenGLES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,7 +180,7 @@
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 			);
 			name = Classes;
-			path = "Pdf417Demo/Classes";
+			path = Pdf417Demo/Classes;
 			sourceTree = SOURCE_ROOT;
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -233,7 +230,7 @@
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
-			path = "Pdf417Demo";
+			path = Pdf417Demo;
 			sourceTree = "<group>";
 		};
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
@@ -246,15 +243,15 @@
 				308D052D1370CCF300D202BF /* icons */,
 				308D05311370CCF300D202BF /* splash */,
 				8D1107310486CEB800E47090 /* Pdf417Demo-Info.plist */,
-				D451094839F9465A84FC088B /* Resources */,
 			);
 			name = Resources;
-			path = "Pdf417Demo/Resources";
+			path = Pdf417Demo/Resources;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ADF3C6C517FDD106007495EB /* pdf417.embeddedframework */,
 				5AEE5B34173C68D80009041E /* CoreLocation.framework */,
 				5AA0E66E1729F460000DC89A /* ImageIO.framework */,
 				5AA0E66C1729F45B000DC89A /* OpenAL.framework */,
@@ -273,12 +270,11 @@
 				301BF5C4109A6A2B0062928A /* SystemConfiguration.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
 				30E5649113A7FCAF007403D8 /* CoreMedia.framework */,
-				FA86F0C9F74C4E98B54856A6 /* pdf417 */,
-				72857827383146C2991096CD /* libstdc++.dylib */,
-				80935EF550E14E2BB837C272 /* libz.dylib */,
-				3E6D8442B6D84DC4B04003D8 /* libiconv.dylib */,
-				27C935B0DEA44ACF93899DA4 /* CoreVideo.framework */,
-				C61EBFEB38FF4D81A006770C /* OpenGLES.framework */,
+				7BD1F96CB0A0420E806F0C5C /* libc++.dylib */,
+				3E35D8743725426D9DB43E4A /* libz.dylib */,
+				D529185381ED47249E9C87D0 /* libiconv.dylib */,
+				8F76965CFC3E405D9795130B /* CoreVideo.framework */,
+				4A26179AB01C45218048EE1A /* OpenGLES.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -294,18 +290,11 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				9FF98B0CCAD84539B6A75E04 /* CDVpdf417.m */,
-				B02C68D1D69B4323B1A8E95C /* pdf417 */,
-				3D460951FC484AF788E737A4 /* CDVpdf417.h */,
-				53AD1E8F16E14388BD88E242 /* DetectionStatus.h */,
-				360437E2EA2342789BD12987 /* PPApp.h */,
-				6FB03BE32DEE44339DEE973E /* PPBarcode.h */,
-				7A1D2BB6455C47B182AB6F07 /* PPBarcodeCoordinator.h */,
-				0AD43B43DFAC4BD3B587CC92 /* PPScanningResult.h */,
-				98284413BE6D498CAEAF2DEC /* PPSettings.h */,
+				5A4280F5372B43E7ACA6B3D5 /* CDVpdf417.m */,
+				74236B5CF70247EC8D851300 /* CDVpdf417.h */,
 			);
 			name = Plugins;
-			path = "Pdf417Demo/Plugins";
+			path = Pdf417Demo/Plugins;
 			sourceTree = SOURCE_ROOT;
 		};
 		308D052D1370CCF300D202BF /* icons */ = {
@@ -349,6 +338,26 @@
 			path = se.lproj;
 			sourceTree = "<group>";
 		};
+		ADF3C6C517FDD106007495EB /* pdf417.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				ADF3C6C617FDD106007495EB /* pdf417.framework */,
+				ADF3C6C717FDD106007495EB /* Resources */,
+			);
+			name = pdf417.embeddedframework;
+			path = ../../../Pdf417/src/ios/pdf417.embeddedframework;
+			sourceTree = "<group>";
+		};
+		ADF3C6C717FDD106007495EB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ADF3C6C817FDD106007495EB /* de.strings */,
+				ADF3C6C917FDD106007495EB /* en.strings */,
+				ADF3C6CA17FDD106007495EB /* hr.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -366,8 +375,8 @@
 			dependencies = (
 				301BF551109A68C00062928A /* PBXTargetDependency */,
 			);
-			name = "Pdf417Demo";
-			productName = "Pdf417Demo";
+			name = Pdf417Demo;
+			productName = Pdf417Demo;
 			productReference = 1D6058910D05DD3D006BFB54 /* Pdf417Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -426,10 +435,12 @@
 				F840E1F1165FE0F500CFE078 /* config.xml in Resources */,
 				308D05371370CCF300D202BF /* icon-72.png in Resources */,
 				308D05381370CCF300D202BF /* icon.png in Resources */,
+				ADF3C6CC17FDD106007495EB /* de.strings in Resources */,
 				308D05391370CCF300D202BF /* icon@2x.png in Resources */,
 				1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */,
 				1F766FE213BBADB100FB74C0 /* Localizable.strings in Resources */,
 				302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */,
+				ADF3C6CE17FDD106007495EB /* hr.strings in Resources */,
 				30A0434814DC770100060A13 /* Localizable.strings in Resources */,
 				30A0434914DC770100060A13 /* Localizable.strings in Resources */,
 				3088BBBD154F3926009F9C59 /* Default-Landscape@2x~ipad.png in Resources */,
@@ -438,9 +449,9 @@
 				3088BBC0154F3926009F9C59 /* Default-Portrait~ipad.png in Resources */,
 				3088BBC1154F3926009F9C59 /* Default@2x~iphone.png in Resources */,
 				3088BBC2154F3926009F9C59 /* Default~iphone.png in Resources */,
+				ADF3C6CD17FDD106007495EB /* en.strings in Resources */,
 				D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
-				A6BFFD02597F42128922703B /* Resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,8 +482,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				4B5CD8D19C2B4B3882C1E540 /* CDVpdf417.m in Sources */,
-				46EA5BE29AA24B5BB1E0D347 /* pdf417 in Resources */,
+				361FACDA5D1E40E39FABF3ED /* CDVpdf417.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +538,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/marko/Desktop/pdf417phonegap/Pdf417/src/ios/pdf417.embeddedframework,
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -550,12 +564,8 @@
 					"\"$(BUILT_PRODUCTS_DIR)/libCordova.a\"",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "Pdf417Demo";
+				PRODUCT_NAME = Pdf417Demo;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Pdf417Demo/Plugins/mobi.pdf417.Pdf417Scanner\"",
-				);
 			};
 			name = Debug;
 		};
@@ -565,6 +575,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/marko/Desktop/pdf417phonegap/Pdf417/src/ios/pdf417.embeddedframework,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pdf417Demo/Pdf417Demo-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -585,20 +599,16 @@
 					"\"$(BUILT_PRODUCTS_DIR)/libCordova.a\"",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "Pdf417Demo";
+				PRODUCT_NAME = Pdf417Demo;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Pdf417Demo/Plugins/mobi.pdf417.Pdf417Scanner\"",
-				);
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
@@ -639,8 +649,8 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;

@@ -37,6 +37,8 @@
     
     [self setLastCommand:command];
     
+    NSLog(@"pero");
+    
     // Check if barcode scanning is supported
     NSError *error;
     if ([PPBarcodeCoordinator isScanningUnsupported:&error]) {
@@ -184,7 +186,7 @@
     
     NSLog(@"Barcode text:\n%@", message);
     
-    NSString* type = [PPScanningResult getTypeName:[result type]];
+    NSString* type = [PPScanningResult toTypeName:[result type]];
     
     NSLog(@"Barcode type:\n%@", type);
     

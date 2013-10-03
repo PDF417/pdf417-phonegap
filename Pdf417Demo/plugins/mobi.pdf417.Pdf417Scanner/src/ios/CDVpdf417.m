@@ -184,7 +184,7 @@
     
     NSLog(@"Barcode text:\n%@", message);
     
-    NSString* type = [PPScanningResult getTypeName:[result type]];
+    NSString* type = [PPScanningResult toTypeName:[result type]];
     
     NSLog(@"Barcode type:\n%@", type);
     

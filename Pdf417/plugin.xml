@@ -55,7 +55,7 @@
         <source-file src="src/ios/CDVpdf417.m" />
         <header-file src="src/ios/CDVpdf417.h" />
 
-        <header-file src="src/ios/pdf417.embeddedframework/pdf417.framework/Headers/DetectionStatus.h" />
+  <!--       <header-file src="src/ios/pdf417.embeddedframework/pdf417.framework/Headers/DetectionStatus.h" />
         <header-file src="src/ios/pdf417.embeddedframework/pdf417.framework/Headers/PPApp.h" />
         <header-file src="src/ios/pdf417.embeddedframework/pdf417.framework/Headers/PPBarcode.h" />
         <header-file src="src/ios/pdf417.embeddedframework/pdf417.framework/Headers/PPBarcodeCoordinator.h" />
@@ -65,12 +65,16 @@
         <resource-file src="src/ios/pdf417.embeddedframework/pdf417.framework//Resources/" />
 
         <source-file src="src/ios/pdf417.embeddedframework/pdf417.framework/pdf417" framework="true" />
-
-        <framework src="libstdc++.dylib" />
+ -->
+        <framework src="libc++.dylib" />
         <framework src="libz.dylib" />
         <framework src="libiconv.dylib" />
 
         <framework src="CoreVideo.framework" />
         <framework src="OpenGLES.framework" />
+
+        <feature name="Pdf417Scanner">
+		    <param name="ios-package" value="CDVpdf417" />
+		</feature>
     </platform>
 </plugin>
