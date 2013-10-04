@@ -8,8 +8,8 @@
         Apache Cordova Team
     </author>
     <content src="index.html" />
-    <feature name="LocalStorage">
-        <param name="ios-package" value="CDVLocalStorage" />
+    <feature name="Pdf417Scanner">
+        <param name="ios-package" value="CDVPdf417" />
     </feature>
     <access origin="http://127.0.0.1*" />
     <preference name="KeyboardDisplayRequiresUserAction" value="true" />
@@ -39,7 +39,4 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
-    <feature name="Pdf417Scanner">
-        <param name="ios-package" value="CDVpdf417" />
-    </feature>
 </widget>

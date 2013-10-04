@@ -106,13 +106,12 @@
 
 
 - (void)returnResult:(PPScanningResult *)data cancelled:(BOOL)cancelled {
-    NSNumber* cancelledNumber = [NSNumber numberWithInt: (cancelled ? 1 : 0)];
-    
     NSMutableDictionary* resultDict = [[NSMutableDictionary alloc] init];
-    [resultDict setObject:cancelledNumber forKey:@"Cancelled"];
+    [resultDict setObject:[NSNumber numberWithInt: (cancelled ? 1 : 0)] forKey:@"Cancelled"];
     
     if (data != nil) {
-        [resultDict setObject:[data data] forKey:@"data"];
+        [resultDict setObject:[data toUrlDataString] forKey:@"data"];
+        [resultDict setObject:[PPScanningResult toTypeName:data.type] forKey:@"type"];
     } else {
         NSLog(@"Result is nil!");
     }
@@ -120,9 +119,13 @@
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                             messageAsDictionary:resultDict];
     
+    /*
     NSString* js = [result toSuccessCallbackString:[[self lastCommand] callbackId]];
     
     [self writeJavascript:js];
+    */
+    
+    [self.commandDelegate sendPluginResult:result callbackId:self.lastCommand.callbackId];
     
     [self dismissCameraViewControllerModal:YES];
 }
@@ -159,10 +162,13 @@
 - (void)returnError:(NSString*)message {
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                                 messageAsString:message];
-    
+    /*
     NSString* js = [result toErrorCallbackString:[[self lastCommand] callbackId]];
     
     [self writeJavascript:js];
+    */
+    
+    [self.commandDelegate sendPluginResult:result callbackId:self.lastCommand.callbackId];
     
     [[self viewController] dismissModalViewControllerAnimated:YES];
 }
@@ -189,6 +195,7 @@
     NSLog(@"Barcode type:\n%@", type);
     
     [self returnResult:result cancelled:(result == nil)];
+    
     [self dismissCameraViewControllerModal:YES];
 }
 

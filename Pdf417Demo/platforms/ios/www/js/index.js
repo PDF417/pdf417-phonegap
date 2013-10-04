@@ -16,6 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+// implement your decoding as you need it, this just does ASCII decoding
+function hex2a(hex) {
+    var str = '';
+    for (var i = 0; i < hex.length; i += 2) {
+        str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+    }
+    return str;
+}
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -43,10 +53,11 @@ var app = {
             cordova.exec(
                 // Register the callback handler
                 function callback(data) {
+                    //alert("got result " + data.data + " type " + data.type);
                     if (data.cancelled == true) {
 						resultDiv.innerHTML = "Cancelled!";
 					} else {
-						resultDiv.text = data.data + " (" + data.type + ")";
+						resultDiv.innerHTML = hex2a(data.data) + " (" + data.type + ")";
 					}
                 },
                 // Register the errorHandler
