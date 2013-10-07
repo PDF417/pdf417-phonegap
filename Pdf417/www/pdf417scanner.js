@@ -18,7 +18,25 @@
 
 	};
 
-	Pdf417Scanner.prototype.scan = function (successCallback, errorCallback) {
+/**
+ * Types of barcodes supported (pass as array of desired barcode strings):
+ *
+ *	"PDF417"
+ *	"QR Code"
+ *	"License"
+ *	"Code 128"
+ *	"Code 39"
+ *	"EAN 13"
+ *	"EAN 8"
+ *	"ITF"
+ *	"UPCA"
+ *	"UPCE"
+ *	"Barcode"
+ *
+ * Beep is a boolean which tells whether to play the beep sound upon barcode recoginition (default is true)
+ */
+
+	Pdf417Scanner.prototype.scan = function (successCallback, errorCallback, types, beep) {
 		if (errorCallback == null) {
 			errorCallback = function () {
 			};
@@ -34,7 +52,7 @@
 			return;
 		}
 
-		exec(successCallback, errorCallback, 'Pdf417Scanner', 'scan', []);
+		exec(successCallback, errorCallback, 'Pdf417Scanner', 'scan', [types, beep]);
 	};
 
 	var pdf417Scanner = new Pdf417Scanner();
