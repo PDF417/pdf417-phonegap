@@ -8,26 +8,26 @@
  */
 package com.phonegap.plugins.pdf417;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
-import org.apache.cordova.PluginResult;
-
 import mobi.pdf417.Pdf417MobiSettings;
 import mobi.pdf417.activity.Pdf417ScanActivity;
 import net.photopay.barcode.BarcodeDetailedData;
 import net.photopay.base.BaseBarcodeActivity;
 
 public class Pdf417Scanner extends CordovaPlugin {
-	
+    
     private static final int REQUEST_CODE = 1337;
 
     private static final String SCAN = "scan";
@@ -92,7 +92,20 @@ public class Pdf417Scanner extends CordovaPlugin {
         } */
         
         if (action.equals(SCAN)) {
-            scan();
+            Set<String> types = new HashSet<String>();
+            
+            JSONArray typesArg = args.optJSONArray(0);
+            for (int i = 0; i < typesArg.length(); ++i) {
+                types.add(typesArg.optString(i));
+            }
+            
+            Boolean beep = true;
+            
+            if (!args.isNull(1)) {
+                beep = args.optBoolean(1);
+            }
+            
+            scan(types, beep);
         } else {
             return false;
         }
@@ -102,19 +115,26 @@ public class Pdf417Scanner extends CordovaPlugin {
     /**
      * Starts an intent to scan and decode a barcode.
      */
-    public void scan() {
-		Context context = this.cordova.getActivity().getApplicationContext();
-		
-		Intent intent = new Intent(context, Pdf417ScanActivity.class);
-		 
-		Pdf417MobiSettings sett = new Pdf417MobiSettings();
-		// set this to true to enable PDF417 scanning
-        sett.setPdf417Enabled(true);
-        // set this to true to enable QR code scanning
-        sett.setQrCodeEnabled(true); 
+    public void scan(Set<String> types, Boolean beep) {
+        Context context = this.cordova.getActivity().getApplicationContext();
+        
+        Intent intent = new Intent(context, Pdf417ScanActivity.class);
+         
+        Pdf417MobiSettings sett = new Pdf417MobiSettings();
+        
+        sett.setPdf417Enabled(types.contains("PDF417"));
+        sett.setQrCodeEnabled(types.contains("QR Code"));
+        sett.setCode128Enabled(types.contains("Code 128"));
+        sett.setCode39Enabled(types.contains("Code 39"));
+        sett.setEan13Enabled(types.contains("EAN 13"));
+        sett.setEan8Enabled(types.contains("EAN 8"));
+        sett.setItfEnabled(types.contains("ITF"));
+        sett.setUpcaEnabled(types.contains("UPCA"));
+        sett.setUpceEnabled(types.contains("UPCE"));
+        
         // set this to true to prevent showing dialog after successful scan
         sett.setDontShowDialog(false);
-		// if license permits this, remove Pdf417.mobi logo overlay on scan activity
+        // if license permits this, remove Pdf417.mobi logo overlay on scan activity
         // if license forbids this, this option has no effect
         sett.setRemoveOverlayEnabled(true);
         
@@ -134,35 +154,35 @@ public class Pdf417Scanner extends CordovaPlugin {
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		
-		if (requestCode == REQUEST_CODE) {
-			
-			if (resultCode == BaseBarcodeActivity.RESULT_OK) {
-			
-				// read scanned barcode type (PDF417 or QR code)
-				String barcodeType = data.getStringExtra(BaseBarcodeActivity.EXTRAS_BARCODE_TYPE);
-				// read the data contained in barcode
-				String barcodeData = data.getStringExtra(BaseBarcodeActivity.EXTRAS_RESULT);
-				// read raw barcode data
-				BarcodeDetailedData rawData = data.getParcelableExtra(BaseBarcodeActivity.EXTRAS_RAW_RESULT);				
-					
-				JSONObject obj = new JSONObject();
-				try {
-					obj.put(TYPE, barcodeType);
-					obj.put(DATA, barcodeData);
-					//obj.put(RAW_DATA, XXXXX);
-					//obj.put(RAW_DATA, XXXXX);
-					
-					obj.put(CANCELLED, false);
-					
-				} catch (JSONException e) {
-					Log.d(LOG_TAG, "This should never happen");
-				}
-				//this.success(new PluginResult(PluginResult.Status.OK, obj), this.callback);
-				this.callbackContext.success(obj);
-					
-			} else if (resultCode == BaseBarcodeActivity.RESULT_CANCELED) {
-				JSONObject obj = new JSONObject();
+        
+        if (requestCode == REQUEST_CODE) {
+            
+            if (resultCode == BaseBarcodeActivity.RESULT_OK) {
+            
+                // read scanned barcode type (PDF417 or QR code)
+                String barcodeType = data.getStringExtra(BaseBarcodeActivity.EXTRAS_BARCODE_TYPE);
+                // read the data contained in barcode
+                String barcodeData = data.getStringExtra(BaseBarcodeActivity.EXTRAS_RESULT);
+                // read raw barcode data
+                BarcodeDetailedData rawData = data.getParcelableExtra(BaseBarcodeActivity.EXTRAS_RAW_RESULT);               
+                    
+                JSONObject obj = new JSONObject();
+                try {
+                    obj.put(TYPE, barcodeType);
+                    obj.put(DATA, barcodeData);
+                    //obj.put(RAW_DATA, XXXXX);
+                    //obj.put(RAW_DATA, XXXXX);
+                    
+                    obj.put(CANCELLED, false);
+                    
+                } catch (JSONException e) {
+                    Log.d(LOG_TAG, "This should never happen");
+                }
+                //this.success(new PluginResult(PluginResult.Status.OK, obj), this.callback);
+                this.callbackContext.success(obj);
+                    
+            } else if (resultCode == BaseBarcodeActivity.RESULT_CANCELED) {
+                JSONObject obj = new JSONObject();
                 try {
                     obj.put(CANCELLED, true);
                     
@@ -171,9 +191,9 @@ public class Pdf417Scanner extends CordovaPlugin {
                 }
                 this.callbackContext.success(obj);
                 
-			} else {
-				this.callbackContext.error("Unexpected error");
-			}
-		}
+            } else {
+                this.callbackContext.error("Unexpected error");
+            }
+        }
     }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1802B89ED5B2444AA4C3BABE /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFC049FD822460D978F6011 /* libiconv.dylib */; };
+		181CF7C56E5040C2BEBBC3D2 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B27664F645247F0A13A89C4 /* libc++.dylib */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -40,20 +42,18 @@
 		30A0434914DC770100060A13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30A0434614DC770100060A13 /* Localizable.strings */; };
 		30E5649213A7FCAF007403D8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E5649113A7FCAF007403D8 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
-		5A8A9F74EEEA4191B1CDFE7D /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E455260BB4C94044A879D949 /* CoreVideo.framework */; };
+		55FFB92229D843E48A09EF69 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135984729A8F46B2854B5356 /* CoreVideo.framework */; };
 		5AA0E66D1729F45B000DC89A /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AA0E66C1729F45B000DC89A /* OpenAL.framework */; };
 		5AA0E66F1729F460000DC89A /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AA0E66E1729F460000DC89A /* ImageIO.framework */; };
 		5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE5B34173C68D80009041E /* CoreLocation.framework */; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
-		64B569475A9143878B9BC4B7 /* CDVpdf417.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCE09208F3146818611FE7F /* CDVpdf417.m */; };
-		93180FC207854C3A936CF0A1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 67F604191C26478BAA6A4077 /* libz.dylib */; };
-		A42028E4AB244FB7A89EB353 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39BEBF9428B478F9E3ED8AD /* OpenGLES.framework */; };
-		AD4797B55AC546AC830EBB8E /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3330911D81134DF89669003B /* libiconv.dylib */; };
-		AD9EEDCB17FEDB94004EF101 /* pdf417.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD9EEDC617FEDB94004EF101 /* pdf417.framework */; };
-		AD9EEDCC17FEDB94004EF101 /* de.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD9EEDC817FEDB94004EF101 /* de.strings */; };
-		AD9EEDCD17FEDB94004EF101 /* en.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD9EEDC917FEDB94004EF101 /* en.strings */; };
-		AD9EEDCE17FEDB94004EF101 /* hr.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD9EEDCA17FEDB94004EF101 /* hr.strings */; };
-		C12A0F033E3E4799A4F7FE1C /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1165548DD444E0B930DDCF5 /* libc++.dylib */; };
+		5BF35D60E98A46A2A0907984 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7E3BDC1BFB14806BB7319F0 /* OpenGLES.framework */; };
+		93B1E749BBEC4DCEB864B4A5 /* CDVpdf417.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1182C9FDCE4F879869EF9D /* CDVpdf417.m */; };
+		ADEECA8518058BBD0025AE1D /* pdf417.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEECA8018058BBD0025AE1D /* pdf417.framework */; };
+		ADEECA8618058BBD0025AE1D /* de.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADEECA8218058BBD0025AE1D /* de.strings */; };
+		ADEECA8718058BBD0025AE1D /* en.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADEECA8318058BBD0025AE1D /* en.strings */; };
+		ADEECA8818058BBD0025AE1D /* hr.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADEECA8418058BBD0025AE1D /* hr.strings */; };
+		B096E52D5B9C4C209D8AE32B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D7B5F3787AD42B9847C6CD2 /* libz.dylib */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		F840E1F1165FE0F500CFE078 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F840E1F0165FE0F500CFE078 /* config.xml */; };
 /* End PBXBuildFile section */
@@ -76,6 +76,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		135984729A8F46B2854B5356 /* CoreVideo.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		1D0B72CFC63740C89EB876E3 /* CDVpdf417.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVpdf417.h; path = mobi.pdf417.Pdf417Scanner/CDVpdf417.h; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -114,23 +116,21 @@
 		30E5649113A7FCAF007403D8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		30FC414816E50CA1004E6F35 /* icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72@2x.png"; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Pdf417Demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pdf417Demo-Prefix.pch"; sourceTree = "<group>"; };
-		3330911D81134DF89669003B /* libiconv.dylib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		4CFC049FD822460D978F6011 /* libiconv.dylib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		4D7B5F3787AD42B9847C6CD2 /* libz.dylib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		5AA0E66C1729F45B000DC89A /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		5AA0E66E1729F460000DC89A /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		5AEE5B34173C68D80009041E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		67F604191C26478BAA6A4077 /* libz.dylib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		725A5541133B47A8B38B2621 /* CDVpdf417.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVpdf417.h; path = mobi.pdf417.Pdf417Scanner/CDVpdf417.h; sourceTree = "<group>"; };
+		6B27664F645247F0A13A89C4 /* libc++.dylib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Pdf417Demo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pdf417Demo-Info.plist"; path = "../Pdf417Demo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		AD9EEDC617FEDB94004EF101 /* pdf417.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pdf417.framework; sourceTree = "<group>"; };
-		AD9EEDC817FEDB94004EF101 /* de.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = de.strings; sourceTree = "<group>"; };
-		AD9EEDC917FEDB94004EF101 /* en.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = en.strings; sourceTree = "<group>"; };
-		AD9EEDCA17FEDB94004EF101 /* hr.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = hr.strings; sourceTree = "<group>"; };
-		C1165548DD444E0B930DDCF5 /* libc++.dylib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		C39BEBF9428B478F9E3ED8AD /* OpenGLES.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		8E1182C9FDCE4F879869EF9D /* CDVpdf417.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVpdf417.m; path = mobi.pdf417.Pdf417Scanner/CDVpdf417.m; sourceTree = "<group>"; };
+		ADEECA8018058BBD0025AE1D /* pdf417.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pdf417.framework; sourceTree = "<group>"; };
+		ADEECA8218058BBD0025AE1D /* de.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = de.strings; sourceTree = "<group>"; };
+		ADEECA8318058BBD0025AE1D /* en.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = en.strings; sourceTree = "<group>"; };
+		ADEECA8418058BBD0025AE1D /* hr.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = hr.strings; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
-		E455260BB4C94044A879D949 /* CoreVideo.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
-		ECCE09208F3146818611FE7F /* CDVpdf417.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVpdf417.m; path = mobi.pdf417.Pdf417Scanner/CDVpdf417.m; sourceTree = "<group>"; };
+		D7E3BDC1BFB14806BB7319F0 /* OpenGLES.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = Pdf417Demo/config.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,12 +158,12 @@
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
 				30E5649213A7FCAF007403D8 /* CoreMedia.framework in Frameworks */,
 				5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */,
-				C12A0F033E3E4799A4F7FE1C /* libc++.dylib in Frameworks */,
-				93180FC207854C3A936CF0A1 /* libz.dylib in Frameworks */,
-				AD9EEDCB17FEDB94004EF101 /* pdf417.framework in Frameworks */,
-				AD4797B55AC546AC830EBB8E /* libiconv.dylib in Frameworks */,
-				5A8A9F74EEEA4191B1CDFE7D /* CoreVideo.framework in Frameworks */,
-				A42028E4AB244FB7A89EB353 /* OpenGLES.framework in Frameworks */,
+				181CF7C56E5040C2BEBBC3D2 /* libc++.dylib in Frameworks */,
+				B096E52D5B9C4C209D8AE32B /* libz.dylib in Frameworks */,
+				ADEECA8518058BBD0025AE1D /* pdf417.framework in Frameworks */,
+				1802B89ED5B2444AA4C3BABE /* libiconv.dylib in Frameworks */,
+				55FFB92229D843E48A09EF69 /* CoreVideo.framework in Frameworks */,
+				5BF35D60E98A46A2A0907984 /* OpenGLES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,7 +251,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AD9EEDC517FEDB94004EF101 /* pdf417.embeddedframework */,
+				ADEECA7F18058BBD0025AE1D /* pdf417.embeddedframework */,
 				5AEE5B34173C68D80009041E /* CoreLocation.framework */,
 				5AA0E66E1729F460000DC89A /* ImageIO.framework */,
 				5AA0E66C1729F45B000DC89A /* OpenAL.framework */,
@@ -270,11 +270,11 @@
 				301BF5C4109A6A2B0062928A /* SystemConfiguration.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
 				30E5649113A7FCAF007403D8 /* CoreMedia.framework */,
-				C1165548DD444E0B930DDCF5 /* libc++.dylib */,
-				67F604191C26478BAA6A4077 /* libz.dylib */,
-				3330911D81134DF89669003B /* libiconv.dylib */,
-				E455260BB4C94044A879D949 /* CoreVideo.framework */,
-				C39BEBF9428B478F9E3ED8AD /* OpenGLES.framework */,
+				6B27664F645247F0A13A89C4 /* libc++.dylib */,
+				4D7B5F3787AD42B9847C6CD2 /* libz.dylib */,
+				4CFC049FD822460D978F6011 /* libiconv.dylib */,
+				135984729A8F46B2854B5356 /* CoreVideo.framework */,
+				D7E3BDC1BFB14806BB7319F0 /* OpenGLES.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -290,8 +290,8 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				ECCE09208F3146818611FE7F /* CDVpdf417.m */,
-				725A5541133B47A8B38B2621 /* CDVpdf417.h */,
+				8E1182C9FDCE4F879869EF9D /* CDVpdf417.m */,
+				1D0B72CFC63740C89EB876E3 /* CDVpdf417.h */,
 			);
 			name = Plugins;
 			path = Pdf417Demo/Plugins;
@@ -338,22 +338,22 @@
 			path = se.lproj;
 			sourceTree = "<group>";
 		};
-		AD9EEDC517FEDB94004EF101 /* pdf417.embeddedframework */ = {
+		ADEECA7F18058BBD0025AE1D /* pdf417.embeddedframework */ = {
 			isa = PBXGroup;
 			children = (
-				AD9EEDC617FEDB94004EF101 /* pdf417.framework */,
-				AD9EEDC717FEDB94004EF101 /* Resources */,
+				ADEECA8018058BBD0025AE1D /* pdf417.framework */,
+				ADEECA8118058BBD0025AE1D /* Resources */,
 			);
 			name = pdf417.embeddedframework;
 			path = ../../../Pdf417/src/ios/pdf417.embeddedframework;
 			sourceTree = "<group>";
 		};
-		AD9EEDC717FEDB94004EF101 /* Resources */ = {
+		ADEECA8118058BBD0025AE1D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AD9EEDC817FEDB94004EF101 /* de.strings */,
-				AD9EEDC917FEDB94004EF101 /* en.strings */,
-				AD9EEDCA17FEDB94004EF101 /* hr.strings */,
+				ADEECA8218058BBD0025AE1D /* de.strings */,
+				ADEECA8318058BBD0025AE1D /* en.strings */,
+				ADEECA8418058BBD0025AE1D /* hr.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -435,12 +435,12 @@
 				F840E1F1165FE0F500CFE078 /* config.xml in Resources */,
 				308D05371370CCF300D202BF /* icon-72.png in Resources */,
 				308D05381370CCF300D202BF /* icon.png in Resources */,
-				AD9EEDCC17FEDB94004EF101 /* de.strings in Resources */,
+				ADEECA8618058BBD0025AE1D /* de.strings in Resources */,
 				308D05391370CCF300D202BF /* icon@2x.png in Resources */,
 				1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */,
 				1F766FE213BBADB100FB74C0 /* Localizable.strings in Resources */,
 				302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */,
-				AD9EEDCE17FEDB94004EF101 /* hr.strings in Resources */,
+				ADEECA8818058BBD0025AE1D /* hr.strings in Resources */,
 				30A0434814DC770100060A13 /* Localizable.strings in Resources */,
 				30A0434914DC770100060A13 /* Localizable.strings in Resources */,
 				3088BBBD154F3926009F9C59 /* Default-Landscape@2x~ipad.png in Resources */,
@@ -449,7 +449,7 @@
 				3088BBC0154F3926009F9C59 /* Default-Portrait~ipad.png in Resources */,
 				3088BBC1154F3926009F9C59 /* Default@2x~iphone.png in Resources */,
 				3088BBC2154F3926009F9C59 /* Default~iphone.png in Resources */,
-				AD9EEDCD17FEDB94004EF101 /* en.strings in Resources */,
+				ADEECA8718058BBD0025AE1D /* en.strings in Resources */,
 				D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
 			);
@@ -482,7 +482,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				64B569475A9143878B9BC4B7 /* CDVpdf417.m in Sources */,
+				93B1E749BBEC4DCEB864B4A5 /* CDVpdf417.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,7 +540,7 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/marko/Desktop/pdf417phonegap/Pdf417/src/ios/pdf417.embeddedframework,
+					/Users/marko/Workspace/pdf417phonegap/Pdf417/src/ios/pdf417.embeddedframework,
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -577,7 +577,7 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/marko/Desktop/pdf417phonegap/Pdf417/src/ios/pdf417.embeddedframework,
+					/Users/marko/Workspace/pdf417phonegap/Pdf417/src/ios/pdf417.embeddedframework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pdf417Demo/Pdf417Demo-Prefix.pch";

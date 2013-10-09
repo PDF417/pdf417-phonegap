@@ -23,7 +23,6 @@
  *
  *	"PDF417"
  *	"QR Code"
- *	"License"
  *	"Code 128"
  *	"Code 39"
  *	"EAN 13"
@@ -31,7 +30,6 @@
  *	"ITF"
  *	"UPCA"
  *	"UPCE"
- *	"Barcode"
  *
  * Beep is a boolean which tells whether to play the beep sound upon barcode recoginition (default is true)
  */

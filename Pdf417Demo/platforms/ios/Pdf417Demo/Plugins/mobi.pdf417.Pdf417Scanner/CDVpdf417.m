@@ -39,40 +39,40 @@
     
     // Check if barcode scanning is supported
     NSError *error;
-    if ([PPBarcodeCoordinator isScanningUnsupported:&error]) {
-        NSString *messageString = [error localizedDescription];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
-                                                        message:messageString
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil, nil];
-        [alert show];
-        return;
-    }
+//    if ([PPBarcodeCoordinator isScanningUnsupported:&error]) {
+//        NSString *messageString = [error localizedDescription];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
+//                                                        message:messageString
+//                                                       delegate:nil
+//                                              cancelButtonTitle:@"OK"
+//                                              otherButtonTitles:nil, nil];
+//        [alert show];
+//        return;
+//    }
     
     // Create object which stores pdf417 framework settings
     NSMutableDictionary* coordinatorSettings = [[NSMutableDictionary alloc] init];
     
+    NSArray* types = [command argumentAtIndex:0];
+    
     // Set YES/NO for scanning pdf417 barcode standard (default YES)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPRecognizePdf417Key];
+    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"PDF417"]] forKey:kPPRecognizePdf417Key];
     // Set YES/NO for scanning qr code barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPRecognizeQrCodeKey];
-    // Set YES/NO for scanning all 1D barcode standards (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:NO] forKey:kPPRecognize1DBarcodesKey];
+    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"QR Code"]] forKey:kPPRecognizeQrCodeKey];
     // Set YES/NO for scanning code 128 barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:NO] forKey:kPPRecognizeCode128Key];
+    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"Code 128"]] forKey:kPPRecognizeCode128Key];
     // Set YES/NO for scanning code 39 barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:NO] forKey:kPPRecognizeCode39Key];
+    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"Code 39"]] forKey:kPPRecognizeCode39Key];
     // Set YES/NO for scanning EAN 8 barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:NO] forKey:kPPRecognizeEAN8Key];
+    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"EAN 8"]] forKey:kPPRecognizeEAN8Key];
     // Set YES/NO for scanning EAN 13 barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:NO] forKey:kPPRecognizeEAN13Key];
+    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"EAN 13"]] forKey:kPPRecognizeEAN13Key];
     // Set YES/NO for scanning ITF barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:NO] forKey:kPPRecognizeITFKey];
+    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"ITF"]] forKey:kPPRecognizeITFKey];
     // Set YES/NO for scanning UPCA barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:NO] forKey:kPPRecognizeUPCAKey];
+    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"UPCA"]] forKey:kPPRecognizeUPCAKey];
     // Set YES/NO for scanning UPCE barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:NO] forKey:kPPRecognizeUPCEKey];
+    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"UPCE"]] forKey:kPPRecognizeUPCEKey];
     
     // Set only one resolution mode
     //    [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseVideoPreset640x480];
@@ -90,8 +90,10 @@
     [coordinatorSettings setValue:[NSNumber numberWithInt:UIInterfaceOrientationMaskAll] forKey:kPPHudOrientation];
     
     // Define the sound filename played on successful recognition
-    NSString* soundPath = [[NSBundle mainBundle] pathForResource:@"beep" ofType:@"mp3"];
-    [coordinatorSettings setValue:soundPath forKey:kPPSoundFile];
+    if ([command arguments].count < 2 || [command argumentAtIndex:1] == false) {
+        NSString* soundPath = [[NSBundle mainBundle] pathForResource:@"beep" ofType:@"mp3"];
+        [coordinatorSettings setValue:soundPath forKey:kPPSoundFile];
+    }
     
     // Allocate the recognition coordinator object
     PPBarcodeCoordinator *coordinator = [[PPBarcodeCoordinator alloc] initWithSettings:coordinatorSettings];
