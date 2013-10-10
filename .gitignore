@@ -1,4 +1,14 @@
+# android gen
 Pdf417Demo/platforms/android/bin
 Pdf417Demo/platforms/android/gen
+
+# osx gen
 .DS_Store
-xcuserdata
+
+# xcode gen
+xcuserdata/
+build/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
