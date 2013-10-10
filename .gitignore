@@ -1,2 +1,4 @@
 Pdf417Demo/platforms/android/bin
 Pdf417Demo/platforms/android/gen
+.DS_Store
+xcuserdata
