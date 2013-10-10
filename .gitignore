@@ -1,6 +1,6 @@
 # android gen
-Pdf417Demo/platforms/android/bin
-Pdf417Demo/platforms/android/gen
+bin/
+gen/
 
 # osx gen
 .DS_Store
