@@ -90,7 +90,7 @@
     [coordinatorSettings setValue:[NSNumber numberWithInt:UIInterfaceOrientationMaskAll] forKey:kPPHudOrientation];
     
     // Define the sound filename played on successful recognition
-    if ([command arguments].count < 2 || [command argumentAtIndex:1] == false) {
+    if ([command arguments].count < 2 || [command argumentAtIndex:1]) {
         NSString* soundPath = [[NSBundle mainBundle] pathForResource:@"beep" ofType:@"mp3"];
         [coordinatorSettings setValue:soundPath forKey:kPPSoundFile];
     }

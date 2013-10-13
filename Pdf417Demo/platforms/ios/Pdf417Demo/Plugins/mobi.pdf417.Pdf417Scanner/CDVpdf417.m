@@ -39,16 +39,16 @@
     
     // Check if barcode scanning is supported
     NSError *error;
-//    if ([PPBarcodeCoordinator isScanningUnsupported:&error]) {
-//        NSString *messageString = [error localizedDescription];
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
-//                                                        message:messageString
-//                                                       delegate:nil
-//                                              cancelButtonTitle:@"OK"
-//                                              otherButtonTitles:nil, nil];
-//        [alert show];
-//        return;
-//    }
+    if ([PPBarcodeCoordinator isScanningUnsupported:&error]) {
+        NSString *messageString = [error localizedDescription];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                        message:messageString
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
     
     // Create object which stores pdf417 framework settings
     NSMutableDictionary* coordinatorSettings = [[NSMutableDictionary alloc] init];

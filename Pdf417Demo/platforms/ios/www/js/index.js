@@ -66,7 +66,7 @@ var app = {
                 },
                 "Pdf417Scanner", //Service (plugin name) 
                 "scan", //Action
-                [ ["PDF417", "QR Code"], false ] //We want qr codes and pdf417 scanned with the beep sound off
+                [ ["PDF417", "QR Code"], true ] //We want qr codes and pdf417 scanned with the beep sound off
             );
         });
         

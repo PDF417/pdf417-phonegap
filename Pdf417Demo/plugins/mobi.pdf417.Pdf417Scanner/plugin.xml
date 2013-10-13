@@ -49,11 +49,15 @@
         </config-file>
 
         <source-file src="src/android/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="src/com/phonegap/plugins/pdf417" />
+        
+        <resource-file src="src/android/res/beep.mp3" target-dir="res/raw" />
     </platform>
 
     <platform name="ios">
-        <source-file src="src/ios/CDVpdf417.m" />
-        <header-file src="src/ios/CDVpdf417.h" />
+        <source-file src="src/ios/sources/CDVpdf417.m" />
+        <header-file src="src/ios/sources/CDVpdf417.h" />
+
+        <resource-file src="src/ios/resources/beep.mp3" />
 
         <framework src="libc++.dylib" />
         <framework src="libz.dylib" />
