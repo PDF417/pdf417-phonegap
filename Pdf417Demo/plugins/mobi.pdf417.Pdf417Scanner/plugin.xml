@@ -50,7 +50,7 @@
 
         <source-file src="src/android/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="src/com/phonegap/plugins/pdf417" />
         
-        <resource-file src="src/android/res/beep.mp3" target-dir="res/raw" />
+        <source-file src="src/android/res/beep.mp3" target-dir="res/raw" />
     </platform>
 
     <platform name="ios">
