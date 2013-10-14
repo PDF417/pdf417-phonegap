@@ -57,7 +57,10 @@ var app = {
                     if (data.cancelled == true) {
 						resultDiv.innerHTML = "Cancelled!";
 					} else {
-						resultDiv.innerHTML = hex2a(data.data) + " (" + data.type + ")";
+						resultDiv.innerHTML = data.data + " (" + data.type + ")";
+                        
+                        // This is how you would decode the raw hex encoded data into an ASCII string
+                        //resultDiv.innerHTML = hex2a(data.raw) + " (" + data.type + ")";
 					}
                 },
                 // Register the errorHandler

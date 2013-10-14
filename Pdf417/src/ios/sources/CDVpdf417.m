@@ -112,7 +112,9 @@
     [resultDict setObject:[NSNumber numberWithInt: (cancelled ? 1 : 0)] forKey:@"Cancelled"];
     
     if (data != nil) {
-        [resultDict setObject:[data toUrlDataString] forKey:@"data"];
+        [resultDict setObject:[data toUrlDataString] forKey:@"raw"];
+        [resultDict setObject:[[NSString alloc] initWithData:[data data]
+                                                    encoding:NSUTF8StringEncoding] forKey:@"data"];
         [resultDict setObject:[PPScanningResult toTypeName:data.type] forKey:@"type"];
     } else {
         NSLog(@"Result is nil!");
@@ -122,10 +124,10 @@
                                             messageAsDictionary:resultDict];
     
     /*
-    NSString* js = [result toSuccessCallbackString:[[self lastCommand] callbackId]];
-    
-    [self writeJavascript:js];
-    */
+     NSString* js = [result toSuccessCallbackString:[[self lastCommand] callbackId]];
+     
+     [self writeJavascript:js];
+     */
     
     [self.commandDelegate sendPluginResult:result callbackId:self.lastCommand.callbackId];
     
@@ -165,10 +167,10 @@
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                                 messageAsString:message];
     /*
-    NSString* js = [result toErrorCallbackString:[[self lastCommand] callbackId]];
-    
-    [self writeJavascript:js];
-    */
+     NSString* js = [result toErrorCallbackString:[[self lastCommand] callbackId]];
+     
+     [self writeJavascript:js];
+     */
     
     [self.commandDelegate sendPluginResult:result callbackId:self.lastCommand.callbackId];
     

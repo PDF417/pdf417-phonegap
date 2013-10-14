@@ -112,7 +112,9 @@
     [resultDict setObject:[NSNumber numberWithInt: (cancelled ? 1 : 0)] forKey:@"Cancelled"];
     
     if (data != nil) {
-        [resultDict setObject:[data toUrlDataString] forKey:@"data"];
+        [resultDict setObject:[data toUrlDataString] forKey:@"raw"];
+        [resultDict setObject:[[NSString alloc] initWithData:[data data]
+                                                     encoding:NSUTF8StringEncoding] forKey:@"data"];
         [resultDict setObject:[PPScanningResult toTypeName:data.type] forKey:@"type"];
     } else {
         NSLog(@"Result is nil!");
