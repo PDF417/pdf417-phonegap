@@ -57,7 +57,7 @@ var app = {
                     if (data.cancelled == true) {
 						resultDiv.innerHTML = "Cancelled!";
 					} else {
-						resultDiv.innerHTML = hex2a(data.data) + " (" + data.type + ")";
+						resultDiv.innerHTML = hex2a(data.raw) + " (" + data.type + ")";
 					}
                 },
                 // Register the errorHandler
