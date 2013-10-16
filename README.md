@@ -76,24 +76,26 @@ cordova build ios
 
 To use the plugin you call it in your js code like the demo application:
 
-	cordova.exec(
-		// Register the callback handler
-		function callback(data) {
-			//alert("got result " + data.data + " type " + data.type);
-			if (data.cancelled == true) {
-				resultDiv.innerHTML = "Cancelled!";
-			} else {
-				resultDiv.innerHTML = hex2a(data.raw) + " (" + data.type + ")";
-			}
-		},
-		// Register the errorHandler
-		function errorHandler(err) {
-			alert('Error');
-		},
-		"Pdf417Scanner", //Service (plugin name) 
-		"scan", //Action
-		[ ["PDF417", "QR Code"], false ] //We want qr codes and pdf417 scanned with the beep sound off
-	);
+```javascript
+cordova.exec(
+	// Register the callback handler
+	function callback(data) {
+		//alert("got result " + data.data + " type " + data.type);
+		if (data.cancelled == true) {
+			resultDiv.innerHTML = "Cancelled!";
+		} else {
+			resultDiv.innerHTML = hex2a(data.raw) + " (" + data.type + ")";
+		}
+	},
+	// Register the errorHandler
+	function errorHandler(err) {
+		alert('Error');
+	},
+	"Pdf417Scanner", //Service (plugin name) 
+	"scan", //Action
+	[ ["PDF417", "QR Code"], false ] //We want qr codes and pdf417 scanned with the beep sound off
+);
+```
 
 The parameters for the scanner are a list of barcodes that the scanner should scan for (you can find this list) and a boolean telling the scanner whether to play the beep sound upon successfull recogintion (you can provide your own sound).
 
