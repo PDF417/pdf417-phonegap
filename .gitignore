@@ -2,6 +2,8 @@
 bin/
 gen/
 
+local.properties
+
 # osx gen
 .DS_Store
 
