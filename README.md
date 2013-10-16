@@ -36,7 +36,7 @@ Finally, add the iOS embedded framework to your project by draging and dropping 
 
 Here's a complete example of how to create and build a project for **Android** and **iOS** using **cordova**:
 
-```` Shell
+```shell
 # pull the plugin and sample application from Github
 git clone git@github.com:PDF417/pdf417-phonegap.git
 
@@ -70,7 +70,7 @@ cordova platform add ios
 
 # build the project
 cordova build ios
-````
+```
 
 ## Usage
 
