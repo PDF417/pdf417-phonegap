@@ -544,7 +544,7 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/marko/Workspace/pdf417phonegap/Pdf417/src/ios/pdf417.embeddedframework,
+					../../../Pdf417/src/ios/pdf417.embeddedframework,
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -581,7 +581,7 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/marko/Workspace/pdf417phonegap/Pdf417/src/ios/pdf417.embeddedframework,
+					../../../Pdf417/src/ios/pdf417.embeddedframework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pdf417Demo/Pdf417Demo-Prefix.pch";
