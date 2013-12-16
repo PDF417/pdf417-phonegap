@@ -22,6 +22,7 @@ import android.util.Log;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import mobi.pdf417.Pdf417MobiSettings;
+import mobi.pdf417.Pdf417MobiScanData;
 import mobi.pdf417.activity.Pdf417ScanActivity;
 import net.photopay.barcode.BarcodeDetailedData;
 import net.photopay.base.BaseBarcodeActivity;
@@ -147,12 +148,17 @@ public class Pdf417Scanner extends CordovaPlugin {
 
 			if (resultCode == BaseBarcodeActivity.RESULT_OK) {
 
+				// read scan result
+				Pdf417MobiScanData scanData = data.getParcelableExtra(BaseBarcodeActivity.EXTRAS_RESULT);
+
 				// read scanned barcode type (PDF417 or QR code)
-				String barcodeType = data.getStringExtra(BaseBarcodeActivity.EXTRAS_BARCODE_TYPE);
+				String barcodeType = scanData.getBarcodeType();
+
 				// read the data contained in barcode
-				String barcodeData = data.getStringExtra(BaseBarcodeActivity.EXTRAS_RESULT);
+				String barcodeData = scanData.getBarcodeData();
+
 				// read raw barcode data
-				BarcodeDetailedData rawData = data.getParcelableExtra(BaseBarcodeActivity.EXTRAS_RAW_RESULT);
+				BarcodeDetailedData rawData = scanData.getBarcodeRawData();
 
 				JSONObject obj = new JSONObject();
 				try {
