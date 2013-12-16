@@ -62,6 +62,9 @@
 
         <framework src="CoreVideo.framework" />
         <framework src="OpenGLES.framework" />
+        <framework src="CoreMedia.framework" />
+        <framework src="QuartzCore.framework" />
+        <framework src="AudioToolbox.framework" />
 
         <config-file target="config.xml" parent="/*">
             <feature name="Pdf417Scanner">
