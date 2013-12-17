@@ -42,10 +42,7 @@
             <uses-feature android:name="android.hardware.camera" />
 			<uses-feature android:name="android.hardware.camera.autofocus" />
 			<uses-feature android:name="android.hardware.camera.flash" />
-			<uses-feature
-				android:glEsVersion="0x00020000"
-				android:required="false" >
-			</uses-feature>
+			<uses-feature android:glEsVersion="0x00020000" android:required="false" />
         </config-file>
 
         <source-file src="src/android/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="src/com/phonegap/plugins/pdf417" />

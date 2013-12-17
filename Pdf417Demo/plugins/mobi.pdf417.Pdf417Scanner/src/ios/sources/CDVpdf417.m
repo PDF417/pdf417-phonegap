@@ -90,7 +90,7 @@
     [coordinatorSettings setValue:[NSNumber numberWithInt:UIInterfaceOrientationMaskAll] forKey:kPPHudOrientation];
     
     // Define the sound filename played on successful recognition
-    if ([command arguments].count < 2 || [command argumentAtIndex:1] == false) {
+    if ([command arguments].count < 2 || [command argumentAtIndex:1]) {
         NSString* soundPath = [[NSBundle mainBundle] pathForResource:@"beep" ofType:@"mp3"];
         [coordinatorSettings setValue:soundPath forKey:kPPSoundFile];
     }
@@ -112,7 +112,14 @@
     [resultDict setObject:[NSNumber numberWithInt: (cancelled ? 1 : 0)] forKey:@"Cancelled"];
     
     if (data != nil) {
-        [resultDict setObject:[data toUrlDataString] forKey:@"data"];
+    	NSString* textData = [[NSString alloc] initWithData:[data data]
+                                                    encoding:NSUTF8StringEncoding];
+
+    	if (textData) {
+    		[resultDict setObject:textData forKey:@"data"];
+    	}
+
+        [resultDict setObject:[data toUrlDataString] forKey:@"raw"];
         [resultDict setObject:[PPScanningResult toTypeName:data.type] forKey:@"type"];
     } else {
         NSLog(@"Result is nil!");
@@ -122,10 +129,10 @@
                                             messageAsDictionary:resultDict];
     
     /*
-    NSString* js = [result toSuccessCallbackString:[[self lastCommand] callbackId]];
-    
-    [self writeJavascript:js];
-    */
+     NSString* js = [result toSuccessCallbackString:[[self lastCommand] callbackId]];
+     
+     [self writeJavascript:js];
+     */
     
     [self.commandDelegate sendPluginResult:result callbackId:self.lastCommand.callbackId];
     
@@ -165,10 +172,10 @@
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                                 messageAsString:message];
     /*
-    NSString* js = [result toErrorCallbackString:[[self lastCommand] callbackId]];
-    
-    [self writeJavascript:js];
-    */
+     NSString* js = [result toErrorCallbackString:[[self lastCommand] callbackId]];
+     
+     [self writeJavascript:js];
+     */
     
     [self.commandDelegate sendPluginResult:result callbackId:self.lastCommand.callbackId];
     

@@ -49,7 +49,7 @@ var app = {
         
         scanButton.addEventListener('click', function() {
             
-            // Ask cordova to execute a method on our Pdf417Scanner class
+            // Ask cordova to execute a method on our FileWriter class
             cordova.exec(
                 // Register the callback handler
                 function callback(data) {
@@ -57,10 +57,7 @@ var app = {
                     if (data.cancelled == true) {
 						resultDiv.innerHTML = "Cancelled!";
 					} else {
-						// Display the utf8 decoded data
-						resultDiv.innerHTML = data.data + " (" + data.type + ")";						
-						// This shows how you would parse the raw hex encoded data to an ASCII string
-						//resultDiv.innerHTML = hex2a(data.raw) + " (" + data.type + ")";
+						resultDiv.innerHTML = hex2a(data.raw) + " (" + data.type + ")";
 					}
                 },
                 // Register the errorHandler

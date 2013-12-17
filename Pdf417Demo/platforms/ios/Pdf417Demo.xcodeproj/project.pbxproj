@@ -5,9 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
-		0BE459DEA44D4C15813D2AF6 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A06699BFEE34ECC9373D4F8 /* beep.mp3 */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -41,21 +39,17 @@
 		30A0434914DC770100060A13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30A0434614DC770100060A13 /* Localizable.strings */; };
 		30E5649213A7FCAF007403D8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E5649113A7FCAF007403D8 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
-		43D1396F10C040B7A35C7434 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB78B66AA73540C08B2DE1FE /* OpenGLES.framework */; };
-		4E630B1DDC5742708C63E746 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D251C131D6B4491BD58DDF8 /* CoreVideo.framework */; };
 		5AA0E66D1729F45B000DC89A /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AA0E66C1729F45B000DC89A /* OpenAL.framework */; };
 		5AA0E66F1729F460000DC89A /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AA0E66E1729F460000DC89A /* ImageIO.framework */; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
-		6A857540553044E38B100303 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CEF6BBF45984F10AA74C770 /* libiconv.dylib */; };
-		99CF289C85634FC5883CFEF3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F9211C1EF3F4004A0762245 /* libz.dylib */; };
-		ADA871F387AB414BB59EE303 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9C213D7FEC45239AA5E4E9 /* libc++.dylib */; };
 		ADC55BC4182CE8FF00C74F68 /* pdf417.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADC55BBF182CE8FF00C74F68 /* pdf417.framework */; };
 		ADC55BC5182CE8FF00C74F68 /* de.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADC55BC1182CE8FF00C74F68 /* de.strings */; };
 		ADC55BC6182CE8FF00C74F68 /* en.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADC55BC2182CE8FF00C74F68 /* en.strings */; };
 		ADC55BC7182CE8FF00C74F68 /* hr.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADC55BC3182CE8FF00C74F68 /* hr.strings */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
-		DDDD680F58B3446AA313630C /* CDVpdf417.m in Sources */ = {isa = PBXBuildFile; fileRef = A9FDDA9D7A8B48D78C6B16CA /* CDVpdf417.m */; };
 		F840E1F1165FE0F500CFE078 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F840E1F0165FE0F500CFE078 /* config.xml */; };
+		A69E929F7AE743E486309839 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 76C581D624394FBAB910D306 /* beep.mp3 */; };
+		005C7CBD969E48BAB55AA73E /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B85DDEDC479E4AADA6577D01 /* libc++.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,10 +123,11 @@
 		ADC55BC1182CE8FF00C74F68 /* de.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = de.strings; sourceTree = "<group>"; };
 		ADC55BC2182CE8FF00C74F68 /* en.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = en.strings; sourceTree = "<group>"; };
 		ADC55BC3182CE8FF00C74F68 /* hr.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = hr.strings; sourceTree = "<group>"; };
-		AE9C213D7FEC45239AA5E4E9 /* libc++.dylib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		EB78B66AA73540C08B2DE1FE /* OpenGLES.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = Pdf417Demo/config.xml; sourceTree = "<group>"; };
+		76C581D624394FBAB910D306 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = unknown; name = "beep.mp3"; path = "beep.mp3"; sourceTree = "<group>"; fileEncoding = 4; };
+		B85DDEDC479E4AADA6577D01 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,12 +153,10 @@
 				301BF5C5109A6A2B0062928A /* SystemConfiguration.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
 				30E5649213A7FCAF007403D8 /* CoreMedia.framework in Frameworks */,
-				ADA871F387AB414BB59EE303 /* libc++.dylib in Frameworks */,
-				99CF289C85634FC5883CFEF3 /* libz.dylib in Frameworks */,
 				ADC55BC4182CE8FF00C74F68 /* pdf417.framework in Frameworks */,
-				6A857540553044E38B100303 /* libiconv.dylib in Frameworks */,
 				4E630B1DDC5742708C63E746 /* CoreVideo.framework in Frameworks */,
 				43D1396F10C040B7A35C7434 /* OpenGLES.framework in Frameworks */,
+				005C7CBD969E48BAB55AA73E /* libc++.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +237,7 @@
 				308D05311370CCF300D202BF /* splash */,
 				8D1107310486CEB800E47090 /* Pdf417Demo-Info.plist */,
 				7A06699BFEE34ECC9373D4F8 /* beep.mp3 */,
+				76C581D624394FBAB910D306 /* beep.mp3 */,
 			);
 			name = Resources;
 			path = Pdf417Demo/Resources;
@@ -271,11 +265,11 @@
 				301BF5C4109A6A2B0062928A /* SystemConfiguration.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
 				30E5649113A7FCAF007403D8 /* CoreMedia.framework */,
-				AE9C213D7FEC45239AA5E4E9 /* libc++.dylib */,
 				8F9211C1EF3F4004A0762245 /* libz.dylib */,
 				1CEF6BBF45984F10AA74C770 /* libiconv.dylib */,
 				7D251C131D6B4491BD58DDF8 /* CoreVideo.framework */,
 				EB78B66AA73540C08B2DE1FE /* OpenGLES.framework */,
+				B85DDEDC479E4AADA6577D01 /* libc++.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -387,7 +381,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 500;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Pdf417Demo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -453,7 +447,7 @@
 				3088BBC2154F3926009F9C59 /* Default~iphone.png in Resources */,
 				D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
-				0BE459DEA44D4C15813D2AF6 /* beep.mp3 in Resources */,
+				A69E929F7AE743E486309839 /* beep.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,7 +478,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				DDDD680F58B3446AA313630C /* CDVpdf417.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

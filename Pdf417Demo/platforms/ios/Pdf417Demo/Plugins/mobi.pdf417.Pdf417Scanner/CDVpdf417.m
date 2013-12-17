@@ -113,12 +113,12 @@
     
     if (data != nil) {
     	NSString* textData = [[NSString alloc] initWithData:[data data]
-                                                   encoding:NSUTF8StringEncoding];
-        
+                                                    encoding:NSUTF8StringEncoding];
+
     	if (textData) {
     		[resultDict setObject:textData forKey:@"data"];
     	}
-        
+
         [resultDict setObject:[data toUrlDataString] forKey:@"raw"];
         [resultDict setObject:[PPScanningResult toTypeName:data.type] forKey:@"type"];
     } else {
@@ -129,10 +129,10 @@
                                             messageAsDictionary:resultDict];
     
     /*
-    NSString* js = [result toSuccessCallbackString:[[self lastCommand] callbackId]];
-    
-    [self writeJavascript:js];
-    */
+     NSString* js = [result toSuccessCallbackString:[[self lastCommand] callbackId]];
+     
+     [self writeJavascript:js];
+     */
     
     [self.commandDelegate sendPluginResult:result callbackId:self.lastCommand.callbackId];
     
@@ -172,10 +172,10 @@
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                                 messageAsString:message];
     /*
-    NSString* js = [result toErrorCallbackString:[[self lastCommand] callbackId]];
-    
-    [self writeJavascript:js];
-    */
+     NSString* js = [result toErrorCallbackString:[[self lastCommand] callbackId]];
+     
+     [self writeJavascript:js];
+     */
     
     [self.commandDelegate sendPluginResult:result callbackId:self.lastCommand.callbackId];
     
