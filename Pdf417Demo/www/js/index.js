@@ -110,6 +110,41 @@ var app = {
                 types, options, license
             );
         });
+
+        /**
+        * Initiate scan with custom UI
+        * NOTE: Some features are unavailable without a license
+        * Obtain your key at http://pdf417.mobi
+        **/
+        var optionsCustomUI = {
+            beep : true,
+            noDialog : true,
+            removeOverlay :true,
+            uncertain : false, //Recommended
+            quietZone : false, //Recommended
+            highRes : false, //Recommended
+            frontFace : false,
+            customUI : true
+        };
+
+        scanWithCustomUIButton.addEventListener('click', function() {    
+            cordova.plugins.pdf417Scanner.scanWithOptions(
+                // Register the callback handler
+                function callback(data) {
+                    //alert("got result " + data.data + " type " + data.type);
+                    if (data.cancelled == true) {
+                        resultDiv.innerHTML = "Cancelled!";
+                    } else {
+                        resultDiv.innerHTML = "Data: " + data.data + " (raw: " + hex2a(data.raw) + ") (Type: " + data.type + ")";
+                    }
+                },
+                // Register the errorHandler
+                function errorHandler(err) {
+                    alert('Error');
+                },
+                types, optionsCustomUI, license
+            );
+        });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

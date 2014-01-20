@@ -81,6 +81,7 @@
  * 	- quietZone - Set this to true to scan barcodes which don't have quiet zone (white area) around it. Use only if necessary because it drastically slows down the recognition process.
  *	- highRes - Set to true if you want to always use highest possible camera resolution (enabled by default for all devices that support at least 720p camera preview frame size)
  *	- frontFace - Set to true to use front facing camera. Note that front facing cameras do not have autofocus support, so it will not be possible to scan denser and smaller codes.
+ *  - customUI - Use custom UI activity
  *
  * License - license key to enable all features (not required)
  */

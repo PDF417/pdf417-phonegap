@@ -84,6 +84,7 @@ public class Pdf417Scanner extends CordovaPlugin {
 			}
 
 			// Default values
+			Boolean customUI = false;
 			Boolean beep = true, noDialog = false, removeOverlay = false, uncertain = false, quietZone = false, highRes = false, frontFace = false;
 			String license = null;
 
@@ -113,13 +114,20 @@ public class Pdf417Scanner extends CordovaPlugin {
 				if (!options.isNull("frontFace")) {
 					frontFace = options.optBoolean("frontFace");
 				}
+				if (!options.isNull("customUI")) {
+					customUI = options.optBoolean("customUI");
+				}
 			}
 
 			if (!args.isNull(2)) {
 				license = args.optString(2);
 			}
 
-			scan(types, beep, noDialog, removeOverlay, uncertain, quietZone, highRes, frontFace, license);
+			if (customUI) {
+				scanCustomUI(types, beep, noDialog, removeOverlay, uncertain, quietZone, highRes, frontFace, license);	
+			} else {
+				scan(types, beep, noDialog, removeOverlay, uncertain, quietZone, highRes, frontFace, license);
+			}
 		} else {
 			return false;
 		}
@@ -130,9 +138,25 @@ public class Pdf417Scanner extends CordovaPlugin {
 	 * Starts an intent to scan and decode a barcode.
 	 */
 	public void scan(Set<String> types, Boolean beep, Boolean noDialog, Boolean removeOverlay, Boolean uncertain, Boolean quietZone, Boolean highRes, Boolean frontFace, String license) {
-		Context context = this.cordova.getActivity().getApplicationContext();
+		scan(Pdf417ScanActivity.class, types, beep, noDialog, removeOverlay, uncertain, quietZone, highRes, frontFace, license);
+	}
 
-		Intent intent = new Intent(context, Pdf417ScanActivity.class);
+	/**
+	 * Starts an intent to scan and decode a barcode with custom UI Activity
+	 */
+	public void scanCustomUI(Set<String> types, Boolean beep, Boolean noDialog, Boolean removeOverlay, Boolean uncertain, Boolean quietZone, Boolean highRes, Boolean frontFace, String license) {
+		scan(CustomScanActivity.class, types, beep, noDialog, removeOverlay, uncertain, quietZone, highRes, frontFace, license);
+	}
+
+	/**
+	 * Starts an intent from provided class to scan and decode a barcode.
+	 */
+	public void scan(Class clazz, Set<String> types, Boolean beep, Boolean noDialog, Boolean removeOverlay, Boolean uncertain, Boolean quietZone, Boolean highRes, Boolean frontFace, String license) {
+
+		Context context = this.cordova.getActivity().getApplicationContext();
+		FakeR fakeR = new FakeR(this.cordova.getActivity());
+
+		Intent intent = new Intent(context, clazz);
 
 		Pdf417MobiSettings sett = new Pdf417MobiSettings();
 
@@ -165,7 +189,7 @@ public class Pdf417Scanner extends CordovaPlugin {
 		// If you want sound to be played after the scanning process ends, 
 		// put here the resource ID of your sound file. (optional)
 		if (beep == true) {
-			intent.putExtra(Pdf417ScanActivity.EXTRAS_BEEP_RESOURCE, mobi.pdf417.R.raw.beep);
+			intent.putExtra(Pdf417ScanActivity.EXTRAS_BEEP_RESOURCE, fakeR.getId("raw", "beep"));
 		}
 
 		// set EXTRAS_ALWAYS_USE_HIGH_RES to true if you want to always use highest 
