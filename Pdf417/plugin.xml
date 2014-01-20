@@ -27,6 +27,7 @@
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
             <activity
             android:name="mobi.pdf417.activity.Pdf417ScanActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="mobi.pdf417.activity.Pdf417ScanActivity" />

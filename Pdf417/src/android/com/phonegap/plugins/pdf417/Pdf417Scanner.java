@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.os.Parcelable;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -26,6 +27,7 @@ import mobi.pdf417.Pdf417MobiScanData;
 import mobi.pdf417.activity.Pdf417ScanActivity;
 import net.photopay.barcode.BarcodeDetailedData;
 import net.photopay.base.BaseBarcodeActivity;
+import net.photopay.hardware.camera.CameraType;
 
 public class Pdf417Scanner extends CordovaPlugin {
 
@@ -81,13 +83,43 @@ public class Pdf417Scanner extends CordovaPlugin {
 				types.add(typesArg.optString(i));
 			}
 
-			Boolean beep = true;
+			// Default values
+			Boolean beep = true, noDialog = false, removeOverlay = false, uncertain = false, quietZone = false, highRes = false, frontFace = false;
+			String license = null;
+
+			System.out.println(args.toString());
 
 			if (!args.isNull(1)) {
-				beep = args.optBoolean(1);
+				JSONObject options = args.optJSONObject(1);
+
+				if (!options.isNull("beep")) {
+					beep = options.optBoolean("beep");
+				}
+				if (!options.isNull("noDialog")) {
+					noDialog = options.optBoolean("noDialog");
+				}
+				if (!options.isNull("removeOverlay")) {
+					removeOverlay = options.optBoolean("removeOverlay");
+				}
+				if (!options.isNull("uncertain")) {
+					uncertain = options.optBoolean("uncertain");
+				}
+				if (!options.isNull("quietZone")) {
+					quietZone = options.optBoolean("quietZone");
+				}
+				if (!options.isNull("highRes")) {
+					highRes = options.optBoolean("highRes");
+				}
+				if (!options.isNull("frontFace")) {
+					frontFace = options.optBoolean("frontFace");
+				}
 			}
 
-			scan(types, beep);
+			if (!args.isNull(2)) {
+				license = args.optString(2);
+			}
+
+			scan(types, beep, noDialog, removeOverlay, uncertain, quietZone, highRes, frontFace, license);
 		} else {
 			return false;
 		}
@@ -97,7 +129,7 @@ public class Pdf417Scanner extends CordovaPlugin {
 	/**
 	 * Starts an intent to scan and decode a barcode.
 	 */
-	public void scan(Set<String> types, Boolean beep) {
+	public void scan(Set<String> types, Boolean beep, Boolean noDialog, Boolean removeOverlay, Boolean uncertain, Boolean quietZone, Boolean highRes, Boolean frontFace, String license) {
 		Context context = this.cordova.getActivity().getApplicationContext();
 
 		Intent intent = new Intent(context, Pdf417ScanActivity.class);
@@ -115,11 +147,46 @@ public class Pdf417Scanner extends CordovaPlugin {
 		sett.setUpceEnabled(types.contains("UPCE"));
 
 		// set this to true to prevent showing dialog after successful scan
-		sett.setDontShowDialog(false);
+		sett.setDontShowDialog(noDialog);
 		// if license permits this, remove Pdf417.mobi logo overlay on scan
 		// activity
 		// if license forbids this, this option has no effect
-		sett.setRemoveOverlayEnabled(true);
+		sett.setRemoveOverlayEnabled(removeOverlay);
+
+		// Set this to true to scan barcodes which don't have quiet zone (white area) around it
+	    // Use only if necessary because it drastically slows down the recognition process 
+		sett.setNullQuietZoneAllowed(quietZone);
+
+		// Set this to true to scan even barcode not compliant with standards
+	    // For example, malformed PDF417 barcodes which were incorrectly encoded
+	    // Use only if necessary because it slows down the recognition process
+		sett.setUncertainScanning(uncertain);
+
+		// If you want sound to be played after the scanning process ends, 
+		// put here the resource ID of your sound file. (optional)
+		if (beep == true) {
+			intent.putExtra(Pdf417ScanActivity.EXTRAS_BEEP_RESOURCE, mobi.pdf417.R.raw.beep);
+		}
+
+		// set EXTRAS_ALWAYS_USE_HIGH_RES to true if you want to always use highest 
+		// possible camera resolution (enabled by default for all devices that support
+		// at least 720p camera preview frame size)
+		if (highRes == true) {
+			intent.putExtra(Pdf417ScanActivity.EXTRAS_ALWAYS_USE_HIGH_RES, highRes);
+		}
+
+		// set EXTRAS_CAMERA_TYPE to use front facing camera
+		// Note that front facing cameras do not have autofocus support, so it will not
+		// be possible to scan denser and smaller codes.
+		if (frontFace == true) {
+			intent.putExtra(Pdf417ScanActivity.EXTRAS_CAMERA_TYPE, (Parcelable)CameraType.CAMERA_FRONTFACE);
+		}
+
+		// set the license key (for commercial versions only) - obtain your key at
+		// http://pdf417.mobi
+		if (license != null) {
+			intent.putExtra(Pdf417ScanActivity.EXTRAS_LICENSE_KEY, license);
+		}
 
 		// put settings as intent extra
 		intent.putExtra(BaseBarcodeActivity.EXTRAS_SETTINGS, sett);
