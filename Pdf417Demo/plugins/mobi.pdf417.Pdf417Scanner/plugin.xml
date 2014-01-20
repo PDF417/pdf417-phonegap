@@ -27,12 +27,23 @@
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
             <activity
             android:name="mobi.pdf417.activity.Pdf417ScanActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="mobi.pdf417.activity.Pdf417ScanActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 			</activity>
+
+            <activity
+            android:name="com.phonegap.plugins.pdf417.CustomScanActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="com.phonegap.plugins.pdf417.CustomScanActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            </activity>
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest">
@@ -46,8 +57,13 @@
         </config-file>
 
         <source-file src="src/android/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="src/com/phonegap/plugins/pdf417" />
+        <source-file src="src/android/com/phonegap/plugins/pdf417/CustomScanActivity.java" target-dir="src/com/phonegap/plugins/pdf417" />
+        <source-file src="src/android/com/phonegap/plugins/pdf417/MyViewfinder.java" target-dir="src/com/phonegap/plugins/pdf417" />
+        <source-file src="src/android/com/phonegap/plugins/pdf417/FakeR.java" target-dir="src/com/phonegap/plugins/pdf417" />
         
+        <source-file src="src/android/values/strings-pdf417.xml" target-dir="res/values" />
         <source-file src="src/android/res/beep.mp3" target-dir="res/raw" />
+        <source-file src="src/android/layout/camera_overlay_layout.xml" target-dir="res/layout" />
     </platform>
 
     <platform name="ios">
@@ -62,6 +78,9 @@
 
         <framework src="CoreVideo.framework" />
         <framework src="OpenGLES.framework" />
+        <framework src="CoreMedia.framework" />
+        <framework src="QuartzCore.framework" />
+        <framework src="AudioToolbox.framework" />
 
         <config-file target="config.xml" parent="/*">
             <feature name="Pdf417Scanner">

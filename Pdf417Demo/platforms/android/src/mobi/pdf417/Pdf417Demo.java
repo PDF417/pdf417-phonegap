@@ -17,7 +17,7 @@
        under the License.
  */
 
-package mobi.pdf417.demo;
+package mobi.pdf417;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
