@@ -46,33 +46,105 @@ var app = {
         app.receivedEvent('deviceready');
         
         var resultDiv = document.getElementById('resultDiv');
-        
-        scanButton.addEventListener('click', function() {
-            
-            // Ask cordova to execute a method on our FileWriter class
-            cordova.exec(
+
+        /**
+        * Simple scan example
+        **/
+        scanButton.addEventListener('click', function() {    
+            cordova.plugins.pdf417Scanner.scan(
                 // Register the callback handler
                 function callback(data) {
                     //alert("got result " + data.data + " type " + data.type);
                     if (data.cancelled == true) {
 						resultDiv.innerHTML = "Cancelled!";
 					} else {
-						resultDiv.innerHTML = data.data + " (" + data.type + ")";
-                        
-                        // This is how you would decode the raw hex encoded data into an ASCII string
-                        //resultDiv.innerHTML = hex2a(data.raw) + " (" + data.type + ")";
+						resultDiv.innerHTML = "Data: " + data.data + " (raw: " + hex2a(data.raw) + ") (Type: " + data.type + ")";
 					}
                 },
                 // Register the errorHandler
                 function errorHandler(err) {
                     alert('Error');
                 },
-                "Pdf417Scanner", //Service (plugin name) 
-                "scan", //Action
-                [ ["PDF417", "QR Code"], true ] //We want qr codes and pdf417 scanned with the beep sound off
+                [ ["PDF417", "QR Code"], false ] //We want qr codes and pdf417 scanned with the beep sound off
             );
         });
         
+        /**
+        * Scan these barcode types
+        * Available: "PDF417", "QR Code", "Code 128", "Code 39", "EAN 13", "EAN 8", "ITF", "UPCA", "UPCE"
+        **/
+        var types = ["PDF417", "QR Code"];
+
+        /**
+        * Initiate scan with options
+        * NOTE: Some features are unavailable without a license
+        * Obtain your key at http://pdf417.mobi
+        **/
+        var options = {
+            beep : true,
+            noDialog : true,
+            removeOverlay :true,
+            uncertain : false, //Recommended
+            quietZone : false, //Recommended
+            highRes : false, //Recommended
+            frontFace : false
+        };
+        // This license is only valid for package name "mobi.pdf417"
+        var license = "1c61089106f282473fbe6a5238ec585f8ca0c29512b2dea3b7c17b8030c9813dc965ca8e70c8557347177515349e6e";
+
+        scanWithOptionsButton.addEventListener('click', function() {    
+            cordova.plugins.pdf417Scanner.scanWithOptions(
+                // Register the callback handler
+                function callback(data) {
+                    //alert("got result " + data.data + " type " + data.type);
+                    if (data.cancelled == true) {
+                        resultDiv.innerHTML = "Cancelled!";
+                    } else {
+                        resultDiv.innerHTML = "Data: " + data.data + " (raw: " + hex2a(data.raw) + ") (Type: " + data.type + ")";
+                    }
+                },
+                // Register the errorHandler
+                function errorHandler(err) {
+                    alert('Error');
+                },
+                types, options, license
+            );
+        });
+
+        /**
+        * Initiate scan with custom UI
+        * NOTE: Some features are unavailable without a license
+        * Obtain your key at http://pdf417.mobi
+        **/
+        var optionsCustomUI = {
+            beep : true,
+            noDialog : true,
+            removeOverlay :true,
+            uncertain : false, //Recommended
+            quietZone : false, //Recommended
+            highRes : false, //Recommended
+            frontFace : false,
+            customUI : true
+        };
+
+        scanWithCustomUIButton.addEventListener('click', function() {    
+            cordova.plugins.pdf417Scanner.scanWithOptions(
+                // Register the callback handler
+                function callback(data) {
+                    //alert("got result " + data.data + " type " + data.type);
+                    if (data.cancelled == true) {
+                        resultDiv.innerHTML = "Cancelled!";
+                    } else {
+                        resultDiv.innerHTML = "Data: " + data.data + " (raw: " + hex2a(data.raw) + ") (Type: " + data.type + ")";
+                    }
+                },
+                // Register the errorHandler
+                function errorHandler(err) {
+                    alert('Error');
+                },
+                types, optionsCustomUI, license
+            );
+        });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

@@ -71,8 +71,15 @@ extern NSString* const kPPRecognizeUPCAKey;
 /** When an object under this key is boolean true, UPCE barcode is scanned */
 extern NSString* const kPPRecognizeUPCEKey;
 
-/** Scanning control */
+/** 
+ Scanning control
+ Use these features only if you have to because they slow down the scanning process 
+ */
+
+/** Allow scanning uncertain barcodes - i.e. incomplete ones or not according to standard */
 extern NSString* const kPPScanUncertainBarcodes;
+/** Allow scanning barcodes which don't have quiet zone surrounding it */
+extern NSString* const kPPAllowNullQuietZone;
 
 /** Keys for camera setup */
 
@@ -93,6 +100,9 @@ extern NSString* const kPPLanguage;
 /** If YES, PhotoPay's CameraViewController is presented modally. */
 extern NSString* const kPPPresentModal;
 
+/** If YES, Front facing camera of the device will be used */
+extern NSString* const kPPUseFrontFacingCamera;
+
 /** Work style */
 /** Determines the orientation of toast messages. Default is Portrait */
 extern NSString* const kPPHudOrientation;
@@ -103,6 +113,10 @@ extern NSString* const kPPViewfinderMoveable;
 
 /** Sound file which will be played on successful recognition */
 extern NSString* const kPPSoundFile;
+
+/** Saving of images */
+/** Debug image saving */
+extern NSString* const kPPSaveBgrImageKey;
 
 
 #endif

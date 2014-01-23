@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>04337566-5110-4C3F-AABB-117615FF7ACF</string>
+	<string>813F5611-44AC-408D-B9DF-9E326F135BE4</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Pdf417Demo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>99502E6B-F7B4-4521-9A30-BCB397CA6F64</key>
+		<key>20D743EE-A87E-4DB5-8008-C8FF4E2A5370</key>
 		<string>ssh://github.com/PDF417/pdf417-phonegap.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Pdf417Demo/platforms/ios/Pdf417Demo.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>99502E6B-F7B4-4521-9A30-BCB397CA6F64</key>
+		<key>20D743EE-A87E-4DB5-8008-C8FF4E2A5370</key>
 		<string>../../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>99502E6B-F7B4-4521-9A30-BCB397CA6F64</string>
+	<string>20D743EE-A87E-4DB5-8008-C8FF4E2A5370</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>99502E6B-F7B4-4521-9A30-BCB397CA6F64</string>
+			<string>20D743EE-A87E-4DB5-8008-C8FF4E2A5370</string>
 			<key>IDESourceControlWCCName</key>
 			<string>pdf417-phonegap</string>
 		</dict>

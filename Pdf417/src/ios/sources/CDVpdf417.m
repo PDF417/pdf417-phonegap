@@ -55,6 +55,12 @@
     
     NSArray* types = [command argumentAtIndex:0];
     
+    NSDictionary* options = nil;
+    
+    if ([command arguments].count >= 2) {
+        options = [command argumentAtIndex:1];
+    }
+    
     // Set YES/NO for scanning pdf417 barcode standard (default YES)
     [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"PDF417"]] forKey:kPPRecognizePdf417Key];
     // Set YES/NO for scanning qr code barcode standard (default NO)
@@ -80,17 +86,37 @@
     //    [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseVideoPresetHigh];
     [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseVideoPresetHighest];
     
-    /** Set the license key */
-    //    [coordinatorSettings setValue:@"Enter_License_Key_Here" forKey:kPPLicenseKey];
-    
     // present modal (recommended and default) - make sure you dismiss the view controller when done
     // you also can set this to NO and push camera view controller to navigation view controller
     [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPPresentModal];
+    
     // You can set orientation mask for allowed orientations, default is UIInterfaceOrientationMaskAll
     [coordinatorSettings setValue:[NSNumber numberWithInt:UIInterfaceOrientationMaskAll] forKey:kPPHudOrientation];
     
+    // Set this to true to scan even barcode not compliant with standards
+    // For example, malformed PDF417 barcodes which were incorrectly encoded
+    // Use only if necessary because it slows down the recognition process
+    if (options && [options objectForKey:@"uncertain"]) {
+        [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPScanUncertainBarcodes];
+    }
+    
+    // Set this to true to scan barcodes which don't have quiet zone (white area) around it
+    // Use only if necessary because it slows down the recognition process
+    if (options && [options objectForKey:@"quietZone"]) {
+        [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPAllowNullQuietZone];
+    }
+    
+    /**
+     Set the license key
+     This license key allows setting overlay views for this application ID: net.photopay.barcode.pdf417-sample
+     To test your custom overlays, please use this demo app directly or visit our website www.pdf417.mobi for commercial license
+     */
+    if ([command arguments].count >= 3) {
+        [coordinatorSettings setValue:[command argumentAtIndex:2] forKey:kPPLicenseKey];
+    }
+    
     // Define the sound filename played on successful recognition
-    if ([command arguments].count < 2 || [command argumentAtIndex:1]) {
+    if (!options || ![options objectForKey:@"beep"]) {
         NSString* soundPath = [[NSBundle mainBundle] pathForResource:@"beep" ofType:@"mp3"];
         [coordinatorSettings setValue:soundPath forKey:kPPSoundFile];
     }
@@ -98,7 +124,7 @@
     // Allocate the recognition coordinator object
     PPBarcodeCoordinator *coordinator = [[PPBarcodeCoordinator alloc] initWithSettings:coordinatorSettings];
     
-    // Create camera view controller
+    // Create camera view controller, you can provide your own overlayViewController if you want a custom user interface (if licensing permits)
     UIViewController *cameraViewController = [coordinator cameraViewControllerWithDelegate:self];
     
     // present it modally
@@ -113,12 +139,12 @@
     
     if (data != nil) {
     	NSString* textData = [[NSString alloc] initWithData:[data data]
-                                                    encoding:NSUTF8StringEncoding];
-
+                                                   encoding:NSUTF8StringEncoding];
+        
     	if (textData) {
     		[resultDict setObject:textData forKey:@"data"];
     	}
-
+        
         [resultDict setObject:[data toUrlDataString] forKey:@"raw"];
         [resultDict setObject:[PPScanningResult toTypeName:data.type] forKey:@"type"];
     } else {
