@@ -16,11 +16,15 @@ Add the **pdf417** plugin to your project:
 
 Add Android platform support to the project:
 
-    phonegap local install android
+    phonegap local build android
     
-Create a new Android project from existing source found in `platforms/android/`. Also, create another Android project from existing source in `pdf417-phonegap/Pdf417/src/android/Pdf417MobiSdk` for the library project.
+The build command will create the necesary sources and project files but the actuall build will fail for now because some manual setup described below is needed.
+    
+Create a new Android project in Eclipse from existing source found in (these sources will be created with the above phonegap command) `platforms/android/`. Also, create another Android project in Eclipse from existing source in `pdf417-phonegap/Pdf417/src/android/Pdf417MobiSdk` for the pdf417 sdk library project.
 
-Finally, add a library project reference to the Android pdf417 SDK in your project by going to *Project properties -> Android -> Add* and selecting the `Pdf417/src/android/Pdf417MobiSdk` library project folder in Eclipse.
+Finally, add a library project reference to Android pdf417 SDK in your phonegap Eclipse project by going to *Project properties -> Android -> Add* and selecting the `Pdf417/src/android/Pdf417MobiSdk` library project folder in Eclipse.
+
+You can now build your project using Eclipse. To build using the cordova command line tools take a look at the [sample section](#Sample).
 
 ### iOS
 
@@ -34,7 +38,7 @@ Finally, add the iOS embedded framework to your project by draging and dropping 
 
 ## Sample
 
-Here's a complete example of how to create and build a project for **Android** and **iOS** using **cordova**:
+Here's a complete example of how to create and build a project for **Android** and **iOS** using **cordova** (you can substitute equivalent commands for **phonegap**):
 
 ```shell
 # pull the plugin and sample application from Github
@@ -71,6 +75,8 @@ cordova platform add ios
 # build the project
 cordova build ios
 ```
+
+In **phonegap** CLI instead of "platform add" just request a build for the platform using "build android" or "build ios". You will have to do the manual steps (execute the commands starting with *android* for Android or the adding of the embedded framework in Xcode for iOS) described above to be able to do a successfull build.
 
 ## Usage
 
