@@ -83,10 +83,11 @@ cordova.define("mobi.pdf417.Pdf417Scanner.Pdf417Scanner", function(require, expo
  *	- frontFace - Set to true to use front facing camera. Note that front facing cameras do not have autofocus support, so it will not be possible to scan denser and smaller codes.
  *  - customUI - Use custom UI activity
  *
- * License - license key to enable all features (not required)
+ * License iOS - license key to enable all features (not required)
+ * License Android - license key to enable all features (not required)
  */
 
-	Pdf417Scanner.prototype.scanWithOptions = function (successCallback, errorCallback, types, options, license) {
+	Pdf417Scanner.prototype.scanWithOptions = function (successCallback, errorCallback, types, options, licenseiOs, licenseAndroid) {
 		if (errorCallback == null) {
 			errorCallback = function () {
 			};
@@ -102,10 +103,9 @@ cordova.define("mobi.pdf417.Pdf417Scanner.Pdf417Scanner", function(require, expo
 			return;
 		}
 
-		exec(successCallback, errorCallback, 'Pdf417Scanner', 'scan', [types, options, license]);
+		exec(successCallback, errorCallback, 'Pdf417Scanner', 'scan', [types, options, licenseiOs, licenseAndroid]);
 	};
 
 	var pdf417Scanner = new Pdf417Scanner();
 	module.exports = pdf417Scanner;
 
-});
