@@ -91,16 +91,12 @@ var app = {
         };
 
         // Note that each platform requires its own license key
-        // Device plugin required to check device type, check http://docs.phonegap.com/en/3.0.0/cordova_device_device.md.html#Device for details
-        var license = null;        
-        if (device.platform == "Android") {
-            // This license is only valid for package name "mobi.pdf417"
-            license = "1c61089106f282473fbe6a5238ec585f8ca0c29512b2dea3b7c17b8030c9813dc965ca8e70c8557347177515349e6e";
-        } else if (device.platform == "iPhone") {
-            // This license key allows setting overlay views for this application ID: net.photopay.barcode.pdf417-sample
-            license = "1672a675bc3f3697c404a87aed640c8491b26a4522b9d4a2b61ad6b225e3b390d58d662131708451890b33";
-        }
-        resultDiv.innerHTML = "Device platform: " + window.device.platform;
+
+        // This license key allows setting overlay views for this application ID: net.photopay.barcode.pdf417-sample
+        var licenseiOs = "1672a675bc3f3697c404a87aed640c8491b26a4522b9d4a2b61ad6b225e3b390d58d662131708451890b33";
+
+        // This license is only valid for package name "mobi.pdf417"
+        var licenseAndroid = "1c61089106f282473fbe6a5238ec585f8ca0c29512b2dea3b7c17b8030c9813dc965ca8e70c8557347177515349e6e";        
 
         scanWithOptionsButton.addEventListener('click', function() {    
             cordova.plugins.pdf417Scanner.scanWithOptions(
@@ -117,7 +113,7 @@ var app = {
                 function errorHandler(err) {
                     alert('Error');
                 },
-                types, options, license
+                types, options, licenseiOs, licenseAndroid
             );
         });
 
@@ -152,7 +148,7 @@ var app = {
                 function errorHandler(err) {
                     alert('Error');
                 },
-                types, optionsCustomUI, license
+                types, optionsCustomUI, licenseiOs, licenseAndroid
             );
         });
     },

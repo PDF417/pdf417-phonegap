@@ -88,8 +88,6 @@ public class Pdf417Scanner extends CordovaPlugin {
 			Boolean beep = true, noDialog = false, removeOverlay = false, uncertain = false, quietZone = false, highRes = false, frontFace = false;
 			String license = null;
 
-			System.out.println(args.toString());
-
 			if (!args.isNull(1)) {
 				JSONObject options = args.optJSONObject(1);
 
@@ -119,8 +117,8 @@ public class Pdf417Scanner extends CordovaPlugin {
 				}
 			}
 
-			if (!args.isNull(2)) {
-				license = args.optString(2);
+			if (!args.isNull(3)) {
+				license = args.optString(3);
 			}
 
 			if (customUI) {

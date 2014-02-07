@@ -7,11 +7,5 @@ module.exports = [
             "cordova.plugins.pdf417Scanner"
         ]
     }
-];
-module.exports.metadata = 
-// TOP OF METADATA
-{
-    "mobi.pdf417.Pdf417Scanner": "1.0.1"
-}
-// BOTTOM OF METADATA
+]
 });
