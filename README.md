@@ -106,15 +106,12 @@ To use the plugin you call it in your Javascript code like the demo application:
     };
 
     // Note that each platform requires its own license key
-    // Device plugin required to check device type, check http://docs.phonegap.com/en/3.0.0/cordova_device_device.md.html#Device for details
-    var license = null;        
-    if (device.platform == "Android") {
-        // This license is only valid for package name "mobi.pdf417"
-        license = "1c61089106f282473fbe6a5238ec585f8ca0c29512b2dea3b7c17b8030c9813dc965ca8e70c8557347177515349e6e";
-    } else if (device.platform == "iPhone") {
-        // This license key allows setting overlay views for this application ID: net.photopay.barcode.pdf417-sample
-        license = "1672a675bc3f3697c404a87aed640c8491b26a4522b9d4a2b61ad6b225e3b390d58d662131708451890b33";
-    }
+
+    // This license key allows setting overlay views for this application ID: net.photopay.barcode.pdf417-sample
+    var licenseiOs = "1672a675bc3f3697c404a87aed640c8491b26a4522b9d4a2b61ad6b225e3b390d58d662131708451890b33";
+
+    // This license is only valid for package name "mobi.pdf417"
+    var licenseAndroid = "1c61089106f282473fbe6a5238ec585f8ca0c29512b2dea3b7c17b8030c9813dc965ca8e70c8557347177515349e6e";     
     
     cordova.plugins.pdf417Scanner.scanWithOptions(
         // Register the callback handler
@@ -129,11 +126,33 @@ To use the plugin you call it in your Javascript code like the demo application:
         function errorHandler(err) {
             alert('Error');
         },
-        types, options, license
+        types, options, licenseiOs, licenseAndroid
     );
 ```
+Available barcode types for the scanner are:
+    + PDF417
+    + QR Code
+    + Code 128
+    + Code 39
+    + EAN 13
+    + EAN 8
+    + ITF
+    + UPCA
+    + UPCE
 
-For compatibility with older versions of the library this is also a valid way to initiate scan
+Available options for the scanner are:
+    + beep - Boolean - set to true to play beep sound after successful scan
+    + noDialog - Boolean - set to true to show confirm dialog after successful scan (license required)
+    + removeOverlay - Boolean - set to true to remove Pdf417.mobi logo overlay on scan (license required)
+    + uncertain - Boolean - set to true to scan even barcode not compliant with standards. For example, malformed PDF417 barcodes which were incorrectly encoded. Use only if necessary because it slows down the recognition process
+    + quietZone - Boolean - set to true to scan barcodes which don't have quiet zone (white area) around it. Use only if necessary because it drastically slows down the recognition process 
+    + highRes - Boolean - Set to true if you want to always use highest possible camera resolution (enabled by default for all devices that support at least 720p camera preview frame size)
+    + frontFace - Boolean - to use front facing camera. Note that front facing cameras do not have autofocus support, so it will not be possible to scan denser and smaller codes.
+
+Both licenses must be provided (for iOS and Android) even if you dont plan running the application on both of them. In that case set license to null.
+
+In the previous versions of the plugin you could start a scan without extra options, now available *For legacy usage only*:
+
 ```javascript
 cordova.exec(
 	// Register the callback handler
@@ -154,16 +173,3 @@ cordova.exec(
 	[ ["PDF417", "QR Code"], false ] //We want qr codes and pdf417 scanned with the beep sound off
 );
 ```
-
-The parameters for the scanner are a list of barcodes that the scanner should scan for (you can find this list) and a boolean telling the scanner whether to play the beep sound upon successfull recogintion (you can provide your own sound).
-
-+ The list of supported barcodes is:
-    + PDF417
-    + QR Code
-    + Code 128
-    + Code 39
-    + EAN 13
-    + EAN 8
-    + ITF
-    + UPCA
-    + UPCE
