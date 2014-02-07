@@ -80,8 +80,60 @@ In **phonegap** CLI instead of "platform add" just request a build for the platf
 
 ## Usage
 
-To use the plugin you call it in your js code like the demo application:
+To use the plugin you call it in your Javascript code like the demo application:
 
+```javascript
+
+    /**
+    * Scan these barcode types
+    * Available: "PDF417", "QR Code", "Code 128", "Code 39", "EAN 13", "EAN 8", "ITF", "UPCA", "UPCE"
+    **/
+    var types = ["PDF417", "QR Code"];
+
+    /**
+    * Initiate scan with options
+    * NOTE: Some features are unavailable without a license
+    * Obtain your key at http://pdf417.mobi
+    **/
+    var options = {
+        beep : true,
+        noDialog : true,
+        removeOverlay :true,
+        uncertain : false, //Recommended
+        quietZone : false, //Recommended
+        highRes : false, //Recommended
+        frontFace : false
+    };
+
+    // Note that each platform requires its own license key
+    // Device plugin required to check device type, check http://docs.phonegap.com/en/3.0.0/cordova_device_device.md.html#Device for details
+    var license = null;        
+    if (device.platform == "Android") {
+        // This license is only valid for package name "mobi.pdf417"
+        license = "1c61089106f282473fbe6a5238ec585f8ca0c29512b2dea3b7c17b8030c9813dc965ca8e70c8557347177515349e6e";
+    } else if (device.platform == "iPhone") {
+        // This license key allows setting overlay views for this application ID: net.photopay.barcode.pdf417-sample
+        license = "1672a675bc3f3697c404a87aed640c8491b26a4522b9d4a2b61ad6b225e3b390d58d662131708451890b33";
+    }
+    
+    cordova.plugins.pdf417Scanner.scanWithOptions(
+        // Register the callback handler
+        function callback(data) {
+            if (data.cancelled == true) {
+                resultDiv.innerHTML = "Cancelled!";
+            } else {
+                resultDiv.innerHTML = "Data: " + data.data + " (raw: " + hex2a(data.raw) + ") (Type: " + data.type + ")";
+            }
+        },
+        // Register the errorHandler
+        function errorHandler(err) {
+            alert('Error');
+        },
+        types, options, license
+    );
+```
+
+For compatibility with older versions of the library this is also a valid way to initiate scan
 ```javascript
 cordova.exec(
 	// Register the callback handler
