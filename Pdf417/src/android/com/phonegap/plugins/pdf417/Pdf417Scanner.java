@@ -117,8 +117,8 @@ public class Pdf417Scanner extends CordovaPlugin {
 				}
 			}
 
-			if (!args.isNull(2)) {
-				license = args.optString(2);
+			if (!args.isNull(3)) {
+				license = args.optString(3);
 			}
 
 			if (customUI) {
