@@ -129,7 +129,7 @@ To use the plugin you call it in your Javascript code like the demo application:
         types, options, licenseiOs, licenseAndroid
     );
 ```
-Available barcode types for the scanner are:
++ Available barcode types for the scanner are:
     + PDF417
     + QR Code
     + Code 128
@@ -140,7 +140,8 @@ Available barcode types for the scanner are:
     + UPCA
     + UPCE
 
-Available options for the scanner are:
+
++ Available options for the scanner are:
     + beep - Boolean - set to true to play beep sound after successful scan
     + noDialog - Boolean - set to true to show confirm dialog after successful scan (license required)
     + removeOverlay - Boolean - set to true to remove Pdf417.mobi logo overlay on scan (license required)
@@ -149,9 +150,10 @@ Available options for the scanner are:
     + highRes - Boolean - Set to true if you want to always use highest possible camera resolution (enabled by default for all devices that support at least 720p camera preview frame size)
     + frontFace - Boolean - to use front facing camera. Note that front facing cameras do not have autofocus support, so it will not be possible to scan denser and smaller codes.
 
-Both licenses must be provided (for iOS and Android) even if you dont plan running the application on both of them. In that case set license to null.
 
-In the previous versions of the plugin you could start a scan without extra options, now available *For legacy usage only*:
++ Both licenses must be provided (for iOS and Android) even if you dont plan running the application on both of them. In that case set license to null.
+
+In the previous versions of the plugin you could start a scan without extra options, now available *for legacy usage only*:
 
 ```javascript
 cordova.exec(
