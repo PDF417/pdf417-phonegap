@@ -8,6 +8,7 @@
  */
 package com.phonegap.plugins.pdf417;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,6 +23,7 @@ import android.os.Parcelable;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
+
 import mobi.pdf417.Pdf417MobiSettings;
 import mobi.pdf417.Pdf417MobiScanData;
 import mobi.pdf417.activity.Pdf417ScanActivity;
@@ -237,32 +239,36 @@ public class Pdf417Scanner extends CordovaPlugin {
 
 			if (resultCode == BaseBarcodeActivity.RESULT_OK) {
 
-				// read scan result
-				Pdf417MobiScanData scanData = data.getParcelableExtra(BaseBarcodeActivity.EXTRAS_RESULT);
+				// read scan results
+				ArrayList<Pdf417MobiScanData> scanDataList = data.getParcelableExtra(BaseBarcodeActivity.EXTRAS_RESULT);
+				
+				for (Pdf417MobiScanData scanData : scanDataList) {
 
-				// read scanned barcode type (PDF417 or QR code)
-				String barcodeType = scanData.getBarcodeType();
-
-				// read the data contained in barcode
-				String barcodeData = scanData.getBarcodeData();
-
-				// read raw barcode data
-				BarcodeDetailedData rawData = scanData.getBarcodeRawData();
-
-				JSONObject obj = new JSONObject();
-				try {
-					obj.put(TYPE, barcodeType);
-					obj.put(DATA, barcodeData);
-					obj.put(RAW_DATA, byteArrayToHex(rawData.getAllData()));
-
-					obj.put(CANCELLED, false);
-
-				} catch (JSONException e) {
-					Log.d(LOG_TAG, "This should never happen");
+					// read scanned barcode type (PDF417 or QR code)
+					String barcodeType = scanData.getBarcodeType();
+	
+					// read the data contained in barcode
+					String barcodeData = scanData.getBarcodeData();
+	
+					// read raw barcode data
+					BarcodeDetailedData rawData = scanData.getBarcodeRawData();
+	
+					JSONObject obj = new JSONObject();
+					try {
+						obj.put(TYPE, barcodeType);
+						obj.put(DATA, barcodeData);
+						obj.put(RAW_DATA, byteArrayToHex(rawData.getAllData()));
+	
+						obj.put(CANCELLED, false);
+	
+					} catch (JSONException e) {
+						Log.d(LOG_TAG, "This should never happen");
+					}
+					// this.success(new PluginResult(PluginResult.Status.OK, obj),
+					// this.callback);
+					this.callbackContext.success(obj);
+					
 				}
-				// this.success(new PluginResult(PluginResult.Status.OK, obj),
-				// this.callback);
-				this.callbackContext.success(obj);
 
 			} else if (resultCode == BaseBarcodeActivity.RESULT_CANCELED) {
 				JSONObject obj = new JSONObject();

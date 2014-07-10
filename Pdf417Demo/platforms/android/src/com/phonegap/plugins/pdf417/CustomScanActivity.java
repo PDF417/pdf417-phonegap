@@ -1,6 +1,7 @@
 package com.phonegap.plugins.pdf417;
 
-import mobi.pdf417.Pdf417MobiSettings;
+import java.util.ArrayList;
+
 import mobi.pdf417.Pdf417MobiScanData;
 import net.photopay.base.BaseBarcodeActivity;
 import net.photopay.view.viewfinder.AbstractViewFinder;
@@ -40,7 +41,7 @@ public class CustomScanActivity extends BaseBarcodeActivity {
 	 * scanned one
 	 */
 	@Override
-	protected void onScanningDone(Pdf417MobiScanData scanData) {
+	protected void onScanningDone(ArrayList<Pdf417MobiScanData> scanData) {
 		mScanCount++;
 		StringBuilder sb = new StringBuilder();
 		sb.append("Scanned ");

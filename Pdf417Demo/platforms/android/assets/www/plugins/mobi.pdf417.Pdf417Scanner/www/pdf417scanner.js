@@ -1,4 +1,4 @@
-cordova.define("mobi.pdf417.Pdf417Scanner.Pdf417Scanner", function(require, exports, module) {/**
+cordova.define("mobi.pdf417.Pdf417Scanner.Pdf417Scanner", function(require, exports, module) { /**
  * cordova is available under *either* the terms of the modified BSD license *or* the
  * MIT License (2008). See http://opensource.org/licenses/alphabetical for full text.
  *
@@ -108,5 +108,6 @@ cordova.define("mobi.pdf417.Pdf417Scanner.Pdf417Scanner", function(require, expo
 
 	var pdf417Scanner = new Pdf417Scanner();
 	module.exports = pdf417Scanner;
+
 
 });

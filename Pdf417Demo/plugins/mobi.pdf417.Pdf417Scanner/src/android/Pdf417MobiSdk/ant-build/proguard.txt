@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:16
+-keep class mobi.pdf417.activity.Pdf417ScanActivity { <init>(...); }
+

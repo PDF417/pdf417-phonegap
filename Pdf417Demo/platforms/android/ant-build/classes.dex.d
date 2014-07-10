@@ -1,0 +1,23 @@
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes.dex : \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/com/phonegap/plugins/pdf417/MyViewfinder.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/com/phonegap/plugins/pdf417/FakeR.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/com/phonegap/plugins/pdf417/MyViewfinder$2.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/com/phonegap/plugins/pdf417/MyViewfinder$1.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/com/phonegap/plugins/pdf417/CustomScanActivity.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/com/phonegap/plugins/pdf417/CustomScanActivity$1.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/com/phonegap/plugins/pdf417/Pdf417Scanner.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/mobi/pdf417/R$raw.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/mobi/pdf417/R$color.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/mobi/pdf417/R$attr.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/mobi/pdf417/Pdf417Demo.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/mobi/pdf417/R$id.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/mobi/pdf417/R$layout.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/mobi/pdf417/BuildConfig.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/mobi/pdf417/R.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/mobi/pdf417/R$string.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/mobi/pdf417/R$xml.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/classes/mobi/pdf417/R$drawable.class \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/dexedLibs/classes-cea0880b4b62ddfbac286570d30b97e3.jar \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/dexedLibs/classes-9093763c9501f054d610583a3c169b2c.jar \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/dexedLibs/Pdf417MobiSdk-e12db9c4855b2e627d835c2ffd1aeff2.jar \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-build/dexedLibs/android-support-v13-420826362bb5345051cb507fac487c2b.jar \
