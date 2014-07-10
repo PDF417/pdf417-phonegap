@@ -20,7 +20,9 @@ Add Android platform support to the project:
     
 The build command will create the necesary sources and project files but the actuall build will fail for now because some manual setup described below is needed.
     
-Create a new Android project in Eclipse from existing source found in (these sources will be created with the above phonegap command) `platforms/android/`. Also, create another Android project in Eclipse from existing source in `pdf417-phonegap/Pdf417/src/android/Pdf417MobiSdk` for the pdf417 sdk library project.
+Create a new Android project in Eclipse from existing source found in (these sources will be created with the above phonegap command) `platforms/android/`. 
+In newer versions of Phonegap (3.5) two projects will be detected: your project and CordovaLib project. Import them both.
+Also, create another Android project in Eclipse from existing source in `pdf417-phonegap/Pdf417/src/android/Pdf417MobiSdk` for the pdf417 sdk library project.
 
 Finally, add a library project reference to Android pdf417 SDK in your phonegap Eclipse project by going to *Project properties -> Android -> Add* and selecting the `Pdf417/src/android/Pdf417MobiSdk` library project folder in Eclipse.
 
