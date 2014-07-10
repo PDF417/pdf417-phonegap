@@ -57,7 +57,10 @@ var app = {
                     //alert("got result " + data.data + " type " + data.type);
                     if (data.cancelled == true) {
 						resultDiv.innerHTML = "Cancelled!";
-					} else {
+					} else if (data.resultList && data.resultList.length > 1) {
+                        // More than 1 element in results
+                        resultDiv.innerHTML = data.resultList.length + " results";
+                    } else {
 						resultDiv.innerHTML = "Data: " + data.data + " (raw: " + hex2a(data.raw) + ") (Type: " + data.type + ")";
 					}
                 },

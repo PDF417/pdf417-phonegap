@@ -38,6 +38,7 @@ public class Pdf417Scanner extends CordovaPlugin {
 	private static final String SCAN = "scan";
 	private static final String CANCELLED = "cancelled";
 
+	private static final String RESULT_LIST = "resultList";
 	private static final String TYPE = "type";
 	private static final String DATA = "data";
 	private static final String RAW_DATA = "raw";
@@ -240,35 +241,30 @@ public class Pdf417Scanner extends CordovaPlugin {
 			if (resultCode == BaseBarcodeActivity.RESULT_OK) {
 
 				// read scan results
-				ArrayList<Pdf417MobiScanData> scanDataList = data.getParcelableExtra(BaseBarcodeActivity.EXTRAS_RESULT);
-				
-				for (Pdf417MobiScanData scanData : scanDataList) {
+				ArrayList<Pdf417MobiScanData> scanDataList = data.getParcelableArrayListExtra(BaseBarcodeActivity.EXTRAS_RESULT_LIST);
 
-					// read scanned barcode type (PDF417 or QR code)
-					String barcodeType = scanData.getBarcodeType();
-	
-					// read the data contained in barcode
-					String barcodeData = scanData.getBarcodeData();
-	
-					// read raw barcode data
-					BarcodeDetailedData rawData = scanData.getBarcodeRawData();
-	
-					JSONObject obj = new JSONObject();
-					try {
-						obj.put(TYPE, barcodeType);
-						obj.put(DATA, barcodeData);
-						obj.put(RAW_DATA, byteArrayToHex(rawData.getAllData()));
-	
-						obj.put(CANCELLED, false);
-	
-					} catch (JSONException e) {
-						Log.d(LOG_TAG, "This should never happen");
-					}
-					// this.success(new PluginResult(PluginResult.Status.OK, obj),
-					// this.callback);
-					this.callbackContext.success(obj);
+				try {	
 					
-				}
+					JSONObject root = new JSONObject();
+					
+					// First element in object root for backwards compatibility
+					setScanData(scanDataList.get(0), root);
+					
+					// List of all results in a separate element
+					JSONArray resultsList = new JSONArray();
+					for (Pdf417MobiScanData scanData : scanDataList) {
+						JSONObject elem = new JSONObject();
+						setScanData(scanData, elem);
+						resultsList.put(elem);
+					}
+					root.put(RESULT_LIST, resultsList);
+					
+					root.put(CANCELLED, false);
+					this.callbackContext.success(root);
+					
+				} catch (JSONException e) {
+					Log.d(LOG_TAG, "This should never happen");
+				}			
 
 			} else if (resultCode == BaseBarcodeActivity.RESULT_CANCELED) {
 				JSONObject obj = new JSONObject();
@@ -284,6 +280,21 @@ public class Pdf417Scanner extends CordovaPlugin {
 				this.callbackContext.error("Unexpected error");
 			}
 		}
+	}
+	
+	private void setScanData(Pdf417MobiScanData scanData, JSONObject obj) throws JSONException {
+		// read scanned barcode type (PDF417 or QR code)
+		String barcodeType = scanData.getBarcodeType();
+
+		// read the data contained in barcode
+		String barcodeData = scanData.getBarcodeData();
+
+		// read raw barcode data
+		BarcodeDetailedData rawData = scanData.getBarcodeRawData();
+		
+		obj.put(TYPE, barcodeType);
+		obj.put(DATA, barcodeData);
+		obj.put(RAW_DATA, byteArrayToHex(rawData.getAllData()));
 	}
 
 	private String byteArrayToHex(byte[] data) {

@@ -64,7 +64,7 @@ public class CustomScanActivity extends BaseBarcodeActivity {
 		Toast.makeText(this, sb.toString(), Toast.LENGTH_SHORT).show();
 		if (mScanCount >= 5) {
 			Intent intent = new Intent();
-			intent.putExtra(BaseBarcodeActivity.EXTRAS_RESULT, scanData);
+			intent.putParcelableArrayListExtra(BaseBarcodeActivity.EXTRAS_RESULT_LIST, scanData);
 			setResult(BaseBarcodeActivity.RESULT_OK, intent);
 			finish();
 		} else {
