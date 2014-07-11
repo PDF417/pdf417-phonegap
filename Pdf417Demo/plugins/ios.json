@@ -1,1 +1,78 @@
-{"prepare_queue":{"installed":[],"uninstalled":[]},"config_munge":{"framework":{"libc++.dylib":{"false":1},"libz.dylib":{"false":1},"libiconv.dylib":{"false":1},"CoreVideo.framework":{"false":1},"OpenGLES.framework":{"false":1},"CoreMedia.framework":{"false":1},"QuartzCore.framework":{"false":1},"AudioToolbox.framework":{"false":1}},"config.xml":{"/*":{"<feature name=\"Pdf417Scanner\"><param name=\"ios-package\" value=\"CDVpdf417\" /></feature>":1}}},"installed_plugins":{"mobi.pdf417.Pdf417Scanner":{"PACKAGE_NAME":"mobi.pdf417"}},"dependent_plugins":{}}
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "framework": {
+                "parents": {
+                    "libc++.dylib": [
+                        {
+                            "xml": "false",
+                            "count": 1
+                        }
+                    ],
+                    "libz.dylib": [
+                        {
+                            "xml": "false",
+                            "count": 1
+                        }
+                    ],
+                    "libiconv.dylib": [
+                        {
+                            "xml": "false",
+                            "count": 1
+                        }
+                    ],
+                    "CoreVideo.framework": [
+                        {
+                            "xml": "false",
+                            "count": 1
+                        }
+                    ],
+                    "OpenGLES.framework": [
+                        {
+                            "xml": "false",
+                            "count": 1
+                        }
+                    ],
+                    "CoreMedia.framework": [
+                        {
+                            "xml": "false",
+                            "count": 1
+                        }
+                    ],
+                    "QuartzCore.framework": [
+                        {
+                            "xml": "false",
+                            "count": 1
+                        }
+                    ],
+                    "AudioToolbox.framework": [
+                        {
+                            "xml": "false",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Pdf417Scanner\"><param name=\"ios-package\" value=\"CDVpdf417\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "mobi.pdf417.Pdf417Scanner": {
+            "PACKAGE_NAME": "mobi.pdf417"
+        }
+    },
+    "dependent_plugins": {}
+}

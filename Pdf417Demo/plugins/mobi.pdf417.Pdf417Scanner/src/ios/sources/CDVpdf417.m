@@ -90,9 +90,6 @@
     // you also can set this to NO and push camera view controller to navigation view controller
     [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPPresentModal];
     
-    // You can set orientation mask for allowed orientations, default is UIInterfaceOrientationMaskAll
-    [coordinatorSettings setValue:[NSNumber numberWithInt:UIInterfaceOrientationMaskAll] forKey:kPPHudOrientation];
-    
     // Set this to true to scan even barcode not compliant with standards
     // For example, malformed PDF417 barcodes which were incorrectly encoded
     // Use only if necessary because it slows down the recognition process
@@ -132,27 +129,40 @@
     [self presentCameraViewController:cameraViewController isModal:YES];
 }
 
-
-- (void)returnResult:(PPScanningResult *)data cancelled:(BOOL)cancelled {
-    NSMutableDictionary* resultDict = [[NSMutableDictionary alloc] init];
-    [resultDict setObject:[NSNumber numberWithInt: (cancelled ? 1 : 0)] forKey:@"Cancelled"];
+- (void)setDictionary:(NSMutableDictionary*)dict withScanResult:(PPScanningResult*)data {
+    NSString* textData = [[NSString alloc] initWithData:[data data]
+                                               encoding:NSUTF8StringEncoding];
     
-    if (data != nil) {
-    	NSString* textData = [[NSString alloc] initWithData:[data data]
-                                                   encoding:NSUTF8StringEncoding];
-        
-    	if (textData) {
-    		[resultDict setObject:textData forKey:@"data"];
-    	}
-        
-        [resultDict setObject:[data toUrlDataString] forKey:@"raw"];
-        [resultDict setObject:[PPScanningResult toTypeName:data.type] forKey:@"type"];
-    } else {
-        NSLog(@"Result is nil!");
+    if (textData) {
+        [dict setObject:textData forKey:@"data"];
     }
     
-    CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
-                                            messageAsDictionary:resultDict];
+    [dict setObject:[data toUrlDataString] forKey:@"raw"];
+    [dict setObject:[PPScanningResult toTypeName:data.type] forKey:@"type"];
+}
+
+- (void)returnResults:(NSArray *)results cancelled:(BOOL)cancelled {
+    NSMutableDictionary* resultDict = [[NSMutableDictionary alloc] init];
+    [resultDict setObject:[NSNumber numberWithInt: (cancelled ? 1 : 0)] forKey:@"cancelled"];
+    
+    if (results != nil) {
+        NSMutableArray *resultArray = [[NSMutableArray alloc] init];
+        for (PPScanningResult *result in results) {
+            NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+            
+            [self setDictionary:dict withScanResult:result];
+            
+            if ([resultArray count] == 0) {
+                // First result is also set on the whole result dictionary for backwards compatibility
+                [self setDictionary:resultDict withScanResult:result];
+            }
+        }
+        [resultDict setObject:resultArray forKey:@"resultList"];
+    } else {
+        NSLog(@"Results is nil!");
+    }
+    
+    CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:resultDict];
     
     /*
      NSString* js = [result toSuccessCallbackString:[[self lastCommand] callbackId]];
@@ -215,21 +225,25 @@
     [self dismissCameraViewControllerModal:YES];
 }
 
-- (void)cameraViewController:(UIViewController *)cameraViewController obtainedResult:(PPScanningResult *)result {
+- (void)cameraViewController:(UIViewController<PPScanningViewController>*)cameraViewController didOutputResults:(NSArray*)results {
+    NSLog(@"Got %d barcodes", [results count]);
     
-    NSString *message = [[NSString alloc] initWithData:[result data] encoding:NSUTF8StringEncoding];
-    
-    if (message == nil) {
-        message = [[NSString alloc] initWithData:[result data] encoding:NSASCIIStringEncoding];
+    for (PPScanningResult *result in results) {
+
+        NSString *message = [[NSString alloc] initWithData:[result data] encoding:NSUTF8StringEncoding];
+        
+        if (message == nil) {
+            message = [[NSString alloc] initWithData:[result data] encoding:NSASCIIStringEncoding];
+        }
+        
+        NSLog(@"Barcode text:\n%@", message);
+        
+        NSString* type = [PPScanningResult toTypeName:[result type]];
+        
+        NSLog(@"Barcode type:\n%@", type);
     }
     
-    NSLog(@"Barcode text:\n%@", message);
-    
-    NSString* type = [PPScanningResult toTypeName:[result type]];
-    
-    NSLog(@"Barcode type:\n%@", type);
-    
-    [self returnResult:result cancelled:(result == nil)];
+    [self returnResults:results cancelled:(results == nil)];
     
     [self dismissCameraViewControllerModal:YES];
 }

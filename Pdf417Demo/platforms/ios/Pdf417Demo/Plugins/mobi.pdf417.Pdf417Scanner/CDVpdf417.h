@@ -27,7 +27,7 @@
 /**
  * Returns successful recognition 
  */
-- (void)returnResult:(PPScanningResult *)data cancelled:(BOOL)cancelled;
+- (void)returnResults:(NSArray *)results cancelled:(BOOL)cancelled;
 
 /**
  * Returns error, for example, not supported pdf417

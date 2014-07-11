@@ -57,7 +57,10 @@ var app = {
                     //alert("got result " + data.data + " type " + data.type);
                     if (data.cancelled == true) {
 						resultDiv.innerHTML = "Cancelled!";
-					} else {
+					} else if (data.resultList && data.resultList.length > 1) {
+                        // More than 1 element in results
+                        resultDiv.innerHTML = data.resultList.length + " results";
+                    } else {
 						resultDiv.innerHTML = "Data: " + data.data + " (raw: " + hex2a(data.raw) + ") (Type: " + data.type + ")";
 					}
                 },
@@ -89,8 +92,14 @@ var app = {
             highRes : false, //Recommended
             frontFace : false
         };
+
+        // Note that each platform requires its own license key
+
+        // This license key allows setting overlay views for this application ID: net.photopay.barcode.pdf417-sample
+        var licenseiOs = "Y2QM-2NW3-RYBA-LJ64-UCNU-LIWQ-WBHS-ABQJ";
+
         // This license is only valid for package name "mobi.pdf417"
-        var license = "1c61089106f282473fbe6a5238ec585f8ca0c29512b2dea3b7c17b8030c9813dc965ca8e70c8557347177515349e6e";
+        var licenseAndroid = "F2XY-Y5PC-GCLU-3HCJ-EPKQ-QNPI-X5PG-HEQ5";
 
         scanWithOptionsButton.addEventListener('click', function() {    
             cordova.plugins.pdf417Scanner.scanWithOptions(
@@ -107,7 +116,7 @@ var app = {
                 function errorHandler(err) {
                     alert('Error');
                 },
-                types, options, license
+                types, options, licenseiOs, licenseAndroid
             );
         });
 
@@ -142,7 +151,7 @@ var app = {
                 function errorHandler(err) {
                     alert('Error');
                 },
-                types, optionsCustomUI, license
+                types, optionsCustomUI, licenseiOs, licenseAndroid
             );
         });
     },

@@ -339,7 +339,7 @@
 				ADBD49D718918EAC002DCD2F /* Resources */,
 			);
 			name = pdf417.embeddedframework;
-			path = ../../../Pdf417/src/ios/pdf417.embeddedframework;
+			path = ../../plugins/mobi.pdf417.Pdf417Scanner/src/ios/pdf417.embeddedframework;
 			sourceTree = "<group>";
 		};
 		ADBD49D718918EAC002DCD2F /* Resources */ = {
@@ -551,7 +551,7 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/marko/Workspace/pdf417-phonegap/Pdf417/src/ios/pdf417.embeddedframework",
+					../../plugins/mobi.pdf417.Pdf417Scanner/src/ios/pdf417.embeddedframework,
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -588,7 +588,7 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/marko/Workspace/pdf417-phonegap/Pdf417/src/ios/pdf417.embeddedframework",
+					../../plugins/mobi.pdf417.Pdf417Scanner/src/ios/pdf417.embeddedframework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pdf417Demo/Pdf417Demo-Prefix.pch";
