@@ -96,10 +96,10 @@ var app = {
         // Note that each platform requires its own license key
 
         // This license key allows setting overlay views for this application ID: net.photopay.barcode.pdf417-sample
-        var licenseiOs = "Y2QM-2NW3-RYBA-LJ64-UCNU-LIWQ-WBHS-ABQJ";
+        var licenseiOs = "YHCP-25S4-ZFR3-3LQR-ANPY-MZFZ-VVHO-YPUW";
 
         // This license is only valid for package name "mobi.pdf417"
-        var licenseAndroid = "F2XY-Y5PC-GCLU-3HCJ-EPKQ-QNPI-X5PG-HEQ5";      
+        var licenseAndroid = "FFMV-RULX-VNIU-CSJW-DAC6-JRBU-AKOC-ZV3G";       
 
         scanWithOptionsButton.addEventListener('click', function() {    
             cordova.plugins.pdf417Scanner.scanWithOptions(
