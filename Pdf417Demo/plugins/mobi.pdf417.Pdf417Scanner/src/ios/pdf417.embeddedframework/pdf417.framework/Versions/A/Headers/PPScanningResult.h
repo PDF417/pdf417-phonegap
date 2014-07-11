@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PPBaseResult.h"
 
 #define PPScanningResultPdf417Name @"PDF417"
 #define PPScanningResultQrCodeName @"QR Code"
@@ -18,6 +19,9 @@
 #define PPScanningResultITFName @"ITF"
 #define PPScanningResultUPCAName @"UPCA"
 #define PPScanningResultUPCEName @"UPCE"
+#define PPScanningResultAztecName @"Aztec"
+#define PPScanningResultDataMatrixName @"Data Matrix"
+#define PPScanningResultUSDLName @"USDL"
 #define PPScanningResultNoneName @"Barcode"
 
 /**
@@ -34,6 +38,8 @@ typedef NS_ENUM(NSInteger, PPScanningResultType) {
     PPScanningResultITF,
     PPScanningResultUPCA,
     PPScanningResultUPCE,
+    PPScanningResultAztec,
+    PPScanningResultDataMatrix,
     PPScanningResultNone
 };
 
@@ -87,7 +93,7 @@ typedef NS_ENUM(NSInteger, PPBarcodeElementType) {
 /**
  Result of the scan
  */
-@interface PPScanningResult : NSObject
+@interface PPScanningResult : PPBaseResult
 
 /**
  Type of the result
@@ -126,6 +132,8 @@ typedef NS_ENUM(NSInteger, PPBarcodeElementType) {
 
 /**
  Serializes the scanning result to url data string
+ 
+ Returns hexadecimal string of NSData. Empty string if data is empty.
  */
 - (NSString*)toUrlDataString;
 

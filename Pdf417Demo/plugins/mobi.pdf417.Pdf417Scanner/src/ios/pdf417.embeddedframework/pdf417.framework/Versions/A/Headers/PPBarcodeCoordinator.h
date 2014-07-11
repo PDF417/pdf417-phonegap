@@ -91,11 +91,16 @@
 /** Returns the size of video frames in pixels (eg 640, 480) */
 - (CGSize)getApertureSize;
 
+/** Sets the scanning region. CGRect is given in coordinate system of the camera */
+- (void)setScanningRegion:(CGRect)scanningRegion;
+
 /** Plays sound which marks scan success */
 - (void)playScanSuccesSound;
 
 /** Obtains user-specified license key */
 - (id)getLicenseKey;
+/** Obtains license owner for key (in case of library mode license key */
+- (id)getLicenseOwner;
 
 /** Updates the aperture size to current camera view size */
 - (void)updateApertureSize;
@@ -106,5 +111,11 @@
  * Error object contains description of the reason for that.
  */
 + (BOOL)isScanningUnsupported:(NSError **)error;
+    
+/**
+ * This method returns the string that contains the library build version
+ * information.
+ */
++ (NSString*)getBuildVersionString;
 
 @end

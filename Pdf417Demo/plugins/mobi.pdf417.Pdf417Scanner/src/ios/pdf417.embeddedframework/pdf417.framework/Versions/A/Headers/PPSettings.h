@@ -21,9 +21,6 @@
  // you also can set this to NO and push camera view controller to navigation view controller
  [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPPresentModal];
  
- // You can set orientation mask for allowed orientations, default is UIInterfaceOrientationMaskAll
- [coordinatorSettings setValue:[NSNumber numberWithInt:UIInterfaceOrientationMaskAll] forKey:kPPHudOrientation];
- 
  // Define the sound filename played on successful recognition
  NSString* soundPath = [[NSBundle mainBundle] pathForResource:@"beep" ofType:@"mp3"];
  [coordinatorSettings setValue:soundPath forKey:kPPSoundFile];
@@ -47,6 +44,8 @@
 
 /** You should put a License key here to remove "noncommercial" message on camera view */
 extern NSString* const kPPLicenseKey;
+/** If you have got license key that supports multiple bundle IDs, then besides license key, you need to provide license key owner to which license key is bound */
+extern NSString* const kPPLicenseOwner;
 
 /** Scanner setup. What we recognize */
 
@@ -70,6 +69,12 @@ extern NSString* const kPPRecognizeITFKey;
 extern NSString* const kPPRecognizeUPCAKey;
 /** When an object under this key is boolean true, UPCE barcode is scanned */
 extern NSString* const kPPRecognizeUPCEKey;
+/** When an object under this key is boolean true, AZTEC barcodes are scanned */
+extern NSString* const kPPRecognizeAztecKey;
+/** When an object under this key is boolean true, DataMatrix barcodes are scanned */
+extern NSString* const kPPRecognizeDataMatrixKey;
+/** When an object under this key is boolean true, US driver licenses are scanned */
+extern NSString* const kPPRecognizeUSDLKey;
 
 /** 
  Scanning control
@@ -80,6 +85,22 @@ extern NSString* const kPPRecognizeUPCEKey;
 extern NSString* const kPPScanUncertainBarcodes;
 /** Allow scanning barcodes which don't have quiet zone surrounding it */
 extern NSString* const kPPAllowNullQuietZone;
+/** Allow scanning of barcodes with inverse intensity values
+ *      (e.g. white barcode on black background) */
+extern NSString* const kPPAllowInverseBarcodes;
+/** 
+ Allow scanning of multiple barcode types on the same image
+ Use this feature if you expect different barcode types on the same image and
+ you want to obtain scanning results for all of them
+ */
+extern NSString* const kPPOutputMultipleResults;
+/** 
+ Use automatic scale detection feature.
+ This normally should not be used.
+ The only situation where this helps in getting better scanning results is when using kPPUseVideoPresetPhoto on iPad devices.
+ Video preview resoution of 2045x1536 in that case is very large and autoscale helps.
+ */
+extern NSString* const kPPUseAutoscaleDetection;
 
 /** Keys for camera setup */
 
@@ -91,6 +112,12 @@ extern NSString* const kPPUseVideoPresetMedium;
 extern NSString* const kPPUseVideoPresetHigh;
 /** If YES, Highest video resolution is used. */
 extern NSString* const kPPUseVideoPresetHighest;
+/** If YES, Photo Quality video is used: Note: use this only if you don't have other choice.
+ That's because camera resolution in Photo preset is equal to screen resolution. */
+extern NSString* const kPPUseVideoPresetPhoto;
+
+/** Under this key you can specify rect used for scanning */
+extern NSString* const kPPScanningRoi;
 
 /** Language setup */
 extern NSString* const kPPLanguage;
@@ -104,8 +131,8 @@ extern NSString* const kPPPresentModal;
 extern NSString* const kPPUseFrontFacingCamera;
 
 /** Work style */
-/** Determines the orientation of toast messages. Default is Portrait */
-extern NSString* const kPPHudOrientation;
+/** Determines if overlay view should autorotate */
+extern NSString* const kPPOverlayShouldAutorotate;
 /** Under this key the Color of the viewfinder is stored */
 extern NSString* const kPPViewfinderColor;
 /** Under this key the is stored information whether viewfinder is moveable */
