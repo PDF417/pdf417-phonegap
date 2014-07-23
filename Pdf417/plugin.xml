@@ -4,8 +4,10 @@
     version="1.0.3">
 
     <name>Pdf417Scanner</name>
-    <description>Scans Barcodes.</description>
-    <license>MIT</license>
+    <description>A small and powerful PDF417 scanning library</description>
+    <license>Commercial</license>
+    <keywords>pdf417,barcode,upc,qr code,2d barcode,1d barcode</keywords>
+    <author>PhotoPay Team pdf417@photopay.net</author>
 
     <engines>
         <engine name="cordova" version=">=3.0.0" />
