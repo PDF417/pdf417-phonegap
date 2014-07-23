@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="mobi.pdf417.Pdf417Scanner"
-    version="1.0.1">
+    version="1.0.3">
 
     <name>Pdf417Scanner</name>
     <description>Scans Barcodes.</description>
@@ -62,8 +62,17 @@
         <source-file src="src/android/com/phonegap/plugins/pdf417/FakeR.java" target-dir="src/com/phonegap/plugins/pdf417" />
         
         <source-file src="src/android/values/strings-pdf417.xml" target-dir="res/values" />
+        <source-file src="src/android/values/colors-pdf417.xml" target-dir="res/values" />
         <source-file src="src/android/res/beep.mp3" target-dir="res/raw" />
         <source-file src="src/android/layout/camera_overlay_layout.xml" target-dir="res/layout" />
+        <source-file src="src/android/layout/default_barcode_camera_overlay.xml" target-dir="res/layout" />
+        <source-file src="src/android/drawable/photopay_button.xml" target-dir="res/drawable" />
+        <source-file src="src/android/drawable/rounded_border.xml" target-dir="res/drawable" />
+
+        <source-file src="src/android/libs/Pdf417MobiSdk.jar" target-dir="libs"/>
+        <source-file src="src/android/libs/armeabi/libPhotoPayBarcode.so" target-dir="libs/armeabi/"/>
+        <source-file src="src/android/libs/armeabi-v7a/libPhotoPayBarcode.so" target-dir="libs/armeabi-v7a/"/>
+        <source-file src="src/android/libs/x86/libPhotoPayBarcode.so" target-dir="libs/x86/"/>
     </platform>
 
     <platform name="ios">
