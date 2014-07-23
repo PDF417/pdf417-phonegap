@@ -1,9 +1,0 @@
-# view AndroidManifest.xml #generated:18
--keep class com.phonegap.plugins.pdf417.CustomScanActivity { <init>(...); }
-
-# view AndroidManifest.xml #generated:6
--keep class mobi.pdf417.Pdf417Demo { <init>(...); }
-
-# view AndroidManifest.xml #generated:12
--keep class mobi.pdf417.activity.Pdf417ScanActivity { <init>(...); }
-

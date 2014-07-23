@@ -6,8 +6,6 @@
 	objectVersion = 46;
 	objects = {
 /* Begin PBXBuildFile section */
-		022A8ABE42A74B5E9DF79E29 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 142476F4C624439BA43AE823 /* CoreVideo.framework */; };
-		05F108DF7CFC4D4EB6EA890F /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0477F023F03A47C4A2E679D8 /* libiconv.dylib */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F766FDC13BBADB100FB74C0 /* Localizable.strings */; };
@@ -27,8 +25,6 @@
 		308D05391370CCF300D202BF /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 308D05301370CCF300D202BF /* icon@2x.png */; };
 		30A0434814DC770100060A13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30A0434314DC770100060A13 /* Localizable.strings */; };
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
-		40E43BA12999406B981C0645 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E31C2230115F4842A6EB090E /* libz.dylib */; };
-		4DCA39560E4C4B5B8A9B6702 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FEF27F569808464A83120BEE /* libc++.dylib */; };
 		5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE5B34173C68D80009041E /* CoreLocation.framework */; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
 		7E7966DE1810823500FA85AD /* icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D41810823500FA85AD /* icon-40.png */; };
@@ -41,11 +37,6 @@
 		7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DB1810823500FA85AD /* icon-76@2x.png */; };
 		7E7966E61810823500FA85AD /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DC1810823500FA85AD /* icon-small.png */; };
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
-		7F70343E40484D21BC4241B0 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03AF93C57DC74F8D87C0F039 /* beep.mp3 */; };
-		8723EEA450DA4C94B2309899 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739759C580914032B486370E /* QuartzCore.framework */; };
-		89B33091B80C44F886E4EB1B /* CDVpdf417.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F8DA4177CF4DA584303FC7 /* CDVpdf417.m */; };
-		8B553173B45E43E5AAF1FF53 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E045E8928ABC4DEC91134DD8 /* AudioToolbox.framework */; };
-		AA5288FC43CD4EFF8035833B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3130CECCA1274A3E86529E8C /* CoreMedia.framework */; };
 		ADBD49DF18918EAC002DCD2F /* pdf417.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBD49D618918EAC002DCD2F /* pdf417.framework */; };
 		ADBD49E018918EAC002DCD2F /* de.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADBD49D818918EAC002DCD2F /* de.strings */; };
 		ADBD49E118918EAC002DCD2F /* en.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADBD49D918918EAC002DCD2F /* en.strings */; };
@@ -54,9 +45,10 @@
 		ADBD49E418918EAC002DCD2F /* light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADBD49DC18918EAC002DCD2F /* light@2x.png */; };
 		ADBD49E518918EAC002DCD2F /* lighton.png in Resources */ = {isa = PBXBuildFile; fileRef = ADBD49DD18918EAC002DCD2F /* lighton.png */; };
 		ADBD49E618918EAC002DCD2F /* lighton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADBD49DE18918EAC002DCD2F /* lighton@2x.png */; };
-		CFD3E0B999E44F5A8F6CB220 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A225816385324A4696778F23 /* OpenGLES.framework */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		F840E1F1165FE0F500CFE078 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F840E1F0165FE0F500CFE078 /* config.xml */; };
+		3A04782240D644078DDC5C38 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CFBD95D4C08C4B8D809631F2 /* beep.mp3 */; };
+		49E330578342437D85F715CC /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A4C875FB43440D9A34153FD /* libc++.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,7 +128,8 @@
 		E31C2230115F4842A6EB090E /* libz.dylib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		EA9E5F682540401F81680D03 /* CDVpdf417.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVpdf417.h; path = mobi.pdf417.Pdf417Scanner/CDVpdf417.h; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = Pdf417Demo/config.xml; sourceTree = "<group>"; };
-		FEF27F569808464A83120BEE /* libc++.dylib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		CFBD95D4C08C4B8D809631F2 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = unknown; name = "beep.mp3"; path = "beep.mp3"; sourceTree = "<group>"; fileEncoding = 4; };
+		7A4C875FB43440D9A34153FD /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,15 +142,8 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
 				5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */,
-				4DCA39560E4C4B5B8A9B6702 /* libc++.dylib in Frameworks */,
 				ADBD49DF18918EAC002DCD2F /* pdf417.framework in Frameworks */,
-				40E43BA12999406B981C0645 /* libz.dylib in Frameworks */,
-				05F108DF7CFC4D4EB6EA890F /* libiconv.dylib in Frameworks */,
-				022A8ABE42A74B5E9DF79E29 /* CoreVideo.framework in Frameworks */,
-				CFD3E0B999E44F5A8F6CB220 /* OpenGLES.framework in Frameworks */,
-				AA5288FC43CD4EFF8035833B /* CoreMedia.framework in Frameworks */,
-				8723EEA450DA4C94B2309899 /* QuartzCore.framework in Frameworks */,
-				8B553173B45E43E5AAF1FF53 /* AudioToolbox.framework in Frameworks */,
+				49E330578342437D85F715CC /* libc++.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +224,7 @@
 				308D05311370CCF300D202BF /* splash */,
 				8D1107310486CEB800E47090 /* Pdf417Demo-Info.plist */,
 				03AF93C57DC74F8D87C0F039 /* beep.mp3 */,
+				CFBD95D4C08C4B8D809631F2 /* beep.mp3 */,
 			);
 			name = Resources;
 			path = Pdf417Demo/Resources;
@@ -251,7 +238,6 @@
 				5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
-				FEF27F569808464A83120BEE /* libc++.dylib */,
 				E31C2230115F4842A6EB090E /* libz.dylib */,
 				0477F023F03A47C4A2E679D8 /* libiconv.dylib */,
 				142476F4C624439BA43AE823 /* CoreVideo.framework */,
@@ -259,6 +245,7 @@
 				3130CECCA1274A3E86529E8C /* CoreMedia.framework */,
 				739759C580914032B486370E /* QuartzCore.framework */,
 				E045E8928ABC4DEC91134DD8 /* AudioToolbox.framework */,
+				7A4C875FB43440D9A34153FD /* libc++.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -462,7 +449,7 @@
 				7E7966E11810823500FA85AD /* icon-50@2x.png in Resources */,
 				7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
-				7F70343E40484D21BC4241B0 /* beep.mp3 in Resources */,
+				3A04782240D644078DDC5C38 /* beep.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,7 +480,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				89B33091B80C44F886E4EB1B /* CDVpdf417.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

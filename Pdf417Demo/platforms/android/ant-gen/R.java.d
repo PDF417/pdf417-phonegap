@@ -1,10 +1,5 @@
 /extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/ant-gen/mobi/pdf417/R.java \
- : /extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/plugins/mobi.pdf417.Pdf417Scanner/src/android/Pdf417MobiSdk/res/layout/default_barcode_camera_overlay.xml \
-/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/plugins/mobi.pdf417.Pdf417Scanner/src/android/Pdf417MobiSdk/res/drawable/rounded_border.xml \
-/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/plugins/mobi.pdf417.Pdf417Scanner/src/android/Pdf417MobiSdk/res/drawable/photopay_button.xml \
-/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/plugins/mobi.pdf417.Pdf417Scanner/src/android/Pdf417MobiSdk/res/values/colors.xml \
-/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/plugins/mobi.pdf417.Pdf417Scanner/src/android/Pdf417MobiSdk/res/values/strings.xml \
-/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/drawable-land-mdpi/screen.png \
+ : /extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/drawable-land-mdpi/screen.png \
 /extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/raw/beep.mp3 \
 /extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/drawable-xhdpi/icon.png \
 /extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/drawable-ldpi/icon.png \
@@ -15,10 +10,14 @@
 /extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/drawable-land-hdpi/screen.png \
 /extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/drawable-port-hdpi/screen.png \
 /extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/layout/camera_overlay_layout.xml \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/layout/default_barcode_camera_overlay.xml \
 /extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/xml/config.xml \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/drawable/rounded_border.xml \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/drawable/photopay_button.xml \
 /extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/drawable/icon.png \
 /extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/drawable-port-ldpi/screen.png \
 /extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/values/strings-pdf417.xml \
+/extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/values/colors-pdf417.xml \
 /extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/values/strings.xml \
 /extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/drawable-hdpi/icon.png \
 /extra/photopay/git/pdf417/PhoneGap/Pdf417Demo/platforms/android/res/drawable-port-xhdpi/screen.png \

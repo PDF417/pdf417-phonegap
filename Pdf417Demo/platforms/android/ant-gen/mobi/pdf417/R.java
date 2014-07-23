@@ -52,7 +52,6 @@ public final class R {
         public static final int beep=0x7f050000;
     }
     public static final class string {
-        public static final int Back=0x7f070014;
         public static final int Copied=0x7f070013;
         public static final int Copy=0x7f070011;
         public static final int CustomUIForbidden=0x7f07000e;
@@ -65,7 +64,7 @@ public final class R {
         public static final int PPCancel=0x7f07000f;
         public static final int PPUse=0x7f070010;
         public static final int ResultList=0x7f070012;
-        public static final int app_name=0x7f070015;
+        public static final int app_name=0x7f070014;
         public static final int photopay=0x7f070000;
         public static final int photopayCameraNotReady=0x7f07000c;
         public static final int photopayErrorInitializing=0x7f07000b;
