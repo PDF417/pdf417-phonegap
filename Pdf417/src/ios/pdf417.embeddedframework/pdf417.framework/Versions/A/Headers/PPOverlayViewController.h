@@ -166,6 +166,9 @@
  about whether the scan was successful, whether the user holds the device too far from 
  the object, whether the angles was too high, or the object isn't seen on the camera in 
  it's entirety. If the object was found, the corner points of the object are returned.
+ 
+ Coordinate system of points returned corresponds to overlay view (meaning, [0,0] is the 
+ origin of the overlay view, [width, height] is the size of overlay view)
  */
 - (void)cameraViewController:(id<PPScanningViewController>)cameraViewController
              didFindLocation:(NSArray*)cornerPoints
@@ -235,7 +238,7 @@ didFinishRecognitionWithResult:(id)result;
  Overlay View Controller also needs to notify CameraViewController on certain events. 
  Those are events specified by PPOverlayViewControllerDelegate protocol.
  */
-@protocol PPOverlayContainerViewController <NSObject>
+@protocol PPOverlayContainerViewController <PPScanningViewController>
 
 @required
 

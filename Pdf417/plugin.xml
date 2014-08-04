@@ -5,7 +5,7 @@
 
     <name>Pdf417Scanner</name>
     <description>A small and powerful PDF417 scanning library</description>
-    <license>Commercial</license>
+    <license>MIT</license>
     <keywords>pdf417,barcode,upc,qr code,2d barcode,1d barcode</keywords>
     <author>PhotoPay Team pdf417@photopay.net</author>
 
@@ -80,9 +80,7 @@
     <platform name="ios">
         <source-file src="src/ios/sources/CDVpdf417.m" />
         <header-file src="src/ios/sources/CDVpdf417.h" />
-
-        <resource-file src="src/ios/resources/beep.mp3" />
-
+        
         <framework src="libc++.dylib" />
         <framework src="libz.dylib" />
         <framework src="libiconv.dylib" />
@@ -92,6 +90,16 @@
         <framework src="CoreMedia.framework" />
         <framework src="QuartzCore.framework" />
         <framework src="AudioToolbox.framework" />
+        <framework src="src/ios/pdf417.embeddedframework/pdf417.framework" custom="true" />
+
+		<resource-file src="src/ios/pdf417.embeddedframework/Resources/light.png" />
+		<resource-file src="src/ios/pdf417.embeddedframework/Resources/light@2x.png" />
+		<resource-file src="src/ios/pdf417.embeddedframework/Resources/lighton.png" />
+		<resource-file src="src/ios/pdf417.embeddedframework/Resources/lighton@2x.png" />
+		<resource-file src="src/ios/resources/beep.mp3" />
+		<resource-file src="src/ios/resources/de.strings" />
+		<resource-file src="src/ios/resources/en.strings" />
+		<resource-file src="src/ios/resources/hr.strings" />
 
         <config-file target="config.xml" parent="/*">
             <feature name="Pdf417Scanner">

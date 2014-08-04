@@ -14,3 +14,7 @@ build/
 *.mode1v3
 *.mode2v3
 *.perspectivev3
+
+Pdf417iOSDemo
+initSample.sh
+index.*
