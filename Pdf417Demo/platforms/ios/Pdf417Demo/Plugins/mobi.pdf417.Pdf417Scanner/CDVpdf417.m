@@ -103,6 +103,11 @@
         [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPAllowNullQuietZone];
     }
     
+    // Set front facing camera if requested
+    if (options && [options objectForKey:@"frontFace"]) {
+        [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseFrontFacingCamera];
+    }
+    
     /**
      Set the license key
      This license key allows setting overlay views for this application ID: net.photopay.barcode.pdf417-sample
