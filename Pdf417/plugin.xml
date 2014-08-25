@@ -90,12 +90,13 @@
         <framework src="CoreMedia.framework" />
         <framework src="QuartzCore.framework" />
         <framework src="AudioToolbox.framework" />
-        <framework src="src/ios/pdf417.embeddedframework/pdf417.framework" custom="true" />
+        
+        <framework src="src/ios/pdf417.framework" custom="true" />
 
-		<resource-file src="src/ios/pdf417.embeddedframework/Resources/light.png" />
-		<resource-file src="src/ios/pdf417.embeddedframework/Resources/light@2x.png" />
-		<resource-file src="src/ios/pdf417.embeddedframework/Resources/lighton.png" />
-		<resource-file src="src/ios/pdf417.embeddedframework/Resources/lighton@2x.png" />
+		<resource-file src="src/ios/resources/light.png" />
+		<resource-file src="src/ios/resources/light@2x.png" />
+		<resource-file src="src/ios/resources/lighton.png" />
+		<resource-file src="src/ios/resources/lighton@2x.png" />
 		<resource-file src="src/ios/resources/beep.mp3" />
 		<resource-file src="src/ios/resources/de.strings" />
 		<resource-file src="src/ios/resources/en.strings" />
