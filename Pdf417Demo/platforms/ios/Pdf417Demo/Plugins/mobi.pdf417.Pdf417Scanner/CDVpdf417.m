@@ -84,7 +84,12 @@
     //    [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseVideoPreset640x480];
     //    [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseVideoPresetMedium];
     //    [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseVideoPresetHigh];
-    [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseVideoPresetHighest];
+    id highRes = [options valueForKey:@"highRes"];
+    if (highRes && [highRes boolValue]) {
+        [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseVideoPresetHighest];
+    } else {
+        [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseVideoPresetHigh];
+    }
     
     // present modal (recommended and default) - make sure you dismiss the view controller when done
     // you also can set this to NO and push camera view controller to navigation view controller
@@ -93,18 +98,21 @@
     // Set this to true to scan even barcode not compliant with standards
     // For example, malformed PDF417 barcodes which were incorrectly encoded
     // Use only if necessary because it slows down the recognition process
-    if (options && [options objectForKey:@"uncertain"]) {
+    id uncertain = [options objectForKey:@"uncertain"];
+    if (uncertain && [uncertain boolValue]) {
         [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPScanUncertainBarcodes];
     }
     
     // Set this to true to scan barcodes which don't have quiet zone (white area) around it
     // Use only if necessary because it slows down the recognition process
-    if (options && [options objectForKey:@"quietZone"]) {
+    id quietZone = [options objectForKey:@"quietZone"];
+    if (quietZone && [quietZone boolValue]) {
         [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPAllowNullQuietZone];
     }
     
     // Set front facing camera if requested
-    if (options && [options objectForKey:@"frontFace"]) {
+    id frontFace = [options objectForKey:@"frontFace"];
+    if (frontFace && [frontFace boolValue]) {
         [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseFrontFacingCamera];
     }
     
@@ -118,7 +126,8 @@
     }
     
     // Define the sound filename played on successful recognition
-    if (!options || ![options objectForKey:@"beep"]) {
+    id beep = [options objectForKey:@"beep"];
+    if (!beep || ![beep boolValue]) {
         NSString* soundPath = [[NSBundle mainBundle] pathForResource:@"beep" ofType:@"mp3"];
         [coordinatorSettings setValue:soundPath forKey:kPPSoundFile];
     }
