@@ -62,7 +62,7 @@
         <source-file src="src/android/com/phonegap/plugins/pdf417/FakeR.java" target-dir="src/com/phonegap/plugins/pdf417" />
         
         <source-file src="src/android/values/strings-pdf417.xml" target-dir="res/values" />
-        <source-file src="src/android/res/beep.mp3" target-dir="res/raw" />
+        <source-file src="src/android/res/beep_pdf417.mp3" target-dir="res/raw" />
         <source-file src="src/android/layout/camera_overlay_layout.xml" target-dir="res/layout" />
     </platform>
 

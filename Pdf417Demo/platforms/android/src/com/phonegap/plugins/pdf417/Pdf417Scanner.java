@@ -190,7 +190,7 @@ public class Pdf417Scanner extends CordovaPlugin {
 		// If you want sound to be played after the scanning process ends, 
 		// put here the resource ID of your sound file. (optional)
 		if (beep == true) {
-			intent.putExtra(Pdf417ScanActivity.EXTRAS_BEEP_RESOURCE, fakeR.getId("raw", "beep"));
+			intent.putExtra(Pdf417ScanActivity.EXTRAS_BEEP_RESOURCE, fakeR.getId("raw", "beep_pdf417"));
 		}
 
 		// set EXTRAS_ALWAYS_USE_HIGH_RES to true if you want to always use highest 
