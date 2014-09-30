@@ -63,7 +63,7 @@
         
         <source-file src="src/android/values/strings-pdf417.xml" target-dir="res/values" />
         <source-file src="src/android/values/colors-pdf417.xml" target-dir="res/values" />
-        <source-file src="src/android/res/beep.mp3" target-dir="res/raw" />
+        <source-file src="src/android/res/beep_pdf417.mp3" target-dir="res/raw" />
         <source-file src="src/android/layout/camera_overlay_layout.xml" target-dir="res/layout" />
         <source-file src="src/android/layout/default_barcode_camera_overlay.xml" target-dir="res/layout" />
         <source-file src="src/android/drawable/photopay_button.xml" target-dir="res/drawable" />
