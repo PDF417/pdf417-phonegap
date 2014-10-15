@@ -111,8 +111,8 @@
     }
 
     // Define the sound filename played on successful recognition
-    if (!options || ![options objectForKey:@"beep"]) {
-        NSString* soundPath = [[NSBundle mainBundle] pathForResource:@"beep" ofType:@"mp3"];
+    if (!options || [[options objectForKey:@"beep"] boolValue]) {
+        NSString* soundPath = [[NSBundle mainBundle] pathForResource:@"beep_pdf417" ofType:@"mp3"];
         [coordinatorSettings setValue:soundPath forKey:kPPSoundFile];
     }
 
