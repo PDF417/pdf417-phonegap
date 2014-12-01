@@ -59,17 +59,21 @@
         </config-file>
 
         <source-file src="src/android/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="src/com/phonegap/plugins/pdf417" />
-        <source-file src="src/android/com/phonegap/plugins/pdf417/CustomScanActivity.java" target-dir="src/com/phonegap/plugins/pdf417" />
-        <source-file src="src/android/com/phonegap/plugins/pdf417/MyViewfinder.java" target-dir="src/com/phonegap/plugins/pdf417" />
         <source-file src="src/android/com/phonegap/plugins/pdf417/FakeR.java" target-dir="src/com/phonegap/plugins/pdf417" />
         
         <source-file src="src/android/values/strings-pdf417.xml" target-dir="res/values" />
         <source-file src="src/android/values/colors-pdf417.xml" target-dir="res/values" />
         <source-file src="src/android/res/beep_pdf417.mp3" target-dir="res/raw" />
-        <source-file src="src/android/layout/camera_overlay_layout.xml" target-dir="res/layout" />
         <source-file src="src/android/layout/default_barcode_camera_overlay.xml" target-dir="res/layout" />
+        <source-file src="src/android/layout/camera_splash.xml" target-dir="res/layout" />
         <source-file src="src/android/drawable/photopay_button.xml" target-dir="res/drawable" />
         <source-file src="src/android/drawable/rounded_border.xml" target-dir="res/drawable" />
+        <source-file src="src/android/drawable/photopay_button.xml" target-dir="res/drawable-hdpi" />
+        <source-file src="src/android/drawable-hdpi/lightoff.png" target-dir="res/drawable-hdpi" />
+        <source-file src="src/android/drawable-hdpi/lighton.png" target-dir="res/drawable-hdpi" />
+        <source-file src="src/android/drawable-hdpi/title.png" target-dir="res/drawable-hdpi" />
+        <source-file src="src/android/drawable-ldpi/lightoff.png" target-dir="res/drawable-ldpi" />
+        <source-file src="src/android/drawable-ldpi/lighton.png" target-dir="res/drawable-ldpi" />
 
         <source-file src="src/android/libs/Pdf417MobiSdk.jar" target-dir="libs"/>
         <source-file src="src/android/libs/armeabi/libPhotoPayBarcode.so" target-dir="libs/armeabi/"/>

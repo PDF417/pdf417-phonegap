@@ -28,7 +28,6 @@ import mobi.pdf417.Pdf417MobiSettings;
 import mobi.pdf417.Pdf417MobiScanData;
 import mobi.pdf417.activity.Pdf417ScanActivity;
 import net.photopay.barcode.BarcodeDetailedData;
-import net.photopay.base.BaseBarcodeActivity;
 import net.photopay.hardware.camera.CameraType;
 
 public class Pdf417Scanner extends CordovaPlugin {
@@ -146,7 +145,8 @@ public class Pdf417Scanner extends CordovaPlugin {
 	 * Starts an intent to scan and decode a barcode with custom UI Activity
 	 */
 	public void scanCustomUI(Set<String> types, Boolean beep, Boolean noDialog, Boolean removeOverlay, Boolean uncertain, Boolean quietZone, Boolean highRes, Boolean frontFace, String license) {
-		scan(CustomScanActivity.class, types, beep, noDialog, removeOverlay, uncertain, quietZone, highRes, frontFace, license);
+		//scan(CustomScanActivity.class, types, beep, noDialog, removeOverlay, uncertain, quietZone, highRes, frontFace, license);
+		// Create your own custom UI. See examples for Android at: https://github.com/PDF417/pdf417-android
 	}
 
 	/**
@@ -214,7 +214,7 @@ public class Pdf417Scanner extends CordovaPlugin {
 		}
 
 		// put settings as intent extra
-		intent.putExtra(BaseBarcodeActivity.EXTRAS_SETTINGS, sett);
+		intent.putExtra(Pdf417ScanActivity.EXTRAS_SETTINGS, sett);
 
 		this.cordova.startActivityForResult((CordovaPlugin) this, intent, REQUEST_CODE);
 	}
@@ -238,10 +238,10 @@ public class Pdf417Scanner extends CordovaPlugin {
 
 		if (requestCode == REQUEST_CODE) {
 
-			if (resultCode == BaseBarcodeActivity.RESULT_OK) {
+			if (resultCode == Pdf417ScanActivity.RESULT_OK) {
 
 				// read scan results
-				ArrayList<Pdf417MobiScanData> scanDataList = data.getParcelableArrayListExtra(BaseBarcodeActivity.EXTRAS_RESULT_LIST);
+				ArrayList<Pdf417MobiScanData> scanDataList = data.getParcelableArrayListExtra(Pdf417ScanActivity.EXTRAS_RESULT_LIST);
 
 				try {	
 					
@@ -266,7 +266,7 @@ public class Pdf417Scanner extends CordovaPlugin {
 					Log.d(LOG_TAG, "This should never happen");
 				}			
 
-			} else if (resultCode == BaseBarcodeActivity.RESULT_CANCELED) {
+			} else if (resultCode == Pdf417ScanActivity.RESULT_CANCELED) {
 				JSONObject obj = new JSONObject();
 				try {
 					obj.put(CANCELLED, true);

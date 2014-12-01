@@ -23,6 +23,8 @@ cordova platform add android
 # copy index.html and index.js
 cp  -f ../index.html www/index.html
 cp  -f ../index.js www/js/index.js
+# add logo
+cp  -f ../logo.png www/img/logo.png
 
 # build app
 cordova build
