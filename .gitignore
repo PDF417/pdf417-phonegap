@@ -15,4 +15,25 @@ build/
 *.mode2v3
 *.perspectivev3
 
-Pdf417iOSDemo
+# Libs
+# Android
+Pdf417Demo/platforms/android/assets/www
+Pdf417Demo/platforms/android/bin/
+Pdf417Demo/platforms/android/gen/
+Pdf417Demo/platforms/android/ant-gen/
+Pdf417Demo/platforms/android/ant-build/
+Pdf417Demo/platforms/android/cordova/
+Pdf417Demo/platforms/android/CordovaLib/src/
+Pdf417Demo/platforms/android/CordovaLib/ant-gen/
+Pdf417Demo/platforms/android/CordovaLib/ant-build/
+Pdf417Demo/platforms/android/res/xml/config.xml
+ 
+# iOS
+Pdf417Demo/platforms/ios/build/
+Pdf417Demo/platforms/ios/CordovaLib/build/
+Pdf417Demo/platforms/ios/www
+Pdf417Demo/platforms/ios/MyPace/config.xml
+Pdf417Demo/platforms/ios/.staging
+ 
+# Emulator logs
+Pdf417Demo/platforms/ios/cordova/console.log
