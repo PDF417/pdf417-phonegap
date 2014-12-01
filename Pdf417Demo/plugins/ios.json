@@ -71,7 +71,7 @@
     },
     "installed_plugins": {
         "mobi.pdf417.Pdf417Scanner": {
-            "PACKAGE_NAME": "mobi.pdf417"
+            "PACKAGE_NAME": "mobi.pdf417.demo"
         }
     },
     "dependent_plugins": {}

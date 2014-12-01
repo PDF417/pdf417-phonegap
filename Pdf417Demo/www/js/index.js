@@ -68,7 +68,7 @@ var app = {
                 function errorHandler(err) {
                     alert('Error');
                 },
-                [ ["PDF417", "QR Code"], false ] //We want qr codes and pdf417 scanned with the beep sound off
+                [ ["PDF417", "QR Code"], true ] //We want qr codes and pdf417 scanned with the beep sound on
             );
         });
         
@@ -84,7 +84,7 @@ var app = {
         * Obtain your key at http://pdf417.mobi
         **/
         var options = {
-            beep : true,
+            beep : true,  // Beep on
             noDialog : true,
             removeOverlay :true,
             uncertain : false, //Recommended
@@ -126,7 +126,7 @@ var app = {
         * Obtain your key at http://pdf417.mobi
         **/
         var optionsCustomUI = {
-            beep : true,
+            beep : false, // Beep off
             noDialog : true,
             removeOverlay :true,
             uncertain : false, //Recommended

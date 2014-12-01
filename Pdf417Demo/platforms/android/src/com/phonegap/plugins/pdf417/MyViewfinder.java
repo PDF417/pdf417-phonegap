@@ -1,6 +1,5 @@
 package com.phonegap.plugins.pdf417;
 
-import mobi.pdf417.R;
 import net.photopay.view.viewfinder.AbstractViewFinder;
 import android.app.Activity;
 import android.view.View;
@@ -9,16 +8,18 @@ import android.widget.Button;
 
 public class MyViewfinder extends AbstractViewFinder {
     
+    private FakeR fakeR;
     private View mLayout;
     private Activity mActivity;
     private Button mBackButton;
     private Button mTorchButton;
     private boolean mTorchEnabled = false;
-    
-    public MyViewfinder(Activity myActivity, View layout) {
+
+    public MyViewfinder(Activity myActivity, View layout) {        
+        fakeR = new FakeR(myActivity);
         mLayout = layout;
         mActivity = myActivity;
-        mBackButton = (Button)mLayout.findViewById(R.id.btnBack);
+        mBackButton = (Button)mLayout.findViewById(fakeR.getId("id","btnBack"));
         mBackButton.setOnClickListener(new View.OnClickListener() {
             
             @Override
@@ -27,7 +28,7 @@ public class MyViewfinder extends AbstractViewFinder {
             }
         });
         
-        mTorchButton = (Button)mLayout.findViewById(R.id.btnTorch);
+        mTorchButton = (Button)mLayout.findViewById(fakeR.getId("id","btnTorch"));
         mTorchButton.setVisibility(View.GONE);
     }
     
@@ -41,11 +42,11 @@ public class MyViewfinder extends AbstractViewFinder {
 					boolean success = setTorchEnabled(!mTorchEnabled);
 					if(success) {
 						mTorchEnabled = !mTorchEnabled;
-					}
+					}                    
 					if(mTorchEnabled) {
-						mTorchButton.setText(R.string.LightOn);
+						mTorchButton.setText(fakeR.getId("string", "LightOn"));
 					} else {
-						mTorchButton.setText(R.string.LightOff);
+						mTorchButton.setText(fakeR.getId("string", "LightOff"));
 					}
 				}
 			});
