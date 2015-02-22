@@ -95,8 +95,8 @@ var app = {
 
         // Note that each platform requires its own license key
 
-        // This license key allows setting overlay views for this application ID: net.photopay.barcode.pdf417-sample
-        var licenseiOs = "YW3B-R6SF-6NPE-TIZM-LKAT-WHIM-XMPN-FIXD";
+        // This license key allows setting overlay views for this application ID: mobi.pdf417.demo
+        var licenseiOs = "VAZH-J5SG-FOII-HCBT-XK27-P3FW-E5J4-EYU2";
 
         // This license is only valid for package name "mobi.pdf417.demo"
         var licenseAndroid = "BTH7-L4JO-UI5T-JAFP-YSKX-BXZT-SDKE-LKIZ";       
