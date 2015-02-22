@@ -245,6 +245,8 @@
 #pragma mark PhotoPay delegate methods
 
 - (void)cameraViewControllerWasClosed:(UIViewController *)cameraViewController {
+    [self returnResults:nil cancelled:YES];
+
     [self dismissCameraViewControllerModal:YES];
 }
 
