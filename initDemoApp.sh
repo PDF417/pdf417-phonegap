@@ -20,9 +20,11 @@ cordova plugin add ../Pdf417
 cordova platform add ios
 cordova platform add android
 
-# copy index.html and index.js
+# copy index.html, index.js and usdl_keys.js
 cp  -f ../index.html www/index.html
 cp  -f ../index.js www/js/index.js
+cp  -f ../usdl_keys.js www/js/usdl_keys.js
+
 # add logo
 cp  -f ../logo.png www/img/logo.png
 

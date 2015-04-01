@@ -46,43 +46,18 @@ var app = {
         app.receivedEvent('deviceready');
         
         var resultDiv = document.getElementById('resultDiv');
-
-        /**
-        * Simple scan example
-        **/
-        scanButton.addEventListener('click', function() {    
-            cordova.plugins.pdf417Scanner.scan(
-                // Register the callback handler
-                function callback(data) {
-                    //alert("got result " + data.data + " type " + data.type);
-                    if (data.cancelled == true) {
-						resultDiv.innerHTML = "Cancelled!";
-					} else if (data.resultList && data.resultList.length > 1) {
-                        // More than 1 element in results
-                        resultDiv.innerHTML = data.resultList.length + " results";
-                    } else {
-						resultDiv.innerHTML = "Data: " + data.data + " (raw: " + hex2a(data.raw) + ") (Type: " + data.type + ")";
-					}
-                },
-                // Register the errorHandler
-                function errorHandler(err) {
-                    alert('Error');
-                },
-                [ ["PDF417", "QR Code"], true ] //We want qr codes and pdf417 scanned with the beep sound on
-            );
-        });
         
         /**
-        * Scan these barcode types
-        * Available: "PDF417", "QR Code", "Code 128", "Code 39", "EAN 13", "EAN 8", "ITF", "UPCA", "UPCE"
-        **/
-        var types = ["PDF417", "QR Code"];
+         * Scan these barcode types
+         * Available: "PDF417", "USDL", "QR Code", "Code 128", "Code 39", "EAN 13", "EAN 8", "ITF", "UPCA", "UPCE"
+         */
+        var types = ["USDL", "QR Code"];
 
         /**
-        * Initiate scan with options
-        * NOTE: Some features are unavailable without a license
-        * Obtain your key at http://pdf417.mobi
-        **/
+         * Initiate scan with options
+         * NOTE: Some features are unavailable without a license
+         * Obtain your key at http://pdf417.mobi
+         */
         var options = {
             beep : true,  // Beep on
             noDialog : true,
@@ -96,26 +71,77 @@ var app = {
         // Note that each platform requires its own license key
 
         // This license key allows setting overlay views for this application ID: mobi.pdf417.demo
-        var licenseiOs = "VAZH-J5SG-FOII-HCBT-XK27-P3FW-E5J4-EYU2";
+        var licenseiOs = "YUY3-MHTT-COH4-SOQF-4M77-R6MN-Y73H-GIPF";
 
         // This license is only valid for package name "mobi.pdf417.demo"
         var licenseAndroid = "BTH7-L4JO-UI5T-JAFP-YSKX-BXZT-SDKE-LKIZ";       
 
-        scanWithOptionsButton.addEventListener('click', function() {    
-            cordova.plugins.pdf417Scanner.scanWithOptions(
-                // Register the callback handler
-                function callback(data) {
-                    //alert("got result " + data.data + " type " + data.type);
-                    if (data.cancelled == true) {
-                        resultDiv.innerHTML = "Cancelled!";
-                    } else {
-                        resultDiv.innerHTML = "Data: " + data.data + " (raw: " + hex2a(data.raw) + ") (Type: " + data.type + ")";
-                    }
+        scanButton.addEventListener('click', function() {    
+            cordova.plugins.pdf417Scanner.scan(
+            
+           		// Register the callback handler
+                function callback(scanningResult) {
+                    
+                    // handle cancelled scanning
+                    if (scanningResult.cancelled == true) {
+						resultDiv.innerHTML = "Cancelled!";
+						return;
+					}
+					
+					// Obtain list of recognizer results
+					var resultList = scanningResult.resultList;
+					
+					// Iterate through all results
+					for (var i = 0; i < resultList.length; i++) {
+
+                        // Get individual resilt
+						var recognizerResult = resultList[i];
+
+                        if (recognizerResult.resultType == "Barcode result") {
+                            // handle Barcode scanning result
+
+                            resultDiv.innerHTML = "Data: " + recognizerResult.data +
+                                               " (raw: " + hex2a(recognizerResult.raw) + ")" +
+                                               " (Type: " + recognizerResult.type + ")";
+
+                        } else if (recognizerResult.resultType == "USDL result") {
+                            // handle USDL parsing result
+
+                            var fields = recognizerResult.fields;
+
+                                               alert(kPPAamvaVersionNumber);
+
+                            resultDiv.innerHTML = /** Personal information */
+                                               "USDL version: " + fields[kPPAamvaVersionNumber] + "; " +
+                                                "Family name: " + fields[kPPCustomerFamilyName] + "; " +
+                                                "First name: " + fields[kPPCustomerFirstName] + "; " +
+                                                "Date of birth: " + fields[kPPDateOfBirth] + "; " +
+                                                "Sex: " + fields[kPPSex] + "; " +
+                                                "Eye color: " + fields[kPPEyeColor] + "; " +
+                                                "Height: " + fields[kPPHeight] + "; " +
+                                                "Street: " + fields[kPPAddressStreet] + "; " +
+                                                "City: " + fields[kPPAddressCity] + "; " +
+                                                "Jurisdiction: " + fields[kPPAddressJurisdictionCode] + "; " +
+                                                "Postal code: " + fields[kPPAddressPostalCode] + "; " +
+
+                                                /** License information */
+                                                "Issue date: " + fields[kPPDocumentIssueDate] + "; " +
+                                                "Expiration date: " + fields[kPPDocumentExpirationDate] + "; " +
+                                                "Issuer ID: " + fields[kPPIssuerIdentificationNumber] + "; " +
+                                                "Jurisdiction version: " + fields[kPPJurisdictionVersionNumber] + "; " +
+                                                "Vehicle class: " + fields[kPPJurisdictionVehicleClass] + "; " +
+                                                "Restrictions: " + fields[kPPJurisdictionRestrictionCodes] + "; " +
+                                                "Endorsments: " + fields[kPPJurisdictionEndorsementCodes] + "; " +
+                                                "Customer ID: " + fields[kPPCustomerIdNumber] + "; ";
+                        }
+					}
                 },
-                // Register the errorHandler
+                
+                // Register the error callback
                 function errorHandler(err) {
                     alert('Error');
                 },
+
                 types, options, licenseiOs, licenseAndroid
             );
         });
