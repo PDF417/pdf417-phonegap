@@ -18,48 +18,6 @@
 
 	};
 
-
-/**
- * Types of barcodes supported (pass as array of desired barcode strings):
- *
- *	"PDF417"
- *	"QR Code"
- *	"Code 128"
- *	"Code 39"
- *	"EAN 13"
- *	"EAN 8"
- *	"ITF"
- *	"UPCA"
- *	"UPCE"
- *
- * Beep - determine whether to play the beep sound upon barcode recoginition (default is true)
- */
-
-	Pdf417Scanner.prototype.scan = function (successCallback, errorCallback, args) {
-		if (errorCallback == null) {
-			errorCallback = function () {
-			};
-		}
-
-		if (typeof errorCallback != "function") {
-			console.log("Pdf417Scanner.scan failure: failure parameter not a function");
-			return;
-		}
-
-		if (typeof successCallback != "function") {
-			console.log("Pdf417Scanner.scan failure: success callback parameter must be a function");
-			return;
-		}
-
-		// Convert to arguments array for backward compatibility
-		var options = { 
-			"beep" : args[1]
-		};
-		var argsConverted = [args[0], options];
-
-		exec(successCallback, errorCallback, 'Pdf417Scanner', 'scan', argsConverted);
-	}
-
 /**
  * Types of barcodes supported (pass as array of desired barcode strings):
  *
@@ -87,7 +45,7 @@
  * License Android - license key to enable all features (not required)
  */
 
-	Pdf417Scanner.prototype.scanWithOptions = function (successCallback, errorCallback, types, options, licenseiOs, licenseAndroid) {
+	Pdf417Scanner.prototype.scan = function (successCallback, errorCallback, types, options, licenseiOs, licenseAndroid) {
 		if (errorCallback == null) {
 			errorCallback = function () {
 			};
