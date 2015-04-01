@@ -67,50 +67,103 @@ To use the plugin you call it in your Javascript code like the demo application:
 
 ```javascript
 
-    /**
-    * Scan these barcode types
-    * Available: "PDF417", "QR Code", "Code 128", "Code 39", "EAN 13", "EAN 8", "ITF", "UPCA", "UPCE"
-    **/
-    var types = ["PDF417", "QR Code"];
+/**
+ * Scan these barcode types
+ * Available: "PDF417", "USDL", "QR Code", "Code 128", "Code 39", "EAN 13", "EAN 8", "ITF", "UPCA", "UPCE"
+ */
+var types = ["USDL", "QR Code"];
 
-    /**
-    * Initiate scan with options
-    * NOTE: Some features are unavailable without a license
-    * Obtain your key at http://pdf417.mobi
-    **/
-    var options = {
-        beep : true,
-        noDialog : true,
-        removeOverlay :true,
-        uncertain : false, //Recommended
-        quietZone : false, //Recommended
-        highRes : false, //Recommended
-        frontFace : false
-    };
+/**
+ * Initiate scan with options
+ * NOTE: Some features are unavailable without a license
+ * Obtain your key at http://pdf417.mobi
+ */
+var options = {
+	beep : true,  // Beep on
+	noDialog : true,
+	removeOverlay :true,
+	uncertain : false, //Recommended
+	quietZone : false, //Recommended
+	highRes : false, //Recommended
+	frontFace : false
+};
 
-    // Note that each platform requires its own license key
+// Note that each platform requires its own license key
 
-    // This sample license key removes overlay views for this application ID: net.photopay.barcode.pdf417-sample
-    var licenseiOs = "1672a675bc3f3697c404a87aed640c8491b26a4522b9d4a2b61ad6b225e3b390d58d662131708451890b33";
+// This license key allows setting overlay views for this application ID: mobi.pdf417.demo
+var licenseiOs = "YUY3-MHTT-COH4-SOQF-4M77-R6MN-Y73H-GIPF";
 
-    // This sample license is only valid for package name "mobi.pdf417"
-    var licenseAndroid = "1c61089106f282473fbe6a5238ec585f8ca0c29512b2dea3b7c17b8030c9813dc965ca8e70c8557347177515349e6e";     
+// This license is only valid for package name "mobi.pdf417.demo"
+var licenseAndroid = "BTH7-L4JO-UI5T-JAFP-YSKX-BXZT-SDKE-LKIZ";    
     
-    cordova.plugins.pdf417Scanner.scanWithOptions(
-        // Register the callback handler
-        function callback(data) {
-            if (data.cancelled == true) {
-                resultDiv.innerHTML = "Cancelled!";
-            } else {
-                resultDiv.innerHTML = "Data: " + data.data + " (raw: " + hex2a(data.raw) + ") (Type: " + data.type + ")";
-            }
-        },
-        // Register the errorHandler
-        function errorHandler(err) {
-            alert('Error');
-        },
-        types, options, licenseiOs, licenseAndroid
-    );
+scanButton.addEventListener('click', function() {    
+		cordova.plugins.pdf417Scanner.scan(
+		
+			// Register the callback handler
+			function callback(scanningResult) {
+				
+				// handle cancelled scanning
+				if (scanningResult.cancelled == true) {
+					resultDiv.innerHTML = "Cancelled!";
+					return;
+				}
+				
+				// Obtain list of recognizer results
+				var resultList = scanningResult.resultList;
+				
+				// Iterate through all results
+				for (var i = 0; i < resultList.length; i++) {
+
+					// Get individual resilt
+					var recognizerResult = resultList[i];
+
+					if (recognizerResult.resultType == "Barcode result") {
+						// handle Barcode scanning result
+
+						resultDiv.innerHTML = "Data: " + recognizerResult.data +
+										   " (raw: " + hex2a(recognizerResult.raw) + ")" +
+										   " (Type: " + recognizerResult.type + ")";
+
+					} else if (recognizerResult.resultType == "USDL result") {
+						// handle USDL parsing result
+
+						var fields = recognizerResult.fields;
+
+						resultDiv.innerHTML = /** Personal information */
+										   "USDL version: " + fields[kPPAamvaVersionNumber] + "; " +
+											"Family name: " + fields[kPPCustomerFamilyName] + "; " +
+											"First name: " + fields[kPPCustomerFirstName] + "; " +
+											"Date of birth: " + fields[kPPDateOfBirth] + "; " +
+											"Sex: " + fields[kPPSex] + "; " +
+											"Eye color: " + fields[kPPEyeColor] + "; " +
+											"Height: " + fields[kPPHeight] + "; " +
+											"Street: " + fields[kPPAddressStreet] + "; " +
+											"City: " + fields[kPPAddressCity] + "; " +
+											"Jurisdiction: " + fields[kPPAddressJurisdictionCode] + "; " +
+											"Postal code: " + fields[kPPAddressPostalCode] + "; " +
+
+											/** License information */
+											"Issue date: " + fields[kPPDocumentIssueDate] + "; " +
+											"Expiration date: " + fields[kPPDocumentExpirationDate] + "; " +
+											"Issuer ID: " + fields[kPPIssuerIdentificationNumber] + "; " +
+											"Jurisdiction version: " + fields[kPPJurisdictionVersionNumber] + "; " +
+											"Vehicle class: " + fields[kPPJurisdictionVehicleClass] + "; " +
+											"Restrictions: " + fields[kPPJurisdictionRestrictionCodes] + "; " +
+											"Endorsments: " + fields[kPPJurisdictionEndorsementCodes] + "; " +
+											"Customer ID: " + fields[kPPCustomerIdNumber] + "; ";
+					}
+				}
+			},
+			
+			// Register the error callback
+			function errorHandler(err) {
+				alert('Error');
+			},
+
+			types, options, licenseiOs, licenseAndroid
+		);
+	});
+
 ```
 + Available barcode types for the scanner are:
     + PDF417
@@ -122,7 +175,8 @@ To use the plugin you call it in your Javascript code like the demo application:
     + ITF
     + UPCA
     + UPCE
-
+    
++ Additionally, USDL parsing is available when types array contains "USDL" string.
 
 + The following options are available:
     + **beep** - *Boolean* - set to true to play beep sound after successful scan
@@ -136,25 +190,5 @@ To use the plugin you call it in your Javascript code like the demo application:
 
 + Both license parameters must be provided (for **iOS** and **Android**) even if you do not plan to run the application on both platforms. The licenses that you do not have/use must be set to `null`.
 
-In the previous versions of the plugin you could start a scan without extra options (this approach is deprecated now):
-
-```javascript
-cordova.exec(
-	// Register the callback handler
-	function callback(data) {
-		//alert("got result " + data.data + " type " + data.type);
-		if (data.cancelled == true) {
-			resultDiv.innerHTML = "Cancelled!";
-		} else {
-			resultDiv.innerHTML = hex2a(data.raw) + " (" + data.type + ")";
-		}
-	},
-	// Register the errorHandler
-	function errorHandler(err) {
-		alert('Error');
-	},
-	"Pdf417Scanner", //Service (plugin name) 
-	"scan", //Action
-	[ ["PDF417", "QR Code"], false ] //We want qr codes and pdf417 scanned with the beep sound off
-);
++ For obtaining US Driver's license parsing result, see the sample code above, and usdl_keys.js javascript file which contains information about values which you can obtain from scanned USDL. 
 ```
