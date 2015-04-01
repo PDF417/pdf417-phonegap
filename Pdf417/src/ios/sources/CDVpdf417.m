@@ -61,6 +61,8 @@
 
     // Set YES/NO for scanning pdf417 barcode standard (default YES)
     [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"PDF417"]] forKey:kPPRecognizePdf417Key];
+    // Set YES/NO for scanning US driver's licenses (default NO)
+    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"USDL"]] forKey:kPPRecognizeUSDLKey];
     // Set YES/NO for scanning qr code barcode standard (default NO)
     [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"QR Code"]] forKey:kPPRecognizeQrCodeKey];
     // Set YES/NO for scanning code 128 barcode standard (default NO)
@@ -186,6 +188,12 @@
     
     [dict setObject:[data toUrlDataString] forKey:@"raw"];
     [dict setObject:[PPScanningResult toTypeName:data.type] forKey:@"type"];
+    [dict setObject:@"Barcode result" forKey:@"resultType"];
+}
+
+- (void)setDictionary:(NSMutableDictionary*)dict withUsdlResult:(PPUSDLResult*)usdlResult {
+    [dict setObject:[usdlResult fields] forKey:@"fields"];
+    [dict setObject:@"USDL result" forKey:@"resultType"];
 }
 
 - (void)returnResults:(NSArray *)results cancelled:(BOOL)cancelled {
@@ -195,16 +203,19 @@
     NSMutableArray *resultArray = [[NSMutableArray alloc] init];
 
     for (PPBaseResult* result in results) {
-        NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
 
         if ([result resultType] == PPBaseResultTypeBarcode) {
+            NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
             PPScanningResult* scanningResult = (PPScanningResult*)result;
             [self setDictionary:dict withScanResult:scanningResult];
 
-            if ([resultArray count] == 0) {
-                // First result is also set on the whole result dictionary for backwards compatibility
-                [self setDictionary:resultDict withScanResult:scanningResult];
-            }
+            [resultArray addObject:dict];
+        }
+
+        if ([result resultType] == PPBaseResultTypeUSDL) {
+            NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+            PPUSDLResult* usdlResult = (PPUSDLResult*)result;
+            [self setDictionary:dict withUsdlResult:usdlResult];
 
             [resultArray addObject:dict];
         }
