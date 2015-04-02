@@ -17,8 +17,8 @@ cd Pdf417Demo
 cordova plugin add ../Pdf417
 
 # add ios and android support to the project
-cordova platform add ios
 cordova platform add android
+cordova platform add ios
 
 # copy index.html, index.js and usdl_keys.js
 cp  -f ../index.html www/index.html

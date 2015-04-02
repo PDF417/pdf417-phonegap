@@ -61,10 +61,10 @@ var app = {
         var options = {
             beep : true,  // Beep on
             noDialog : true,
-            removeOverlay :true,
             uncertain : false, //Recommended
             quietZone : false, //Recommended
             highRes : false, //Recommended
+            inverseScanning: false,
             frontFace : false
         };
 
@@ -74,7 +74,7 @@ var app = {
         var licenseiOs = "YUY3-MHTT-COH4-SOQF-4M77-R6MN-Y73H-GIPF";
 
         // This license is only valid for package name "mobi.pdf417.demo"
-        var licenseAndroid = "BTH7-L4JO-UI5T-JAFP-YSKX-BXZT-SDKE-LKIZ";       
+        var licenseAndroid = "2L27-VEHF-H2AK-SQLP-VFGN-WOLL-HLZG-GMRW";
 
         scanButton.addEventListener('click', function() {    
             cordova.plugins.pdf417Scanner.scan(
@@ -96,20 +96,21 @@ var app = {
 
                         // Get individual resilt
 						var recognizerResult = resultList[i];
-
                         if (recognizerResult.resultType == "Barcode result") {
                             // handle Barcode scanning result
 
+                            var raw = "";
+                            if (typeof(recognizerResult.raw) != "undefined" && recognizerResult.raw != null) {
+                                raw = " (raw: " + hex2a(recognizerResult.raw) + ")";
+                            }
                             resultDiv.innerHTML = "Data: " + recognizerResult.data +
-                                               " (raw: " + hex2a(recognizerResult.raw) + ")" +
+                                               raw +
                                                " (Type: " + recognizerResult.type + ")";
 
                         } else if (recognizerResult.resultType == "USDL result") {
                             // handle USDL parsing result
 
                             var fields = recognizerResult.fields;
-
-                                               alert(kPPAamvaVersionNumber);
 
                             resultDiv.innerHTML = /** Personal information */
                                                "USDL version: " + fields[kPPAamvaVersionNumber] + "; " +

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Users/dodo/Work/PhotoPayContainer/PhotoPay/core-photopay/PhotoPayAndroid/android-studio/LibRecognizer/src/barcode/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="default_frame">#DDFFFFFF</color>
+    <!-- From: file:/Users/dodo/Work/PhotoPayContainer/PhotoPay/core-photopay/PhotoPayAndroid/android-studio/LibRecognizer/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="formDetect_frame">#DDEEE718</color>
+    <color name="greenlight">#FF5EC102</color>
+    <color name="helpButtonBackgroundDisabled">#22000000</color>
+    <color name="helpButtonBackgroundNormal">#AA000000</color>
+    <color name="helpButtonBackgroundPressed">#AA888888</color>
+    <color name="max_quality_ocr_color">#FF00FF00</color>
+    <color name="med_quality_ocr_color">#FFFFFF00</color>
+    <color name="min_quality_ocr_color">#FFFF0000</color>
+    <color name="ocr_line_background">#77000000</color>
+    <color name="ocr_line_help_background">#FFBF0000</color>
+    <!-- From: file:/Users/dodo/Work/PhotoPayContainer/PhotoPay/core-photopay/PhotoPayAndroid/android-studio/LibRecognizer/src/barcode/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="photopayButtonBackgroundDisabled">#22FFFFFF</color>
+    <color name="photopayButtonBackgroundNormal">#99FFFFFF</color>
+    <color name="photopayButtonBackgroundPressed">#FFFFFFFF</color>
+    <color name="photopayButtonBorder">#FF000000</color>
+    <color name="photopayButtonForeground">#FF000000</color>
+    <color name="recognized_frame">#DDAAFFAA</color>
+    <!-- From: file:/Users/dodo/Work/PhotoPayContainer/PhotoPay/core-photopay/PhotoPayAndroid/android-studio/LibRecognizer/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="statusBackground">#BB000000</color>
+    <color name="statusForeground">#DDEEEEEE</color>
+    <color name="textback">#FF000000</color>
+    <color name="transparent">#00000000</color>
+    <declare-styleable name="RecognizerView"><attr format="enum" name="initialOrientation"><enum name="portrait" value="0"/><enum name="landscapeRight" value="1"/><enum name="inversePortrait" value="2"/><enum name="landscapeLeft" value="3"/></attr><attr format="boolean" name="animateRotation"/><attr format="integer" name="animationDuration"/></declare-styleable>
+    <declare-styleable name="RecognizerView_LayoutParams"><attr format="boolean" name="rotatable"/></declare-styleable>
+    <!-- From: file:/Users/dodo/Work/PhotoPayContainer/PhotoPay/core-photopay/PhotoPayAndroid/android-studio/LibRecognizer/src/barcode/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="Copied">Text copied to clipboard</string>
+    <string name="Copy">Copy</string>
+    <string name="CustomUIForbidden">License does not permit custom camera overlay!</string>
+    <string name="FeatureUnsuportedAndroidVersion">This feature is supported for Android 2.1 and newer</string>
+    <string name="FeatureUnsuportedAutofocus">This feature is not supported on phones without autofocus</string>
+    <string name="FeatureUnsuportedDevice">PDF417.mobi is not supported because of the technical properties of your device</string>
+    <string name="InvalidLicense">Invalid license key!</string>
+    <string name="NoRecognizers">At least one recognizer must be enabled!</string>
+    <string name="PPCancel">Cancel</string>
+    <string name="PPUse">Use</string>
+    <string name="ResultList">List of scan results</string>
+    <string name="photopay">PhotoPay Barcode</string>
+    <string name="photopayCameraNotReady">Camera not ready.</string>
+    <string name="photopayErrorInitializing">Failed to initialize native library.</string>
+    <string name="photopayHelpImageDescription">Description</string>
+    <string name="photopayHome">Back</string>
+    <string name="photopayLightOff">Light</string>
+    <string name="photopayLightOn">Light</string>
+    <string name="photopayOK">OK</string>
+    <string name="photopayWarningTitle">Warning</string>
+    <string name="scanBarcode">Start barcode scanning</string>
+</resources>
