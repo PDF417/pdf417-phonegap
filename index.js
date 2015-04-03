@@ -49,9 +49,9 @@ var app = {
         
         /**
          * Scan these barcode types
-         * Available: "PDF417", "USDL", "QR Code", "Code 128", "Code 39", "EAN 13", "EAN 8", "ITF", "UPCA", "UPCE"
+         * Available: "PDF417", "USDL", "QR Code", "Code 128", "Code 39", "EAN 13", "EAN 8", "ITF", "UPCA", "UPCE", "Aztec", "Data Matrix"
          */
-        var types = ["USDL", "QR Code"];
+        var types = ["PDF417", "QR Code"];
 
         /**
          * Initiate scan with options
