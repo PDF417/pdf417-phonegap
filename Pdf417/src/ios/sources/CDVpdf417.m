@@ -79,6 +79,10 @@
     [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"UPCA"]] forKey:kPPRecognizeUPCAKey];
     // Set YES/NO for scanning UPCE barcode standard (default NO)
     [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"UPCE"]] forKey:kPPRecognizeUPCEKey];
+    // Set YES/NO for scanning Azetec barcode standard (default NO)
+    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"Aztec"]] forKey:kPPRecognizeAztecKey];
+    // Set YES/NO for scanning Data matrix barcode standard (default NO)
+    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"Data Matrix"]] forKey:kPPRecognizeUPCEKey];
 
     // Set only one resolution mode
     //    [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseVideoPreset640x480];
