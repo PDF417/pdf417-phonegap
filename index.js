@@ -140,7 +140,7 @@ var app = {
                 
                 // Register the error callback
                 function errorHandler(err) {
-                    alert('Error');
+                    alert('Error: ' + err);
                 },
 
                 types, options, licenseiOs, licenseAndroid
