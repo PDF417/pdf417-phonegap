@@ -79,13 +79,13 @@ var types = ["USDL", "QR Code"];
  * Obtain your key at http://pdf417.mobi
  */
 var options = {
-	beep : true,  // Beep on
-	noDialog : true,
-	removeOverlay :true,
-	uncertain : false, //Recommended
-	quietZone : false, //Recommended
-	highRes : false, //Recommended
-	frontFace : false
+    beep : true,  // Beep on
+    noDialog : true, // Skip confirm dialog after scan
+    uncertain : false, //Recommended
+    quietZone : false, //Recommended
+    highRes : false, //Recommended
+    inverseScanning: false,
+    frontFace : false
 };
 
 // Note that each platform requires its own license key
@@ -94,7 +94,7 @@ var options = {
 var licenseiOs = "YUY3-MHTT-COH4-SOQF-4M77-R6MN-Y73H-GIPF";
 
 // This license is only valid for package name "mobi.pdf417.demo"
-var licenseAndroid = "BTH7-L4JO-UI5T-JAFP-YSKX-BXZT-SDKE-LKIZ";    
+var licenseAndroid = "UDPICR2T-RA2LGTSD-YTEONPSJ-LE4WWOWC-5ICAIBAE-AQCAIBAE-AQCAIBAE-AQCFKMFM";    
     
 scanButton.addEventListener('click', function() {    
 		cordova.plugins.pdf417Scanner.scan(
@@ -114,7 +114,7 @@ scanButton.addEventListener('click', function() {
 				// Iterate through all results
 				for (var i = 0; i < resultList.length; i++) {
 
-					// Get individual resilt
+					// Get individual result
 					var recognizerResult = resultList[i];
 
 					if (recognizerResult.resultType == "Barcode result") {
