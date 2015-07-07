@@ -80,6 +80,8 @@
         <source-file src="src/android/libs/armeabi/libBlinkBarcode.so" target-dir="libs/armeabi/"/>
         <source-file src="src/android/libs/armeabi-v7a/libBlinkBarcode.so" target-dir="libs/armeabi-v7a/"/>
         <source-file src="src/android/libs/x86/libBlinkBarcode.so" target-dir="libs/x86/"/>
+
+         <hook type="after_prepare" src="scripts/fix-largeheap.js" />
     </platform>
 
     <platform name="ios">
