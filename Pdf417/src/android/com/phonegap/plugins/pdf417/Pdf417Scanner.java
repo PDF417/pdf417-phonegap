@@ -197,8 +197,6 @@ public class Pdf417Scanner extends CordovaPlugin {
 	        if (uncertain != null) {
 	        	usdlRecognizerSettings.setUncertainScanning(uncertain);
 	    	}
-		    // disable automatic scale detection
-		    //sett.setAutoScaleDetection(false);
 		    // disable scanning of barcodes that do not have quiet zone
 		    // as defined by the standard
 		    if (quietZone != null) {
@@ -249,7 +247,8 @@ public class Pdf417Scanner extends CordovaPlugin {
 		// if you do not want the dialog to be shown when scanning completes, add following extra
         // to intent
         if (noDialog != null) {
-        	intent.putExtra(Pdf417ScanActivity.EXTRAS_SHOW_DIALOG_AFTER_SCAN, noDialog);
+        	// Inverse - noDialog vs. EXTRAS_SHOW_DIALOG_AFTER_SCAN
+        	intent.putExtra(Pdf417ScanActivity.EXTRAS_SHOW_DIALOG_AFTER_SCAN, !noDialog);
 		}
 
 		// front facing camera

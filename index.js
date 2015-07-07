@@ -60,7 +60,7 @@ var app = {
          */
         var options = {
             beep : true,  // Beep on
-            noDialog : true,
+            noDialog : true, // Skip confirm dialog after scan
             uncertain : false, //Recommended
             quietZone : false, //Recommended
             highRes : false, //Recommended
