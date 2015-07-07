@@ -74,7 +74,7 @@ var app = {
         var licenseiOs = "YUY3-MHTT-COH4-SOQF-4M77-R6MN-Y73H-GIPF";
 
         // This license is only valid for package name "mobi.pdf417.demo"
-        var licenseAndroid = "2L27-VEHF-H2AK-SQLP-VFGN-WOLL-HLZG-GMRW";
+        var licenseAndroid = "UDPICR2T-RA2LGTSD-YTEONPSJ-LE4WWOWC-5ICAIBAE-AQCAIBAE-AQCAIBAE-AQCFKMFM";
 
         scanButton.addEventListener('click', function() {    
             cordova.plugins.pdf417Scanner.scan(
