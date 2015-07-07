@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/dodo/Work/PhotoPayContainer/PhotoPay/core-photopay/PhotoPayAndroid/android-studio/LibRecognizer/src/barcode/res/values/colors.xml -->
+    <!-- From: file:/Users/dodo/Work/Microblink/android-core/android-studio/LibRecognizer/src/barcode/res/values/colors.xml -->
     <eat-comment/>
     <color name="default_frame">#DDFFFFFF</color>
-    <!-- From: file:/Users/dodo/Work/PhotoPayContainer/PhotoPay/core-photopay/PhotoPayAndroid/android-studio/LibRecognizer/src/main/res/values/colors.xml -->
+    <!-- From: file:/Users/dodo/Work/Microblink/android-core/android-studio/LibRecognizer/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="formDetect_frame">#DDEEE718</color>
     <color name="greenlight">#FF5EC102</color>
@@ -15,7 +15,7 @@
     <color name="min_quality_ocr_color">#FFFF0000</color>
     <color name="ocr_line_background">#77000000</color>
     <color name="ocr_line_help_background">#FFBF0000</color>
-    <!-- From: file:/Users/dodo/Work/PhotoPayContainer/PhotoPay/core-photopay/PhotoPayAndroid/android-studio/LibRecognizer/src/barcode/res/values/colors.xml -->
+    <!-- From: file:/Users/dodo/Work/Microblink/android-core/android-studio/LibRecognizer/src/barcode/res/values/colors.xml -->
     <eat-comment/>
     <color name="photopayButtonBackgroundDisabled">#22FFFFFF</color>
     <color name="photopayButtonBackgroundNormal">#99FFFFFF</color>
@@ -23,7 +23,7 @@
     <color name="photopayButtonBorder">#FF000000</color>
     <color name="photopayButtonForeground">#FF000000</color>
     <color name="recognized_frame">#DDAAFFAA</color>
-    <!-- From: file:/Users/dodo/Work/PhotoPayContainer/PhotoPay/core-photopay/PhotoPayAndroid/android-studio/LibRecognizer/src/main/res/values/colors.xml -->
+    <!-- From: file:/Users/dodo/Work/Microblink/android-core/android-studio/LibRecognizer/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="statusBackground">#BB000000</color>
     <color name="statusForeground">#DDEEEEEE</color>
@@ -31,8 +31,9 @@
     <color name="transparent">#00000000</color>
     <declare-styleable name="RecognizerView"><attr format="enum" name="initialOrientation"><enum name="portrait" value="0"/><enum name="landscapeRight" value="1"/><enum name="inversePortrait" value="2"/><enum name="landscapeLeft" value="3"/></attr><attr format="boolean" name="animateRotation"/><attr format="integer" name="animationDuration"/></declare-styleable>
     <declare-styleable name="RecognizerView_LayoutParams"><attr format="boolean" name="rotatable"/></declare-styleable>
-    <!-- From: file:/Users/dodo/Work/PhotoPayContainer/PhotoPay/core-photopay/PhotoPayAndroid/android-studio/LibRecognizer/src/barcode/res/values/strings.xml -->
+    <!-- From: file:/Users/dodo/Work/Microblink/android-core/android-studio/LibRecognizer/src/barcode/res/values/strings.xml -->
     <eat-comment/>
+    <string name="AutofocusFail">Camera cannot focus. Try scanning under different light.</string>
     <string name="Copied">Text copied to clipboard</string>
     <string name="Copy">Copy</string>
     <string name="CustomUIForbidden">License does not permit custom camera overlay!</string>

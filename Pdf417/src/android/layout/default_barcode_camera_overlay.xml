@@ -43,4 +43,4 @@
         android:textColor="@color/photopayButtonForeground"
         android:textSize="14sp" />
 
-</FrameLayout><!-- From: file:/Users/dodo/Work/PhotoPayContainer/PhotoPay/core-photopay/PhotoPayAndroid/android-studio/LibRecognizer/src/barcode/res/layout/default_barcode_camera_overlay.xml -->
+</FrameLayout><!-- From: file:/Users/dodo/Work/Microblink/android-core/android-studio/LibRecognizer/src/barcode/res/layout/default_barcode_camera_overlay.xml -->
