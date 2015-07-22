@@ -6,8 +6,8 @@
     <name>Pdf417Scanner</name>
     <description>A small and powerful PDF417 scanning library</description>
     <license>MIT</license>
-    <keywords>pdf417,barcode,upc,qr code,2d barcode,1d barcode</keywords>
-    <author>PhotoPay Team pdf417@photopay.net</author>
+    <keywords>pdf417,barcode,usdl,qr code,2d barcode,1d barcode</keywords>
+    <author>MicroBlink Team info@microblink.com</author>
 
     <engines>
         <engine name="cordova" version=">=3.0.0" />
@@ -93,22 +93,21 @@
         <framework src="libiconv.dylib" />
 
         <framework src="CoreVideo.framework" />
-        <framework src="OpenGLES.framework" />
         <framework src="CoreMedia.framework" />
         <framework src="QuartzCore.framework" />
         <framework src="AudioToolbox.framework" />
-        
-        <framework src="src/ios/pdf417.framework" custom="true" />
+        <framework src="src/ios/MicroBlink.framework" custom="true" />
 
-		<resource-file src="src/ios/resources/light.png" />
-		<resource-file src="src/ios/resources/light@2x.png" />
-		<resource-file src="src/ios/resources/lighton.png" />
-		<resource-file src="src/ios/resources/lighton@2x.png" />
-		<resource-file src="src/ios/resources/beep_pdf417.mp3" />
-		<resource-file src="src/ios/resources/de.strings" />
-		<resource-file src="src/ios/resources/en.strings" />
-		<resource-file src="src/ios/resources/hr.strings" />
-
+        <resource-file src="src/ios/resources/torchoff_pressed.png" />
+        <resource-file src="src/ios/resources/torchoff_pressed@2x.png" />
+        <resource-file src="src/ios/resources/torchoff.png" />
+        <resource-file src="src/ios/resources/torchoff@2x.png" />
+        <resource-file src="src/ios/resources/torchon_pressed.png" />
+        <resource-file src="src/ios/resources/torchon_pressed@2x.png" />
+        <resource-file src="src/ios/resources/torchon.png" />
+        <resource-file src="src/ios/resources/torchon@2x.png" />
+        <resource-file src="src/ios/resources/PPbeep.wav" />
+        <resource-file src="src/ios/resources/en.strings" />
         <config-file target="config.xml" parent="/*">
             <feature name="Pdf417Scanner">
                 <param name="ios-package" value="CDVpdf417" />

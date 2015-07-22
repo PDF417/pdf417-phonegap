@@ -11,8 +11,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Cordova/CDV.h>
 
-#import <pdf417/PPBarcode.h>
-
 /**
  * pdf417 plugin class.
  * Responds to JS calls

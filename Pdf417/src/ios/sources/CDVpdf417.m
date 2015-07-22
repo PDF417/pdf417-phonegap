@@ -19,13 +19,11 @@
 
 #import "CDVpdf417.h"
 
-@interface CDVPlugin () <PPBarcodeDelegate>
+#import <MicroBlink/MicroBlink.h>
+
+@interface CDVPlugin () <PPScanDelegate>
 
 @property (nonatomic, retain) CDVInvokedUrlCommand* lastCommand;
-
-- (void)presentCameraViewController:(UIViewController*)cameraViewController isModal:(BOOL)isModal;
-
-- (void)dismissCameraViewControllerModal:(BOOL)isModal;
 
 @end
 
@@ -33,23 +31,100 @@
 
 @synthesize lastCommand;
 
-- (id)allocCoordinator {
+- (PPPdf417RecognizerSettings *)pdf417RecognizerSettingsWithOptions:(NSDictionary *)options
+                                                              types:(NSArray *)types {
 
-    // Check if barcode scanning is supported
-    NSError *error;
-    if ([PPBarcodeCoordinator isScanningUnsupported:&error]) {
-        NSString *messageString = [error localizedDescription];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
-                                                        message:messageString
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil, nil];
-        [alert show];
+    PPPdf417RecognizerSettings *pdf417RecognizerSettings = [[PPPdf417RecognizerSettings alloc] init];
+
+    [pdf417RecognizerSettings setEnabled:[types containsObject:@"PDF417"]];
+
+    // Set this to true to scan barcodes which don't have quiet zone (white area) around it
+    // Use only if necessary because it slows down the recognition process
+    id quietZone = [options objectForKey:@"quietZone"];
+    pdf417RecognizerSettings.allowNullQuietZone = (quietZone && [quietZone boolValue]);
+
+    // Set this to true to scan even barcode not compliant with standards
+    // For example, malformed PDF417 barcodes which were incorrectly encoded
+    // Use only if necessary because it slows down the recognition process
+    id uncertain = [options objectForKey:@"uncertain"];
+    pdf417RecognizerSettings.scanUncertain = (uncertain && [uncertain boolValue]);
+
+    return pdf417RecognizerSettings;
+}
+
+- (PPUsdlRecognizerSettings *)usdlRecognizerSettingsWithOptions:(NSDictionary *)options
+                                                          types:(NSArray *)types {
+
+    PPUsdlRecognizerSettings *usdlRecognizerSettings = [[PPUsdlRecognizerSettings alloc] init];
+
+    [usdlRecognizerSettings setEnabled:[types containsObject:@"USDL"]];
+
+    return usdlRecognizerSettings;
+}
+
+- (PPBarDecoderRecognizerSettings *)barDecoderRecognizerSettingsWithOptions:(NSDictionary *)options
+                                                                      types:(NSArray *)types {
+
+    PPBarDecoderRecognizerSettings *barDecoderRecognizerSettings = [[PPBarDecoderRecognizerSettings alloc] init];
+
+    BOOL code128 = [types containsObject:@"Code 128"];
+    BOOL code39 = [types containsObject:@"Code 39"];
+
+    [barDecoderRecognizerSettings setEnabled:(code128 || code39)];
+
+    barDecoderRecognizerSettings.scanCode128 = code128;
+    barDecoderRecognizerSettings.scanCode39 = code39;
+
+    // Set this to YES to allow scanning barcodes with inverted intensities
+    // (i.e. white barcodes on black background)
+    id scanInverse = [options objectForKey:@"inverseScanning"];
+    barDecoderRecognizerSettings.scanInverse = (scanInverse && [scanInverse boolValue]);
+
+    return barDecoderRecognizerSettings;
+}
+
+- (PPZXingRecognizerSettings *)zxingRecognizerSettingsWithOptions:(NSDictionary *)options
+                                                            types:(NSArray *)types {
+
+    PPZXingRecognizerSettings *zxingRecognizerSettings = [[PPZXingRecognizerSettings alloc] init];
+
+    BOOL aztec = [types containsObject:@"Aztec"];
+    BOOL dataMatrix = [types containsObject:@"Data Matrix"];
+    BOOL ean8 = [types containsObject:@"EAN 8"];
+    BOOL ean13 = [types containsObject:@"EAN 13"];
+    BOOL itf = [types containsObject:@"ITF"];
+    BOOL qrcode = [types containsObject:@"QR Code"];
+    BOOL upca = [types containsObject:@"UPCA"];
+    BOOL upce = [types containsObject:@"UPCE"];
+
+    [zxingRecognizerSettings setEnabled:(qrcode || ean8 || ean13 || itf || upca || upce || aztec || dataMatrix)];
+
+    zxingRecognizerSettings.scanAztec = aztec;
+    zxingRecognizerSettings.scanCode128 = NO;
+    zxingRecognizerSettings.scanCode39 = NO;
+    zxingRecognizerSettings.scanDataMatrix = dataMatrix;
+    zxingRecognizerSettings.scanEAN13 = ean13;
+    zxingRecognizerSettings.scanEAN8 = ean8;
+    zxingRecognizerSettings.scanITF = itf;
+    zxingRecognizerSettings.scanQR = qrcode;
+    zxingRecognizerSettings.scanUPCA = upca;
+    zxingRecognizerSettings.scanUPCE = upce;
+
+    // Set this to YES to allow scanning barcodes with inverted intensities
+    // (i.e. white barcodes on black background)
+    id scanInverse = [options objectForKey:@"inverseScanning"];
+    zxingRecognizerSettings.scanInverse = (scanInverse && [scanInverse boolValue]);
+
+    return zxingRecognizerSettings;
+}
+
+- (PPCoordinator *)coordinatorWithError:(NSError**)error {
+
+    /** 0. Check if scanning is supported */
+
+    if ([PPCoordinator isScanningUnsupported:error]) {
         return nil;
     }
-
-    // Create object which stores pdf417 framework settings
-    NSMutableDictionary* coordinatorSettings = [[NSMutableDictionary alloc] init];
 
     NSArray* types = [self.lastCommand argumentAtIndex:0];
 
@@ -59,167 +134,165 @@
         options = [self.lastCommand argumentAtIndex:1];
     }
 
-    // Set YES/NO for scanning pdf417 barcode standard (default YES)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"PDF417"]] forKey:kPPRecognizePdf417Key];
-    // Set YES/NO for scanning US driver's licenses (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"USDL"]] forKey:kPPRecognizeUSDLKey];
-    // Set YES/NO for scanning qr code barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"QR Code"]] forKey:kPPRecognizeQrCodeKey];
-    // Set YES/NO for scanning code 128 barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"Code 128"]] forKey:kPPRecognizeCode128Key];
-    // Set YES/NO for scanning code 39 barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"Code 39"]] forKey:kPPRecognizeCode39Key];
-    // Set YES/NO for scanning EAN 8 barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"EAN 8"]] forKey:kPPRecognizeEAN8Key];
-    // Set YES/NO for scanning EAN 13 barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"EAN 13"]] forKey:kPPRecognizeEAN13Key];
-    // Set YES/NO for scanning ITF barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"ITF"]] forKey:kPPRecognizeITFKey];
-    // Set YES/NO for scanning UPCA barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"UPCA"]] forKey:kPPRecognizeUPCAKey];
-    // Set YES/NO for scanning UPCE barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"UPCE"]] forKey:kPPRecognizeUPCEKey];
-    // Set YES/NO for scanning Azetec barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"Aztec"]] forKey:kPPRecognizeAztecKey];
-    // Set YES/NO for scanning Data matrix barcode standard (default NO)
-    [coordinatorSettings setValue:[NSNumber numberWithBool:[types containsObject:@"Data Matrix"]] forKey:kPPRecognizeDataMatrixKey];
 
-    // Set only one resolution mode
-    //    [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseVideoPreset640x480];
-    //    [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseVideoPresetMedium];
-    //    [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseVideoPresetHigh];
+    /** 1. Initialize the Scanning settings */
+
+    // Initialize the scanner settings object. This initialize settings with all default values.
+    PPSettings *settings = [[PPSettings alloc] init];
+
     id highRes = [options valueForKey:@"highRes"];
     if (highRes && [highRes boolValue]) {
-        [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseVideoPresetHighest];
+        settings.cameraSettings.cameraPreset = PPCameraPresetMax;
     } else {
-        [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseVideoPresetHigh];
-    }
-
-    // present modal (recommended and default) - make sure you dismiss the view controller when done
-    // you also can set this to NO and push camera view controller to navigation view controller
-    [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPPresentModal];
-
-    // Set this to true to scan even barcode not compliant with standards
-    // For example, malformed PDF417 barcodes which were incorrectly encoded
-    // Use only if necessary because it slows down the recognition process
-    id uncertain = [options objectForKey:@"uncertain"];
-    if (uncertain && [uncertain boolValue]) {
-        [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPScanUncertainBarcodes];
-    }
-
-    // Set this to true to scan barcodes which don't have quiet zone (white area) around it
-    // Use only if necessary because it slows down the recognition process
-    id quietZone = [options objectForKey:@"quietZone"];
-    if (quietZone && [quietZone boolValue]) {
-        [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPAllowNullQuietZone];
+        settings.cameraSettings.cameraPreset = PPCameraPresetOptimal;
     }
 
     // Set front facing camera if requested
     id frontFace = [options objectForKey:@"frontFace"];
     if (frontFace && [frontFace boolValue]) {
-        [coordinatorSettings setValue:[NSNumber numberWithBool:YES] forKey:kPPUseFrontFacingCamera];
+        settings.cameraSettings.cameraType = PPCameraTypeFront;
     }
+
+
+    /** 2. Setup the license key */
+
+    // Visit www.microblink.com to get the license key for your app
+    settings.licenseSettings.licenseKey = [self.lastCommand argumentAtIndex:2];
 
     /**
-     Set the license key
-     This license key allows setting overlay views for this application ID: net.photopay.barcode.pdf417-sample
-     To test your custom overlays, please use this demo app directly or visit our website www.pdf417.mobi for commercial license
+     * 3. Set up what is being scanned. See detailed guides for specific use cases.
+     * Here's an example for initializing PDF417 scanning
      */
-    if ([self.lastCommand arguments].count >= 3) {
-        [coordinatorSettings setValue:[self.lastCommand argumentAtIndex:2] forKey:kPPLicenseKey];
-    }
 
-    // Define the sound filename played on successful recognition
-    id beep = [options objectForKey:@"beep"];
-    if (!beep || [beep boolValue]) {
-        NSString* soundPath = [[NSBundle mainBundle] pathForResource:@"beep_pdf417" ofType:@"mp3"];
-        [coordinatorSettings setValue:soundPath forKey:kPPSoundFile];
-    }
+    // Add PDF417 Recognizer setting to a list of used recognizer settings
+    [settings.scanSettings addRecognizerSettings:[self pdf417RecognizerSettingsWithOptions:options types:types]];
 
-    // Allocate the recognition coordinator object
-    PPBarcodeCoordinator *coordinator = [[PPBarcodeCoordinator alloc] initWithSettings:coordinatorSettings];
+    [settings.scanSettings addRecognizerSettings:[self zxingRecognizerSettingsWithOptions:options types:types]];
 
+    [settings.scanSettings addRecognizerSettings:[self usdlRecognizerSettingsWithOptions:options types:types]];
+
+    [settings.scanSettings addRecognizerSettings:[self barDecoderRecognizerSettingsWithOptions:options types:types]];
+
+    // To specify we want to perform recognition of other barcode formats, initialize the ZXing recognizer settings
+    PPZXingRecognizerSettings *zxingRecognizerSettings = [[PPZXingRecognizerSettings alloc] init];
+    zxingRecognizerSettings.scanQR = YES; // we use just QR code
+
+    // Add ZXingRecognizer setting to a list of used recognizer settings
+    [settings.scanSettings addRecognizerSettings:zxingRecognizerSettings];
+
+    /** 4. Initialize the Scanning Coordinator object */
+
+    PPCoordinator *coordinator = [[PPCoordinator alloc] initWithSettings:settings];
+    
     return coordinator;
 }
 
 - (void)scan:(CDVInvokedUrlCommand*)command {
     
     [self setLastCommand:command];
-    
-    id coordinator = [self allocCoordinator];
+
+    /** Instantiate the scanning coordinator */
+    NSError *error;
+    PPCoordinator *coordinator = [self coordinatorWithError:&error];
+
+    /** If scanning isn't supported, present an error */
     if (coordinator == nil) {
+        NSString *messageString = [error localizedDescription];
+        [[[UIAlertView alloc] initWithTitle:@"Warning"
+                                    message:messageString
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil, nil] show];
+
         return;
     }
     
-    // Create camera view controller, you can provide your own overlayViewController if you want a custom user interface (if licensing permits)
-    UIViewController *cameraViewController = [coordinator cameraViewControllerWithDelegate:self];
+    /** Allocate and present the scanning view controller */
+    UIViewController<PPScanningViewController>* scanningViewController = [coordinator cameraViewControllerWithDelegate:self];
 
-    // present it modally
-    [self presentCameraViewController:cameraViewController isModal:YES];
-
+    /** You can use other presentation methods as well */
+    [[self viewController] presentViewController:scanningViewController animated:YES completion:nil];
 }
 
-/**
- * Method presents a modal view controller and uses non deprecated method in iOS 6
- */
-- (void)presentCameraViewController:(UIViewController*)cameraViewController isModal:(BOOL)isModal {
-    if (isModal) {
-        cameraViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        cameraViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-        [[self viewController] presentViewController:cameraViewController animated:YES completion:nil];
-    } else {
-        [[[self viewController] navigationController] pushViewController:cameraViewController animated:YES];
-    }
-}
+- (void)setDictionary:(NSMutableDictionary*)dict withPdf417RecognizerResult:(PPPdf417RecognizerResult*)data {
 
-/**
- * Method dismisses a modal view controller and uses non deprecated method in iOS 6
- */
-- (void)dismissCameraViewControllerModal:(BOOL)isModal {
-    if (isModal) {
-        [[self viewController] dismissViewControllerAnimated:YES completion:nil];
-    }
-}
-
-
-- (void)setDictionary:(NSMutableDictionary*)dict withScanResult:(PPScanningResult*)data {
-    NSString* textData = [[NSString alloc] initWithData:[data data]
-                                               encoding:NSUTF8StringEncoding];
-    
-    if (textData) {
-        [dict setObject:textData forKey:@"data"];
+    if ([data stringUsingGuessedEncoding]) {
+        [dict setObject:[data stringUsingGuessedEncoding] forKey:@"data"];
     }
     
-    [dict setObject:[data toUrlDataString] forKey:@"raw"];
-    [dict setObject:[PPScanningResult toTypeName:data.type] forKey:@"type"];
+    [dict setObject:[PPRecognizerResult urlStringFromData:[data data]] forKey:@"raw"];
+    [dict setObject:@"PDF417" forKey:@"type"];
     [dict setObject:@"Barcode result" forKey:@"resultType"];
 }
 
-- (void)setDictionary:(NSMutableDictionary*)dict withUsdlResult:(PPUSDLResult*)usdlResult {
-    [dict setObject:[usdlResult fields] forKey:@"fields"];
+- (void)setDictionary:(NSMutableDictionary*)dict withZXingRecognizerResult:(PPZXingRecognizerResult*)data {
+
+    if ([data stringUsingGuessedEncoding]) {
+        [dict setObject:[data stringUsingGuessedEncoding] forKey:@"data"];
+    }
+
+    [dict setObject:[PPRecognizerResult urlStringFromData:[data data]] forKey:@"raw"];
+    [dict setObject:[PPZXingRecognizerResult toTypeName:data.barcodeType] forKey:@"type"];
+    [dict setObject:@"Barcode result" forKey:@"resultType"];
+}
+
+- (void)setDictionary:(NSMutableDictionary*)dict withBarDecoderRecognizerResult:(PPBarDecoderRecognizerResult*)data {
+
+    if ([data stringUsingGuessedEncoding]) {
+        [dict setObject:[data stringUsingGuessedEncoding] forKey:@"data"];
+    }
+
+    [dict setObject:[PPRecognizerResult urlStringFromData:[data data]] forKey:@"raw"];
+    [dict setObject:[PPBarDecoderRecognizerResult toTypeName:data.barcodeType] forKey:@"type"];
+    [dict setObject:@"Barcode result" forKey:@"resultType"];
+}
+
+- (void)setDictionary:(NSMutableDictionary*)dict withUsdlResult:(PPUsdlRecognizerResult*)usdlResult {
+    [dict setObject:[usdlResult getAllStringElements] forKey:@"fields"];
     [dict setObject:@"USDL result" forKey:@"resultType"];
 }
 
 - (void)returnResults:(NSArray *)results cancelled:(BOOL)cancelled {
+
     NSMutableDictionary* resultDict = [[NSMutableDictionary alloc] init];
     [resultDict setObject:[NSNumber numberWithInt: (cancelled ? 1 : 0)] forKey:@"cancelled"];
 
     NSMutableArray *resultArray = [[NSMutableArray alloc] init];
 
-    for (PPBaseResult* result in results) {
+    for (PPRecognizerResult* result in results) {
 
-        if ([result resultType] == PPBaseResultTypeBarcode) {
+        if ([result isKindOfClass:[PPPdf417RecognizerResult class]]) {
+            PPPdf417RecognizerResult *pdf417Result = (PPPdf417RecognizerResult *)result;
+
             NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-            PPScanningResult* scanningResult = (PPScanningResult*)result;
-            [self setDictionary:dict withScanResult:scanningResult];
+            [self setDictionary:dict withPdf417RecognizerResult:pdf417Result];
 
             [resultArray addObject:dict];
         }
 
-        if ([result resultType] == PPBaseResultTypeUSDL) {
+        if ([result isKindOfClass:[PPZXingRecognizerResult class]]) {
+            PPZXingRecognizerResult *zxingResult = (PPZXingRecognizerResult *)result;
+
             NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-            PPUSDLResult* usdlResult = (PPUSDLResult*)result;
+            [self setDictionary:dict withZXingRecognizerResult:zxingResult];
+
+            [resultArray addObject:dict];
+        }
+
+        if ([result isKindOfClass:[PPUsdlRecognizerResult class]]) {
+            PPUsdlRecognizerResult *usdlResult = (PPUsdlRecognizerResult *)result;
+
+            NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
             [self setDictionary:dict withUsdlResult:usdlResult];
+
+            [resultArray addObject:dict];
+        }
+
+        if ([result isKindOfClass:[PPBarDecoderRecognizerResult class]]) {
+            PPBarDecoderRecognizerResult *barDecoderResult = (PPBarDecoderRecognizerResult *)result;
+
+            NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+            [self setDictionary:dict withBarDecoderRecognizerResult:barDecoderResult];
 
             [resultArray addObject:dict];
         }
@@ -239,7 +312,8 @@
     
     [self.commandDelegate sendPluginResult:result callbackId:self.lastCommand.callbackId];
     
-    [self dismissCameraViewControllerModal:YES];
+    // As scanning view controller is presented full screen and modally, dismiss it
+    [[self viewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)returnError:(NSString*)message {
@@ -253,22 +327,36 @@
     
     [self.commandDelegate sendPluginResult:result callbackId:self.lastCommand.callbackId];
     
-    [self dismissCameraViewControllerModal:YES];
+    // As scanning view controller is presented full screen and modally, dismiss it
+    [[self viewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark -
-#pragma mark PhotoPay delegate methods
+#pragma mark - PPScanDelegate delegate methods
 
-- (void)cameraViewControllerWasClosed:(UIViewController *)cameraViewController {
+- (void)scanningViewControllerUnauthorizedCamera:(UIViewController<PPScanningViewController> *)scanningViewController {
+    // Add any logic which handles UI when app user doesn't allow usage of the phone's camera
+}
+
+- (void)scanningViewController:(UIViewController<PPScanningViewController> *)scanningViewController
+                  didFindError:(NSError *)error {
+    // Can be ignored. See description of the method
+}
+
+- (void)scanningViewControllerDidClose:(UIViewController<PPScanningViewController> *)scanningViewController {
+
     [self returnResults:nil cancelled:YES];
 
-    [self dismissCameraViewControllerModal:YES];
+    // As scanning view controller is presented full screen and modally, dismiss it
+    [[self viewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)cameraViewController:(UIViewController<PPScanningViewController>*)cameraViewController didOutputResults:(NSArray*)results {
+- (void)scanningViewController:(UIViewController<PPScanningViewController> *)scanningViewController
+              didOutputResults:(NSArray *)results {
+
     [self returnResults:results cancelled:(results == nil)];
-    
-    [self dismissCameraViewControllerModal:YES];
+
+    // As scanning view controller is presented full screen and modally, dismiss it
+    [[self viewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
