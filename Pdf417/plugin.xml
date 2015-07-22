@@ -26,17 +26,17 @@
             </feature>
         </config-file>
 
-		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <activity
-                android:name="com.microblink.activity.Pdf417ScanActivity"
-                android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-                android:configChanges="orientation|screenSize"
-                android:screenOrientation="portrait" >
-                <intent-filter>
-                    <action android:name="com.microblink.activity.Pdf417ScanActivity" />
-                    <category android:name="android.intent.category.DEFAULT" />
-                </intent-filter>
-			</activity>
+                    android:name="com.microblink.activity.Pdf417ScanActivity"
+                    android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+                    android:configChanges="orientation|screenSize"
+                    android:screenOrientation="portrait" >
+                    <intent-filter>
+                        <action android:name="com.microblink.activity.Pdf417ScanActivity" />
+                        <category android:name="android.intent.category.DEFAULT" />
+                    </intent-filter>
+            </activity>
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest">
@@ -44,9 +44,9 @@
             <uses-permission android:name="android.permission.FLASHLIGHT" />
             
             <uses-feature android:name="android.hardware.camera" />
-			<uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
-			<uses-feature android:name="android.hardware.camera.flash" android:required="false" />
-			<uses-feature android:glEsVersion="0x00020000" android:required="false" />
+            <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+            <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
+            <uses-feature android:glEsVersion="0x00020000" android:required="false" />
 
             <supports-screens
                 android:anyDensity="true"
@@ -81,7 +81,7 @@
         <source-file src="src/android/libs/armeabi-v7a/libBlinkBarcode.so" target-dir="libs/armeabi-v7a/"/>
         <source-file src="src/android/libs/x86/libBlinkBarcode.so" target-dir="libs/x86/"/>
 
-         <hook type="after_prepare" src="scripts/fix-largeheap.js" />
+        <hook type="after_prepare" src="scripts/fix-largeheap.js" />
     </platform>
 
     <platform name="ios">
