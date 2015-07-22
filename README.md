@@ -91,7 +91,7 @@ var options = {
 // Note that each platform requires its own license key
 
 // This license key allows setting overlay views for this application ID: mobi.pdf417.demo
-var licenseiOs = "YUY3-MHTT-COH4-SOQF-4M77-R6MN-Y73H-GIPF";
+var licenseiOs = "XE3DN5MH-6BYS3TA7-HAUQHBDD-NRKVH4DV-WPDPF4NF-6PAUBFXW-IYVZBUX7-CXNQ4P7Z";
 
 // This license is only valid for package name "mobi.pdf417.demo"
 var licenseAndroid = "UDPICR2T-RA2LGTSD-YTEONPSJ-LE4WWOWC-5ICAIBAE-AQCAIBAE-AQCAIBAE-AQCFKMFM";    
@@ -191,4 +191,24 @@ scanButton.addEventListener('click', function() {
 + Both license parameters must be provided (for **iOS** and **Android**) even if you do not plan to run the application on both platforms. The licenses that you do not have/use must be set to `null`.
 
 + For obtaining US Driver's license parsing result, see the sample code above, and usdl_keys.js javascript file which contains information about values which you can obtain from scanned USDL. 
+
+## How to get started
+
+- [Download](https://github.com/PDF417/pdf417-phonegap/archive/master.zipp) PDF417.mobi PhoneGap SDK, and try the sample app for iOS and Android.
+
+Sample app is generated with a script
+
+```shell
+./initDemoApp.sh
 ```
+
+To run iOS demo application open Xcode project Pdf417Demo.xcodeproj
+
+To run Android demo application type
+
+```shell
+cordova run android
+```
+- [Generate](https://microblink.com/login?url=/customer/generatedemolicence) a **free demo license key** to start using the SDK in your app (registration required)
+
+- Get information about pricing and licensing od [pdf417.mobi](http://pdf417.mobi/#pricing)
