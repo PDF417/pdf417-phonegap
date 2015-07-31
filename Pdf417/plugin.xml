@@ -62,6 +62,7 @@
         <source-file src="src/android/values/pdf417-values.xml" target-dir="res/values" />
 
         <source-file src="src/android/res/beep_pdf417.mp3" target-dir="res/raw" />
+        <source-file src="src/android/res/device_list.json" target-dir="res/raw" />
         
         <source-file src="src/android/layout/default_barcode_camera_overlay.xml" target-dir="res/layout" />
         <source-file src="src/android/layout/camera_splash.xml" target-dir="res/layout" />

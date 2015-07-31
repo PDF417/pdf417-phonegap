@@ -1,0 +1,1014 @@
+{
+  "blacklist": {
+    "description": "List of devices that are not supported because they do not implement Android API as documented or testing has encountered other unrecoverable problems with those devices",
+    "devices": [
+      {
+        "description": "LG Pecan",
+        "model": "LG-P350",
+        "device": "pecan"
+      },
+      {
+        "description": "Wildfire",
+        "model": "HTC Wildfire",
+        "device": "buzz"
+      }
+    ]
+  },
+  "displayOrientationBlacklist": {
+    "description": "List of devices that do not implement method setDisplayOrientation and have no ability to display camera in portrait activity",
+    "devices": [
+      {
+        "description": "Galaxy Mini",
+        "model": "GT-S5570I",
+        "device": "GT-S5570I"
+      },
+      {
+        "description": "Galaxy Ace",
+        "model": "GT-S5830i",
+        "device": "GT-S5830i"
+      },
+      {
+        "description": "Galaxy Ace",
+        "model": "GT-S5830M",
+        "device": "GT-S5830M"
+      },
+      {
+        "description": "Google glass",
+        "model": "Glass 1",
+        "device": "glass-1"
+      }
+    ]
+  },
+  "landscapeLeftTabletList": {
+    "description": "List of tablet devices that have natural orientation landscape left (most tablets have natural orientation landscape right)",
+    "devices": [
+      {
+        "description": "ZTE v72C tablet (a.k.a. Sprint Optik 2)",
+        "model": "V72C",
+        "device": "v72c"
+      }
+    ]
+  },
+  "untrustyFocusList": {
+    "description": "List of devices that in autofocus callback report that focus has failed even though it has succeeded",
+    "devices": [
+      {
+        "description": "HTC One V",
+        "model": "HTC One V",
+        "device": "primou"
+      },
+      {
+        "description": "HTC One (M8) (4G LTE 双卡双待 联通版)",
+        "model": "HTC M8e",
+        "device": "htc_m8dug",
+        "versions": "[5.0.0,*>"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC M8w",
+        "device": "htc_m8",
+        "versions": "[5.0.0,*>"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC One_M8",
+        "device": "htc_m8",
+        "versions": "[5.0.0,*>"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC_0P6B",
+        "device": "htc_m8",
+        "versions": "[5.0.0,*>"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC_0P6B6",
+        "device": "htc_m8",
+        "versions": "[5.0.0,*>"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC_M8x",
+        "device": "htc_m8",
+        "versions": "[5.0.0,*>"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC One_M8 dual sim",
+        "device": "htc_m8dug",
+        "versions": "[5.0.0,*>"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC M8d",
+        "device": "htc_m8dwg",
+        "versions": "[5.0.0,*>"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "831C",
+        "device": "htc_m8whl",
+        "versions": "[5.0.0,*>"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC One_M8",
+        "device": "htc_m8wl",
+        "versions": "[5.0.0,*>"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC6525LVW",
+        "device": "htc_m8wl",
+        "versions": "[5.0.0,*>"
+      }
+    ]
+  },
+  "zeroCopyBufferAllowedList": {
+    "description": "List of devices that can safely use Zero Copy buffer for GPU rendering",
+    "devices": [
+      {
+        "description": "Galaxy S4",
+        "model": "GT-I9500",
+        "device": "ja3g"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SCH-I959",
+        "device": "ja3gduosctc"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SHV-E300K",
+        "device": "jaltektt"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SHV-E300L",
+        "device": "jaltelgt"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SHV-E300S",
+        "device": "jalteskt"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "GT-I9505",
+        "device": "jflte"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "GT-I9508",
+        "device": "jflte"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "GT-I9508C",
+        "device": "jflte"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SAMSUNG-SGH-I337Z",
+        "device": "jflteaio"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SAMSUNG-SGH-I337",
+        "device": "jflteatt"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SGH-I337M",
+        "device": "jfltecan"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SGH-M919V",
+        "device": "jfltecan"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SCH-R970C",
+        "device": "jfltecri"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SCH-R970X",
+        "device": "jfltecsp"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SCH-I545L",
+        "device": "jfltelra"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SPH-L720T",
+        "device": "jflterefreshspr"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SPH-L720",
+        "device": "jfltespr"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SM-S975L",
+        "device": "jfltetfnatt"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SGH-S970G",
+        "device": "jfltetfntmo"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SGH-M919",
+        "device": "jfltetmo"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SCH-R970",
+        "device": "jflteusc"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SCH-I545",
+        "device": "jfltevzw"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "GT-I9507",
+        "device": "jftdd"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "GT-I9507V",
+        "device": "jftdd"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "GT-I9515",
+        "device": "jfvelte"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "GT-I9505X",
+        "device": "jfwifi"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "GT-I9506",
+        "device": "ks01lte"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SHV-E330K",
+        "device": "ks01ltektt"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SHV-E330L",
+        "device": "ks01ltelgt"
+      },
+      {
+        "description": "Galaxy S4",
+        "model": "SC-04E",
+        "device": "SC-04E"
+      },
+      {
+        "description": "Galaxy S4 Active",
+        "model": "GT-I9295",
+        "device": "jactivelte"
+      },
+      {
+        "description": "Galaxy S4 Active",
+        "model": "SAMSUNG-SGH-I537",
+        "device": "jactivelteatt"
+      },
+      {
+        "description": "Galaxy S4 Active",
+        "model": "SGH-I537",
+        "device": "jactivelteatt"
+      },
+      {
+        "description": "Galaxy S4 Active",
+        "model": "SHV-E470S",
+        "device": "jactivelteskt"
+      },
+      {
+        "description": "Galaxy S4 Duos",
+        "model": "GT-I9502",
+        "device": "ja3gchnduos"
+      },
+      {
+        "description": "Galaxy S4 Google Play Edition",
+        "model": "GT-I9505G",
+        "device": "jgedlte"
+      },
+      {
+        "description": "Galaxy S4 LTE-A",
+        "model": "SHV-E330S",
+        "device": "ks01lteskt"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "GT-I9190",
+        "device": "serrano3g"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "GT-I9192",
+        "device": "serranods"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "GT-I9195",
+        "device": "serranolte"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "GT-I9195L",
+        "device": "serranolte"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "GT-I9195T",
+        "device": "serranolte"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "GT-I9195X",
+        "device": "serranolte"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "GT-I9197",
+        "device": "serranolte"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "SGH-I257M",
+        "device": "serranoltebmc"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "SHV-E370K",
+        "device": "serranoltektt"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "SHV-E370D",
+        "device": "serranoltekx"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "SCH-I435L",
+        "device": "serranoltelra"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "SPH-L520",
+        "device": "serranoltespr"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "SCH-R890",
+        "device": "serranolteusc"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "SCH-I435",
+        "device": "serranoltevzw"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "SAMSUNG-SGH-I257",
+        "device": "serranovolteatt"
+      },
+      {
+        "description": "Galaxy S4 Zoom",
+        "model": "SM-C101",
+        "device": "mproject3g"
+      },
+      {
+        "description": "Galaxy S4 Zoom",
+        "model": "SAMSUNG-SM-C105A",
+        "device": "mprojectlteatt"
+      },
+      {
+        "description": "Galaxy S4 Zoom",
+        "model": "SM-C105L",
+        "device": "mprojectltelgt"
+      },
+      {
+        "description": "Galaxy S4 Zoom",
+        "model": "SM-C105S",
+        "device": "mprojectlteskt"
+      },
+      {
+        "description": "Galaxy S4 Zoom",
+        "model": "SM-C105",
+        "device": "mprojectqlte"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900H",
+        "device": "k3g"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900F",
+        "device": "klte"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900FQ",
+        "device": "klte"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900I",
+        "device": "klte"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900M",
+        "device": "klte"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900MD",
+        "device": "klte"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900R7",
+        "device": "klteacg"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SAMSUNG-SM-G900A",
+        "device": "klteatt"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900W8",
+        "device": "kltecan"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900K",
+        "device": "kltektt"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900L",
+        "device": "kltelgt"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900R6",
+        "device": "kltelra"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900T1",
+        "device": "klteMetroPCS"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900S",
+        "device": "klteskt"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900P",
+        "device": "kltespr"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900T",
+        "device": "kltetmo"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900R4",
+        "device": "klteusc"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900V",
+        "device": "kltevzw"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900X",
+        "device": "kwifi"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G906K",
+        "device": "lentisltektt"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G906L",
+        "device": "lentisltelgt"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G906S",
+        "device": "lentislteskt"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SCL23",
+        "device": "SCL23"
+      },
+      {
+        "description": "Galaxy S5 Active",
+        "model": "SAMSUNG-SM-G870A",
+        "device": "klteattactive"
+      },
+      {
+        "description": "Galaxy S5 Mini",
+        "model": "SM-G800H",
+        "device": "kmini3g"
+      },
+      {
+        "description": "Galaxy S5 Mini",
+        "model": "SM-G800F",
+        "device": "kminilte"
+      },
+      {
+        "description": "Galaxy S5 mini",
+        "model": "SM-G800M",
+        "device": "kminilte"
+      },
+      {
+        "description": "Nexus 4",
+        "model": "Nexus 4",
+        "device": "mako"
+      },
+      {
+        "description": "Nexus 5",
+        "model": "Nexus 5",
+        "device": "hammerhead"
+      },
+      {
+        "description": "HTC One (M8) (4G LTE 双卡双待 联通版)",
+        "model": "HTC M8e",
+        "device": "htc_m8dug"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC M8w",
+        "device": "htc_m8"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC One_M8",
+        "device": "htc_m8"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC_0P6B",
+        "device": "htc_m8"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC_0P6B6",
+        "device": "htc_m8"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC_M8x",
+        "device": "htc_m8"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC One_M8 dual sim",
+        "device": "htc_m8dug"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC M8d",
+        "device": "htc_m8dwg"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "831C",
+        "device": "htc_m8whl"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC One_M8",
+        "device": "htc_m8wl"
+      },
+      {
+        "description": "HTC One (M8)",
+        "model": "HTC6525LVW",
+        "device": "htc_m8wl"
+      },
+      {
+        "description": "Moto G",
+        "model": "XT1028",
+        "device": "falcon_cdma"
+      },
+      {
+        "description": "Moto G",
+        "model": "XT1031",
+        "device": "falcon_cdma"
+      },
+      {
+        "description": "Moto G",
+        "model": "XT937C",
+        "device": "falcon_cdma"
+      },
+      {
+        "description": "MOTO G",
+        "model": "XT1003",
+        "device": "falcon_umts"
+      },
+      {
+        "description": "Moto G",
+        "model": "XT1008",
+        "device": "falcon_umts"
+      },
+      {
+        "description": "Moto G",
+        "model": "XT1032",
+        "device": "falcon_umts"
+      },
+      {
+        "description": "Moto G",
+        "model": "XT1034",
+        "device": "falcon_umts"
+      },
+      {
+        "description": "Moto G",
+        "model": "XT939G",
+        "device": "falcon_umts"
+      },
+      {
+        "description": "Moto G",
+        "model": "XT1033",
+        "device": "falcon_umtsds"
+      },
+      {
+        "description": "MOTO G",
+        "model": "XT1033",
+        "device": "falcon_umtsds"
+      },
+      {
+        "description": "Moto G Google Play edition",
+        "model": "XT1032",
+        "device": "falcon_umts"
+      },
+      {
+        "description": "MOTO G LTE",
+        "model": "XT1039",
+        "device": "peregrine"
+      },
+      {
+        "description": "MOTO G LTE",
+        "model": "XT1040",
+        "device": "peregrine"
+      },
+      {
+        "description": "MOTO G LTE",
+        "model": "XT1045",
+        "device": "peregrine"
+      },
+      {
+        "description": "Xperia tablet Z",
+        "model": "SGP311",
+        "device": "SGP311"
+      },
+      {
+        "description": "Xperia tablet Z",
+        "model": "SGP312",
+        "device": "SGP312"
+      },
+      {
+        "description": "Xperia tablet Z",
+        "model": "SGP321",
+        "device": "SGP321"
+      },
+      {
+        "description": "Xperia tablet Z",
+        "model": "SGP351",
+        "device": "SGP351"
+      }
+    ]
+  },
+  "upsideDownCameraDeviceList": {
+    "description": "List of devices that have camera orientation in portrait mode upside down.",
+    "devices": [
+      {
+        "description": "Galaxy Tab 10.1",
+        "model": "G7",
+        "device": "S9"
+      }
+    ]
+  },
+  "eglPbufferNotSupportedList": {
+    "description": "List of devices that do not support initializing OpenGL with only offscreen rendering target",
+    "devices": [
+      {
+        "description": "Sony Xperia Z on Android 4.1.2",
+        "model": "C6603",
+        "device": "C6603",
+        "versions": "[4.1.2,4.1.2]"
+      },
+      {
+        "description": "Motorola LEX 755 on Android 4.2.2",
+        "model": "LEX755",
+        "device": "futon",
+        "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "LG G2 on Android 4.2.2",
+        "model": "LG-D802",
+        "device": "g2",
+        "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "GT-I9190",
+        "device": "serrano3g",
+        "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "GT-I9192",
+        "device": "serranods",
+        "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "GT-I9195",
+        "device": "serranolte",
+        "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "GT-I9195L",
+        "device": "serranolte",
+        "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "GT-I9195T",
+        "device": "serranolte",
+        "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "GT-I9195X",
+        "device": "serranolte",
+        "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "GT-I9197",
+        "device": "serranolte",
+        "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "SGH-I257M",
+        "device": "serranoltebmc",
+        "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "SHV-E370K",
+        "device": "serranoltektt",
+        "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "SHV-E370D",
+        "device": "serranoltekx",
+        "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "SCH-I435L",
+        "device": "serranoltelra",
+        "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "SPH-L520",
+        "device": "serranoltespr",
+        "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "SCH-R890",
+        "device": "serranolteusc",
+        "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "SCH-I435",
+        "device": "serranoltevzw",
+        "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "Galaxy S4 Mini",
+        "model": "SAMSUNG-SGH-I257",
+        "device": "serranovolteatt",
+        "versions": "[4.2.2,4.2.2]"
+      }
+    ]
+  },
+  "optimalPreviewSizesList": {
+    "description": "List of optimal preview sizes for specific devices (normal preview size deduction does not work on these devices)",
+    "devices": [
+      {
+        "description": "Sony Xperia Go",
+        "model": "ST27i",
+        "device": "ST27i",
+        "previewSize": [
+          480,
+          320
+        ]
+      },
+      {
+        "description": "HTC Desire",
+        "model": "HTC Desire",
+        "device": "bravo",
+        "previewSize": [
+          640,
+          480
+        ]
+      },
+      {
+        "description": "HTC Desire",
+        "model": "X06HT",
+        "device": "bravo",
+        "previewSize": [
+          640,
+          480
+        ]
+      },
+      {
+        "description": "HTC Desire C",
+        "model": "HTC Desire C",
+        "device": "golfc",
+        "previewSize": [
+          640,
+          480
+        ]
+      },
+      {
+        "description": "HTC Desire C",
+        "model": "HTC Desire C",
+        "device": "golfu",
+        "previewSize": [
+          640,
+          480
+        ]
+      },
+      {
+        "description": "HTC Desire S",
+        "model": "HTC Desire S",
+        "device": "saga",
+        "previewSize": [
+          640,
+          480
+        ]
+      },
+      {
+        "description": "HTC Desire V",
+        "model": "HTC Desire V",
+        "device": "primods",
+        "previewSize": [
+          640,
+          480
+        ]
+      }
+    ]
+  },
+  "optimalPhotoSizeList": {
+    "description": "List of optimal picture sizes for specific devices (normal picture size deduction does not work on these devices)",
+    "devices": [
+      {
+        "description": "ZTE Kis Lite",
+        "model": "ZTE Kis Lite",
+        "device": "roamer2",
+        "pictureSize": [
+          1600,
+          1200
+        ]
+      }
+    ]
+  },
+  "cameraInitDelayList": {
+    "description": "List of devices that have specific camera init delay in order to achieve stable white balance",
+    "devices": [
+      {
+        "description": "Samsung Galaxy Ace",
+        "model": "GT-S5830",
+        "device": "GT-S5830",
+        "cameraInitDelayMs": 1500
+      },
+      {
+        "description": "Samsung Galaxy Ace",
+        "model": "GT-S5830B",
+        "device": "GT-S5830B",
+        "cameraInitDelayMs": 1500
+      },
+      {
+        "description": "Samsung Galaxy Ace",
+        "model": "GT-S5830C",
+        "device": "GT-S5830C",
+        "cameraInitDelayMs": 1500
+      },
+      {
+        "description": "Samsung Galaxy Ace",
+        "model": "GT-S5830D",
+        "device": "GT-S5830D",
+        "cameraInitDelayMs": 1500
+      },
+      {
+        "description": "Samsung Galaxy Ace",
+        "model": "GT-S5830F",
+        "device": "GT-S5830F",
+        "cameraInitDelayMs": 1500
+      },
+      {
+        "description": "Samsung Galaxy Ace",
+        "model": "GT-S5830G",
+        "device": "GT-S5830G",
+        "cameraInitDelayMs": 1500
+      },
+      {
+        "description": "Samsung Galaxy Ace",
+        "model": "GT-S5830L",
+        "device": "GT-S5830L",
+        "cameraInitDelayMs": 1500
+      },
+      {
+        "description": "Samsung Galaxy Ace",
+        "model": "GT-S5830M",
+        "device": "GT-S5830M",
+        "cameraInitDelayMs": 1500
+      },
+      {
+        "description": "Samsung Galaxy Ace",
+        "model": "GT-S5830T",
+        "device": "GT-S5830T",
+        "cameraInitDelayMs": 1500
+      },
+      {
+        "description": "Samsung Galaxy Ace",
+        "model": "GT-S5830i",
+        "device": "GT-S5830i",
+        "cameraInitDelayMs": 1500
+      },
+      {
+        "description": "Samsung Galaxy Ace",
+        "model": "GT-S5831i",
+        "device": "GT-S5831i",
+        "cameraInitDelayMs": 1500
+      },
+      {
+        "description": "Samsung Galaxy Ace",
+        "model": "GT-S5838",
+        "device": "GT-S5838",
+        "cameraInitDelayMs": 1500
+      },
+      {
+        "description": "Samsung Galaxy Ace",
+        "model": "GT-S5839i",
+        "device": "GT-S5839i",
+        "cameraInitDelayMs": 1500
+      },
+      {
+        "description": "Samsung Galaxy Ace",
+        "model": "GT-S6358",
+        "device": "GT-S6358",
+        "cameraInitDelayMs": 1500
+      },
+      {
+        "description": "Samsung Galaxy Ace",
+        "model": "SCH-I619",
+        "device": "SCH-I619",
+        "cameraInitDelayMs": 1500
+      },
+      {
+        "description": "Samsung Galaxy Ace",
+        "model": "SHW-M240S",
+        "device": "SHW-M240S",
+        "cameraInitDelayMs": 1500
+      }
+    ]
+  }
+}
