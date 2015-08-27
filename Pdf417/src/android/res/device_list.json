@@ -125,9 +125,145 @@
       }
     ]
   },
+  "zoomLevelList" : {
+    "description" : "List of min and max allowed zoom levels for specific devices",
+    "devices" : [
+      {
+        "description" : "Galaxy S6",
+        "model" : "SM-G920F",
+        "device" : "zeroflte",
+        "minZoomLevel" : 0.2
+      }
+    ]
+  },
+  "meteringFailList" : {
+    "description" : "List of devices that have buggy implementation of camera 1 metering areas",
+    "devices" : [
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900H",
+        "device": "k3g"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900F",
+        "device": "klte"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900FQ",
+        "device": "klte"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900I",
+        "device": "klte"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900M",
+        "device": "klte"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900MD",
+        "device": "klte"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900R7",
+        "device": "klteacg"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SAMSUNG-SM-G900A",
+        "device": "klteatt"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900W8",
+        "device": "kltecan"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900K",
+        "device": "kltektt"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900L",
+        "device": "kltelgt"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900R6",
+        "device": "kltelra"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900T1",
+        "device": "klteMetroPCS"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900S",
+        "device": "klteskt"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900P",
+        "device": "kltespr"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900T",
+        "device": "kltetmo"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900R4",
+        "device": "klteusc"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900V",
+        "device": "kltevzw"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G900X",
+        "device": "kwifi"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G906K",
+        "device": "lentisltektt"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G906L",
+        "device": "lentisltelgt"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SM-G906S",
+        "device": "lentislteskt"
+      },
+      {
+        "description": "Galaxy S5",
+        "model": "SCL23",
+        "device": "SCL23"
+      }
+    ]
+  },
   "zeroCopyBufferAllowedList": {
     "description": "List of devices that can safely use Zero Copy buffer for GPU rendering",
     "devices": [
+      {
+        "description" : "Galaxy S6",
+        "model" : "SM-G920F",
+        "device" : "zeroflte"
+      },
       {
         "description": "Galaxy S4",
         "model": "GT-I9500",
@@ -561,57 +697,68 @@
       {
         "description": "HTC One (M8) (4G LTE 双卡双待 联通版)",
         "model": "HTC M8e",
-        "device": "htc_m8dug"
+        "device": "htc_m8dug",
+        "versions": "<*,5.0.0>"
       },
       {
         "description": "HTC One (M8)",
         "model": "HTC M8w",
-        "device": "htc_m8"
+        "device": "htc_m8",
+        "versions": "<*,5.0.0>"
       },
       {
         "description": "HTC One (M8)",
         "model": "HTC One_M8",
-        "device": "htc_m8"
+        "device": "htc_m8",
+        "versions": "<*,5.0.0>"
       },
       {
         "description": "HTC One (M8)",
         "model": "HTC_0P6B",
-        "device": "htc_m8"
+        "device": "htc_m8",
+        "versions": "<*,5.0.0>"
       },
       {
         "description": "HTC One (M8)",
         "model": "HTC_0P6B6",
-        "device": "htc_m8"
+        "device": "htc_m8",
+        "versions": "<*,5.0.0>"
       },
       {
         "description": "HTC One (M8)",
         "model": "HTC_M8x",
-        "device": "htc_m8"
+        "device": "htc_m8",
+        "versions": "<*,5.0.0>"
       },
       {
         "description": "HTC One (M8)",
         "model": "HTC One_M8 dual sim",
-        "device": "htc_m8dug"
+        "device": "htc_m8dug",
+        "versions": "<*,5.0.0>"
       },
       {
         "description": "HTC One (M8)",
         "model": "HTC M8d",
-        "device": "htc_m8dwg"
+        "device": "htc_m8dwg",
+        "versions": "<*,5.0.0>"
       },
       {
         "description": "HTC One (M8)",
         "model": "831C",
-        "device": "htc_m8whl"
+        "device": "htc_m8whl",
+        "versions": "<*,5.0.0>"
       },
       {
         "description": "HTC One (M8)",
         "model": "HTC One_M8",
-        "device": "htc_m8wl"
+        "device": "htc_m8wl",
+        "versions": "<*,5.0.0>"
       },
       {
         "description": "HTC One (M8)",
         "model": "HTC6525LVW",
-        "device": "htc_m8wl"
+        "device": "htc_m8wl",
+        "versions": "<*,5.0.0>"
       },
       {
         "description": "Moto G",

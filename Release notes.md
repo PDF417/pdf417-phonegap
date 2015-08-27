@@ -1,3 +1,6 @@
+## 1.0.3
+- Update with [Android SDK](https://github.com/PDF417/pdf417-android) v4.5.1
+
 ## 1.0.2
 - iOS plugin fix for crash when license key without USDL parsing is used
 

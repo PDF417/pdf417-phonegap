@@ -13,7 +13,7 @@ cordova create Pdf417Demo mobi.pdf417.demo Pdf417Demo
 # enter into demo project folder
 cd Pdf417Demo
 
-# add the PhotoPay plugin
+# add the PDF417 plugin
 cordova plugin add ../Pdf417
 
 # add ios and android support to the project
