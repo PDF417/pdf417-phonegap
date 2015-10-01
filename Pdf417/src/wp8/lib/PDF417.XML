@@ -1,0 +1,1284 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PDF417</name>
+    </assembly>
+    <members>
+        <member name="F:Microblink.Hardware.Camera.CameraManagerFactory.ACCELEROMETER_SAMPLE_PERIOD">
+            <summary>
+            accelerometer sample period in milliseconds
+            </summary>
+        </member>
+        <member name="F:Microblink.Hardware.Camera.CameraManagerFactory.mDeviceManager">
+            <summary>
+            device manager used for determining device capabilites
+            </summary>
+        </member>
+        <member name="M:Microblink.Hardware.Camera.CameraManagerFactory.#ctor(Microblink.Hardware.DeviceManager)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="deviceManager">deviceManager Device manager used for determining device capabilities. Must not be null.</param>
+        </member>
+        <member name="M:Microblink.Hardware.Camera.CameraManagerFactory.CreateCameraManager(Microblink.Hardware.ICameraDelegate,Microblink.Hardware.Camera.Focus.AutofocusStatusView,Microblink.Hardware.Camera.CameraSettings)">
+            <summary>
+            Method creates adequate camera manager based on current device and 
+            additional settings given by the additionalSettings parameter.
+            </summary>
+            <param name="cameraDelegate">Camera delegate that will receive frames from camera. Must not be null.</param>
+            <param name="afStatusView">Additional settings for camera manager factory. Must not be null.</param>
+            <param name="additionalSettings">Adequate camera manager.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microblink.Hardware.Camera.ResumeGrabberCaller">
+            <summary>
+            This enum is a list of possible callers of method resumeFrameGrabber of
+            camera manager. This is required to determine some specific behaviour in
+            specific cases. 
+            </summary>
+        </member>
+        <member name="T:Microblink.Hardware.Camera.Strategy.CameraResolutionChooser">
+            <summary>
+            Copied from android's HQCameraStrategy
+            </summary>
+        </member>
+        <member name="M:Microblink.Hardware.Accelerometer.IAccelerometerDelegate.OnShakingStarted">
+            Called when phone starts to shake/move.
+        </member>
+        <member name="M:Microblink.Hardware.Accelerometer.IAccelerometerDelegate.OnShakingStopped">
+            Called when phone stops shaking/moving.
+        </member>
+        <member name="F:Microblink.Hardware.Camera.CameraManager.mCamera">
+            Camera object 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.CameraManager.mAccelManager">
+            Accelerometer manager object 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.CameraManager.mCameraDelegate">
+            Camera delegate object 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.CameraManager.mFocusManager">
+            Focus manager object 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.CameraManager.videoBrush">
+            Camera video brush 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.CameraManager.mPreviewActive">
+            Is camera preview active? 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.CameraManager.mFrameGrabbingPaused">
+            Is frame grabbing currently paused? 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.CameraManager.mDeviceShaking">
+            Is device shaking 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.CameraManager.mCameraSettings">
+            additional camera settings 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.CameraManager.mCurrentPreviewSize">
+            current camera preview size 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.CameraManager.cameraClosing">
+            camera can be requested to close before it was opened *
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.AccelerometerManager.accelerometerMoveThreshold">
+            If the acceleration is higher than this threshold, device is considered 
+            moved 
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.AccelerometerManager.accelerometerStopThreshold">
+            If device was moved, and it's acceleration drops below this threshold,
+            device is considered stopped
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.AccelerometerManager.samplePeriodForgetFactor">
+            Factor by which the sample period is updated to measured sampling rate
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.AccelerometerManager.accelerometerFilter_">
+            Object used for filtering accelerometer results 
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.AccelerometerManager.accelerometerDelegate_">
+            Delegate object 
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.AccelerometerManager.shaking_">
+            Boolean flag which denotes if the device is currently shaking or not 
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.AccelerometerManager.samplePeriodMs">
+            sample period in milliseconds 
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.AccelerometerManager.lastSensorReadTimestamp">
+            timestamp of last sensor read 
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.AccelerometerManager.accelerometerStarted">
+            have we started the accelerometer sensor 
+        </member>
+        <member name="M:Microblink.Hardware.Accelerometer.AccelerometerManager.#ctor(Microblink.Hardware.Accelerometer.IAccelerometerFilter,System.Single)">
+            Constructor 
+            
+            @param context
+            @param filter
+            @param delegate
+            @param samplePeriod sample period in seconds
+        </member>
+        <member name="M:Microblink.Hardware.Accelerometer.AccelerometerManager.StartAccelerometer">
+            Method uses android API to register listener on the accelerometer changes
+        </member>
+        <member name="M:Microblink.Hardware.Accelerometer.AccelerometerManager.StopAccelerometer">
+            Method unregisters listener for accelerometer values
+        </member>
+        <member name="M:Microblink.Hardware.Accelerometer.AccelerometerManager.StartShaking">
+            Simulates the start of phone shaking (useful to call in 
+            onRecognitionDone so that is ensured that phone will not be shaking 
+            on new initial autofocus)
+        </member>
+        <member name="P:Microblink.Hardware.Accelerometer.AccelerometerManager.IsPhoneShaking">
+            Returns true if the device is shaking
+            
+            @return is device shaking
+        </member>
+        <member name="P:Microblink.Hardware.Accelerometer.AccelerometerManager.AbsoluteAcceleration">
+            Method returns the absolute value of filtered accelerometer result
+            
+            @return absolute acceleration
+        </member>
+        <member name="P:Microblink.Hardware.Accelerometer.AccelerometerManager.HasDeviceMoved">
+            Returns true if device went from nonshaking to shaking state 
+            
+            @return is device moved
+        </member>
+        <member name="P:Microblink.Hardware.Accelerometer.AccelerometerManager.HasDeviceStopped">
+            Returns true if device went from shaking to nonshaking state 
+            
+            @return is device stopped
+        </member>
+        <member name="M:Microblink.Hardware.Accelerometer.IAccelerometerFilter.SetSamplePeriod(System.Single)">
+            Sets the filter's sample period given in seconds
+            
+            @param periodInSeconds - sample period used in filter;
+        </member>
+        <member name="M:Microblink.Hardware.Accelerometer.IAccelerometerFilter.AddAcceleration(System.Single,System.Single,System.Single)">
+            Add a new measurement to the filter
+            
+            @param x X acceleation value
+            @param y Y acceleation value
+            @param z Z acceleation value 
+        </member>
+        <member name="P:Microblink.Hardware.Accelerometer.IAccelerometerFilter.X">
+            Returns the filtered X value of accelerometer measurement
+            
+            @return X value
+        </member>
+        <member name="P:Microblink.Hardware.Accelerometer.IAccelerometerFilter.Y">
+            Returns the filtered Y value of accelerometer measurement
+            
+            @return Y value
+        </member>
+        <member name="P:Microblink.Hardware.Accelerometer.IAccelerometerFilter.Z">
+            Returns the filtered Z value of accelerometer measurement
+            
+            @return Z value
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.HighPassAccelerometerFilter.estimatedX">
+            Estimated acceleration values 
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.HighPassAccelerometerFilter.estimatedY">
+            Estimated acceleration values 
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.HighPassAccelerometerFilter.estimatedZ">
+            Estimated acceleration values 
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.HighPassAccelerometerFilter.lowPassX">
+            Estimated low pass values 
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.HighPassAccelerometerFilter.lowPassY">
+            Estimated low pass values 
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.HighPassAccelerometerFilter.lowPassZ">
+            Estimated low pass values 
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.HighPassAccelerometerFilter.filterConstant">
+            Filtered frequency calculated on cutoff frequency 
+        </member>
+        <member name="F:Microblink.Hardware.Accelerometer.HighPassAccelerometerFilter.samplePeriod">
+            sampling period used 
+        </member>
+        <member name="M:Microblink.Hardware.Accelerometer.HighPassAccelerometerFilter.#ctor(System.Single,System.Single)">
+            Constructor
+            
+            @param samplePeriod
+            @param tauFactor - positive tau factor
+            	tauFactor 0 means all pass filter, 
+            	tauFactor 1 means filter with cuttof freq around pi/4
+            	tauFactor 2 means filter with cuttof freq around pi/8
+            	tauFactor +inf means filter with cuttof freq 0
+        </member>
+        <member name="M:Microblink.Hardware.Camera.Focus.IFocusManager.IsCameraFocused">
+            @return true if camera is in focus, otherwise false
+        </member>
+        <member name="M:Microblink.Hardware.Camera.Focus.IFocusManager.IsAutofocusing">
+            @return true if camera is currently performing autofocus, otherwise false
+        </member>
+        <member name="M:Microblink.Hardware.Camera.Focus.IFocusManager.DoAutofocus(System.Boolean)">
+            Method requests from manager to initiate camera focusing process.
+            @param force If true, camera focusing process will be violently started.
+        </member>
+        <member name="M:Microblink.Hardware.Camera.Focus.IFocusManager.ResumeFocusing">
+            Method resumes the work of the manager.
+        </member>
+        <member name="M:Microblink.Hardware.Camera.Focus.IFocusManager.PauseFocusing">
+            Method pauses the work of the manager.
+        </member>
+        <member name="M:Microblink.Hardware.Camera.Focus.IFocusManager.SetCamera(Windows.Phone.Media.Capture.ICameraCaptureDevice)">
+            Method sets the camera which focus will be managed by this manager.
+            @param camera Camera to be used.
+        </member>
+        <member name="M:Microblink.Hardware.Camera.Focus.IFocusManager.SetCameraManager(Microblink.Hardware.Camera.CameraManager)">
+            Camera manager
+        </member>
+        <member name="M:Microblink.Hardware.Camera.Focus.IFocusManager.IsFocusManagerPaused">
+            @return true if manager is paused
+        </member>
+        <member name="F:Microblink.Hardware.Camera.Focus.AutoFocusManager.AF_TIMEOUT_INTERVAL">
+            Interval between consecutive autofocuses on pre continuous AF phones 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.Focus.AutoFocusManager.AF_FAIL_TIMEOUT_INTERVAL">
+            Interval between consecutive autofocuses when autofocus fails 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.Focus.AutoFocusManager.mCamera">
+            Camera object 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.Focus.AutoFocusManager.mCameraManager">
+            Camera manager 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.Focus.AutoFocusManager.mFocused">
+            Is camera currently focused 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.Focus.AutoFocusManager.mAutofocusInProgress">
+            flag indicating active auto focusing 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.Focus.AutoFocusManager.mTimer">
+            Timer object used for periodically invalidation of focus 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.Focus.AutoFocusManager.mFocusPaused">
+            Is manager paused 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.Focus.AutoFocusManager.mNumFailedAutofocusAttempts">
+            Counter for failed autofocus attempts 
+        </member>
+        <member name="F:Microblink.Hardware.Camera.Focus.AutoFocusManager.mStatusView">
+            View used for reporting autofocus status to the user 
+        </member>
+        <member name="M:Microblink.Hardware.Camera.Focus.AutoFocusManager.#ctor(Microblink.Hardware.Camera.Focus.AutofocusStatusView)">
+            Constructor
+        </member>
+        <member name="M:Microblink.Hardware.Camera.Focus.AutoFocusManager.InvalidateFocus(System.Int32)">
+            This method will invalidate focus after given amount of miliseconds.
+            
+            @param afterMilliseconds
+                       How much time in miliseconds should pass before the focus will
+                       be invalidated.
+        </member>
+        <member name="M:Microblink.Hardware.Camera.Focus.AutofocusStatusView.DisplayAutofocusFailed">
+            This method will be called when camera focusing has failed.
+            Camera manager usually tries different focusing strategies
+            and this method is called when all those strategies fail to
+            indicate that either object on which camera is being focused
+            is too close or ambient light conditions are poor.
+        </member>
+        <member name="F:Microblink.Hardware.Camera.Focus.StillFocusManager.focusPaused_">
+            is manager paused 
+        </member>
+        <member name="M:Microblink.Hardware.DeviceManager.CreateBlacklist">
+            Initialization method for blacklist of phones
+            
+            @return
+        </member>
+        <member name="M:Microblink.Hardware.DeviceManager.CreateWhitelist">
+            Initialization method for whitelist of phones
+            
+            @return
+        </member>
+        <member name="M:Microblink.Hardware.DeviceManager.CreateOCRBlacklist">
+            Initialization method for list of phones that are too bad for OCR, but
+            good enough for barcode reading.
+            
+            @return
+        </member>
+        <member name="M:Microblink.Hardware.DeviceManager.CreateBarcodeBlacklist">
+            Inititialization method for list of phones that are good enough for OCR,
+            but are not good enough for barcode reading.
+            
+            @return
+        </member>
+        <member name="M:Microblink.Hardware.DeviceManager.CreateHQDevicesList">
+            Initialization method for HQ phones
+            
+            @return
+        </member>
+        <member name="M:Microblink.Hardware.DeviceManager.GetName">
+            Obtains the device name
+            
+            @return device name
+        </member>
+        <member name="M:Microblink.Hardware.DeviceManager.GetManufacturer">
+            Obtains manufacturer of device
+            
+            @return manufacturer of device
+        </member>
+        <member name="M:Microblink.Hardware.DeviceManager.DeviceHasCamera">
+            Checks if device has a camera
+            
+            @return true if camera is available
+        </member>
+        <member name="M:Microblink.Hardware.DeviceManager.DeviceHasAutofocus">
+            Checks if device has autofocus
+            
+            @return true if autofocus is available
+        </member>
+        <member name="M:Microblink.Hardware.DeviceManager.IsDeviceOnBlackList">
+            Checks if the current device is on the black list
+            
+            @return true if device is blacklisted
+        </member>
+        <member name="M:Microblink.Hardware.DeviceManager.IsDeviceOnOCRBlackList">
+            Checks if the current device is on the OCR black list
+            
+            @return true if device supports only barcode, but not the OCR
+        </member>
+        <member name="M:Microblink.Hardware.DeviceManager.IsDeviceOnWhiteList">
+            Checks if the current device is on the white list
+            
+            @return true if device is whitelisted
+        </member>
+        <member name="M:Microblink.Hardware.DeviceManager.IsDeviceHQ">
+            Checks if the current device is on on the HQ list
+            
+            @return true if device is HQ
+        </member>
+        <member name="M:Microblink.Hardware.DeviceManager.IsDeviceSupported(System.Boolean)">
+            <summary>
+            Method finds out if PhotoPay is supported on this device
+            PhotoPay is supported on device if it has camera and its not on the blacklist
+            or its explicitly on white list not depending on the autofocus
+            </summary>
+            <returns>true if device is supported</returns>
+        </member>
+        <member name="M:Microblink.Hardware.DeviceManager.GetReasonForLackOfSupport(System.Boolean,System.Boolean)">
+            <summary>
+            Returns reason because of this device isnt supported
+            </summary>
+            <param name="licenseIsOk">Current license status</param>
+            <param name="requireAutofocus">Determine if auto focus is required</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microblink.Hardware.DeviceManager.GetNumberOfCores">
+            <summary>
+             Returns number of logical processor units
+            </summary>
+            <returns>number of logical processor units</returns>
+        </member>
+        <member name="F:Microblink.Hardware.DeviceManager.DEVICE_BLACKLIST">
+            <summary>
+            Blacklist of devices on which PhotoPay doesn't work
+            </summary>
+        </member>
+        <member name="F:Microblink.Hardware.DeviceManager.DEVICE_HQ">
+            <summary>
+            Blacklist of devices on which PhotoPay doesn't work
+            </summary>
+        </member>
+        <member name="F:Microblink.Hardware.DeviceManager.DEVICE_WHITELIST">
+            <summary>
+            Whitelist of devices on which photopay is supported regardless of hardware
+            </summary>
+        </member>
+        <member name="F:Microblink.Hardware.DeviceManager.DEVICE_OCR_BLACKLIST">
+            <summary>
+            Blacklist of devices on which PhotoPay can read barcode, but can't do the OCR.
+            </summary>
+        </member>
+        <member name="F:Microblink.Hardware.DeviceManager.DEVICE_BARCODE_BLACKLIST">
+            <summary>
+            Blacklist of devices on which PhotoPay can do OCR, but can't read barcode
+            </summary>
+        </member>
+        <member name="F:Microblink.Recognition.FrameInfo.imageDataByte">
+            Image data 
+        </member>
+        <member name="F:Microblink.Recognition.FrameInfo.imgWidth_">
+            Image size 
+        </member>
+        <member name="F:Microblink.Recognition.FrameInfo.imageFormat_">
+            Image format 
+        </member>
+        <member name="F:Microblink.Recognition.FrameInfo.imageSharp_">
+            Is image sharp 
+        </member>
+        <member name="F:Microblink.Recognition.FrameInfo.isDeviceMoving_">
+            Is device moving 
+        </member>
+        <member name="M:Microblink.Recognition.FrameInfo.#ctor(System.Byte[],System.Int32[],Microblink.ImageFormat,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Create new frame info with frame data and conditions in which frame was taken
+            </summary>
+            <param name="imageDataByte">Bytes of the image</param>
+            <param name="imageDataInt">Ints of the image</param>
+            <param name="imageFormat">Format of the image</param>
+            <param name="imageWidth">Width of the image</param>
+            <param name="imageHeight">Height of the image</param>
+            <param name="isFrameSharp">Whether or not image is sharp</param>
+            <param name="isDeviceMoving">Whether or not device was moving at the time of creating this</param>
+        </member>
+        <member name="T:Microblink.Recognition.GenericRecognizerSettings">
+            <summary>
+            Generic recognizer settings affect all enabled
+            recognizers and the recognition process in general
+            </summary>
+        </member>
+        <member name="M:Microblink.Recognition.GenericRecognizerSettings.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+            <remarks>
+            Sets recognition timeout to 10, recognition mode
+            to normal and multiple scan results are not allowed
+            </remarks>
+        </member>
+        <member name="P:Microblink.Recognition.GenericRecognizerSettings.RecognitionTimeout">
+            <summary>
+            Duration in miliseconds that needs to pass since 
+            scanning has begun in order for timeout to occur
+            </summary>
+        </member>
+        <member name="P:Microblink.Recognition.GenericRecognizerSettings.RecognitionMode">
+            <summary>
+            For debugging and testing purposes only. Please do not use it because calling it with
+            wrong parameter might cause scanning loop to never terminate.
+            </summary>
+            <remarks>
+            Allowed values are Normal(default), RecognitionTestMode and DetectionTestMode.
+            </remarks>
+        </member>
+        <member name="P:Microblink.Recognition.GenericRecognizerSettings.AllowMultipleScanResults">
+            <summary>
+            Whether or not outputting of multiple scan results from same image
+            is allowed. 
+            </summary>
+            <remarks>
+            If that is true, it is possible to return multiple
+            recognition results from same image. By default, this option is false, i.e. the array
+            of BaseRecognitionResults will contain at most 1 element. The upside of setting that option
+            to false is the speed - if you enable lots of recognizers, as soon as the first recognizer
+            succeeds in scanning, recognition chain will be terminated and other
+            recognizers will not get a chance to analyze the image. The downside is
+            that you are then unable to obtain multiple results from single image.
+            </remarks>        
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Microblink.UserControls.Geometry.Point.op_Subtraction(Microblink.UserControls.Geometry.Point,Microblink.UserControls.Geometry.Point)" -->
+        <!-- Badly formed XML comment ignored for member "M:Microblink.UserControls.Geometry.Point.op_Multiply(Microblink.UserControls.Geometry.Point,System.Single)" -->
+        <member name="M:Microblink.UserControls.Geometry.Point.op_UnaryNegation(Microblink.UserControls.Geometry.Point)">
+            Calculate and return negative of current point. Negative point is point mirrored
+            to current point over (0,0) pivot.
+            @return Negative point.
+        </member>
+        <member name="M:Microblink.UserControls.Geometry.Point.Norm">
+            Calculate and return norm of the point. Norm is the distance of the point
+            and point (0,0).
+            @return Norm of the point.
+        </member>
+        <member name="M:Microblink.UserControls.Geometry.Point.Normalize">
+            Calculate and return point that has same direction as this point, but norm 1.
+            @return Unit point.
+        </member>
+        <member name="M:Microblink.UserControls.Geometry.Point.Normalize(System.Single)">
+            Calculate and return point that has same direction as this point, but norm as given.
+            @param length Desired norm of the point.
+            @return Point with norm "length".
+        </member>
+        <member name="M:Microblink.UserControls.Geometry.Point.Clamp(System.Single)">
+            Calculate and return point clamped to given norm (length). If norm of the point is larger
+            than desired length, returns the point that has the same direction as this point, but norm "length".
+            If norm of the point is smaller or equal to desired length, returns the clone of this point.
+            @param length Desired norm to which point should be clamped.
+            @return Clamped point.
+        </member>
+        <member name="M:Microblink.UserControls.Geometry.Point.MirrorX(System.Single)">
+            Return point mirrored around X axis.
+            @param maxXDimension Maximum dimension of X axis.
+            @return Mirrored point
+        </member>
+        <member name="M:Microblink.UserControls.Geometry.Point.MirrorY(System.Single)">
+            Return point mirrored around Y axis.
+            @param maxYDimension Maximum dimension of Y axis.
+            @return Mirrored point
+        </member>
+        <member name="M:Microblink.UserControls.Geometry.Point.MirrorXY(System.Single,System.Single)">
+            Return point mirrored around both X and Y axis
+            @param maxXDimension Maximum dimension of X axis.
+            @param maxYDimension Maximum dimension of Y axis.
+            @return Mirrored point.
+        </member>
+        <member name="M:Microblink.UserControls.Geometry.Point.Distance(Microblink.UserControls.Geometry.Point)">
+            Calculates and returns the distance to given point.
+            @param other Point to which distance is calculated.
+            @return distance to given point
+        </member>
+        <member name="M:Microblink.UserControls.Geometry.Point.Log">
+            Logs the point coordinates to LOG_DEBUG log.
+        </member>
+        <member name="P:Microblink.UserControls.Geometry.Point.X">
+            @return the x coordinate of the point
+        </member>
+        <member name="P:Microblink.UserControls.Geometry.Point.Y">
+            @return the y coordinate of the point
+        </member>
+        <member name="T:Microblink.UserControls.CameraError">
+            <summary>
+            Types of camera errors
+            </summary>
+        </member>
+        <member name="F:Microblink.UserControls.CameraError.NoCameraAtSelectedSensorLocation">
+            <summary>
+            There is no camera at selected location(front or right)
+            </summary>
+        </member>
+        <member name="F:Microblink.UserControls.CameraError.CameraNotReady">
+            <summary>
+            Camera is not ready
+            </summary>
+        </member>
+        <member name="F:Microblink.UserControls.CameraError.PreviewSizeTooSmall">
+            <summary>
+            Camera preview size is smaller than required
+            </summary>
+        </member>
+        <member name="F:Microblink.UserControls.CameraError.NotSupported">
+            <summary>
+            Required camera is not supported
+            </summary>
+        </member>
+        <member name="T:Microblink.UserControls.CameraPreviewScale">
+            <summary>
+            Types of camera preview scale
+            </summary>
+        </member>
+        <member name="F:Microblink.UserControls.CameraPreviewScale.Uniform">
+            <summary>
+            Camera preview is displayed uniformly without
+            cropping with possible black edges
+            </summary>
+        </member>
+        <member name="F:Microblink.UserControls.CameraPreviewScale.UniformToFill">
+            <summary>
+            Camera preview is displayed uniformly to fill
+            entire screen with possible cropping
+            </summary>
+        </member>
+        <member name="T:Microblink.UserControls.BaseCameraControl">
+            <summary>
+            Base user control class for camera management
+            </summary>
+        </member>
+        <member name="F:Microblink.UserControls.BaseCameraControl.mOverlayManager">
+            <summary>
+            OverlayManager is used to 'lock' camera preview overlay
+            to look the same in all orientations
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.BaseCameraControl.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.BaseCameraControl.TerminateControl">
+            <summary>
+            Terminates the Camera control, closes the camera and stops the frame capture process.
+            If you want to reinitialize the control afterwards, please call InitializeControl.
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.BaseCameraControl.InitializeControl(Microsoft.Phone.Controls.PageOrientation)">
+            <summary>
+            Initializes the Camera control, opens the camera and starts the frame capture process.
+            Please call TerminateControl to perform shared resources cleanup after control is not 
+            used anymore.
+            <param name="initialPageOrientation">Initial orientation of the Page containing the control required to
+            properly setup the camera preview</param>
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.BaseCameraControl.viewFinderCanvas_Tap(System.Object,System.Windows.Input.GestureEventArgs)">
+            <summary>
+            Forward tap event to viewfinder
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Microblink.UserControls.BaseCameraControl.InitializeCanvas">
+            <summary>
+            Create overlay canvas
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.BaseCameraControl.OnOrientationChanged(Microsoft.Phone.Controls.OrientationChangedEventArgs)">
+            <summary>
+            Use this method to forward page orientation changes to the recognizer control
+            if you wish for the control to follow the page orientation.
+            </summary>
+            <param name="e">The orientation change event args received by the page.</param>
+        </member>
+        <member name="M:Microblink.UserControls.BaseCameraControl.OrientationChanged(Microsoft.Phone.Controls.PageOrientation)">
+            <summary>
+            Subclasses can override this method to handle orientation
+            changes
+            </summary>
+            <param name="orientation">new orientation</param>
+        </member>
+        <member name="M:Microblink.UserControls.BaseCameraControl.OnViewfinderTap">
+            <summary>
+            Forward tap event to camera manager so that 
+            camera autofocusing process can be activated if available
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.BaseCameraControl.HandleNoCameraSensorAtLocation">
+            <summary>
+            This method is called when required camera sensor is not available
+            E.g. front camera was requested but its not available        
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.BaseCameraControl.HandleCameraNotReady">
+            <summary>
+            This method is called when required camera device failed to initialize        
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.BaseCameraControl.HandleTooSmallPreviewSize">
+            <summary>
+            This method is called when camera does not satisfy minimum preview resolution size.        
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.BaseCameraControl.HandleNotSupportedError">
+            <summary>
+            This method is called when this device is not supported        
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.BaseCameraControl.RequireAutofocusFeature">
+            <summary>
+            If this method returns true then autofocus is required and device 
+            without autofocus feature will trigger 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microblink.UserControls.BaseCameraControl.OnCreateCameraSettings">
+            <summary>
+            This method should return camera settings that will be used
+            to initialize camera and set special settings on how to use camera
+            to detect data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Microblink.UserControls.BaseCameraControl.MarginLeft">
+            <summary>
+            Left camera control margin
+            </summary>
+        </member>
+        <member name="P:Microblink.UserControls.BaseCameraControl.MarginRight">
+            <summary>
+            Right camera control margin
+            </summary>
+        </member>
+        <member name="P:Microblink.UserControls.BaseCameraControl.MarginTop">
+            <summary>
+            Top camera control margin
+            </summary>
+        </member>
+        <member name="P:Microblink.UserControls.BaseCameraControl.MarginBottom">
+            <summary>
+            Bottom camera control margin
+            </summary>
+        </member>
+        <member name="P:Microblink.UserControls.BaseCameraControl.PreviewScale">
+            <summary>
+            Camera preview scale property
+            </summary>
+        </member>
+        <member name="P:Microblink.UserControls.BaseCameraControl.CameraBrushManager">
+            <summary>
+            CameraBrushManager is used to easily convert between video
+            and camera overlay (drawn onto OverlayCanvas) coordinates.
+            </summary>
+        </member>
+        <member name="P:Microblink.UserControls.BaseCameraControl.TorchOn">
+            <summary>
+            If camera supports torch (check that with IsTorchSupported property), gets or sets
+            the current torch state. If true, torch is turned on.
+            </summary>
+        </member>
+        <member name="P:Microblink.UserControls.BaseCameraControl.IsTorchSupported">
+            <summary>
+            Gets the information whether camera supports torch.
+            </summary>
+        </member>
+        <member name="P:Microblink.UserControls.BaseCameraControl.CurrentPreviewSize">
+            <summary>
+            Size of the current camera preview size
+            </summary>
+        </member>
+        <member name="P:Microblink.UserControls.BaseCameraControl.IsInitialized">
+            <summary>
+            True if camera manager is initialized
+            </summary>
+        </member>
+        <member name="P:Microblink.UserControls.BaseCameraControl.PageOrientation">
+            <summary>
+            Page orientation property.
+            Orientation can be set or retrieved.
+            Orientation change triggers event.
+            </summary>
+        </member>
+        <member name="E:Microblink.UserControls.BaseCameraControl.OnCameraError">
+            <summary>
+            This event is triggered on camera related errors
+            </summary>
+        </member>
+        <member name="E:Microblink.UserControls.BaseCameraControl.OnAutofocusFailed">
+            <summary>
+            This event is raised when camera fails to perform autofocus even after
+            multiple attempts. You should inform the user to try using camera under
+            different light.
+            </summary>
+        </member>
+        <member name="E:Microblink.UserControls.BaseCameraControl.OnControlInitialized">
+            <summary>
+            Called after canvas is initialized and camera is ready for receiving frames.
+            </summary>
+        </member>
+        <member name="T:Microblink.UserControls.BaseCameraControl.CameraErrorHandler">
+            <summary>
+            Error handler for camera errors.
+            </summary>
+            <param name="error">Error descriptor</param>
+        </member>
+        <member name="T:Microblink.UserControls.BaseCameraControl.AutoFocusFailedEventHandler">
+            <summary>
+            Event handler for autofocus failure.
+            </summary>
+        </member>
+        <member name="T:Microblink.UserControls.RecognitionType">
+            <summary>
+            Type of recognition result returned by recognizer
+            </summary>
+        </member>
+        <member name="F:Microblink.UserControls.RecognitionType.SUCCESSFUL">
+            <summary>
+            successful recognition
+            </summary>
+        </member>
+        <member name="F:Microblink.UserControls.RecognitionType.UNSUCCESSFUL">
+            <summary>
+            no recognition could be made
+            </summary>
+        </member>
+        <member name="F:Microblink.UserControls.RecognitionType.PARTIAL">
+            <summary>
+            partialy successful recognition
+            </summary>
+        </member>
+        <member name="T:Microblink.UserControls.InitializationErrorType">
+            <summary>
+            Type of initialization error
+            </summary>
+        </member>
+        <member name="F:Microblink.UserControls.InitializationErrorType.INVALID_LICENSE_KEY">
+            <summary>
+            There was a licensing error(invalid or nonexistant licensing key)
+            </summary>
+        </member>
+        <member name="T:Microblink.UserControls.RecognizerControl">
+            <summary>
+            Windows Phone control that provides recognizer management 
+            and basic camera management and preview
+            </summary>    
+        </member>
+        <member name="T:Microblink.UserControls.IViewFinder">
+            <summary>
+            Interface for ViewFinder event handlers.
+            Used for displaying debug status and recognition
+            messages, OCR results, target position and
+            object feature points
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.HandleSuccessfulImage(Microblink.RecognizerImage)">
+            <summary>
+            This handler just raises an OnSuccesfulScanImage event.
+            To handle images add a handler to OnSuccesfulScanImage event.
+            </summary>
+            <param name="image">image returned from the successful recognition process</param>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.HandleOriginalImage(Microblink.RecognizerImage)">
+            <summary>
+            This handler just raises an OnOriginalImage event.
+            To handle images add a handler to OnOriginalImage event.
+            </summary>
+            <param name="image">returned originial image</param>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.HandleDewarpedImage(Microblink.RecognizerImage)">
+            <summary>
+            This handler just raises an OnDewarpedImage event.
+            To handle images add a handler to OnDewarpedImage event.
+            </summary>
+            <param name="image">returned dewarped image</param>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.HandleScanningDone(System.Collections.Generic.IList{Microblink.IRecognitionResult},Microblink.UserControls.RecognitionType)">
+            <summary>
+            This handler just raises an OnScanningDone event.
+            To handle done scanning add a handler to OnScanningDone event. 
+            </summary>
+            <param name="resultList">List of results returned from recognizer. Can be null or empty if no data was read. Best data is at the front of the list.</param>
+            <param name="recognitionType">type of returned recognition results</param>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.InitializeNative(Microsoft.Phone.Controls.PageOrientation)">
+            <summary>
+            Initialize native recognizer
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.OrientationChanged(Microsoft.Phone.Controls.PageOrientation)">
+            <summary>
+            Handles orientation change.
+            Application orientation change handlers should call this method
+            </summary>
+            <param name="orientation">new device orientation</param>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.InitializeControl(Microsoft.Phone.Controls.PageOrientation)">
+            <summary>
+            Initializes RecognizerControl. Must be called before the
+            recognition process can start.
+            </summary>
+            <param name="initialPageOrientation">initial device orientation</param>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.TerminateControl">
+            <summary>
+            Terminates RecognizerControl. Should be called 
+            when control parent closes or is navigated from.
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.OnShakingStarted">
+            <summary>
+            This handler just raises an OnShakingStarted event.
+            To handle this add handler to OnShakingStarted event.
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.OnShakingStopped">
+            <summary>
+            Handles shaking stopped event by reseting
+            the recognition process
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.ResumeScanning">
+            <summary>
+            This method resumes scanning loop. Scanning loop is usually paused when
+            results have arrived and OnScanningDone is called. You can also pause
+            scanning loop by yourself by calling PauseScanning.
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.PauseScanning">
+            <summary>
+            This method pasuses scanning loop. Scanning loop is resumed by calling ResumeScanning
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.PrepareForNextRecognition">
+            <summary>
+            Prepares the recognizer for next recognition process.
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.SetROI(Windows.Foundation.Rect)">
+            <summary>
+            Sets ROI(region of interest). Recognition will
+            occur only inside this region
+            </summary>
+            <param name="roi">new region of interest to set</param>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.OnCameraFrameAvailable(Windows.Phone.Media.Capture.ICameraCaptureDevice,System.Boolean)">
+            <summary>
+            Handles available camera frames by preparing
+            them and sending them for recognition.
+            </summary>
+            <param name="device">capture device that captured the frame</param>
+            <param name="isFrameSharp">boolean value determining sharpness of captured frame</param>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.DisplayDebugStatus(System.String)">
+            <summary>
+            This handler just raises an OnDisplayDebugStatus event.
+            To handle debug status messages add a handler to OnDisplayDebugStatus event.
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.DisplayMessage(Microblink.UserControls.ViewfinderMessage)">
+            <summary>
+            This handler just raises an OnDisplayMessage event.
+            To handle recognition messages add a handler to OnDisplayMessage event.
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.DisplayOcrResult(Microblink.Recognition.OcrResult)">
+            <summary>
+            This handler just raises an OnDisplayOcrResult event.
+            To handle displaying OCR results add a handler to OnDisplayOcrResult event.
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.SetDefaultTarget(Microblink.DetectionStatus)">
+            <summary>
+            This handler just raises an OnDisplayDefaultTarget event.
+            To handle this add a handler to OnDisplayOcrResult event.
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.ConvertPointCoordinate(Windows.Foundation.Point)">
+            <summary>
+            Convert a point coordinate from image-space to control-space.
+            </summary>
+            <param name="original">Original, image-space coordinate to be converted to control-space.</param>
+            <returns>Control-space coordinate.</returns>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.TransformPointCoordinateRelative(Windows.Foundation.Point)">
+            <summary>
+            Transforms a point from a position in image to
+            a position in a control relative to current preview size.
+            </summary>
+            <param name="original">original point</param>
+            <returns>tranformed point</returns>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.TransformPointCoordinateAbsolute(Windows.Foundation.Point)">
+            <summary>
+            Transforms a point from a position in image to
+            absolute position in a control.
+            </summary>
+            <param name="original">original point</param>
+            <returns>tranformed point</returns>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.TransformPointCoordinateROI(Windows.Foundation.Point)">
+            <summary>
+            Transforms a point from a position in image to
+            a position in a control relative to ROI.
+            </summary>
+            <param name="original">original point</param>
+            <returns>tranformed point</returns>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.SetNewTarget(Windows.Foundation.Point,Windows.Foundation.Point,Windows.Foundation.Point,Windows.Foundation.Point,System.Int32,Microblink.DetectionStatus)">
+            <summary>
+            This handler just raises an OnDisplayNewTarget event.
+            To handle target position change add a handler to OnDisplayNewTarget event.
+            </summary>
+            <param name="uleft">Location of upper left point of object (in image coordinates*)</param>
+            <param name="uright">Location of upper right point of object (in image coordinates*)</param>
+            <param name="lleft">Location of lower left point of object (in image coordinates*)</param>
+            <param name="lright">Location of lower right point of object (in image coordinates*)</param>
+            <param name="detectionStatus">Status of the detection</param>
+            
+            * image coordinates refer to coordinates in video frame that has been analyzed. Usually the video
+            frame is in landscape right mode, i.e. (0,0) represents the upper right corner and x coordinate rises
+            downwards and y coordinate rises leftward.
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.SetPointSet(System.Collections.Generic.IList{Windows.Foundation.Point})">
+            <summary>
+            This handler just raises an OnDisplayPointSet event.
+            To handle detection of object feature points add a handler 
+            to OnDisplayPointSet event.
+            </summary>
+            <param name="points">Feature points of the detected object (in image coordinates*) </param>
+            <remarks>
+            * image coordinates refer to coordinates in video frame that has been analyzed. Usually the video
+            frame is in landscape right mode, i.e. (0,0) represents the upper right corner and x coordinate rises
+            downwards and y coordinate rises leftward.
+            </remarks>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="E:Microblink.UserControls.RecognizerControl.OnScanningDone">
+            <summary>
+            This event is raised when scanning finishes and scan data is ready.
+            If you want to resume scanning after receiving this event, please
+            call ResumeScanning method.
+            </summary>
+            <remarks>This event must be handled!</remarks>
+        </member>
+        <member name="E:Microblink.UserControls.RecognizerControl.OnInitializationError">
+            <summary>
+            This event is raised when an error occurs during
+            RecognizerControl initialization. At the moment only
+            licensing errors trigger this event.
+            </summary>
+            <remarks>This event must be handled!</remarks>
+        </member>
+        <member name="E:Microblink.UserControls.RecognizerControl.OnSuccessfulScanImage">
+            <summary>
+            Returns image in the event of successful recognition
+            </summary>
+        </member>
+        <member name="E:Microblink.UserControls.RecognizerControl.OnOriginalImage">
+            <summary>
+            Returns original image sent to recognition
+            </summary>
+        </member>
+        <member name="E:Microblink.UserControls.RecognizerControl.OnDewarpedImage">
+            <summary>
+            Returns dewarped image from the recognition process
+            </summary>
+        </member>
+        <member name="P:Microblink.UserControls.RecognizerControl.RecognizerSettings">
+            <summary>
+            Array of recognizer settings used to initialize the recognizer
+            </summary>
+        </member>
+        <member name="P:Microblink.UserControls.RecognizerControl.GenericRecognizerSettings">
+            <summary>
+            General settings used by all recognizers
+            and the recognition process in general
+            </summary>
+        </member>
+        <member name="P:Microblink.UserControls.RecognizerControl.Licensee">
+            <summary>
+            String identifying the holder of the license.
+            Used for non-application specific licenses.
+            </summary>
+        </member>
+        <member name="P:Microblink.UserControls.RecognizerControl.LicenseKey">
+            <summary>
+            String that holds the license key
+            </summary>
+        </member>
+        <member name="E:Microblink.UserControls.RecognizerControl.OnShakingStartedEvent">
+            <summary>
+            Event is raised when device shaking starts
+            </summary>
+        </member>
+        <member name="E:Microblink.UserControls.RecognizerControl.OnDisplayDebugStatus">
+            <summary>
+            This event is raised when recognizer control wants to display some debug status.
+            Useful for finding bugs in code.
+            </summary>
+        </member>
+        <member name="E:Microblink.UserControls.RecognizerControl.OnDisplayMessage">
+            <summary>
+            This event is rased when recognizer wants to display some message.
+            </summary>
+        </member>
+        <member name="E:Microblink.UserControls.RecognizerControl.OnDisplayOcrResult">
+            <summary>
+            This event is raised when recognizer has OCR support enabled and
+            has OCR result ready for displaying / using.
+            </summary>
+        </member>
+        <member name="E:Microblink.UserControls.RecognizerControl.OnDisplayDefaultTarget">
+            <summary>
+            this event is raised when recognizer wants to put viewfinder in its default position,
+            (for example if detection has failed).
+            </summary>
+        </member>
+        <member name="E:Microblink.UserControls.RecognizerControl.OnDisplayNewTarget">
+            <summary>
+            This event is raised when recognizer detects an object and wants to put viewfinder in position
+            of detected object.
+            </summary>
+        </member>
+        <member name="E:Microblink.UserControls.RecognizerControl.OnDisplayPointSet">
+            <summary>
+            This event is raised instead of OnDisplayNewTarget when non-rectangular object is detected.
+            </summary>
+        </member>
+        <member name="T:Microblink.UserControls.RecognizerControl.ScanningDoneEventHandler">
+            <summary>
+            Event handler for receiving scanning done events.
+            </summary> 
+            <param name="resultList">List of results returned from recognizer. Can be null or empty if no data was read. Best data is at the front of the list.</param>
+            <param name="recognitionType">type of returned recognition results</param>
+        </member>
+        <member name="T:Microblink.UserControls.RecognizerControl.InitializationErrorEventHandler">
+            <summary>
+            Event handler for receiveing initialization error events
+            </summary>
+            <param name="errorType">type of initialization error that has occured</param>
+        </member>
+        <member name="T:Microblink.UserControls.RecognizerControl.OnRecognizerImageHandler">
+            <summary>
+            Event handler for acquiring images during the recognition process
+            </summary>
+            <param name="image">image returned from the recognition process</param>
+        </member>
+        <member name="T:Microblink.UserControls.RecognizerControl.ShakingStartedDelegate">
+            <summary>
+            Event handler for receiving shaking started events.
+            </summary>
+        </member>
+        <member name="T:Microblink.UserControls.RecognizerControl.DisplayDebugStatusEventHandler">
+            <summary>
+            Event handler for displaying debug status messages.
+            </summary>
+            <param name="text">Debug message to be shown.</param>
+        </member>
+        <member name="T:Microblink.UserControls.RecognizerControl.DisplayMessageEventHandler">
+            <summary>
+            Event handler for displaying recognition messages.
+            </summary>
+            <param name="message">Message code to be displayed.</param>
+        </member>
+        <member name="T:Microblink.UserControls.RecognizerControl.DisplayOcrResultEventHandler">
+            <summary>
+            Event handler for displaying OCR result (if available).
+            </summary>
+            <param name="result">OCR result to be displayed</param>
+        </member>
+        <member name="T:Microblink.UserControls.RecognizerControl.DisplayDefaultTargetEventHandler">
+            <summary>
+            Event handler for displaying detection viewfinder in its default position.
+            </summary>
+            <param name="detectionStatus">Status of the detection (for updating UI messages)</param>
+        </member>
+        <member name="T:Microblink.UserControls.RecognizerControl.DisplayNewTargetEventHandler">
+            <summary>
+            Event handler for displaying detection location. When object is detected, event of this type
+            is raised with information where on image is detected object located.
+            </summary>
+            <param name="uleft">Location of upper left point of object (in image coordinates*)</param>
+            <param name="uright">Location of upper right point of object (in image coordinates*)</param>
+            <param name="lleft">Location of lower left point of object (in image coordinates*)</param>
+            <param name="lright">Location of lower right point of object (in image coordinates*)</param>
+            <param name="detectionStatus">Status of the detection</param>
+            
+            * image coordinates refer to coordinates in video frame that has been analyzed. Usually the video
+            frame is in landscape right mode, i.e. (0,0) represents the upper right corner and x coordinate rises
+            downwards and y coordinate rises leftward.
+        </member>
+        <member name="T:Microblink.UserControls.RecognizerControl.DisplayPointSetEventHandler">
+            <summary>
+            Event handler for displaying detected object's feature points. When non-rectangular object is detected
+            (e.g. 1D barcode, QR code, etc), instead of raising OnDisplayNewTarget, event with this event handler
+            will be raised.
+            </summary>
+            <param name="points">Feature points of the detected object (in image coordinates*) </param>
+            <remarks>
+            * image coordinates refer to coordinates in video frame that has been analyzed. Usually the video
+            frame is in landscape right mode, i.e. (0,0) represents the upper right corner and x coordinate rises
+            downwards and y coordinate rises leftward.
+            </remarks>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.RecognizerControlCallback.OnRecognitionDoneWithTimeout(System.Collections.Generic.IList{Microblink.IRecognitionResult})">
+            <summary>
+            Recognition ended because recognition timed out. 
+            Some or even all data could have been
+            read before time out
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.RecognizerControlCallback.HandleSuccessfulRecognition(System.Collections.Generic.IList{Microblink.IRecognitionResult})">
+            <summary>
+            This method is called upon successfull recognition 
+            or after time out but recognitionData has IsValid flag set to true.
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="T:Microblink.UserControls.ViewfinderMessage">
+            <summary>
+            Type of ViewFinder message
+            </summary>
+        </member>
+        <member name="F:Microblink.UserControls.ViewfinderMessage.FullRecognition">
+            <summary>
+            Recognition was successful. Full result returned.
+            </summary>
+        </member>
+        <member name="F:Microblink.UserControls.ViewfinderMessage.PartialRecognition">
+            <summary>
+            Recognition was partial
+            </summary>
+        </member>
+        <member name="F:Microblink.UserControls.ViewfinderMessage.NoRecognition">
+            <summary>
+            There was no recognition
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.Viewfinder.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Microblink.Log">
+            <summary>
+            Main logging class for Microblink components
+            </summary>
+        </member>
+        <member name="M:Microblink.Recognition.NativeRecognizerBridge.PrepareForNextRecognition">
+            <summary>
+            This method sets the state of the recognizer to READY, if it has been set
+            to DONE (after recognition process). This method should be called from UI
+            thread after handling the result of previous recognition. While state of
+            the Photopay is DONE, no frames are sent to recognition.
+            </summary>
+        </member>
+        <member name="M:Microblink.Recognition.NativeRecognizerBridge.PrepareEnvironment">
+            <summary>
+            Prepare environement data that cannot be obtained from native library
+            Currently used for platform/OS details and device name/manufacturer
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Microblink.Recognition.NativeRecognizerBridge.LibraryInfo">
+            <summary>
+            Info about currently initialized native library
+            </summary>
+        </member>
+        <member name="F:Microblink.Recognition.RecognizerDelegate.mIsPaused">
+            Indicates whether the application is paused 
+        </member>
+        <member name="F:Microblink.Recognition.RecognizerDelegate.mStatistics">
+            debug only code 
+        </member>
+        <member name="F:Microblink.Recognition.RecognizerDelegate.mViewFinder">
+            Viewfinder object associated with this delegate 
+        </member>
+        <member name="M:Microblink.Recognition.RecognizerDelegate.#ctor(Microblink.UserControls.IViewFinder,Microblink.Recognition.RecognizerImagesCallback,Microblink.Recognition.GenericRecognizerSettings,Microblink.IRecognizerSettings[])">
+            <summary>
+            Constructor Receives the viewfinder which gets notification about recognition process
+            </summary>
+            <param name="viewfinder">viewfinder to which UI updates will be dispatched</param>
+            <param name="settings">IRecognizerSettings array instance</param>
+        </member>
+        <member name="M:Microblink.Recognition.RecognizerDelegate.setPhotoPaySettings(Microblink.IRecognizerSettings[])">
+            <summary>
+            RecognizerSettings instance
+            </summary>
+            <param name="ppSettings"></param>
+        </member>
+        <member name="P:Microblink.Surface.CameraBrushManager.PageSize">
+            <summary>
+            Current page size
+            Values are always for portrait orientation
+            </summary>
+        </member>
+        <member name="P:Microblink.Surface.CameraBrushManager.FilledPage">
+            <summary>
+            For portrait
+            </summary>
+        </member>
+        <member name="P:Microblink.Surface.OverlayManager.PageSize">
+            <summary>
+            Current page size
+            Values are always for portrait orientation
+            </summary>
+        </member>
+        <member name="T:Microblink.Version">
+            <summary>
+            This property contains version information for the Microblink components.
+            </summary>
+        </member>
+        <member name="P:Microblink.Version.Lib">
+            <summary>
+            Version number of the .Net Microblink library.
+            </summary>
+        </member>
+        <member name="P:Microblink.Version.Native">
+            <summary>
+            Version number of the Native Microblink component.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -43,9 +43,10 @@
  *
  * License iOS - license key to enable all features (not required)
  * License Android - license key to enable all features (not required)
+ * License WP8 - license key to enable all features (not required)
  */
 
-	Pdf417Scanner.prototype.scan = function (successCallback, errorCallback, types, options, licenseiOs, licenseAndroid) {
+	Pdf417Scanner.prototype.scan = function (successCallback, errorCallback, types, options, licenseiOs, licenseAndroid, licenseWP8) {
 		if (errorCallback == null) {
 			errorCallback = function () {
 			};
@@ -61,7 +62,7 @@
 			return;
 		}
 
-		exec(successCallback, errorCallback, 'Pdf417Scanner', 'scan', [types, options, licenseiOs, licenseAndroid]);
+		exec(successCallback, errorCallback, 'Pdf417Scanner', 'scan', [types, options, licenseiOs, licenseAndroid, licenseWP8]);
 	};
 
 	var pdf417Scanner = new Pdf417Scanner();

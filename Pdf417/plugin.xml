@@ -115,4 +115,30 @@
             </feature>
         </config-file>
     </platform>
+
+    <!-- windows phone 8.0 -->
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Pdf417Scanner">
+                <param name="wp-package" value="Pdf417Scanner"/>
+            </feature>
+        </config-file>
+
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_ISV_CAMERA" />
+            <Capability Name="ID_CAP_SENSORS" />
+        </config-file>
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Requirements">
+            <Requirement Name="ID_REQ_REARCAMERA" />
+        </config-file>
+
+        <framework src="Microsoft.Expression.Controls.dll" />
+        <framework src="src/wp8/lib/Microblink.winmd" custom="true" arch="ARM" target="phone" />
+        <framework src="src/wp8/lib/PDF417.dll" custom="true" arch="ARM" target="phone" />
+
+        <source-file src="src/wp8/sources/Pdf417Scanner.cs" />
+        <source-file src="src/wp8/sources/Pdf417ScannerPage.xaml" />
+        <source-file src="src/wp8/sources/Pdf417ScannerPage.xaml.cs" />
+
+    </platform>
 </plugin>

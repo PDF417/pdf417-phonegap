@@ -16,9 +16,10 @@ cd Pdf417Demo
 # add the PDF417 plugin
 cordova plugin add ../Pdf417
 
-# add ios and android support to the project
+# add ios, android and wp8 support to the project
 cordova platform add android
 cordova platform add ios
+cordova platform add wp8
 
 # copy index.html, index.js and usdl_keys.js
 cp  -f ../index.html www/index.html
@@ -34,3 +35,4 @@ cordova build
 # how to run
 echo "To run iOS demo application open Xcode project Pdf417Demo.xcodeproj"
 echo "To run Android demo application type cordova run android"
+echo "To run Windows Phone demo application open Visual Studio solution Pdf417Demo.sln"
