@@ -400,33 +400,6 @@
             Blacklist of devices on which PhotoPay can do OCR, but can't read barcode
             </summary>
         </member>
-        <member name="F:Microblink.Recognition.FrameInfo.imageDataByte">
-            Image data 
-        </member>
-        <member name="F:Microblink.Recognition.FrameInfo.imgWidth_">
-            Image size 
-        </member>
-        <member name="F:Microblink.Recognition.FrameInfo.imageFormat_">
-            Image format 
-        </member>
-        <member name="F:Microblink.Recognition.FrameInfo.imageSharp_">
-            Is image sharp 
-        </member>
-        <member name="F:Microblink.Recognition.FrameInfo.isDeviceMoving_">
-            Is device moving 
-        </member>
-        <member name="M:Microblink.Recognition.FrameInfo.#ctor(System.Byte[],System.Int32[],Microblink.ImageFormat,System.Int32,System.Int32,System.Boolean,System.Boolean)">
-            <summary>
-            Create new frame info with frame data and conditions in which frame was taken
-            </summary>
-            <param name="imageDataByte">Bytes of the image</param>
-            <param name="imageDataInt">Ints of the image</param>
-            <param name="imageFormat">Format of the image</param>
-            <param name="imageWidth">Width of the image</param>
-            <param name="imageHeight">Height of the image</param>
-            <param name="isFrameSharp">Whether or not image is sharp</param>
-            <param name="isDeviceMoving">Whether or not device was moving at the time of creating this</param>
-        </member>
         <member name="T:Microblink.Recognition.GenericRecognizerSettings">
             <summary>
             Generic recognizer settings affect all enabled
@@ -471,6 +444,107 @@
             recognizers will not get a chance to analyze the image. The downside is
             that you are then unable to obtain multiple results from single image.
             </remarks>        
+        </member>
+        <member name="T:Microblink.Recognition.RecognizerDirectAPIState">
+            <summary>
+            Represents Direct API state
+            </summary>
+        </member>
+        <member name="T:Microblink.Recognition.Recognizer">
+            <summary>
+            Direct API Recognizer
+            </summary>
+        </member>
+        <member name="M:Microblink.Recognition.Recognizer.GetSingletonInstance">
+            <summary>
+            Returns the Recognizer singleton instance
+            </summary>
+            <returns>Recognizer instance</returns>
+        </member>
+        <member name="M:Microblink.Recognition.Recognizer.Initialize(Microblink.Recognition.GenericRecognizerSettings,Microblink.IRecognizerSettings[])">
+            <summary>
+            Initializes Direct API. Changes state from UNLOCKED to READY.
+            </summary>
+            <param name="genericSettings">Generic recognition settings for initializing Direct API</param>
+            <param name="settings">Array of recognizer settings for initializing Direct API</param>
+        </member>
+        <member name="M:Microblink.Recognition.Recognizer.Terminate">
+            <summary>
+            Terminates Direct API
+            </summary>
+        </member>
+        <member name="M:Microblink.Recognition.Recognizer.Recognize(System.Windows.Media.Imaging.BitmapSource)">
+            <summary>
+            Sends image to recognition process. Changes state from READY to WORKING.
+            </summary>
+            <param name="image">Image source that will be sent to recognition process</param>
+        </member>
+        <member name="M:Microblink.Recognition.Recognizer.Recognize(System.Windows.Media.Imaging.BitmapSource,Windows.Foundation.Rect)">
+            <summary>
+            Sends image to recognition process. Changes state from READY to WORKING.
+            </summary>
+            <param name="image">Image source that will be sent to recognition process</param>
+            <param name="scanRegion">Image region to scan</param>
+        </member>
+        <member name="E:Microblink.Recognition.Recognizer.OnScanningDone">
+            <summary>
+            Fired when image scanning is completed
+            </summary>
+        </member>
+        <member name="E:Microblink.Recognition.Recognizer.OnDewarpedImageAvailable">
+            <summary>
+            Handle this event to receive dewarped image from recognition process.
+            </summary>
+        </member>
+        <member name="E:Microblink.Recognition.Recognizer.OnOriginalImageAvailable">
+            <summary>
+            Handle this event to receive original image from recognition process
+            </summary>
+            <remarks>
+            Has no real use in Direct API but included for completness.
+            </remarks>
+        </member>
+        <member name="E:Microblink.Recognition.Recognizer.OnSuccessfulScanImageAvailable">
+            <summary>
+            Handle this event to receive image from successful scan.
+            </summary>
+        </member>
+        <member name="P:Microblink.Recognition.Recognizer.CurrentState">
+            <summary>
+            Current Direct API state
+            </summary>
+        </member>
+        <member name="P:Microblink.Recognition.Recognizer.ImageOrientation">
+            <summary>
+            Property for setting current image orientation
+            </summary>
+        </member>
+        <member name="P:Microblink.Recognition.Recognizer.Licensee">
+            <summary>
+            Direct API licensee string
+            </summary>
+        </member>
+        <member name="P:Microblink.Recognition.Recognizer.LicenseKey">
+            <summary>
+            Direct API license key string. Setting this property will unlock the API.
+            Changes state from OFFLINE to UNLOCKED.
+            </summary>
+        </member>
+        <member name="T:Microblink.Recognition.Recognizer.ScanningDoneEventHandler">
+            <summary>
+            Delegate method for finished scanning events
+            </summary>
+            <param name="resultList">List of results from recognizers. Can be null or empty.</param>
+            <param name="recognitionType">Type of recognition</param>
+        </member>
+        <member name="T:Microblink.Recognition.Recognizer.ImageAvailableEventHandler">
+            <summary>
+            Delegate method for image callback events
+            </summary>
+            <param name="image">Received image</param>
+        </member>
+        <member name="F:Microblink.Recognition.Recognizer.Delegate.mStatistics">
+            debug only code 
         </member>
         <!-- Badly formed XML comment ignored for member "M:Microblink.UserControls.Geometry.Point.op_Subtraction(Microblink.UserControls.Geometry.Point,Microblink.UserControls.Geometry.Point)" -->
         <!-- Badly formed XML comment ignored for member "M:Microblink.UserControls.Geometry.Point.op_Multiply(Microblink.UserControls.Geometry.Point,System.Single)" -->
@@ -836,7 +910,12 @@
             Default constructor
             </summary>
         </member>
-        <member name="M:Microblink.UserControls.RecognizerControl.InitializeNative(Microsoft.Phone.Controls.PageOrientation)">
+        <member name="M:Microblink.UserControls.RecognizerControl.InitializeCameraFrameSupport(Microblink.IRecognizerSettings[])">
+            <summary>
+            Initializes support for CameraFrame
+            </summary>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.InitializeNative">
             <summary>
             Initialize native recognizer
             </summary>
@@ -904,6 +983,38 @@
             </summary>
             <param name="device">capture device that captured the frame</param>
             <param name="isFrameSharp">boolean value determining sharpness of captured frame</param>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.Recognize(System.Windows.Media.Imaging.BitmapSource)">
+            <summary>
+            Starts recognition of single bitmap image.
+            Implicitly pauses scanning. Should be resumed with
+            ResumeScanning. Uses current settings and screen
+            orientation.
+            </summary>
+            <param name="image">Bitmap image source that will be scanned</param>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.Recognize(System.Windows.Media.Imaging.BitmapSource,Microblink.ScreenOrientation)">
+            <summary>
+            Starts recognition of single bitmap image.
+            Implicitly pauses scanning. Should be resumed with
+            ResumeScanning. Uses current settings and provided
+            image orientation.
+            </summary>
+            <param name="image">Bitmap image source that will be scanned</param>
+            <param name="orientation">Bitmap image orientation</param>
+        </member>
+        <member name="M:Microblink.UserControls.RecognizerControl.RecognizeWithSettings(System.Windows.Media.Imaging.BitmapSource,Microblink.Recognition.GenericRecognizerSettings,Microblink.IRecognizerSettings[])">
+            <summary>
+            Starts recognition of single bitmap image using
+            provided settings. Settings are used only for this
+            recognition and original settings are restored
+            afterwards. Implicitly pauses scanning. Should be 
+            resumed with ResumeScanning. Uses current screen
+            orientation.
+            </summary>
+            <param name="image">Bitmap image source that will be scanned</param>
+            <param name="genericSettings">Generic recognition settings</param>
+            <param name="settings">Array of recognizer settings</param>
         </member>
         <member name="M:Microblink.UserControls.RecognizerControl.DisplayDebugStatus(System.String)">
             <summary>

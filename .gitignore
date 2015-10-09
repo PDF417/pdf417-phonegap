@@ -17,3 +17,6 @@ build/
 
 # demo app
 Pdf417Demo
+
+# windoze stuff
+Thumbs.db
