@@ -76,6 +76,9 @@ var app = {
         // This license is only valid for package name "mobi.pdf417.demo"
         var licenseAndroid = "UDPICR2T-RA2LGTSD-YTEONPSJ-LE4WWOWC-5ICAIBAE-AQCAIBAE-AQCAIBAE-AQCFKMFM";
 
+        // This license is only valid for Product ID "e2994220-6b3d-11e5-a1d6-4be717ee9e23"
+        var licenseWP8 = "5JKGDHZK-5WN4KMQO-6TZU3KDQ-I4YN67V5-XSN4FFS3-OZFAXHK7-EMETU6XD-EY74TM4T";
+
         scanButton.addEventListener('click', function() {    
             cordova.plugins.pdf417Scanner.scan(
             
@@ -143,7 +146,7 @@ var app = {
                     alert('Error: ' + err);
                 },
 
-                types, options, licenseiOs, licenseAndroid
+                types, options, licenseiOs, licenseAndroid, licenseWP8
             );
         });
 

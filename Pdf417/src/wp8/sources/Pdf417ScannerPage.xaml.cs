@@ -353,9 +353,9 @@ namespace Microblink
                 mRecognizer.TorchOn = !mRecognizer.TorchOn;
                 // toggle "Light" button icon
                 if (mRecognizer.TorchOn) {
-                    mLightImage.ImageSource = new BitmapImage(new Uri("Assets/Icons/icon_flashlight_selected.png", UriKind.Relative));
+                    mLightImage.ImageSource = new BitmapImage(new Uri("www/Icons/icon_flashlight_selected.png", UriKind.Relative));
                 } else {
-                    mLightImage.ImageSource = new BitmapImage(new Uri("Assets/Icons/icon_flashlight.png", UriKind.Relative));
+                    mLightImage.ImageSource = new BitmapImage(new Uri("www/Icons/icon_flashlight.png", UriKind.Relative));
                 }
             } else {
                 // if camera light is not available display message

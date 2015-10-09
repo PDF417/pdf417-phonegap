@@ -130,18 +130,21 @@
         </config-file>
         <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Requirements">
             <Requirement Name="ID_REQ_REARCAMERA" />
-        </config-file>
+        </config-file>        
 
         <framework src="Microsoft.Expression.Controls.dll" />
         <framework src="src/wp8/lib/Microblink.winmd" custom="true" arch="ARM" target="phone" />
         <framework src="src/wp8/lib/PDF417.dll" custom="true" arch="ARM" target="phone" />
-
-        <source-file src="src/wp8/lib/Microblink.dll" />
-        <!--<source-file src="src/wp8/lib/Microblink.dll.manifest" arch="ARM" target="phone" />
-        <source-file src="src/wp8/lib/Microblink.xml" arch="ARM" target="phone" /> -->
+        
         <source-file src="src/wp8/sources/Pdf417Scanner.cs" />
         <source-file src="src/wp8/sources/Pdf417ScannerPage.xaml" />
         <source-file src="src/wp8/sources/Pdf417ScannerPage.xaml.cs" />
+
+        <asset src="src/wp8/res/Icons/icon_exit.png" target="Icons/icon_exit.png" />
+        <asset src="src/wp8/res/Icons/icon_exit_selected.png" target="Icons/icon_exit_selected.png" />
+        <asset src="src/wp8/res/Icons/icon_flashlight.png" target="Icons/icon_flashlight.png" />
+        <asset src="src/wp8/res/Icons/icon_flashlight_selected.png" target="Icons/icon_flashlight_selected.png" />
+        <asset src="src/wp8/res/Sounds/beep_pdf417.mp3" target="Sounds/beep_pdf417.mp3" />
 
     </platform>
 </plugin>

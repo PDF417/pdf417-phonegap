@@ -1,3 +1,6 @@
+## 1.0.4
+- Added Windows Phone 8.0 (wp8) support 
+
 ## 1.0.3
 - Update with [Android SDK](https://github.com/PDF417/pdf417-android) v4.5.1
 

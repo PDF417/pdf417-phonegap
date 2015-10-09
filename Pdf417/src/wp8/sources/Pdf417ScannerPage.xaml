@@ -47,7 +47,7 @@
         <UserControls:RecognizerControl x:Name="mRecognizer" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         <UserControls:Viewfinder x:Name="mViewFinder"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HeightMarginRatio="0.22" WidthMarginRatio="0.12" />
 
-        <MediaElement x:Name="mBeepSound" Source="/Assets/Sounds/beep_pdf417.mp3" AutoPlay="False" Visibility="Collapsed"></MediaElement>
+        <MediaElement x:Name="mBeepSound" Source="/www/Sounds/beep_pdf417.mp3" AutoPlay="False" Visibility="Collapsed"></MediaElement>
         
         <Button x:Name="mLightButton"
                 Click="mLightButton_Click"
@@ -59,7 +59,7 @@
                 Loaded="mLightButton_Loaded"                
                 >
             <Button.Background>
-                <ImageBrush x:Name="mLightImage" Stretch="Uniform" ImageSource="/Assets/Icons/icon_flashlight.png" >
+                <ImageBrush x:Name="mLightImage" Stretch="Uniform" ImageSource="/www/Icons/icon_flashlight.png" >
                     <ImageBrush.RelativeTransform>
                         <CompositeTransform CenterY="0.5" CenterX="0.5" TranslateX="-0.3" ScaleX="0.8" ScaleY="0.8"/>
                     </ImageBrush.RelativeTransform>
@@ -79,7 +79,7 @@
                 Loaded="mCancelButton_Loaded"                
                 >
             <Button.Background>
-                <ImageBrush Stretch="Uniform" ImageSource="/Assets/Icons/icon_exit.png" >
+                <ImageBrush Stretch="Uniform" ImageSource="/www/Icons/icon_exit.png" >
                     <ImageBrush.RelativeTransform>
                         <CompositeTransform CenterY="0.5" CenterX="0.5" TranslateX="-0.32" ScaleX="0.8" ScaleY="0.8"/>
                     </ImageBrush.RelativeTransform>

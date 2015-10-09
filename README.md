@@ -28,9 +28,17 @@ Open the generated Xcode project found in `platforms/ios/`.
 
 Finally, add the iOS embedded framework to your project by draging and dropping the `Pdf417/src/ios/pdf417.emboeddedframework` folder onto the `Frameworks` group in Xcode.
 
+### Windows Phone 8.0
+
+Add Windows Phone 8.0 support to the project:
+
+	phonegap local build wp8
+
+Copy `Pdf417/src/wp8/lib/Microblink.dll` file to `Plugins/mobi.Pdf417.Pdf417Scanner/` folder in your new project.
+
 ## Sample
 
-Here's a complete example of how to create and build a project for **Android** and **iOS** using **cordova** (you can substitute equivalent commands for **phonegap**):
+Here's a complete example of how to create and build a project for **Android**, **iOS** and **Windows Phone 8.0** using **cordova** (you can substitute equivalent commands for **phonegap**):
 
 ```shell
 # pull the plugin and sample application from Github
@@ -57,9 +65,17 @@ cordova platform add ios
 
 # build the project
 cordova build ios
+
+# add windows phone 8.0 support to the project
+cordova platform add wp8
+
+# build the project
+cordova build wp8
+
+# copy the Microblink.dll file to location in project as described above
 ```
 
-In **phonegap** CLI instead of "platform add" just request a build for the platform using "build android" or "build ios". You will have to do the manual steps (execute the commands starting with *android* for Android or the adding of the embedded framework in Xcode for iOS) described above to be able to do a successfull build.
+In **phonegap** CLI instead of "platform add" just request a build for the platform using "build android" or "build ios" or "build wp8". You will have to do the manual steps (execute the commands starting with *android* for Android or the adding of the embedded framework in Xcode for iOS) described above to be able to do a successfull build.
 
 ## Usage
 
@@ -94,7 +110,10 @@ var options = {
 var licenseiOs = "XE3DN5MH-6BYS3TA7-HAUQHBDD-NRKVH4DV-WPDPF4NF-6PAUBFXW-IYVZBUX7-CXNQ4P7Z";
 
 // This license is only valid for package name "mobi.pdf417.demo"
-var licenseAndroid = "UDPICR2T-RA2LGTSD-YTEONPSJ-LE4WWOWC-5ICAIBAE-AQCAIBAE-AQCAIBAE-AQCFKMFM";    
+var licenseAndroid = "UDPICR2T-RA2LGTSD-YTEONPSJ-LE4WWOWC-5ICAIBAE-AQCAIBAE-AQCAIBAE-AQCFKMFM";
+
+// This license is only valid for Product ID "e2994220-6b3d-11e5-a1d6-4be717ee9e23"
+var licenseWP8 = "5JKGDHZK-5WN4KMQO-6TZU3KDQ-I4YN67V5-XSN4FFS3-OZFAXHK7-EMETU6XD-EY74TM4T";    
     
 scanButton.addEventListener('click', function() {    
 		cordova.plugins.pdf417Scanner.scan(
@@ -188,13 +207,13 @@ scanButton.addEventListener('click', function() {
     + **frontFace** - *Boolean* - to use front facing camera. Note that front facing cameras do not have autofocus support, so it will not be possible to scan denser and smaller codes.
 
 
-+ Both license parameters must be provided (for **iOS** and **Android**) even if you do not plan to run the application on both platforms. The licenses that you do not have/use must be set to `null`.
++ All license parameters must be provided (for **iOS** and **Android** and **WP8**) even if you do not plan to run the application on both platforms. The licenses that you do not have/use must be set to `null`.
 
 + For obtaining US Driver's license parsing result, see the sample code above, and usdl_keys.js javascript file which contains information about values which you can obtain from scanned USDL. 
 
 ## How to get started
 
-- [Download](https://github.com/PDF417/pdf417-phonegap/archive/master.zipp) PDF417.mobi PhoneGap SDK, and try the sample app for iOS and Android.
+- [Download](https://github.com/PDF417/pdf417-phonegap/archive/master.zipp) PDF417.mobi PhoneGap SDK, and try the sample app for iOS, Android or Windows Phone 8.0.
 
 Sample app is generated with a script
 
@@ -209,6 +228,8 @@ To run Android demo application type
 ```shell
 cordova run android
 ```
+To run Windows Phone demo application open Visual Studio solution Pdf417Demo.sln
+
 - [Generate](https://microblink.com/login?url=/customer/generatedemolicence) a **free demo license key** to start using the SDK in your app (registration required)
 
 - Get information about pricing and licensing od [pdf417.mobi](http://pdf417.mobi/#pricing)
