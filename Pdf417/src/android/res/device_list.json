@@ -133,6 +133,12 @@
         "model" : "SM-G920F",
         "device" : "zeroflte",
         "minZoomLevel" : 0.2
+      },
+      {
+        "description" : "Nexus 6",
+        "model" : "Nexus 6",
+        "device" : "shamu",
+        "minZoomLevel" : 0.01
       }
     ]
   },
@@ -259,6 +265,11 @@
   "zeroCopyBufferAllowedList": {
     "description": "List of devices that can safely use Zero Copy buffer for GPU rendering",
     "devices": [
+      {
+        "description" : "Nexus 6",
+        "model" : "Nexus 6",
+        "device" : "shamu"
+      },
       {
         "description" : "Galaxy S6",
         "model" : "SM-G920F",
@@ -866,10 +877,28 @@
     "description": "List of devices that do not support initializing OpenGL with only offscreen rendering target",
     "devices": [
       {
+        "description" : "Sony Xperia M on Android 4.1.2",
+        "model" : "C1904",
+        "device": "C1904",
+        "versions": "[4.1.2,4.1.2]"
+      },
+      {
+        "description" : "Sony Xperia M on Android 4.1.2",
+        "model" : "C1905",
+        "device": "C1905",
+        "versions": "[4.1.2,4.1.2]"
+      },
+      {
         "description": "Sony Xperia Z on Android 4.1.2",
         "model": "C6603",
         "device": "C6603",
         "versions": "[4.1.2,4.1.2]"
+      },
+      {
+        "description": "Sony Xperia Z1 on Android 4.2.2",
+        "model": "C6903",
+        "device": "C6903",
+        "versions": "[4.2.2,4.2.2]"
       },
       {
         "description": "Motorola LEX 755 on Android 4.2.2",
@@ -878,10 +907,46 @@
         "versions": "[4.2.2,4.2.2]"
       },
       {
+        "description" : "LG Optimus G on Android 4.1.2",
+        "model" : "LG-E975",
+        "device" : "geehrc",
+        "versions": "[4.1.2,4.1.2]"
+      },
+      {
+        "description" : "LG Optimus G on Android 4.1.2",
+        "model" : "LG-E975K",
+        "device" : "geehrc",
+        "versions": "[4.1.2,4.1.2]"
+      },
+      {
+        "description" : "LG Optimus G on Android 4.1.2",
+        "model" : "LG-E975T",
+        "device" : "geehrc",
+        "versions": "[4.1.2,4.1.2]"
+      },
+      {
         "description": "LG G2 on Android 4.2.2",
         "model": "LG-D802",
         "device": "g2",
         "versions": "[4.2.2,4.2.2]"
+      },
+      {
+        "description": "Samsung Galaxy Express",
+        "model": "GT-I8730",
+        "device": "expresslte",
+        "versions": "[4.1.2,4.1.2]"
+      },
+      {
+        "description": "Samsung Galaxy Express",
+        "model": "GT-I8730T",
+        "device": "expresslte",
+        "versions": "[4.1.2,4.1.2]"
+      },
+      {
+        "description": "Sony Xperia Miro",
+        "model" : "ST23i",
+        "device" : "ST23i",
+        "versions" : "[4.0.4,4.0.4]"
       },
       {
         "description": "Galaxy S4 Mini",
