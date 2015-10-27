@@ -10,7 +10,7 @@
     <author>MicroBlink Team info@microblink.com</author>
 
     <engines>
-        <engine name="cordova" version=">=3.0.0" />
+        <engine name="cordova" version=">=4.0.0" />
     </engines>    
 
     <js-module src="www/pdf417scanner.js" name="Pdf417Scanner">
@@ -26,19 +26,6 @@
             </feature>
         </config-file>
 
-        <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <activity
-                    android:name="com.microblink.activity.Pdf417ScanActivity"
-                    android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-                    android:configChanges="orientation|screenSize"
-                    android:screenOrientation="portrait" >
-                    <intent-filter>
-                        <action android:name="com.microblink.activity.Pdf417ScanActivity" />
-                        <category android:name="android.intent.category.DEFAULT" />
-                    </intent-filter>
-            </activity>
-        </config-file>
-
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.CAMERA" />
             <uses-permission android:name="android.permission.FLASHLIGHT" />
@@ -46,7 +33,6 @@
             <uses-feature android:name="android.hardware.camera" />
             <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
             <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
-            <uses-feature android:glEsVersion="0x00020000" android:required="false" />
 
             <supports-screens
                 android:anyDensity="true"
@@ -56,32 +42,14 @@
                 android:smallScreens="true" />
         </config-file>
 
-        <source-file src="src/android/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="src/com/phonegap/plugins/pdf417" />
-        <source-file src="src/android/com/phonegap/plugins/pdf417/FakeR.java" target-dir="src/com/phonegap/plugins/pdf417" />
+        <source-file src="src/android/java/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="src/com/phonegap/plugins/pdf417" />
+        <source-file src="src/android/java/com/phonegap/plugins/pdf417/FakeR.java" target-dir="src/com/phonegap/plugins/pdf417" />
         
-        <source-file src="src/android/values/pdf417-values.xml" target-dir="res/values" />
+        <source-file src="src/android/pdf417-android/Pdf417MobiDemo/pdf417MobiDemo/src/main/res/raw/beep.mp3" target-dir="res/raw" />
 
-        <source-file src="src/android/res/beep_pdf417.mp3" target-dir="res/raw" />
-        <source-file src="src/android/res/device_list.json" target-dir="res/raw" />
+        <framework src="src/android/libRecognizer.gradle" custom="true" type="gradleReference" />
+        <resource-file src="src/android/pdf417-android/LibRecognizer.aar" target="aar/LibRecognizer.aar" />
         
-        <source-file src="src/android/layout/default_barcode_camera_overlay.xml" target-dir="res/layout" />
-        <source-file src="src/android/layout/camera_splash.xml" target-dir="res/layout" />
-        
-        <source-file src="src/android/drawable/photopay_button.xml" target-dir="res/drawable" />
-        <source-file src="src/android/drawable/rounded_border.xml" target-dir="res/drawable" />
-        
-        <source-file src="src/android/drawable-hdpi/lightoff.png" target-dir="res/drawable-hdpi" />
-        <source-file src="src/android/drawable-hdpi/lighton.png" target-dir="res/drawable-hdpi" />
-        <source-file src="src/android/drawable-hdpi/title.png" target-dir="res/drawable-hdpi" />
-
-        <source-file src="src/android/drawable-ldpi/lightoff.png" target-dir="res/drawable-ldpi" />
-        <source-file src="src/android/drawable-ldpi/lighton.png" target-dir="res/drawable-ldpi" />
-
-        <source-file src="src/android/libs/LibRecognizer.jar" target-dir="libs"/>
-        <source-file src="src/android/libs/armeabi/libBlinkBarcode.so" target-dir="libs/armeabi/"/>
-        <source-file src="src/android/libs/armeabi-v7a/libBlinkBarcode.so" target-dir="libs/armeabi-v7a/"/>
-        <source-file src="src/android/libs/x86/libBlinkBarcode.so" target-dir="libs/x86/"/>
-
         <hook type="after_prepare" src="scripts/fix-largeheap.js" />
     </platform>
 

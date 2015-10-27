@@ -151,7 +151,7 @@ public class Pdf417Scanner extends CordovaPlugin {
 
         // If you want sound to be played after the scanning process ends, 
         // put here the resource ID of your sound file. (optional)
-        intent.putExtra(Pdf417ScanActivity.EXTRAS_BEEP_RESOURCE, fakeR.getId("raw", "beep_pdf417"));
+        intent.putExtra(Pdf417ScanActivity.EXTRAS_BEEP_RESOURCE, fakeR.getId("raw", "beep"));
 
         // set the license key (for commercial versions only) - obtain your key at
         // http://pdf417.mobi
@@ -241,7 +241,7 @@ public class Pdf417Scanner extends CordovaPlugin {
 		// If you want sound to be played after the scanning process ends, 
 		// put here the resource ID of your sound file. (optional)
 		if (beep == true) {
-			intent.putExtra(Pdf417ScanActivity.EXTRAS_BEEP_RESOURCE, fakeR.getId("raw", "beep_pdf417"));
+			intent.putExtra(Pdf417ScanActivity.EXTRAS_BEEP_RESOURCE, fakeR.getId("raw", "beep"));
 		}
 
 		// if you do not want the dialog to be shown when scanning completes, add following extra
