@@ -10,7 +10,8 @@
     <author>MicroBlink Team info@microblink.com</author>
 
     <engines>
-        <engine name="cordova" version=">=4.0.0" />
+        <engine name="cordova" version=">=3.0.0" />
+        <engine name="cordova-android" version=">=4.0.0" />
     </engines>    
 
     <js-module src="www/pdf417scanner.js" name="Pdf417Scanner">
@@ -41,6 +42,16 @@
                 android:resizeable="true"
                 android:smallScreens="true" />
         </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity
+                    android:name="com.microblink.activity.Pdf417ScanActivity"
+                    android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+                    android:configChanges="orientation|screenSize"
+                    android:screenOrientation="portrait" >
+            </activity>
+        </config-file>
+
 
         <source-file src="src/android/java/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="src/com/phonegap/plugins/pdf417" />
         <source-file src="src/android/java/com/phonegap/plugins/pdf417/FakeR.java" target-dir="src/com/phonegap/plugins/pdf417" />
