@@ -1,38 +1,40 @@
+## Submodules
+After cloning repository, make sure you clone also its submodules:
+
+	git submodule init
+	git submodule update
+
 ## Installation
 
 First generate a empty project if needed:
 
-    phonegap create <path> <package> <name>
+    cordova create <path> <package> <name>
     
-> The shown instructions are for **PhoneGap**, the instructions for **Cordova** are practically the same, except for some slight command line argument differences.
+> The shown instructions are for **Cordova**, the instructions for **PhoneGap** are practically the same, except for some slight command line argument differences.
 
 Add the **pdf417** plugin to your project:
 
 	cd <path_to_your_project>
 	
-    phonegap local plugin add <pdf417_plugin_path>
+    cordova plugin add <pdf417_plugin_path>
 
 ### Android
 
 Add Android platform support to the project:
 
-    phonegap local build android
+    cordova platform add android
     
 ### iOS
 
 Add iOS plaform support to the project:
 
-    phonegap local install ios
+    cordova platform add ios
     
-Open the generated Xcode project found in `platforms/ios/`.
-
-Finally, add the iOS embedded framework to your project by draging and dropping the `Pdf417/src/ios/pdf417.emboeddedframework` folder onto the `Frameworks` group in Xcode.
-
 ### Windows Phone 8.0
 
 Add Windows Phone 8.0 support to the project:
 
-	phonegap local build wp8
+	cordova platform add wp8
 
 Copy `Pdf417/src/wp8/lib/Microblink.dll` file to `Plugins/mobi.Pdf417.Pdf417Scanner/` folder in your new project.
 
@@ -43,6 +45,10 @@ Here's a complete example of how to create and build a project for **Android**, 
 ```shell
 # pull the plugin and sample application from Github
 git clone git@github.com:PDF417/pdf417-phonegap.git
+
+# initialize and update submodules
+git submodule init
+git submodule update
 
 # create a empty application
 cordova create testcordova
@@ -60,8 +66,6 @@ cordova build android
 
 # add ios support to the project
 cordova platform add ios
-	
-# open the project in xcode and add the framework reference described above (this step cannot be done via command line)
 
 # build the project
 cordova build ios
@@ -75,7 +79,16 @@ cordova build wp8
 # copy the Microblink.dll file to location in project as described above
 ```
 
-In **phonegap** CLI instead of "platform add" just request a build for the platform using "build android" or "build ios" or "build wp8". You will have to do the manual steps (execute the commands starting with *android* for Android or the adding of the embedded framework in Xcode for iOS) described above to be able to do a successfull build.
+In **phonegap** CLI instead of "platform add" just request a build for the platform using "build android" or "build ios" or "build wp8". You will have to do the manual steps described above to be able to do a successfull build.
+
+You can also use provided `initDemoApp.sh` script that will generate a demo app that uses the plugin:
+
+```shell
+./initDemoApp.sh
+```
+
+To run the script, you'll need BASH environment on Windows (Linux and MacOS use BASH by default).
+
 
 ## Usage
 
@@ -213,7 +226,7 @@ scanButton.addEventListener('click', function() {
 
 ## How to get started
 
-- [Download](https://github.com/PDF417/pdf417-phonegap/archive/master.zipp) PDF417.mobi PhoneGap SDK, and try the sample app for iOS, Android or Windows Phone 8.0.
+- [Download](https://github.com/PDF417/pdf417-phonegap/archive/master.zip) PDF417.mobi PhoneGap SDK, and try the sample app for iOS, Android or Windows Phone 8.0.
 
 Sample app is generated with a script
 
