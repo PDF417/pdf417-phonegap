@@ -27,16 +27,19 @@ import org.apache.cordova.CallbackContext;
 
 
 import com.microblink.activity.Pdf417ScanActivity;
-import com.microblink.recognizers.barcode.BarcodeType;
-import com.microblink.recognizers.barcode.bardecoder.BarDecoderRecognizerSettings;
-import com.microblink.recognizers.barcode.bardecoder.BarDecoderScanResult;
-import com.microblink.recognizers.barcode.pdf417.Pdf417RecognizerSettings;
-import com.microblink.recognizers.barcode.pdf417.Pdf417ScanResult;
-import com.microblink.recognizers.barcode.usdl.USDLRecognizerSettings;
-import com.microblink.recognizers.barcode.usdl.USDLScanResult;
-import com.microblink.recognizers.barcode.zxing.ZXingRecognizerSettings;
-import com.microblink.recognizers.barcode.zxing.ZXingScanResult;
-import com.microblink.recognizers.settings.GenericRecognizerSettings;
+import com.microblink.recognizers.IResultHolder;
+import com.microblink.recognizers.BaseRecognitionResult;
+import com.microblink.recognizers.RecognitionResults;
+import com.microblink.recognizers.blinkbarcode.BarcodeType;
+import com.microblink.recognizers.blinkbarcode.bardecoder.BarDecoderRecognizerSettings;
+import com.microblink.recognizers.blinkbarcode.bardecoder.BarDecoderScanResult;
+import com.microblink.recognizers.blinkbarcode.pdf417.Pdf417RecognizerSettings;
+import com.microblink.recognizers.blinkbarcode.pdf417.Pdf417ScanResult;
+import com.microblink.recognizers.blinkbarcode.usdl.USDLRecognizerSettings;
+import com.microblink.recognizers.blinkbarcode.usdl.USDLScanResult;
+import com.microblink.recognizers.blinkbarcode.zxing.ZXingRecognizerSettings;
+import com.microblink.recognizers.blinkbarcode.zxing.ZXingScanResult;
+import com.microblink.recognizers.settings.RecognitionSettings;
 import com.microblink.recognizers.settings.RecognizerSettings;
 import com.microblink.results.barcode.BarcodeDetailedData;
 import com.microblink.view.recognition.RecognizerView;
@@ -149,10 +152,6 @@ public class Pdf417Scanner extends CordovaPlugin {
 
 		Intent intent = new Intent(context, Pdf417ScanActivity.class);
 
-        // If you want sound to be played after the scanning process ends, 
-        // put here the resource ID of your sound file. (optional)
-        intent.putExtra(Pdf417ScanActivity.EXTRAS_BEEP_RESOURCE, fakeR.getId("raw", "beep"));
-
         // set the license key (for commercial versions only) - obtain your key at
         // http://pdf417.mobi
         // after setting the correct license key
@@ -220,22 +219,29 @@ public class Pdf417Scanner extends CordovaPlugin {
 		if (inverseScanning != null) {
 			zXingRecognizerSettings.setInverseScanning(inverseScanning);
 		}
-		// finally, when you have defined your scanning settings, you should put them into array
-        // and send that array over intent to scan activity
 
-        RecognizerSettings[] settArray = new RecognizerSettings[] {pdf417RecognizerSettings, oneDimensionalRecognizerSettings, zXingRecognizerSettings, usdlRecognizerSettings};
-        // use Pdf417ScanActivity.EXTRAS_RECOGNIZER_SETTINGS_ARRAY to set array of recognizer settings
-        intent.putExtra(Pdf417ScanActivity.EXTRAS_RECOGNIZER_SETTINGS_ARRAY, settArray);
+		// finally, when you have defined settings for each recognizer you want to use,
+        // you should put them into array held by global settings object
 
+        RecognitionSettings recognitionSettings = new RecognitionSettings();
+        // add settings objects to recognizer settings array
+        // Pdf417Recognizer, BarDecoderRecognizer, USDLRecognizer and ZXingRecognizer
+        //  will be used in the recognition process
+        recognitionSettings.setRecognizerSettingsArray(
+                new RecognizerSettings[]{pdf417RecognizerSettings, oneDimensionalRecognizerSettings,
+                        usdlRecognizerSettings, zXingRecognizerSettings});
 
-		// additionally, there are generic settings that are used by all recognizers or the
+        // additionally, there are generic settings that are used by all recognizers or the
         // whole recognition process
-        GenericRecognizerSettings genericSettings = new GenericRecognizerSettings();
+
         // set this to true to enable returning of multiple scan results from single camera frame
-        // default is false, which means that as soons as first barcode is found (no matter which type)
+        // default is false, which means that as soon as first barcode is found (no matter which type)
         // its contents will be returned.
-        genericSettings.setAllowMultipleScanResultsOnSingleImage(true);
-        intent.putExtra(Pdf417ScanActivity.EXTRAS_GENERIC_SETTINGS, genericSettings);
+        recognitionSettings.setAllowMultipleScanResultsOnSingleImage(true);
+
+        // finally send that settings object over intent to scan activity
+        // use Pdf417ScanActivity.EXTRAS_RECOGNITION_SETTINGS to set recognizer settings
+        intent.putExtra(Pdf417ScanActivity.EXTRAS_RECOGNITION_SETTINGS, recognitionSettings);
 
 
 		// If you want sound to be played after the scanning process ends, 
@@ -280,10 +286,11 @@ public class Pdf417Scanner extends CordovaPlugin {
 
 			if (resultCode == Pdf417ScanActivity.RESULT_OK) {
 
-				// First, obtain scan results array. If scan was successful, array will contain at least one element.
-	            // Multiple element may be in array if multiple scan results from single image were allowed in settings.
-
-	            Parcelable[] resultArray = data.getParcelableArrayExtra(Pdf417ScanActivity.EXTRAS_RECOGNITION_RESULT_LIST);
+				// First, obtain recognition result
+            	RecognitionResults results = data.getParcelableExtra(Pdf417ScanActivity.EXTRAS_RECOGNITION_RESULTS);
+            	// Get scan results array. If scan was successful, array will contain at least one element.
+           	 	// Multiple element may be in array if multiple scan results from single image were allowed in settings.
+            	BaseRecognitionResult[] resultArray = results.getRecognitionResults();
 
 	            // Each recognition result corresponds to active recognizer. As stated earlier, there are 4 types of
 	            // recognizers available (PDF417, Bardecoder, ZXing and USDL), so there are 4 types of results
@@ -291,22 +298,22 @@ public class Pdf417Scanner extends CordovaPlugin {
 
 	            JSONArray resultsList = new JSONArray();	            
 
-				for (Parcelable p : resultArray) {
+				for (BaseRecognitionResult res : resultArray) {
 					try {
-		                if (p instanceof Pdf417ScanResult) { // check if scan result is result of Pdf417 recognizer
-		                    resultsList.put(parsePdf417((Pdf417ScanResult)p));
+		                if (res instanceof Pdf417ScanResult) { // check if scan result is result of Pdf417 recognizer
+		                    resultsList.put(parsePdf417((Pdf417ScanResult)res));
 
-		                } else if (p instanceof BarDecoderScanResult) { // check if scan result is result of BarDecoder recognizer	                    
-		                   resultsList.put(parseBarDecoder((BarDecoderScanResult)p));
+		                } else if (res instanceof BarDecoderScanResult) { // check if scan result is result of BarDecoder recognizer	                    
+		                   resultsList.put(parseBarDecoder((BarDecoderScanResult)res));
 
-		                } else if (p instanceof ZXingScanResult) { // check if scan result is result of ZXing recognizer
-		                   resultsList.put(parseZxing((ZXingScanResult)p));
+		                } else if (res instanceof ZXingScanResult) { // check if scan result is result of ZXing recognizer
+		                   resultsList.put(parseZxing((ZXingScanResult)res));
 
-		                } else if (p instanceof USDLScanResult) { // check if scan result is result of US Driver's Licence recognizer
-		                   resultsList.put(parseUSDL((USDLScanResult)p));
+		                } else if (res instanceof USDLScanResult) { // check if scan result is result of US Driver's Licence recognizer
+		                   resultsList.put(parseUSDL((USDLScanResult)res));
 		                }
 	                } catch (Exception e) {
-	                	Log.e(LOG_TAG, "Error parsing " + p.getClass().getName());
+	                	Log.e(LOG_TAG, "Error parsing " + res.getClass().getName());
 	                }
 	            }
 				
@@ -381,21 +388,19 @@ public class Pdf417Scanner extends CordovaPlugin {
 	private static final String RECOGNITIONDATA_TYPE = "PaymentDataType";
 	private JSONObject parseUSDL(USDLScanResult p) throws JSONException {
 		JSONObject fields = new JSONObject();
-
-		Bundle bundle = p.getData();
-		for (String key : bundle.keySet()) {
+		IResultHolder resultHolder = p.getResultHolder();
+		for (String key : resultHolder.keySet()) {
 			// Originaly in RecognitionResultConstants.RECOGNITIONDATA_TYPE
 			if (RECOGNITIONDATA_TYPE.equals(key)) {
 				continue;
 			}
-			Object value = bundle.get(key);
+			Object value = resultHolder.getObject(key);
 			if (value instanceof String) {
 				fields.put(key, (String)value);
 			} else {
 				Log.d(LOG_TAG, "Ignoring non string key '" + key + "'");
 			}
 		}
-
 		JSONObject result = new JSONObject();
 		result.put(RESULT_TYPE, "USDL result");
 		result.put(FIELDS, fields);

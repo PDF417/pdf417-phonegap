@@ -74,7 +74,7 @@ var app = {
         var licenseiOs = "XE3DN5MH-6BYS3TA7-HAUQHBDD-NRKVH4DV-WPDPF4NF-6PAUBFXW-IYVZBUX7-CXNQ4P7Z";
 
         // This license is only valid for package name "mobi.pdf417.demo"
-        var licenseAndroid = "UDPICR2T-RA2LGTSD-YTEONPSJ-LE4WWOWC-5ICAIBAE-AQCAIBAE-AQCAIBAE-AQCFKMFM";
+        var licenseAndroid = "Y5AR6RJ4-PPA6ZDJ6-ABLKN4DE-XZEVSOLL-HLBOUBAE-AQCAIBAE-AQCAIBAE-AQCFKMFM";
 
         // This license is only valid for Product ID "e2994220-6b3d-11e5-a1d6-4be717ee9e23"
         var licenseWP8 = "5JKGDHZK-5WN4KMQO-6TZU3KDQ-I4YN67V5-XSN4FFS3-OZFAXHK7-EMETU6XD-EY74TM4T";
@@ -116,7 +116,7 @@ var app = {
                             var fields = recognizerResult.fields;
 
                             resultDiv.innerHTML = /** Personal information */
-                                               "USDL version: " + fields[kPPAamvaVersionNumber] + "; " +
+                                               "USDL version: " + fields[kPPStandardVersionNumber] + "; " +
                                                 "Family name: " + fields[kPPCustomerFamilyName] + "; " +
                                                 "First name: " + fields[kPPCustomerFirstName] + "; " +
                                                 "Date of birth: " + fields[kPPDateOfBirth] + "; " +
