@@ -1,3 +1,6 @@
+## 1.0.8
+- Update with [Android SDK](https://github.com/PDF417/pdf417-android) v5.1.0
+
 ## 1.0.7
 - Update with [Android SDK](https://github.com/PDF417/pdf417-android) v4.7.0
 - Android SDK git is now submodule of this repository
