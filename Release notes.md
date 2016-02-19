@@ -1,3 +1,6 @@
+## 1.1.0
+- Update with [Android SDK](https://github.com/PDF417/pdf417-android) v5.3.0
+
 ## 1.0.9
 - Update with [Android SDK](https://github.com/PDF417/pdf417-android) v5.2.0
 
