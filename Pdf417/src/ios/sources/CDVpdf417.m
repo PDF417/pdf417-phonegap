@@ -144,7 +144,7 @@
 
     /** 0. Check if scanning is supported */
 
-    if ([PPCoordinator isScanningUnsupported:error]) {
+    if ([PPCoordinator isScanningUnsupportedForCameraType:PPCameraTypeBack error:error]) {
         return nil;
     }
 
@@ -202,13 +202,6 @@
     if ([self shouldUseBarDecoderRecognizerForTypes:types]) {
         [settings.scanSettings addRecognizerSettings:[self barDecoderRecognizerSettingsWithOptions:options types:types]];
     }
-
-    // To specify we want to perform recognition of other barcode formats, initialize the ZXing recognizer settings
-    PPZXingRecognizerSettings *zxingRecognizerSettings = [[PPZXingRecognizerSettings alloc] init];
-    zxingRecognizerSettings.scanQR = YES; // we use just QR code
-
-    // Add ZXingRecognizer setting to a list of used recognizer settings
-    [settings.scanSettings addRecognizerSettings:zxingRecognizerSettings];
 
     /** 4. Initialize the Scanning Coordinator object */
 
