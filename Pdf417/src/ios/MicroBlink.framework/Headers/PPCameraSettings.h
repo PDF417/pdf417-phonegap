@@ -62,7 +62,8 @@ typedef NS_ENUM(NSUInteger, PPCameraAutofocusRestriction) {
 /**
  * Settings class containing parameters for camera capture
  */
-PP_CLASS_AVAILABLE_IOS(6.0) @interface PPCameraSettings : NSObject <NSCopying>
+PP_CLASS_AVAILABLE_IOS(6.0)
+@interface PPCameraSettings : NSObject <NSCopying>
 
 /**
  * Camera preset. With this property you can set the resolution of the camera
@@ -110,6 +111,20 @@ PP_CLASS_AVAILABLE_IOS(6.0) @interface PPCameraSettings : NSObject <NSCopying>
  * Default (0.5f, 0.5f) - middle of the screen.
  */
 @property (nonatomic, assign) CGPoint focusPoint;
+
+/**
+ * Tells whether camera input images should be mirrored horizontally before processing
+ *
+ * Default: NO
+ */
+@property (nonatomic) BOOL cameraMirroredHorizontally;
+
+/**
+ * Tells whether camera input images should be mirrored vertically before processing
+ *
+ * Default: NO
+ */
+@property (nonatomic) BOOL cameraMirroredVertically;
 
 /**
  * Designated initializer. Initializes the object with default settings (see above for defaults)

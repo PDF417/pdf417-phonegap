@@ -21,7 +21,7 @@
 
 #import <MicroBlink/MicroBlink.h>
 
-@interface CDVPlugin () <PPScanDelegate>
+@interface CDVPlugin () <PPScanningDelegate>
 
 @property (nonatomic, retain) CDVInvokedUrlCommand* lastCommand;
 
@@ -140,11 +140,11 @@
     return zxingRecognizerSettings;
 }
 
-- (PPCoordinator *)coordinatorWithError:(NSError**)error {
+- (PPCameraCoordinator *)coordinatorWithError:(NSError**)error {
 
     /** 0. Check if scanning is supported */
 
-    if ([PPCoordinator isScanningUnsupportedForCameraType:PPCameraTypeBack error:error]) {
+    if ([PPCameraCoordinator isScanningUnsupportedForCameraType:PPCameraTypeBack error:error]) {
         return nil;
     }
 
@@ -205,7 +205,7 @@
 
     /** 4. Initialize the Scanning Coordinator object */
 
-    PPCoordinator *coordinator = [[PPCoordinator alloc] initWithSettings:settings];
+    PPCameraCoordinator *coordinator = [[PPCameraCoordinator alloc] initWithSettings:settings];
     
     return coordinator;
 }
@@ -216,7 +216,7 @@
 
     /** Instantiate the scanning coordinator */
     NSError *error;
-    PPCoordinator *coordinator = [self coordinatorWithError:&error];
+    PPCameraCoordinator *coordinator = [self coordinatorWithError:&error];
 
     /** If scanning isn't supported, present an error */
     if (coordinator == nil) {
@@ -231,7 +231,7 @@
     }
     
     /** Allocate and present the scanning view controller */
-    UIViewController<PPScanningViewController>* scanningViewController = [coordinator cameraViewControllerWithDelegate:self];
+    UIViewController<PPScanningViewController>* scanningViewController = [PPViewControllerFactory cameraViewControllerWithDelegate:self coordinator:coordinator error:nil];
 
     /** You can use other presentation methods as well */
     [[self viewController] presentViewController:scanningViewController animated:YES completion:nil];

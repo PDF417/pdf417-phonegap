@@ -13,16 +13,23 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * Common base class for PhotoPay default overlay view controllers
+ * Common base class for default overlay view controllers
  */
 PP_CLASS_AVAILABLE_IOS(6.0) @interface PPBaseOverlayViewController : PPOverlayViewController
 
 /**
- Array with overlay subviews (UIView subclasses implementing the PPOverlaySubview protocol)
+ * Registers a subview for PPOverlaySubview protocol events.
  */
 - (void)registerOverlaySubview:(UIView<PPOverlaySubview>*)subview;
+
+/**
+ * Unregisters a subview for PPOverlaySubview protocol events.
+ */
 - (void)unregisterOverlaySubview:(UIView<PPOverlaySubview>*)subview;
 
+/**
+ * Delegate for subview animation events.
+ */
 @property (nonatomic, weak) id<PPOverlaySubviewDelegate> overlaySubviewsDelegate;
 
 @end
