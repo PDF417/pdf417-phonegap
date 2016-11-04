@@ -1,3 +1,7 @@
+## 1.1.3
+- updated Android SDK to [v6.0.0](https://github.com/PDF417/pdf417-android/releases/tag/v6.0.0)
+- updated iOS SDK to [v5.0.5](https://github.com/PDF417/pdf417-ios/releases/tag/v5.0.5)
+
 ## 1.1.2
 - Update with [iOS SDK](https://github.com/PDF417/pdf417-ios/releases/tag/v4.3.0) v4.3.0
 
