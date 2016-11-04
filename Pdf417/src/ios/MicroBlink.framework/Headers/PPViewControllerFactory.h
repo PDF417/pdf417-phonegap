@@ -6,19 +6,16 @@
 //  Copyright © 2016 MicroBlink Ltd. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "PPMicroBlinkDefines.h"
-
-@class PPOverlayViewController;
-@class PPCameraCoordinator;
-
-@protocol PPScanningDelegate;
-@protocol PPScanningViewController;
+#import "PPCameraCoordinator.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-PP_CLASS_AVAILABLE_IOS(6.0)
-@interface PPViewControllerFactory : NSObject
+/**
+ * Factory class containing static methods for creating camera view controllers.
+ * Camera view controllers created this way will be managed internally by the SDK, and input frames will be processed.
+ */
+PP_CLASS_AVAILABLE_IOS(6.0) @interface PPViewControllerFactory : NSObject
 
 /**------------------------------------------*/
 /** @name Creating Scanning view controllers */
