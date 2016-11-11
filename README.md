@@ -45,7 +45,7 @@ Here's a complete example of how to create and build a project for **Android**, 
 
 ```shell
 # pull the plugin and sample application from Github
-git clone git@github.com:PDF417/pdf417-phonegap.git
+git clone https://github.com/PDF417/pdf417-phonegap.git
 
 # initialize and update submodules
 git submodule init
