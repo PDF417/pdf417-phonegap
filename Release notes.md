@@ -1,3 +1,6 @@
+## 1.1.5
+- Android SDK updated to [v6.1.0](https://github.com/PDF417/pdf417-android/releases/tag/v6.1.0)
+
 ## 1.1.4
 - Android SDK updated to [v6.0.1](https://github.com/PDF417/pdf417-android/releases/tag/v6.0.1)
 
