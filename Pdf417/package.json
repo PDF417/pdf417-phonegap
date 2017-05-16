@@ -1,0 +1,45 @@
+{
+  "name": "PDF417.mobi",
+  "version": "1.1.5",
+  "description": "A small and powerful PDF417 barcode scanning library",
+  "cordova": {
+    "id": "mobi.pdf417.Pdf417Scanner",
+    "platforms": [
+      "android",
+      "ios",
+      "wp8"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PDF417/pdf417-phonegap.git"
+  },
+  "keywords": [
+    "pdf417",
+    "barcode",
+    "usdl",
+    "qr code",
+    "2d barcode",
+    "1d barcode",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-wp8"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    },
+    {
+      "name": "cordova-android",
+      "version": ">=4.0.0"
+    }
+  ],
+  "author": "MicroBlink",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PDF417/pdf417-phonegap/issues"
+  },
+  "homepage": "https://github.com/PDF417/pdf417-phonegap#readme"
+}
