@@ -31,13 +31,15 @@ Add iOS plaform support to the project:
 
     cordova platform add ios
     
-### Windows Phone 8.0
+### Windows Phone 8.0 (Deprecated)
 
 Add Windows Phone 8.0 support to the project:
 
 	cordova platform add wp8
 
 Copy `Pdf417/src/wp8/lib/Microblink.dll` file to `Plugins/mobi.Pdf417.Pdf417Scanner/` folder in your new project.
+
+Support for Windows Phone 8.0 is no longer maintained.
 
 ## Sample
 
