@@ -1,7 +1,7 @@
 ## Submodules
 After cloning repository, make sure you clone also its submodules:
 
-	git submodule update --init
+	git submodule update --init --recursive
 	
 Without this, Android version of plugin will not work (you will get error that `LibPdf417Mobi.aar` is missing.
 
