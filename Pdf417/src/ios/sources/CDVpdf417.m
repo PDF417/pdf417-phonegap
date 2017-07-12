@@ -66,36 +66,11 @@
     return usdlRecognizerSettings;
 }
 
-- (BOOL)shouldUseBarDecoderRecognizerForTypes:(NSArray *)types {
-
-    BOOL code128 = [types containsObject:@"Code 128"];
-    BOOL code39 = [types containsObject:@"Code 39"];
-
-    return (code128 || code39);
-}
-
-- (PPBarDecoderRecognizerSettings *)barDecoderRecognizerSettingsWithOptions:(NSDictionary *)options
-                                                                      types:(NSArray *)types {
-
-    PPBarDecoderRecognizerSettings *barDecoderRecognizerSettings = [[PPBarDecoderRecognizerSettings alloc] init];
-
-    BOOL code128 = [types containsObject:@"Code 128"];
-    BOOL code39 = [types containsObject:@"Code 39"];
-
-    barDecoderRecognizerSettings.scanCode128 = code128;
-    barDecoderRecognizerSettings.scanCode39 = code39;
-
-    // Set this to YES to allow scanning barcodes with inverted intensities
-    // (i.e. white barcodes on black background)
-    id scanInverse = [options objectForKey:@"inverseScanning"];
-    barDecoderRecognizerSettings.scanInverse = (scanInverse && [scanInverse boolValue]);
-
-    return barDecoderRecognizerSettings;
-}
-
-- (BOOL)shouldUseZxingRecognizerForTypes:(NSArray *)types {
-
+- (BOOL)shouldUseBarcodeRecognizerForTypes:(NSArray *)types {
+    
     BOOL aztec = [types containsObject:@"Aztec"];
+    BOOL code128 = [types containsObject:@"Code 128"];
+    BOOL code39 = [types containsObject:@"Code 39"];
     BOOL dataMatrix = [types containsObject:@"Data Matrix"];
     BOOL ean8 = [types containsObject:@"EAN 8"];
     BOOL ean13 = [types containsObject:@"EAN 13"];
@@ -103,16 +78,18 @@
     BOOL qrcode = [types containsObject:@"QR Code"];
     BOOL upca = [types containsObject:@"UPCA"];
     BOOL upce = [types containsObject:@"UPCE"];
-
-    return (qrcode || ean8 || ean13 || itf || upca || upce || aztec || dataMatrix);
+    
+    return (qrcode || ean8 || ean13 || itf || upca || upce || aztec || dataMatrix || code39 || code128);
 }
 
-- (PPZXingRecognizerSettings *)zxingRecognizerSettingsWithOptions:(NSDictionary *)options
+- (PPBarcodeRecognizerSettings *)barcodeRecognizerSettingsWithOptions:(NSDictionary *)options
                                                             types:(NSArray *)types {
 
-    PPZXingRecognizerSettings *zxingRecognizerSettings = [[PPZXingRecognizerSettings alloc] init];
+    PPBarcodeRecognizerSettings *barcodeRecognizerSettings = [[PPBarcodeRecognizerSettings alloc] init];
 
     BOOL aztec = [types containsObject:@"Aztec"];
+    BOOL code128 = [types containsObject:@"Code 128"];
+    BOOL code39 = [types containsObject:@"Code 39"];
     BOOL dataMatrix = [types containsObject:@"Data Matrix"];
     BOOL ean8 = [types containsObject:@"EAN 8"];
     BOOL ean13 = [types containsObject:@"EAN 13"];
@@ -121,23 +98,23 @@
     BOOL upca = [types containsObject:@"UPCA"];
     BOOL upce = [types containsObject:@"UPCE"];
 
-    zxingRecognizerSettings.scanAztec = aztec;
-    zxingRecognizerSettings.scanCode128 = NO;
-    zxingRecognizerSettings.scanCode39 = NO;
-    zxingRecognizerSettings.scanDataMatrix = dataMatrix;
-    zxingRecognizerSettings.scanEAN13 = ean13;
-    zxingRecognizerSettings.scanEAN8 = ean8;
-    zxingRecognizerSettings.scanITF = itf;
-    zxingRecognizerSettings.scanQR = qrcode;
-    zxingRecognizerSettings.scanUPCA = upca;
-    zxingRecognizerSettings.scanUPCE = upce;
+    barcodeRecognizerSettings.scanAztec = aztec;
+    barcodeRecognizerSettings.scanCode128 = code128;
+    barcodeRecognizerSettings.scanCode39 = code39;
+    barcodeRecognizerSettings.scanDataMatrix = dataMatrix;
+    barcodeRecognizerSettings.scanEAN13 = ean13;
+    barcodeRecognizerSettings.scanEAN8 = ean8;
+    barcodeRecognizerSettings.scanITF = itf;
+    barcodeRecognizerSettings.scanQR = qrcode;
+    barcodeRecognizerSettings.scanUPCA = upca;
+    barcodeRecognizerSettings.scanUPCE = upce;
 
     // Set this to YES to allow scanning barcodes with inverted intensities
     // (i.e. white barcodes on black background)
     id scanInverse = [options objectForKey:@"inverseScanning"];
-    zxingRecognizerSettings.scanInverse = (scanInverse && [scanInverse boolValue]);
+    barcodeRecognizerSettings.scanInverse = (scanInverse && [scanInverse boolValue]);
 
-    return zxingRecognizerSettings;
+    return barcodeRecognizerSettings;
 }
 
 - (PPCameraCoordinator *)coordinatorWithError:(NSError**)error {
@@ -191,16 +168,12 @@
         [settings.scanSettings addRecognizerSettings:[self pdf417RecognizerSettingsWithOptions:options types:types]];
     }
 
-    if ([self shouldUseZxingRecognizerForTypes:types]) {
-        [settings.scanSettings addRecognizerSettings:[self zxingRecognizerSettingsWithOptions:options types:types]];
+    if ([self shouldUseBarcodeRecognizerForTypes:types]) {
+        [settings.scanSettings addRecognizerSettings:[self barcodeRecognizerSettingsWithOptions:options types:types]];
     }
 
     if ([self shouldUseUsdlRecognizerForTypes:types]) {
         [settings.scanSettings addRecognizerSettings:[self usdlRecognizerSettingsWithOptions:options types:types]];
-    }
-
-    if ([self shouldUseBarDecoderRecognizerForTypes:types]) {
-        [settings.scanSettings addRecognizerSettings:[self barDecoderRecognizerSettingsWithOptions:options types:types]];
     }
 
     /** 4. Initialize the Scanning Coordinator object */
@@ -221,11 +194,15 @@
     /** If scanning isn't supported, present an error */
     if (coordinator == nil) {
         NSString *messageString = [error localizedDescription];
-        [[[UIAlertView alloc] initWithTitle:@"Warning"
-                                    message:messageString
-                                   delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil, nil] show];
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Warning"
+                                                                       message:messageString
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [[self viewController] presentViewController:alert animated:YES completion:nil];
 
         return;
     }
@@ -248,25 +225,14 @@
     [dict setObject:@"Barcode result" forKey:@"resultType"];
 }
 
-- (void)setDictionary:(NSMutableDictionary*)dict withZXingRecognizerResult:(PPZXingRecognizerResult*)data {
-
+- (void)setDictionary:(NSMutableDictionary*)dict withBarcodeRecognizerResult:(PPBarcodeRecognizerResult*)data {
+    
     if ([data stringUsingGuessedEncoding]) {
         [dict setObject:[data stringUsingGuessedEncoding] forKey:@"data"];
     }
-
+    
     [dict setObject:[PPRecognizerResult urlStringFromData:[data data]] forKey:@"raw"];
-    [dict setObject:[PPZXingRecognizerResult toTypeName:data.barcodeType] forKey:@"type"];
-    [dict setObject:@"Barcode result" forKey:@"resultType"];
-}
-
-- (void)setDictionary:(NSMutableDictionary*)dict withBarDecoderRecognizerResult:(PPBarDecoderRecognizerResult*)data {
-
-    if ([data stringUsingGuessedEncoding]) {
-        [dict setObject:[data stringUsingGuessedEncoding] forKey:@"data"];
-    }
-
-    [dict setObject:[PPRecognizerResult urlStringFromData:[data data]] forKey:@"raw"];
-    [dict setObject:[PPBarDecoderRecognizerResult toTypeName:data.barcodeType] forKey:@"type"];
+    [dict setObject:[PPBarcodeRecognizerResult toTypeName:data.barcodeType] forKey:@"type"];
     [dict setObject:@"Barcode result" forKey:@"resultType"];
 }
 
@@ -293,11 +259,11 @@
             [resultArray addObject:dict];
         }
 
-        if ([result isKindOfClass:[PPZXingRecognizerResult class]]) {
-            PPZXingRecognizerResult *zxingResult = (PPZXingRecognizerResult *)result;
+        if ([result isKindOfClass:[PPBarcodeRecognizerResult class]]) {
+            PPBarcodeRecognizerResult *barcodeResult = (PPBarcodeRecognizerResult *)result;
 
             NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-            [self setDictionary:dict withZXingRecognizerResult:zxingResult];
+            [self setDictionary:dict withBarcodeRecognizerResult:barcodeResult];
 
             [resultArray addObject:dict];
         }
@@ -307,15 +273,6 @@
 
             NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
             [self setDictionary:dict withUsdlResult:usdlResult];
-
-            [resultArray addObject:dict];
-        }
-
-        if ([result isKindOfClass:[PPBarDecoderRecognizerResult class]]) {
-            PPBarDecoderRecognizerResult *barDecoderResult = (PPBarDecoderRecognizerResult *)result;
-
-            NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-            [self setDictionary:dict withBarDecoderRecognizerResult:barDecoderResult];
 
             [resultArray addObject:dict];
         }
