@@ -56,10 +56,9 @@
         <source-file src="src/android/java/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="src/com/phonegap/plugins/pdf417" />
         <source-file src="src/android/java/com/phonegap/plugins/pdf417/FakeR.java" target-dir="src/com/phonegap/plugins/pdf417" />
         
-        <source-file src="src/android/pdf417-android/Pdf417MobiDemo/pdf417MobiDemo/src/main/res/raw/beep.mp3" target-dir="res/raw" />
+        <source-file src="src/android/res/raw/beep.mp3" target-dir="res/raw" />
 
         <framework src="src/android/libPdf417Mobi.gradle" custom="true" type="gradleReference" />
-        <resource-file src="src/android/pdf417-android/LibPdf417Mobi.aar" target="aar/LibPdf417Mobi.aar" />
         
         <hook type="after_prepare" src="scripts/fix-largeheap.js" />
     </platform>

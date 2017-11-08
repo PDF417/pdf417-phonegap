@@ -1,13 +1,14 @@
 repositories{    
   jcenter()
-  flatDir{
-      dirs 'aar'
-   }
+  mavenCentral()
+  maven { url 'http://maven.microblink.com' }
 }
 
 dependencies {
-   compile(name:'LibPdf417Mobi', ext:'aar')
-   compile 'com.android.support:appcompat-v7:25.0.0'
+  compile 'com.android.support:appcompat-v7:25.0.0'
+  compile('com.microblink:pdf417.mobi:6.4.0@aar') {
+    transitive = false
+  }
 }
 
 android {
