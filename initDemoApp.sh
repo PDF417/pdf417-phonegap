@@ -1,20 +1,22 @@
 #!/bin/bash
 
+APP_NAME="PDF417Demo"
+
 # position to a relative path
 HERE="$(dirname "$(test -L "$0" && readlink "$0" || echo "$0")")"
 pushd $HERE >> /dev/null
 
 # remove any existing code
-rm -rf Pdf417Demo
+rm -rf $APP_NAME
 
 # create a sample application
-cordova create Pdf417Demo mobi.pdf417.demo Pdf417Demo
+cordova create $APP_NAME mobi.pdf417.demo $APP_NAME
 
 # enter into demo project folder
-cd Pdf417Demo
+cd $APP_NAME
 
 # add the PDF417 plugin
-cordova plugin add ../Pdf417
+cordova plugin add ../Pdf417 --variable CAMERA_USAGE_DESCRIPTION="Camera permission is required for automated scanning"
 
 # add ios, android and wp8 support to the project
 cordova platform add android
@@ -33,6 +35,6 @@ cp  -f ../logo.png www/img/logo.png
 cordova build
 
 # how to run
-echo "To run iOS demo application open Xcode project Pdf417Demo.xcodeproj"
-echo "To run Android demo application type cordova run android"
-echo "To run Windows Phone demo application open Visual Studio solution Pdf417Demo.sln"
+echo "To run iOS demo application open Xcode project $APP_NAME.xcodeproj"
+echo "To run Android demo application, position to $APP_NAME folder and type: cordova run android"
+echo "To run Windows Phone demo application open Visual Studio solution $APP_NAME.sln"
