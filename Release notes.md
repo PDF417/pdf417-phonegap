@@ -1,3 +1,6 @@
+## 1.2.0
+- Replaced submodule dependency for Android SDK with Maven dependency
+- updated Android SDK to [v6.4.0](https://github.com/PDF417/pdf417-android/releases/tag/6.4.0)
 ## 1.1.5
 - Android SDK updated to [v6.1.0](https://github.com/PDF417/pdf417-android/releases/tag/v6.1.0)
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="mobi.pdf417.Pdf417Scanner"
-    version="1.1.5">
+    version="1.2.0">
 
     <name>Pdf417Scanner</name>
     <description>A small and powerful PDF417 barcode scanning library</description>
@@ -56,10 +56,9 @@
         <source-file src="src/android/java/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="src/com/phonegap/plugins/pdf417" />
         <source-file src="src/android/java/com/phonegap/plugins/pdf417/FakeR.java" target-dir="src/com/phonegap/plugins/pdf417" />
         
-        <source-file src="src/android/pdf417-android/Pdf417MobiDemo/pdf417MobiDemo/src/main/res/raw/beep.mp3" target-dir="res/raw" />
+        <source-file src="src/android/res/raw/beep.mp3" target-dir="res/raw" />
 
         <framework src="src/android/libPdf417Mobi.gradle" custom="true" type="gradleReference" />
-        <resource-file src="src/android/pdf417-android/LibPdf417Mobi.aar" target="aar/LibPdf417Mobi.aar" />
         
         <hook type="after_prepare" src="scripts/fix-largeheap.js" />
     </platform>
