@@ -1,13 +1,6 @@
-## Submodules
-After cloning repository, make sure you clone also its submodules:
-
-	git submodule update --init --recursive
-	
-Without this, Android version of plugin will not work (you will get error that `LibPdf417Mobi.aar` is missing.
-
 ## Installation
 
-First generate a empty project if needed:
+First generate an empty project if needed:
 
     cordova create <path> <package> <name>
     
@@ -126,7 +119,7 @@ var options = {
 var licenseiOs = "RZNIT6NY-YUY2L44B-JY4C3TC7-LE5LFU2B-JOAF4FO3-L5MTVMWT-IFFYAXQV-3NPQQA4G";
 
 // This license is only valid for package name "mobi.pdf417.demo"
-var licenseAndroid = "UDPICR2T-RA2LGTSD-YTEONPSJ-LE4WWOWC-5ICAIBAE-AQCAIBAE-AQCAIBAE-AQCFKMFM";
+var licenseAndroid = "Y5AR6RJ4-PPA6ZDJ6-ABLKN4DE-XZEVSOLL-HLBOUBAE-AQCAIBAE-AQCAIBAE-AQCFKMFM";
 
 // This license is only valid for Product ID "e2994220-6b3d-11e5-a1d6-4be717ee9e23"
 var licenseWP8 = "5JKGDHZK-5WN4KMQO-6TZU3KDQ-I4YN67V5-XSN4FFS3-OZFAXHK7-EMETU6XD-EY74TM4T";    
@@ -242,6 +235,7 @@ To run iOS demo application open Xcode project Pdf417Demo.xcodeproj
 To run Android demo application type
 
 ```shell
+cd PDF417Demo
 cordova run android
 ```
 To run Windows Phone demo application open Visual Studio solution Pdf417Demo.sln
