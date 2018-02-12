@@ -19,7 +19,7 @@ cd $APP_NAME
 cordova plugin add ../Pdf417 --variable CAMERA_USAGE_DESCRIPTION="Camera permission is required for automated scanning"
 
 # add ios, android and wp8 support to the project
-cordova platform add android
+cordova platform add android@6
 cordova platform add ios
 cordova platform add wp8
 
