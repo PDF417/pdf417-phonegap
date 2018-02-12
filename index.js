@@ -75,7 +75,7 @@ var app = {
         var licenseiOs = "EH2K7WN6-37NURTSG-FOMNQH5Y-6B23HRXS-6GS7HQKA-S33EMK4Q-2L7RLW27-LE5OHDOE";
 
         // This license is only valid for package name "mobi.pdf417.demo"
-        var licenseAndroid = "Y5AR6RJ4-PPA6ZDJ6-ABLKN4DE-XZEVSOLL-HLBOUBAE-AQCAIBAE-AQCAIBAE-AQCFKMFM";
+        var licenseAndroid = "sRwAAAAQbW9iaS5wZGY0MTcuZGVtb2uCzTSwE5Pixw1pJL5UEN7nyXbOdXB61Ysy/sgAYt4SaB0T/g6JvisLn6HtB8LzLDmpFjULMxmB8iLsy3tFdHtMhLWOM6pr0tQmSLGyhrXfe6rVoHAxJtPrFEoCNTk4RjLltQ==";
 
         // This license is only valid for Product ID "e2994220-6b3d-11e5-a1d6-4be717ee9e23"
         var licenseWP8 = "5JKGDHZK-5WN4KMQO-6TZU3KDQ-I4YN67V5-XSN4FFS3-OZFAXHK7-EMETU6XD-EY74TM4T";

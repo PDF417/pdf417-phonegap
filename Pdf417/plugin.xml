@@ -45,7 +45,7 @@
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <activity
-                    android:name="com.microblink.activity.Pdf417ScanActivity"
+                    android:name="com.microblink.activity.BarcodeScanActivity"
                     android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
                     android:configChanges="orientation|screenSize"
                     android:screenOrientation="portrait" >
@@ -54,6 +54,7 @@
 
 
         <source-file src="src/android/java/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="src/com/phonegap/plugins/pdf417" />
+        <source-file src="src/android/java/com/phonegap/plugins/pdf417/USDLMapping.java" target-dir="src/com/phonegap/plugins/pdf417" />
         <source-file src="src/android/java/com/phonegap/plugins/pdf417/FakeR.java" target-dir="src/com/phonegap/plugins/pdf417" />
         
         <source-file src="src/android/res/raw/beep.mp3" target-dir="res/raw" />
