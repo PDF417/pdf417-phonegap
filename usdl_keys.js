@@ -666,6 +666,13 @@ var kPPIssuingJurisdiction = "Issuing jurisdiction";
 var kPPStandardVehicleClassification = "Standard vehicle classification";
 
 /**
+Optional on all AAMVA and Magnetic barcodes.
+
+Name of issuing jurisdiction, for example: Alabama, Alaska ...
+*/
+var kPPIssuingJurisdictionName = "Issuing jurisdiction name";
+
+/**
  Optional on all AAMVA barcodes.
 
  Standard endorsement code(s) for cardholder. See codes in D20. This data element is a
@@ -887,24 +894,3 @@ var kPPDocumentNonexpiring = "Document Nonexpiring";
  Security version beeing used.
  */
 var kPPSecurityVersion = "Security Version";
-
-
-//==============================================================/
-//====== 4. KEYS FOR ACCESSING RAW BARCODE RESULTS =============/
-//==============================================================/
-
-/**
- Raw pdf417 result
- */
-var kPPPdf417 = "kPPPdf417";
-
-/**
- Raw code128 result
- */
-var kPPCode128 = "kPPCode128";
-
-/**
- Raw code39 result
- */
-var kPPCode39 = "kPPCode39";
-
