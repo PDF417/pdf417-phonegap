@@ -55,7 +55,7 @@ cd testcordova
 cordova plugin add ../pdf417-phonegap/Pdf417
 
 # add android support to the project
-cordova platform add android
+cordova platform add android@6
 
 # build the project, the binary will appear in the bin/ folder
 cordova build android
@@ -94,9 +94,9 @@ To use the plugin you call it in your Javascript code like the demo application:
 
 /**
  * Scan these barcode types
- * Available: "PDF417", "USDL", "QR Code", "Code 128", "Code 39", "EAN 13", "EAN 8", "ITF", "UPCA", "UPCE"
+ * Available: "PDF417", "USDL", "QR Code", "Code 128", "Code 39", "EAN 13", "EAN 8", "ITF", "UPCA", "UPCE", "Aztec", "Data Matrix"
  */
-var types = ["USDL", "QR Code"];
+var types = ["PDF417", "QR Code"];
 
 /**
  * Initiate scan with options
@@ -116,83 +116,89 @@ var options = {
 // Note that each platform requires its own license key
 
 // This license key allows setting overlay views for this application ID: mobi.pdf417.demo
-var licenseiOs = "RZNIT6NY-YUY2L44B-JY4C3TC7-LE5LFU2B-JOAF4FO3-L5MTVMWT-IFFYAXQV-3NPQQA4G";
+// Valid until 2017-09-26
+var licenseiOs = "EH2K7WN6-37NURTSG-FOMNQH5Y-6B23HRXS-6GS7HQKA-S33EMK4Q-2L7RLW27-LE5OHDOE";
 
 // This license is only valid for package name "mobi.pdf417.demo"
-var licenseAndroid = "Y5AR6RJ4-PPA6ZDJ6-ABLKN4DE-XZEVSOLL-HLBOUBAE-AQCAIBAE-AQCAIBAE-AQCFKMFM";
+var licenseAndroid = "sRwAAAAQbW9iaS5wZGY0MTcuZGVtb2uCzTSwE5Pixw1pJL5UEN7nyXbOdXB61Ysy/sgAYt4SaB0T/g6JvisLn6HtB8LzLDmpFjULMxmB8iLsy3tFdHtMhLWOM6pr0tQmSLGyhrXfe6rVoHAxJtPrFEoCNTk4RjLltQ==";
 
 // This license is only valid for Product ID "e2994220-6b3d-11e5-a1d6-4be717ee9e23"
-var licenseWP8 = "5JKGDHZK-5WN4KMQO-6TZU3KDQ-I4YN67V5-XSN4FFS3-OZFAXHK7-EMETU6XD-EY74TM4T";    
-    
+var licenseWP8 = "5JKGDHZK-5WN4KMQO-6TZU3KDQ-I4YN67V5-XSN4FFS3-OZFAXHK7-EMETU6XD-EY74TM4T";
+
 scanButton.addEventListener('click', function() {    
-		cordova.plugins.pdf417Scanner.scan(
-		
-			// Register the callback handler
-			function callback(scanningResult) {
-				
-				// handle cancelled scanning
-				if (scanningResult.cancelled == true) {
-					resultDiv.innerHTML = "Cancelled!";
-					return;
-				}
-				
-				// Obtain list of recognizer results
-				var resultList = scanningResult.resultList;
-				
-				// Iterate through all results
-				for (var i = 0; i < resultList.length; i++) {
+    cordova.plugins.pdf417Scanner.scan(
+    
+        // Register the callback handler
+        function callback(scanningResult) {
+            
+            // handle cancelled scanning
+            if (scanningResult.cancelled == true) {
+                resultDiv.innerHTML = "Cancelled!";
+                return;
+            }
+            
+            // Obtain list of recognizer results
+            var resultList = scanningResult.resultList;
 
-					// Get individual result
-					var recognizerResult = resultList[i];
+            var resToShow = "";
 
-					if (recognizerResult.resultType == "Barcode result") {
-						// handle Barcode scanning result
+            // Iterate through all results
+            for (var i = 0; i < resultList.length; i++) {
+                // Get individual resilt
+                var recognizerResult = resultList[i];
+                resToShow += "(Result type: " + recognizerResult.resultType + ") <br>"
+                if (recognizerResult.resultType == "Barcode result") {
+                    // handle Barcode scanning result
+                    var raw = "";
+                    if (typeof(recognizerResult.raw) != "undefined" && recognizerResult.raw != null) {
+                        raw = " (raw: " + hex2a(recognizerResult.raw) + ")";
+                    }
+                    resToShow += "(Barcode type: " + recognizerResult.type + ")<br>"
+                                 + "Data: " + recognizerResult.data + "<br>"
+                                 + raw;
+                } else if (recognizerResult.resultType == "USDL result") {
+                    // handle USDL parsing result
 
-						resultDiv.innerHTML = "Data: " + recognizerResult.data +
-										   " (raw: " + hex2a(recognizerResult.raw) + ")" +
-										   " (Type: " + recognizerResult.type + ")";
+                    var fields = recognizerResult.fields;
 
-					} else if (recognizerResult.resultType == "USDL result") {
-						// handle USDL parsing result
+                    resToShow += /** Personal information */
+                                "USDL version: " + fields[kPPStandardVersionNumber] + "; " +
+                                "Family name: " + fields[kPPCustomerFamilyName] + "; " +
+                                "First name: " + fields[kPPCustomerFirstName] + "; " +
+                                "Date of birth: " + fields[kPPDateOfBirth] + "; " +
+                                "Sex: " + fields[kPPSex] + "; " +
+                                "Eye color: " + fields[kPPEyeColor] + "; " +
+                                "Height: " + fields[kPPHeight] + "; " +
+                                "Street: " + fields[kPPAddressStreet] + "; " +
+                                "City: " + fields[kPPAddressCity] + "; " +
+                                "Jurisdiction: " + fields[kPPAddressJurisdictionCode] + "; " +
+                                "Postal code: " + fields[kPPAddressPostalCode] + "; " +
 
-						var fields = recognizerResult.fields;
+                                /** License information */
+                                "Issue date: " + fields[kPPDocumentIssueDate] + "; " +
+                                "Expiration date: " + fields[kPPDocumentExpirationDate] + "; " +
+                                "Issuer ID: " + fields[kPPIssuerIdentificationNumber] + "; " +
+                                "Jurisdiction version: " + fields[kPPJurisdictionVersionNumber] + "; " +
+                                "Vehicle class: " + fields[kPPJurisdictionVehicleClass] + "; " +
+                                "Restrictions: " + fields[kPPJurisdictionRestrictionCodes] + "; " +
+                                "Endorsments: " + fields[kPPJurisdictionEndorsementCodes] + "; " +
+                                "Customer ID: " + fields[kPPCustomerIdNumber] + "; ";
+                }
+                resToShow += "<br><br>";
+            }
+            resultDiv.innerHTML = resToShow;
+        },
+        // Register the error callback
+        function errorHandler(err) {
+            alert('Error: ' + err);
+        },
 
-						resultDiv.innerHTML = /** Personal information */
-										   "USDL version: " + fields[kPPAamvaVersionNumber] + "; " +
-											"Family name: " + fields[kPPCustomerFamilyName] + "; " +
-											"First name: " + fields[kPPCustomerFirstName] + "; " +
-											"Date of birth: " + fields[kPPDateOfBirth] + "; " +
-											"Sex: " + fields[kPPSex] + "; " +
-											"Eye color: " + fields[kPPEyeColor] + "; " +
-											"Height: " + fields[kPPHeight] + "; " +
-											"Street: " + fields[kPPAddressStreet] + "; " +
-											"City: " + fields[kPPAddressCity] + "; " +
-											"Jurisdiction: " + fields[kPPAddressJurisdictionCode] + "; " +
-											"Postal code: " + fields[kPPAddressPostalCode] + "; " +
-
-											/** License information */
-											"Issue date: " + fields[kPPDocumentIssueDate] + "; " +
-											"Expiration date: " + fields[kPPDocumentExpirationDate] + "; " +
-											"Issuer ID: " + fields[kPPIssuerIdentificationNumber] + "; " +
-											"Jurisdiction version: " + fields[kPPJurisdictionVersionNumber] + "; " +
-											"Vehicle class: " + fields[kPPJurisdictionVehicleClass] + "; " +
-											"Restrictions: " + fields[kPPJurisdictionRestrictionCodes] + "; " +
-											"Endorsments: " + fields[kPPJurisdictionEndorsementCodes] + "; " +
-											"Customer ID: " + fields[kPPCustomerIdNumber] + "; ";
-					}
-				}
-			},
-			
-			// Register the error callback
-			function errorHandler(err) {
-				alert('Error');
-			},
-
-			types, options, licenseiOs, licenseAndroid
-		);
-	});
+        types, options, licenseiOs, licenseAndroid, licenseWP8
+    );
+});
 
 ```
+
 + Available barcode types for the scanner are:
     + PDF417
     + QR Code
@@ -203,16 +209,18 @@ scanButton.addEventListener('click', function() {
     + ITF
     + UPCA
     + UPCE
+    + Aztec
+    + Data Matrix
     
 + Additionally, USDL parsing is available when types array contains "USDL" string.
 
 + The following options are available:
     + **beep** - *Boolean* - set to true to play beep sound after successful scan
     + **noDialog** - *Boolean* - set to true to show confirm dialog after successful scan (license required)
-    + **removeOverlay** - *Boolean* - set to true to remove Pdf417.mobi logo overlay on scan (license required)
     + **uncertain** - *Boolean* - set to true to scan even barcode not compliant with standards. For example, malformed PDF417 barcodes which were incorrectly encoded. Use only if necessary because it slows down the recognition process
     + **quietZone** - *Boolean* - set to true to scan barcodes which don't have quiet zone (white area) around it. Use only if necessary because it drastically slows down the recognition process 
-    + **highRes** - *Boolean* - Set to true if you want to always use highest possible camera resolution (enabled by default for all devices that support at least 720p camera preview frame size)
+    + **highRes** - *Boolean* - set to true if you want to always use highest possible camera resolution (enabled by default for all devices that support at least 720p camera preview frame size)
+    + **inverseScanning** - *Boolean* - set to true if you want to enable scanning of barcodes with inverse intensity values (e.g. white barcode on black background)
     + **frontFace** - *Boolean* - to use front facing camera. Note that front facing cameras do not have autofocus support, so it will not be possible to scan denser and smaller codes.
 
 
