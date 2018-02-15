@@ -83,63 +83,65 @@ var app = {
         scanButton.addEventListener('click', function() {    
             cordova.plugins.pdf417Scanner.scan(
             
-           		// Register the callback handler
+                // Register the callback handler
                 function callback(scanningResult) {
                     
                     // handle cancelled scanning
                     if (scanningResult.cancelled == true) {
-						resultDiv.innerHTML = "Cancelled!";
-						return;
-					}
-					
-					// Obtain list of recognizer results
-					var resultList = scanningResult.resultList;
-					
-					// Iterate through all results
-					for (var i = 0; i < resultList.length; i++) {
+                        resultDiv.innerHTML = "Cancelled!";
+                        return;
+                    }
+                    
+                    // Obtain list of recognizer results
+                    var resultList = scanningResult.resultList;
 
+                    var resToShow = "";
+                    
+                    // Iterate through all results
+                    for (var i = 0; i < resultList.length; i++) {
                         // Get individual resilt
-						var recognizerResult = resultList[i];
+                        var recognizerResult = resultList[i];
+                        resToShow += "(Result type: " + recognizerResult.resultType + ") <br>"
                         if (recognizerResult.resultType == "Barcode result") {
                             // handle Barcode scanning result
-
                             var raw = "";
                             if (typeof(recognizerResult.raw) != "undefined" && recognizerResult.raw != null) {
                                 raw = " (raw: " + hex2a(recognizerResult.raw) + ")";
                             }
-                            resultDiv.innerHTML = "Data: " + recognizerResult.data +
-                                               raw +
-                                               " (Type: " + recognizerResult.type + ")";
-
+                            resToShow += "(Barcode type: " + recognizerResult.type + ")<br>"
+                                         + "Data: " + recognizerResult.data + "<br>"
+                                         + raw;
                         } else if (recognizerResult.resultType == "USDL result") {
                             // handle USDL parsing result
 
                             var fields = recognizerResult.fields;
 
-                            resultDiv.innerHTML = /** Personal information */
-                                               "USDL version: " + fields[kPPStandardVersionNumber] + "; " +
-                                                "Family name: " + fields[kPPCustomerFamilyName] + "; " +
-                                                "First name: " + fields[kPPCustomerFirstName] + "; " +
-                                                "Date of birth: " + fields[kPPDateOfBirth] + "; " +
-                                                "Sex: " + fields[kPPSex] + "; " +
-                                                "Eye color: " + fields[kPPEyeColor] + "; " +
-                                                "Height: " + fields[kPPHeight] + "; " +
-                                                "Street: " + fields[kPPAddressStreet] + "; " +
-                                                "City: " + fields[kPPAddressCity] + "; " +
-                                                "Jurisdiction: " + fields[kPPAddressJurisdictionCode] + "; " +
-                                                "Postal code: " + fields[kPPAddressPostalCode] + "; " +
+                            resToShow += /** Personal information */
+                                         "USDL version: " + fields[kPPStandardVersionNumber] + "; " +
+                                          "Family name: " + fields[kPPCustomerFamilyName] + "; " +
+                                          "First name: " + fields[kPPCustomerFirstName] + "; " +
+                                          "Date of birth: " + fields[kPPDateOfBirth] + "; " +
+                                          "Sex: " + fields[kPPSex] + "; " +
+                                          "Eye color: " + fields[kPPEyeColor] + "; " +
+                                          "Height: " + fields[kPPHeight] + "; " +
+                                          "Street: " + fields[kPPAddressStreet] + "; " +
+                                          "City: " + fields[kPPAddressCity] + "; " +
+                                          "Jurisdiction: " + fields[kPPAddressJurisdictionCode] + "; " +
+                                          "Postal code: " + fields[kPPAddressPostalCode] + "; " +
 
-                                                /** License information */
-                                                "Issue date: " + fields[kPPDocumentIssueDate] + "; " +
-                                                "Expiration date: " + fields[kPPDocumentExpirationDate] + "; " +
-                                                "Issuer ID: " + fields[kPPIssuerIdentificationNumber] + "; " +
-                                                "Jurisdiction version: " + fields[kPPJurisdictionVersionNumber] + "; " +
-                                                "Vehicle class: " + fields[kPPJurisdictionVehicleClass] + "; " +
-                                                "Restrictions: " + fields[kPPJurisdictionRestrictionCodes] + "; " +
-                                                "Endorsments: " + fields[kPPJurisdictionEndorsementCodes] + "; " +
-                                                "Customer ID: " + fields[kPPCustomerIdNumber] + "; ";
+                                          /** License information */
+                                          "Issue date: " + fields[kPPDocumentIssueDate] + "; " +
+                                          "Expiration date: " + fields[kPPDocumentExpirationDate] + "; " +
+                                          "Issuer ID: " + fields[kPPIssuerIdentificationNumber] + "; " +
+                                          "Jurisdiction version: " + fields[kPPJurisdictionVersionNumber] + "; " +
+                                          "Vehicle class: " + fields[kPPJurisdictionVehicleClass] + "; " +
+                                          "Restrictions: " + fields[kPPJurisdictionRestrictionCodes] + "; " +
+                                          "Endorsments: " + fields[kPPJurisdictionEndorsementCodes] + "; " +
+                                          "Customer ID: " + fields[kPPCustomerIdNumber] + "; ";
                         }
-					}
+                        resToShow += "<br><br>";
+                    }
+                    resultDiv.innerHTML = resToShow;
                 },
                 
                 // Register the error callback
