@@ -21,7 +21,6 @@ cordova plugin add ../Pdf417 --variable CAMERA_USAGE_DESCRIPTION="Camera permiss
 # add ios, android and wp8 support to the project
 cordova platform add android@6
 cordova platform add ios
-cordova platform add wp8
 
 # copy index.html, index.js and usdl_keys.js
 cp  -f ../index.html www/index.html
@@ -37,4 +36,3 @@ cordova build
 # how to run
 echo "To run iOS demo application open Xcode project $APP_NAME.xcodeproj"
 echo "To run Android demo application, position to $APP_NAME folder and type: cordova run android"
-echo "To run Windows Phone demo application open Visual Studio solution $APP_NAME.sln"
