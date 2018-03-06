@@ -71,8 +71,8 @@ var app = {
         // Note that each platform requires its own license key
 
         // This license key allows setting overlay views for this application ID: mobi.pdf417.demo
-        // Valid until 2017-09-26
-        var licenseiOs = "EH2K7WN6-37NURTSG-FOMNQH5Y-6B23HRXS-6GS7HQKA-S33EMK4Q-2L7RLW27-LE5OHDOE";
+        // Valid until 2018-06-04
+        var licenseiOs = "sRwAAAEQbW9iaS5wZGY0MTcuZGVtbz/roBZ34ygXMQRMupTjSPXnoj0Mz1jPfk1iRX7f78Ux6a+pfXVyW0HCjPTxl5ocxgXWF66PTrtFUbJFCDUpyznreSWY4akvhvqVFfcTYgVEKjB+UqO6vPD5iIaUCaEYhF4dVmM=";
 
         // This license is only valid for package name "mobi.pdf417.demo"
         var licenseAndroid = "sRwAAAAQbW9iaS5wZGY0MTcuZGVtb2uCzTSwE5Pixw1pJL5UEN7nyXbOdXB61Ysy/sgAYt4SaB0T/g6JvisLn6HtB8LzLDmpFjULMxmB8iLsy3tFdHtMhLWOM6pr0tQmSLGyhrXfe6rVoHAxJtPrFEoCNTk4RjLltQ==";
