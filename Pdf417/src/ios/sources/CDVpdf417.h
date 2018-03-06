@@ -25,7 +25,7 @@
 /**
  * Returns successful recognition 
  */
-- (void)returnResults:(NSArray *)results cancelled:(BOOL)cancelled;
+- (void)returnResultsCancelled:(BOOL)cancelled;
 
 /**
  * Returns error, for example, not supported pdf417
