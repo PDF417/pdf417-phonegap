@@ -99,5 +99,7 @@
                 <param name="ios-package" value="CDVpdf417" />
             </feature>
         </config-file>
+
+        <hook type="before_platform_add" src="scripts/initIOSFramework.sh"/>
     </platform>
 </plugin>

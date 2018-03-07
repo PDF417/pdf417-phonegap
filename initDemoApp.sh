@@ -4,7 +4,7 @@ APP_NAME="PDF417Demo"
 
 # position to a relative path
 HERE="$(dirname "$(test -L "$0" && readlink "$0" || echo "$0")")"
-pushd $HERE >> /dev/null
+pushd $HERE > /dev/null
 
 # remove any existing code
 rm -rf $APP_NAME
@@ -18,7 +18,7 @@ cd $APP_NAME
 # add the PDF417 plugin
 cordova plugin add ../Pdf417 --variable CAMERA_USAGE_DESCRIPTION="Camera permission is required for automated scanning"
 
-# add ios, android and wp8 support to the project
+# add ios, android support to the project
 cordova platform add android@6
 cordova platform add ios
 
