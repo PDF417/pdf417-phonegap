@@ -2,6 +2,9 @@
 
 ## 7.0.0
 
+- upgraded support for Cordova v7.0.0 or higher
+- upgraded support for Cordova Android platform v7.0.0 or higher
+    * sources for Android are now compliant with the Android Studio project structure
 - updated Android SDK to [v7.0.0](https://github.com/PDF417/pdf417-android/releases/tag/v7.0.0)
 
 ## 1.2.0
