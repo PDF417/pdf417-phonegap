@@ -20,7 +20,6 @@
 #import "CDVpdf417.h"
 
 #import <MicroBlink/MicroBlink.h>
-#import "USDLMapping.h"
 
 @interface CDVpdf417()<MBBarcodeOverlayViewControllerDelegate>
 
@@ -73,6 +72,7 @@ static NSString * const kOptionFrontFace = @"frontFace";
 @synthesize lastCommand;
 
 - (MBUsdlRecognizer *)usdlRecognizerSettingsWithOption:(NSDictionary<NSString *, NSNumber *> *)options {
+
     MBUsdlRecognizer *recognizer = [[MBUsdlRecognizer alloc] init];
 
     // Set this to true to scan barcodes which don't have quiet zone (white area) around it
@@ -225,15 +225,14 @@ static NSString * const kOptionFrontFace = @"frontFace";
 }
 
 - (void)setDictionary:(NSMutableDictionary*)dict withUsdlRecognizerResult:(MBUsdlRecognizerResult*)usdlResult {
-    NSMutableDictionary *fields = [[NSMutableDictionary alloc] init];
 
-    USDLMapping *mapping = [[USDLMapping class] sharedInstance];
+    NSMutableArray *fields = [[NSMutableArray alloc] init];
 
-    for (NSNumber *key in [mapping.mKeyMappings allKeys]) {
-        fields[mapping.mKeyMappings[key]] = [usdlResult getField:key.unsignedIntegerValue];
+    for (NSUInteger key = DocumentType; key <= SecurityVersion; ++key) {
+        [fields addObject:[usdlResult getField:key]];
     }
 
-    dict[kFields] = fields;// = [dict setObject:[usdlResult getAllStringElements] forKey:@"fields"];
+    dict[kFields] = fields;
     dict[kResultType] = kUSDLResult;
 }
 
@@ -269,6 +268,7 @@ static NSString * const kOptionFrontFace = @"frontFace";
 }
 
 - (void)returnError:(NSString*)message {
+
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                                 messageAsString:message];
     

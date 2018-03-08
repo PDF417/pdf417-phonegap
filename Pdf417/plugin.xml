@@ -70,9 +70,6 @@
         <source-file src="src/ios/sources/CDVpdf417.m" />
         <header-file src="src/ios/sources/CDVpdf417.h" />
 
-        <source-file src="src/ios/sources/USDLMapping.m" />
-        <header-file src="src/ios/sources/USDLMapping.h" />
-        
         <framework src="libc++.dylib" />
         <framework src="libz.dylib" />
         <framework src="libiconv.dylib" />
