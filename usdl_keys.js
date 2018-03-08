@@ -22,7 +22,7 @@
  Administrators (AAMVA) Card Design Standard from AAMVA DL/ID-2000 standard to DL/ID-2013
  shall be designated as "AAMVA".
  */
-var kPPDocumentType = "Document Type";
+var kPPDocumentType = 0;
 
 /**
  Mandatory on all driver's licenses.
@@ -48,7 +48,7 @@ var kPPDocumentType = "Document Type";
  If document type is not "AAMVA", this field defines version number of the
  given document type's standard.
  */
-var kPPStandardVersionNumber = "Standard Version Number";
+var kPPStandardVersionNumber = 1;
 
 //==============================================================/
 //==========          2. PERSONAL DATA KEYS          ===========/
@@ -60,14 +60,14 @@ var kPPStandardVersionNumber = "Standard Version Number";
  Family name of the cardholder. (Family name is sometimes also called "last name" or "surname.")
  Collect full name for record, print as many characters as possible on portrait side of DL/ID.
  */
-var kPPCustomerFamilyName = "Customer Family Name";
+var kPPCustomerFamilyName = 2;
 
 /**
  Mandatory on all AAMVA, Magnetic and Compact barcodes.
 
  First name of the cardholder.
  */
-var kPPCustomerFirstName = "Customer First Name";
+var kPPCustomerFirstName = 3;
 
 /**
  Mandatory on all AAMVA, Magnetic and Compact barcodes.
@@ -86,14 +86,14 @@ var kPPCustomerFirstName = "Customer First Name";
 
  If indvidual has more than one middle name they are separated with space.
  */
-var kPPCustomerFullName = "Customer Name";
+var kPPCustomerFullName = 4;
 
 /**
  Mandatory on all AAMVA, Magentic and Compact barcodes.
 
  Date on which the cardholder was born. (MMDDCCYY format)
  */
-var kPPDateOfBirth = "Date of Birth";
+var kPPDateOfBirth = 5;
 
 /**
  Mandatory on all AAMVA, Magentic barcodes.
@@ -101,7 +101,7 @@ var kPPDateOfBirth = "Date of Birth";
 
  Gender of the cardholder. 1 = male, 2 = female.
  */
-var kPPSex = "Sex";
+var kPPSex = 6;
 
 /**
  Mandatory on AAMVA 02, 03, 04, 05, 06, 07, 08 barcodes.
@@ -121,7 +121,7 @@ var kPPSex = "Sex";
  DIC    Dichromatic 
  UNK    Unknown
  */
-var kPPEyeColor = "Eye Color";
+var kPPEyeColor = 7;
 
 /**
  Mandatory on all AAMVA and Magnetic barcodes.
@@ -132,7 +132,7 @@ var kPPEyeColor = "Eye Color";
  The place where the registered driver of a vehicle (individual or corporation)
  may be contacted such as a house number, street address etc.
  */
-var kPPAddressStreet = "Address - Street 1";
+var kPPAddressStreet = 8;
 
 /**
  Mandatory on all AAMVA and Magnetic barcodes.
@@ -141,7 +141,7 @@ var kPPAddressStreet = "Address - Street 1";
 
  City portion of the cardholder address.
  */
-var kPPAddressCity = "Address - City";
+var kPPAddressCity = 9;
 
 /**
  Mandatory on all AAMVA and Magnetic barcodes.
@@ -150,7 +150,7 @@ var kPPAddressCity = "Address - City";
 
  State portion of the cardholder address.
  */
-var kPPAddressJurisdictionCode = "Address - Jurisdiction Code";
+var kPPAddressJurisdictionCode = 10;
 
 /**
  Mandatory on all AAMVA and Magnetic barcodes.
@@ -161,7 +161,7 @@ var kPPAddressJurisdictionCode = "Address - Jurisdiction Code";
  trailing portion of the postal code in the U.S. is not known, zeros can be used
  to fill the trailing set of numbers up to nine (9) digits.
  */
-var kPPAddressPostalCode = "Address - Postal Code";
+var kPPAddressPostalCode = 11;
 
 /**
  Mandatory on all AAMVA and Magnetic barcodes.
@@ -178,7 +178,7 @@ var kPPAddressPostalCode = "Address - Postal Code";
  , (required if other address portions follow, otherwise optional)
  ZIP - Postal Code (optional)
  */
-var kPPFullAddress = "Full Address";
+var kPPFullAddress = 12;
 
 /**
  Mandatory on AAMVA 02, 03, 04, 05, 06, 07, 08
@@ -191,7 +191,7 @@ var kPPFullAddress = "Full Address";
  Centimeters (cm): number of centimeters followed by " cm"
  example. 181 centimeters="181 cm"
  */
-var kPPHeight = "Height";
+var kPPHeight = 13;
 
 /**
  Mandatory on AAMVA 02, 03, 04, 05, 06, 07, 08 and Compact barcodes.
@@ -200,7 +200,7 @@ var kPPHeight = "Height";
  Height of cardholder in Inches.
  Example: 5'9'' = "69".
  */
-var kPPHeightIn = "Height in";
+var kPPHeightIn = 14;
 
 /**
  Mandatory on AAMVA 02, 03, 04, 05, 06, 07, 08 Compact barcodes.
@@ -209,7 +209,7 @@ var kPPHeightIn = "Height in";
  Height of cardholder in Centimeters.
  Example: 180 Centimeters = "180".
  */
-var kPPHeightCm = "Height cm";
+var kPPHeightCm = 15;
 
 /**
  Mandatory on AAMVA 04, 05, 06, 07, 08.
@@ -218,7 +218,7 @@ var kPPHeightCm = "Height cm";
  Middle name(s) of the cardholder. In the case of multiple middle names they
  shall be separated by space " ".
  */
-var kPPCustomerMiddleName = "Customer Middle Name";
+var kPPCustomerMiddleName = 16;
 
 /**
  Optional on all AAMVA, Magnetic and Compact barcodes.
@@ -238,7 +238,7 @@ var kPPCustomerMiddleName = "Customer Middle Name";
  WHI    White
  UNK    Unknown
  */
-var kPPHairColor = "Hair color";
+var kPPHairColor = 17;
 
 /**
  Mandatory on AAMVA 02 barcodes.
@@ -258,7 +258,7 @@ var kPPHairColor = "Hair color";
  - 8TH or VIII (Eighth)
  - 9TH or IX (Ninth)
  */
-var kPPNameSuffix = "Name Suffix";
+var kPPNameSuffix = 18;
 
 /**
  Optional on all AAMVA and Compact barcodes.
@@ -278,21 +278,21 @@ var kPPNameSuffix = "Name Suffix";
 
  If indvidual has more than one AKA middle name they are separated with space.
  */
-var kPPAKAFullName = "Alias / AKA Name";
+var kPPAKAFullName = 19;
 
 /**
  Optional on all AAMVA and Compact barcodes.
 
  Other family name by which cardholder is known.
  */
-var kPPAKAFamilyName = "Alias / AKA Family Name";
+var kPPAKAFamilyName = 20;
 
 /**
  Optional on all AAMVA and Compact barcodes.
 
  Other given name by which cardholder is known
  */
-var kPPAKAGivenName = "Alias / AKA Given Name";
+var kPPAKAGivenName = 21;
 
 /**
  Optional on all AAMVA and Compact barcodes.
@@ -313,7 +313,7 @@ var kPPAKAGivenName = "Alias / AKA Given Name";
  8TH        Eighth
  9TH        Ninth
  */
-var kPPAKASuffixName = "Alias / AKA Suffix Name";
+var kPPAKASuffixName = 22;
 
 /**
  Mandatory on AAMVA 02 barcodes.
@@ -331,7 +331,7 @@ var kPPAKASuffixName = "Alias / AKA Suffix Name";
  8 = 128 – 145 kg (281 – 320 lbs)
  9 = 146+ kg (321+ lbs)
  */
-var kPPWeightRange = "Weight Range";
+var kPPWeightRange = 23;
 
 /**
  Mandatory on AAMVA 02 barcodes.
@@ -339,7 +339,7 @@ var kPPWeightRange = "Weight Range";
 
  Cardholder weight in pounds Example: 185 lb = "185"
  */
-var kPPWeightPounds = "Weight (pounds)";
+var kPPWeightPounds = 24;
 
 /**
  Mandatory on AAMVA 02 barcodes.
@@ -347,14 +347,14 @@ var kPPWeightPounds = "Weight (pounds)";
 
  Cardholder weight in kilograms Example: 84 kg = "084"
  */
-var kPPWeightKilograms = "Weight (kilograms)";
+var kPPWeightKilograms = 25;
 
 /**
  Mandatory on all AAMVA and Compact barcodes
 
  The number assigned or calculated by the issuing authority.
  */
-var kPPCustomerIdNumber = "Customer ID Number";
+var kPPCustomerIdNumber = 26;
 
 /**
  Mandatory on AAMVA 04, 05, 06, 07, 08 barcodes.
@@ -363,7 +363,7 @@ var kPPCustomerIdNumber = "Customer ID Number";
  A code that indicates whether a field has been truncated (T), has not been
  truncated (N), or – unknown whether truncated (U).
  */
-var kPPFamilyNameTruncation = "Family name truncation";
+var kPPFamilyNameTruncation = 27;
 
 /**
  Mandatory on AAMVA 04, 05, 06, 07, 08 barcodes.
@@ -372,7 +372,7 @@ var kPPFamilyNameTruncation = "Family name truncation";
  A code that indicates whether a field has been truncated (T), has not been
  truncated (N), or – unknown whether truncated (U).
  */
-var kPPFirstNameTruncation = "First name truncation";
+var kPPFirstNameTruncation = 28;
 
 /**
  Mandatory on AAMVA 04, 05, 06, 07, 08
@@ -380,14 +380,14 @@ var kPPFirstNameTruncation = "First name truncation";
  A code that indicates whether a field has been truncated (T), has not been
  truncated (N), or – unknown whether truncated (U).
  */
-var kPPMiddleNameTruncation = "Middle name truncation";
+var kPPMiddleNameTruncation = 29;
 
 /**
  Optional on AAMVA 02, 03, 04, 05, 06, 07, 08 and Compact barcodes
 
  Country and municipality and/or state/province
  */
-var kPPPlaceOfBirth = "Place of birth";
+var kPPPlaceOfBirth = 30;
 
 /**
  Optional on all AAMVA barcodes
@@ -396,7 +396,7 @@ var kPPPlaceOfBirth = "Place of birth";
 
  Second line of street portion of the cardholder address.
  */
-var kPPAddressStreet2 = "Address - Street 2";
+var kPPAddressStreet2 = 31;
 
 /**
  Optional on AAMVA 02, 03, 04, 05, 06, 07, 08 and Compact barcodes
@@ -422,56 +422,56 @@ var kPPAddressStreet2 = "Address - Street 2";
  O      Not of Hispanic Origin (Any Person Other Than Hispanic)
  U      Unknown
  */
-var kPPRaceEthnicity = "Race / ethnicity";
+var kPPRaceEthnicity = 32;
 
 /**
  Optional on AAMVA 01
 
  PREFIX to Driver Name. Freeform as defined by issuing jurisdiction.
  */
-var kPPNamePrefix = "Name Prefix";
+var kPPNamePrefix = 33;
 
 /**
  Mandatory on AAMVA 02, 03, 04, 05, 06, 07, 08 and Compact barcodes.
 
  Country in which DL/ID is issued. U.S. = USA, Canada = CAN.
  */
-var kPPCountryIdentification = "Country Identification";
+var kPPCountryIdentification = 34;
 
 /**
  Optional on AAMVA version 01.
 
  Driver Residence Street Address 1.
  */
-var kPPResidenceStreetAddress = "Driver Residence Street Address";
+var kPPResidenceStreetAddress = 35;
 
 /**
  Optional on AAMVA version 01.
 
  Driver Residence Street Address 2.
  */
-var kPPResidenceStreetAddress2 = "Driver Residence Street Address 2";
+var kPPResidenceStreetAddress2 = 36;
 
 /**
  Optional on AAMVA version 01.
 
  Driver Residence City
  */
-var kPPResidenceCity = "Driver Residence City";
+var kPPResidenceCity = 37;
 
 /**
  Optional on AAMVA version 01.
 
  Driver Residence Jurisdiction Code.
  */
-var kPPResidenceJurisdictionCode = "Driver Residence Jurisdiction Code";
+var kPPResidenceJurisdictionCode = 38;
 
 /**
  Optional on AAMVA version 01.
 
  Driver Residence Postal Code.
  */
-var kPPResidencePostalCode = "Driver Residence Postal Code";
+var kPPResidencePostalCode = 39;
 
 /**
  Optional on AAMVA 01 barcodes.
@@ -487,42 +487,42 @@ var kPPResidencePostalCode = "Driver Residence Postal Code";
  , (required if other address portions follow, otherwise optional)
  Residence ZIP - Residence Postal Code (optional)
  */
-var kPPResidenceFullAddress = "Driver Residence Full Address";
+var kPPResidenceFullAddress = 40;
 
 /**
  Optional on AAMVA 05, 06, 07, 08
 
  Date on which the cardholder turns 18 years old. (MMDDCCYY format)
  */
-var kPPUnder18 = "Under 18 Until"; // nakon verzije 05
+var kPPUnder18 = 41; // nakon verzije 05
 
 /**
  Optional on AAMVA 05, 06, 07, 08
 
  Date on which the cardholder turns 19 years old. (MMDDCCYY format)
  */
-var kPPUnder19 = "Under 19 Until"; // nakon verzije 05
+var kPPUnder19 = 42; // nakon verzije 05
 
 /**
  Optional on AAMVA 05, 06, 07, 08
 
  Date on which the cardholder turns 21 years old. (MMDDCCYY format)
  */
-var kPPUnder21 = "Under 21 Until"; // nakon verzije 05
+var kPPUnder21 = 43; // nakon verzije 05
 
 /**
  Optional on AAMVA version 01.
 
  The number assigned to an individual by the Social Security Administration.
  */
-var kPPSocialSecurityNumber = "Social Security Number";
+var kPPSocialSecurityNumber = 44;
 
 /**
  Optional on AAMVA version 01.
 
  Driver "AKA" Social Security Number. FORMAT SAME AS DRIVER SOC SEC NUM. ALTERNATIVE NUMBERS(S) used as SS NUM.
  */
-var kPPAKASocialSecurityNumber = "Alias / AKA Social Security Number";
+var kPPAKASocialSecurityNumber = 45;
 
 /**
  Optional on AAMVA 01
@@ -531,35 +531,35 @@ var kPPAKASocialSecurityNumber = "Alias / AKA Social Security Number";
  Hyphenated names acceptable, spaces between names acceptable, but no other
  use of special symbols
  */
-var kPPAKAMiddleName = "Alias / AKA Middle Name"; // samo 01
+var kPPAKAMiddleName = 46; // samo 01
 
 /**
  Optional on AAMVA 01
 
  ALTERNATIVE PREFIX to Driver Name. Freeform as defined by issuing jurisdiction.
  */
-var kPPAKAPrefixName = "Alias / AKA Prefix Name"; // samo 01
+var kPPAKAPrefixName = 47; // samo 01
 
 /**
  Optional on AAMVA 06, 07, 08
 
  Field that indicates that the cardholder is an organ donor = "1".
  */
-var kPPOrganDonor = "Organ Donor Indicator";
+var kPPOrganDonor = 48;
 
 /**
  Optional on AAMVA 07, 08
 
  Field that indicates that the cardholder is a veteran = "1"
  */
-var kPPVeteran = "Veteran Indicator";
+var kPPVeteran = 49;
 
 /**
  Optional on AAMVA 01. (MMDDCCYY format)
 
  ALTERNATIVE DATES(S) given as date of birth.
  */
-var kPPAKADateOfBirth = "Alias / AKA Date of Birth";; // samo za 01
+var kPPAKADateOfBirth = 50;; // samo za 01
 
 //==============================================================/
 //==========          3. LICENSE DATA KEYS          ============/
@@ -571,7 +571,7 @@ var kPPAKADateOfBirth = "Alias / AKA Date of Birth";; // samo za 01
  This number uniquely identifies the issuing jurisdiction and can
  be obtained by contacting the ISO Issuing Authority (AAMVA)
  */
-var kPPIssuerIdentificationNumber = "Issuer Identification Number";
+var kPPIssuerIdentificationNumber = 51;
 
 /**
  Mandatory on all AAMVA, Magnetic and Compact barcodes.
@@ -581,7 +581,7 @@ var kPPIssuerIdentificationNumber = "Issuer Identification Number";
  Date on which the driving and identification privileges granted by the document are
  no longer valid. (MMDDCCYY format)
  */
-var kPPDocumentExpirationDate = "Document Expiration Date";
+var kPPDocumentExpirationDate = 52;
 
 /**
  Mandatory on all AAMVA and Compact barcodes.
@@ -596,7 +596,7 @@ var kPPDocumentExpirationDate = "Document Expiration Date";
  within each AAMVA version (above) must be noted, beginning with Jurisdiction
  Version 00.
  */
-var kPPJurisdictionVersionNumber = "Jurisdiction Version Number";
+var kPPJurisdictionVersionNumber = 53;
 
 /**
  Mandatory on all AAMVA and Magnetic barcodes.
@@ -604,7 +604,7 @@ var kPPJurisdictionVersionNumber = "Jurisdiction Version Number";
  Jurisdiction-specific vehicle class / group code, designating the type
  of vehicle the cardholder has privilege to drive.
  */
-var kPPJurisdictionVehicleClass = "Jurisdiction-specific vehicle class";
+var kPPJurisdictionVehicleClass = 54;
 
 /**
  Mandatory on all AAMVA barcodes.
@@ -613,7 +613,7 @@ var kPPJurisdictionVehicleClass = "Jurisdiction-specific vehicle class";
  Jurisdiction-specific codes that represent restrictions to driving
  privileges (such as airbrakes, automatic transmission, daylight only, etc.).
  */
-var kPPJurisdictionRestrictionCodes = "Jurisdiction-specific restriction codes";
+var kPPJurisdictionRestrictionCodes = 55;
 
 /**
  Mandatory on all AAMVA barcodes.
@@ -623,14 +623,14 @@ var kPPJurisdictionRestrictionCodes = "Jurisdiction-specific restriction codes";
  granted to the cardholder beyond the vehicle class (such as transportation of
  passengers, hazardous materials, operation of motorcycles, etc.).
  */
-var kPPJurisdictionEndorsementCodes = "Jurisdiction-specific endorsement codes";
+var kPPJurisdictionEndorsementCodes = 56;
 
 /**
  Mandatory on all AAMVA and Compact barcodes.
 
  Date on which the document was issued. (MMDDCCYY format)
  */
-var kPPDocumentIssueDate = "Document Issue Date";
+var kPPDocumentIssueDate = 57;
 
 /**
  Mandatory on AAMVA versions 02 and 03.
@@ -639,7 +639,7 @@ var kPPDocumentIssueDate = "Document Issue Date";
  that are generally applicable to commercial motor vehicles. If the vehicle is not a
  commercial vehicle, "NONE" is to be entered.
  */
-var kPPFederalCommercialVehicleCodes = "Federal Commercial Vehicle Codes";
+var kPPFederalCommercialVehicleCodes = 58;
 
 /**
  Optional on all AAMVA barcodes.
@@ -654,7 +654,7 @@ var kPPFederalCommercialVehicleCodes = "Federal Commercial Vehicle Codes";
  one jurisdiction (e.g. California, Colorado, Connecticut) then other data, like
  the IIN or address, must be examined to determine the jurisdiction.
  */
-var kPPIssuingJurisdiction = "Issuing jurisdiction";
+var kPPIssuingJurisdiction = 59;
 
 /**
  Optional on all AAMVA barcodes.
@@ -663,14 +663,14 @@ var kPPIssuingJurisdiction = "Issuing jurisdiction";
  Standard vehicle classification code(s) for cardholder. This data element is a
  placeholder for future efforts to standardize vehicle classifications.
  */
-var kPPStandardVehicleClassification = "Standard vehicle classification";
+var kPPStandardVehicleClassification = 60;
 
 /**
 Optional on all AAMVA and Magnetic barcodes.
 
 Name of issuing jurisdiction, for example: Alabama, Alaska ...
 */
-var kPPIssuingJurisdictionName = "Issuing jurisdiction name";
+var kPPIssuingJurisdictionName = 61;
 
 /**
  Optional on all AAMVA barcodes.
@@ -698,7 +698,7 @@ var kPPIssuingJurisdictionName = "Issuing jurisdiction name";
  X      Combined Tank/HAZ-MAT - This endorsement may be issued to any driver who qualifies for
  both the N and H endorsements.
  */
-var kPPStandardEndorsementCode = "Standard endorsement code";
+var kPPStandardEndorsementCode = 62;
 
 /**
  Optional on all AAMVA barcodes
@@ -724,7 +724,7 @@ var kPPStandardEndorsementCode = "Standard endorsement code";
  V      Medical Variance Documentation Required
  W      Farm Waiver
  */
-var kPPStandardRestrictionCode = "Standard restriction code";
+var kPPStandardRestrictionCode = 63;
 
 /**
  Optional on AAMVA 02, 03, 04, 05, 06, 07, 08 and Compact barcodes
@@ -732,7 +732,7 @@ var kPPStandardRestrictionCode = "Standard restriction code";
  Text that explains the jurisdiction-specific code(s) for classifications
  of vehicles cardholder is authorized to drive.
  */
-var kPPJurisdictionVehicleClassificationDescription = "Jurisdiction-specific vehicle classification description";
+var kPPJurisdictionVehicleClassificationDescription = 64;
 
 /**
  Optional on AAMVA 02, 03, 04, 05, 06, 07, 08 and Compact barcodes
@@ -740,14 +740,14 @@ var kPPJurisdictionVehicleClassificationDescription = "Jurisdiction-specific veh
  Text that explains the jurisdiction-specific code(s) that indicates additional
  driving privileges granted to the cardholder beyond the vehicle class.
  */
-var kPPJurisdictionEndorsmentCodeDescription = "Jurisdiction-specific endorsment code description";
+var kPPJurisdictionEndorsmentCodeDescription = 65;
 
 /**
  Optional on AAMVA 02, 03, 04, 05, 06, 07, 08 and Compact barcodes
 
  Text describing the jurisdiction-specific restriction code(s) that curtail driving privileges.
  */
-var kPPJurisdictionRestrictionCodeDescription = "Jurisdiction-spacific restriction code description";
+var kPPJurisdictionRestrictionCodeDescription = 66;
 
 /**
  Optional on AAMVA 02, 03, 04, 05, 06, 07, 08
@@ -755,7 +755,7 @@ var kPPJurisdictionRestrictionCodeDescription = "Jurisdiction-spacific restricti
  A string of letters and/or numbers that is affixed to the raw materials (card stock,
  laminate, etc.) used in producing driver licenses and ID cards. (DHS recommended field)
  */
-var kPPInventoryControlNumber = "Inventory control number";
+var kPPInventoryControlNumber = 67;
 
 /**
  Optional on AAMVA 04, 05, 06, 07, 08 and Compact barcodes
@@ -763,7 +763,7 @@ var kPPInventoryControlNumber = "Inventory control number";
  DHS required field that indicates date of the most recent version change or
  modification to the visible format of the DL/ID (MMDDCCYY format)
  */
-var kPPCardRevisionDate = "Card Revision Date";
+var kPPCardRevisionDate = 68;
 
 /**
  Mandatory on AAMVA 02, 03, 04, 05, 06, 07, 08 and Magnetic barcodes.
@@ -773,14 +773,14 @@ var kPPCardRevisionDate = "Card Revision Date";
  from others that may have been issued in the past. This number may serve multiple
  purposes of document discrimination, audit information number, and/or inventory control.
  */
-var kPPDocumentDiscriminator = "Document Discriminator";
+var kPPDocumentDiscriminator = 69;
 
 /**
  Optional on AAMVA 04, 05, 06, 07, 08 and Compact barcodes
 
  DHS required field that indicates that the cardholder has temporary lawful status = "1".
  */
-var kPPLimitedDurationDocument = "Limited Duration Document Indicator";
+var kPPLimitedDurationDocument = 70;
 
 /**
  Optional on AAMVA 02, 03, 04, 05, 06, 07, 08 and Compact barcodes
@@ -789,7 +789,7 @@ var kPPLimitedDurationDocument = "Limited Duration Document Indicator";
  license/ID card was made. If audit information is not used on the card or the MRT, it
  must be included in the driver record.
  */
-var kPPAuditInformation = "Audit information";
+var kPPAuditInformation = 71;
 
 /**
  Optional on AAMVA 04, 05, 06, 07, 08 and Compact barcodes
@@ -797,7 +797,7 @@ var kPPAuditInformation = "Audit information";
  DHS required field that indicates compliance: "M" = materially compliant;
  "F" = fully compliant; and, "N" = non-compliant.
  */
-var kPPComplianceType = "Compliance Type";
+var kPPComplianceType = 72;
 
 
 /**
@@ -805,35 +805,35 @@ var kPPComplianceType = "Compliance Type";
 
  Issue Timestamp. A string used by some jurisdictions to validate the document against their data base.
  */
-var kPPIssueTimestamp = "Issue Timestamp";
+var kPPIssueTimestamp = 73;
 
 /**
  Optional on AAMVA version 01.
 
  Driver Permit Expiration Date. MMDDCCYY format. Date permit expires.
  */
-var kPPPermitExpirationDate = "Driver Permit Expiration Date";
+var kPPPermitExpirationDate = 74;
 
 /**
  Optional on AAMVA version 01.
 
  Type of permit.
  */
-var kPPPermitIdentifier = "Permit Identifier";
+var kPPPermitIdentifier = 75;
 
 /**
  Optional on AAMVA version 01.
 
  Driver Permit Issue Date. MMDDCCYY format. Date permit was issued.
  */
-var kPPPermitIssueDate = "Driver Permit Issue Date";
+var kPPPermitIssueDate = 76;
 
 /**
  Optional on AAMVA version 01.
 
  Number of duplicate cards issued for a license or ID if any.
  */
-var kPPNumberOfDuplicates = "Number of Duplicates";
+var kPPNumberOfDuplicates = 77;
 
 /**
  Optional on AAMVA 04, 05, 06, 07, 08 and Compact barcodes
@@ -841,7 +841,7 @@ var kPPNumberOfDuplicates = "Number of Duplicates";
  Date on which the hazardous material endorsement granted by the document is
  no longer valid. (MMDDCCYY format)
  */
-var kPPHAZMATExpirationDate = "HAZMAT Endorsement Expiration Date";
+var kPPHAZMATExpirationDate = 78;
 
 /**
  Optional on AAMVA version 01.
@@ -849,28 +849,28 @@ var kPPHAZMATExpirationDate = "HAZMAT Endorsement Expiration Date";
  Medical Indicator/Codes.
  STATE SPECIFIC. Freeform; Standard "TBD"
  */
-var kPPMedicalIndicator = "Medical Indicator/Codes";
+var kPPMedicalIndicator = 79;
 
 /**
  Optional on AAMVA version 01.
 
  Non-Resident Indicator. "Y". Used by some jurisdictions to indicate holder of the document is a non-resident.
  */
-var kPPNonResident = "Non-Resident Indicator";
+var kPPNonResident = 80;
 
 /**
  Optional on AAMVA version 01.
 
  A number or alphanumeric string used by some jurisdictions to identify a "customer" across multiple data bases.
  */
-var kPPUniqueCustomerId = "Unique Customer Identifier";
+var kPPUniqueCustomerId = 81;
 
 /**
  Optional on compact encoding.
 
  Document discriminator.
  */
-var kPPDataDiscriminator = "Data discriminator";
+var kPPDataDiscriminator = 82;
 
 /**
  Optional on Magnetic barcodes.
@@ -878,7 +878,7 @@ var kPPDataDiscriminator = "Data discriminator";
  Month on which the driving and identification privileges granted by the document are
  no longer valid. (MMYY format)
  */
-var kPPDocumentExpirationMonth = "Document Expiration Month";
+var kPPDocumentExpirationMonth = 83;
 
 /**
  Optional on Magnetic barcodes.
@@ -886,11 +886,11 @@ var kPPDocumentExpirationMonth = "Document Expiration Month";
  Field that indicates that the driving and identification privileges granted by the
  document are nonexpiring = "1".
  */
-var kPPDocumentNonexpiring = "Document Nonexpiring";
+var kPPDocumentNonexpiring = 84;
 
 /**
  Optional on Magnetic barcodes.
 
  Security version beeing used.
  */
-var kPPSecurityVersion = "Security Version";
+var kPPSecurityVersion = 85;

@@ -52,9 +52,7 @@
             </activity>
         </config-file>
 
-
         <source-file src="src/android/java/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="src/com/phonegap/plugins/pdf417" />
-        <source-file src="src/android/java/com/phonegap/plugins/pdf417/USDLMapping.java" target-dir="src/com/phonegap/plugins/pdf417" />
         <source-file src="src/android/java/com/phonegap/plugins/pdf417/FakeR.java" target-dir="src/com/phonegap/plugins/pdf417" />
         
         <source-file src="src/android/res/raw/beep.mp3" target-dir="res/raw" />
@@ -69,7 +67,7 @@
     <platform name="ios">
         <source-file src="src/ios/sources/CDVpdf417.m" />
         <header-file src="src/ios/sources/CDVpdf417.h" />
-        
+
         <framework src="libc++.dylib" />
         <framework src="libz.dylib" />
         <framework src="libiconv.dylib" />
@@ -96,37 +94,7 @@
                 <param name="ios-package" value="CDVpdf417" />
             </feature>
         </config-file>
-    </platform>
 
-    <!-- windows phone 8.0 -->
-    <platform name="wp8">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Pdf417Scanner">
-                <param name="wp-package" value="Pdf417Scanner"/>
-            </feature>
-        </config-file>
-
-        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
-            <Capability Name="ID_CAP_ISV_CAMERA" />
-            <Capability Name="ID_CAP_SENSORS" />
-        </config-file>
-        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Requirements">
-            <Requirement Name="ID_REQ_REARCAMERA" />
-        </config-file>        
-
-        <framework src="Microsoft.Expression.Controls.dll" />
-        <framework src="src/wp8/lib/Microblink.winmd" custom="true" arch="ARM" target="phone" />
-        <framework src="src/wp8/lib/PDF417.dll" custom="true" arch="ARM" target="phone" />
-        
-        <source-file src="src/wp8/sources/Pdf417Scanner.cs" />
-        <source-file src="src/wp8/sources/Pdf417ScannerPage.xaml" />
-        <source-file src="src/wp8/sources/Pdf417ScannerPage.xaml.cs" />
-
-        <asset src="src/wp8/res/Icons/icon_exit.png" target="Icons/icon_exit.png" />
-        <asset src="src/wp8/res/Icons/icon_exit_selected.png" target="Icons/icon_exit_selected.png" />
-        <asset src="src/wp8/res/Icons/icon_flashlight.png" target="Icons/icon_flashlight.png" />
-        <asset src="src/wp8/res/Icons/icon_flashlight_selected.png" target="Icons/icon_flashlight_selected.png" />
-        <asset src="src/wp8/res/Sounds/beep_pdf417.mp3" target="Sounds/beep_pdf417.mp3" />
-
+        <hook type="before_platform_add" src="scripts/initIOSFramework.sh"/>
     </platform>
 </plugin>
