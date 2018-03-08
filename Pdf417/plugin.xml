@@ -52,9 +52,7 @@
             </activity>
         </config-file>
 
-
         <source-file src="src/android/java/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="src/com/phonegap/plugins/pdf417" />
-        <source-file src="src/android/java/com/phonegap/plugins/pdf417/USDLMapping.java" target-dir="src/com/phonegap/plugins/pdf417" />
         <source-file src="src/android/java/com/phonegap/plugins/pdf417/FakeR.java" target-dir="src/com/phonegap/plugins/pdf417" />
         
         <source-file src="src/android/res/raw/beep.mp3" target-dir="res/raw" />

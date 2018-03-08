@@ -349,17 +349,12 @@ public class Pdf417Scanner extends CordovaPlugin {
     }
 
     private JSONObject convertUSDLResult(USDLRecognizer.Result recognizerResult) throws JSONException {
-        USDLMapping usdlMapping = USDLMapping.getInstance();
-        JSONObject fields = new JSONObject();
-        for (USDLKeys fieldKey : USDLKeys.values()) {
-            String fieldValue = recognizerResult.getField(fieldKey);
-            if (fieldValue != null) {
-                String jsKey = usdlMapping.mapUSDLKey(fieldKey);
-                if (jsKey != null) {
-                    fields.put(jsKey, fieldValue);
-                } else {
-                    Log.e(LOG_TAG, "Cannot find mapping for USDL key: " + fieldKey.name());
-                }
+        JSONArray fields = new JSONArray();
+        USDLKeys[] usdlKeys = USDLKeys.values();
+        for (int i = 0; i < usdlKeys.length; i++) {
+            String fieldValue = recognizerResult.getField(usdlKeys[i]);
+            if (!fieldValue.isEmpty()) {
+                fields.put(i, fieldValue);
             }
         }
         JSONObject result = new JSONObject();
