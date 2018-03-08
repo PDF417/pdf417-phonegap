@@ -59,7 +59,6 @@
 
         <framework src="src/android/libPdf417Mobi.gradle" custom="true" type="gradleReference" />
         
-        <hook type="after_prepare" src="scripts/fix-largeheap.js" />
     </platform>
 
     <hook type="after_platform_add" src="addEmbedded.js" />
