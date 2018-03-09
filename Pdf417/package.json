@@ -6,8 +6,7 @@
     "id": "mobi.pdf417.Pdf417Scanner",
     "platforms": [
       "android",
-      "ios",
-      "wp8"
+      "ios"
     ]
   },
   "repository": {
@@ -23,8 +22,7 @@
     "1d barcode",
     "ecosystem:cordova",
     "cordova-android",
-    "cordova-ios",
-    "cordova-wp8"
+    "cordova-ios"
   ],
   "engines": [
     {
