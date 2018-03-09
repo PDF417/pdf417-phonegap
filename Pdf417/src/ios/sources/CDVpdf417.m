@@ -220,7 +220,7 @@ static NSString * const kOptionFrontFace = @"frontFace";
         dict[kData] = output;
     }
     
-    dict[kType] = [MBBarcodeRecognizerResult toTypeName:data.barcodeType];
+    dict[kType] = data.barcodeType == MBBarcodeTypePdf417 ? kTypePDF417 : [MBBarcodeRecognizerResult toTypeName:data.barcodeType];
     dict[kResultType] = kBarcodeResult;
 }
 
