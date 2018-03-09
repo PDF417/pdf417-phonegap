@@ -5,8 +5,8 @@ repositories{
 }
 
 dependencies {
-  compile 'com.android.support:appcompat-v7:25.0.0'
-  compile('com.microblink:pdf417.mobi:6.4.0@aar') {
+  compile 'com.android.support:appcompat-v7:27.0.2'
+  compile('com.microblink:pdf417.mobi:7.0.0@aar') {
     transitive = false
   }
 }

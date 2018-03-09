@@ -10,8 +10,8 @@
     <author>MicroBlink Team info@microblink.com</author>
 
     <engines>
-        <engine name="cordova" version=">=3.0.0" />
-        <engine name="cordova-android" version=">=4.0.0" />
+        <engine name="cordova" version=">=7.0.0" />
+        <engine name="cordova-android" version=">=7.0.0" />
     </engines>    
 
     <js-module src="www/pdf417scanner.js" name="Pdf417Scanner">
@@ -27,7 +27,7 @@
             </feature>
         </config-file>
 
-        <config-file target="AndroidManifest.xml" parent="/manifest">
+        <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.CAMERA" />
             <uses-permission android:name="android.permission.FLASHLIGHT" />
             
@@ -43,24 +43,22 @@
                 android:smallScreens="true" />
         </config-file>
 
-        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest/application">
             <activity
-                    android:name="com.microblink.activity.Pdf417ScanActivity"
+                    android:name="com.microblink.activity.BarcodeScanActivity"
                     android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
                     android:configChanges="orientation|screenSize"
                     android:screenOrientation="portrait" >
             </activity>
         </config-file>
 
-
-        <source-file src="src/android/java/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="src/com/phonegap/plugins/pdf417" />
-        <source-file src="src/android/java/com/phonegap/plugins/pdf417/FakeR.java" target-dir="src/com/phonegap/plugins/pdf417" />
+        <source-file src="src/android/java/com/phonegap/plugins/pdf417/Pdf417Scanner.java" target-dir="app/src/main/java/com/phonegap/plugins/pdf417" />
+        <source-file src="src/android/java/com/phonegap/plugins/pdf417/FakeR.java" target-dir="app/src/main/java/com/phonegap/plugins/pdf417" />
         
-        <source-file src="src/android/res/raw/beep.mp3" target-dir="res/raw" />
+        <source-file src="src/android/res/raw/beep.mp3" target-dir="app/src/main/res/raw" />
 
         <framework src="src/android/libPdf417Mobi.gradle" custom="true" type="gradleReference" />
         
-        <hook type="after_prepare" src="scripts/fix-largeheap.js" />
     </platform>
 
     <hook type="after_platform_add" src="addEmbedded.js" />
@@ -68,7 +66,7 @@
     <platform name="ios">
         <source-file src="src/ios/sources/CDVpdf417.m" />
         <header-file src="src/ios/sources/CDVpdf417.h" />
-        
+
         <framework src="libc++.dylib" />
         <framework src="libz.dylib" />
         <framework src="libiconv.dylib" />
@@ -95,37 +93,7 @@
                 <param name="ios-package" value="CDVpdf417" />
             </feature>
         </config-file>
-    </platform>
 
-    <!-- windows phone 8.0 -->
-    <platform name="wp8">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Pdf417Scanner">
-                <param name="wp-package" value="Pdf417Scanner"/>
-            </feature>
-        </config-file>
-
-        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
-            <Capability Name="ID_CAP_ISV_CAMERA" />
-            <Capability Name="ID_CAP_SENSORS" />
-        </config-file>
-        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Requirements">
-            <Requirement Name="ID_REQ_REARCAMERA" />
-        </config-file>        
-
-        <framework src="Microsoft.Expression.Controls.dll" />
-        <framework src="src/wp8/lib/Microblink.winmd" custom="true" arch="ARM" target="phone" />
-        <framework src="src/wp8/lib/PDF417.dll" custom="true" arch="ARM" target="phone" />
-        
-        <source-file src="src/wp8/sources/Pdf417Scanner.cs" />
-        <source-file src="src/wp8/sources/Pdf417ScannerPage.xaml" />
-        <source-file src="src/wp8/sources/Pdf417ScannerPage.xaml.cs" />
-
-        <asset src="src/wp8/res/Icons/icon_exit.png" target="Icons/icon_exit.png" />
-        <asset src="src/wp8/res/Icons/icon_exit_selected.png" target="Icons/icon_exit_selected.png" />
-        <asset src="src/wp8/res/Icons/icon_flashlight.png" target="Icons/icon_flashlight.png" />
-        <asset src="src/wp8/res/Icons/icon_flashlight_selected.png" target="Icons/icon_flashlight_selected.png" />
-        <asset src="src/wp8/res/Sounds/beep_pdf417.mp3" target="Sounds/beep_pdf417.mp3" />
-
+        <hook type="before_platform_add" src="scripts/initIOSFramework.sh"/>
     </platform>
 </plugin>

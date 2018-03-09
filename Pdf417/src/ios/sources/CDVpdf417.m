@@ -21,289 +21,256 @@
 
 #import <MicroBlink/MicroBlink.h>
 
-@interface CDVPlugin () <PPScanningDelegate>
+@interface CDVpdf417()<MBBarcodeOverlayViewControllerDelegate>
 
-@property (nonatomic, retain) CDVInvokedUrlCommand* lastCommand;
+@property (nonatomic, retain) CDVInvokedUrlCommand *lastCommand;
+
+@property (nonatomic, nullable) MBBarcodeRecognizer *barcodeRecognizer;
+
+@property (nonatomic, nullable) MBUsdlRecognizer *usdlRecognizer;
 
 @end
+
+static NSString * const kScan = @"scan";
+static NSString * const kCancelled = @"cancelled";
+
+static NSString * const kBarcodeResult = @"Barcode result";
+static NSString * const kUSDLResult = @"USDL result";
+
+static NSString * const kResultList = @"resultList";
+static NSString * const kResultType = @"resultType";
+static NSString * const kType = @"type";
+static NSString * const kData = @"data";
+static NSString * const kFields = @"fields";
+static NSString * const kRawData = @"raw";
+
+// barcode types
+static NSString * const kTypePDF417 = @"PDF417";
+static NSString * const kTypeCode128 = @"Code 128";
+static NSString * const kTypeCode39 = @"Code 39";
+static NSString * const kTypeAztec = @"Aztec";
+static NSString * const kTypeDataMatrix = @"Data Matrix";
+static NSString * const kTypeEAN13 = @"EAN 13";
+static NSString * const kTypeEAN8 = @"EAN 8";
+static NSString * const kTypeITF = @"ITF";
+static NSString * const kTypeQRCode = @"QR Code";
+static NSString * const kTypeUPCA = @"UPCA";
+static NSString * const kTypeUPCE = @"UPCE";
+static NSString * const kTypeUSDL = @"USDL";
+
+// scanning options
+static NSString * const kOptionBeepSound = @"beep";
+static NSString * const kOptionNoDialog = @"noDialog";
+static NSString * const kOptionUncertain = @"uncertain";
+static NSString * const kOptionQuietZone = @"quietZone";
+static NSString * const kOptionHighRes = @"highRes";
+static NSString * const kOptionInverseScanning = @"inverseScanning";
+static NSString * const kOptionFrontFace = @"frontFace";
 
 @implementation CDVpdf417
 
 @synthesize lastCommand;
 
-- (BOOL)shouldUsePdf417RecognizerForTypes:(NSArray *)types {
-    return [types containsObject:@"PDF417"];
-}
+- (MBUsdlRecognizer *)usdlRecognizerSettingsWithOption:(NSDictionary<NSString *, NSNumber *> *)options {
 
-- (PPPdf417RecognizerSettings *)pdf417RecognizerSettingsWithOptions:(NSDictionary *)options
-                                                              types:(NSArray *)types {
-
-    PPPdf417RecognizerSettings *pdf417RecognizerSettings = [[PPPdf417RecognizerSettings alloc] init];
+    MBUsdlRecognizer *recognizer = [[MBUsdlRecognizer alloc] init];
 
     // Set this to true to scan barcodes which don't have quiet zone (white area) around it
     // Use only if necessary because it slows down the recognition process
-    id quietZone = [options objectForKey:@"quietZone"];
-    pdf417RecognizerSettings.allowNullQuietZone = (quietZone && [quietZone boolValue]);
+    NSNumber *shouldQuietZone = options[kOptionQuietZone];
+    recognizer.allowNullQuietZone = shouldQuietZone && shouldQuietZone.boolValue;
 
     // Set this to true to scan even barcode not compliant with standards
-    // For example, malformed PDF417 barcodes which were incorrectly encoded
+    // For example, malformed barcodes which were incorrectly encoded
     // Use only if necessary because it slows down the recognition process
-    id uncertain = [options objectForKey:@"uncertain"];
-    pdf417RecognizerSettings.scanUncertain = (uncertain && [uncertain boolValue]);
+    NSNumber *shouldAllowUncertain = options[kOptionUncertain];
+    recognizer.scanUncertain = shouldAllowUncertain && shouldAllowUncertain.boolValue;
 
-    return pdf417RecognizerSettings;
+    return recognizer;
 }
 
-- (BOOL)shouldUseUsdlRecognizerForTypes:(NSArray *)types {
-    return [types containsObject:@"USDL"];
-}
+- (MBBarcodeRecognizer *)barcodeRecognizerSettingsWithOptions:(NSDictionary<NSString *, NSNumber *> *)options
+                                                        types:(NSArray<NSString *> *)types {
+    MBBarcodeRecognizer *recognizer = [[MBBarcodeRecognizer alloc] init];
 
-- (PPUsdlRecognizerSettings *)usdlRecognizerSettingsWithOptions:(NSDictionary *)options
-                                                          types:(NSArray *)types {
+    recognizer.scanAztec = [types containsObject:kTypeAztec];
 
-    PPUsdlRecognizerSettings *usdlRecognizerSettings = [[PPUsdlRecognizerSettings alloc] init];
+    recognizer.scanCode39 = [types containsObject:kTypeCode39];
 
-    return usdlRecognizerSettings;
-}
+    recognizer.scanCode128 = [types containsObject:kTypeCode128];
 
-- (BOOL)shouldUseBarcodeRecognizerForTypes:(NSArray *)types {
-    
-    BOOL aztec = [types containsObject:@"Aztec"];
-    BOOL code128 = [types containsObject:@"Code 128"];
-    BOOL code39 = [types containsObject:@"Code 39"];
-    BOOL dataMatrix = [types containsObject:@"Data Matrix"];
-    BOOL ean8 = [types containsObject:@"EAN 8"];
-    BOOL ean13 = [types containsObject:@"EAN 13"];
-    BOOL itf = [types containsObject:@"ITF"];
-    BOOL qrcode = [types containsObject:@"QR Code"];
-    BOOL upca = [types containsObject:@"UPCA"];
-    BOOL upce = [types containsObject:@"UPCE"];
-    
-    return (qrcode || ean8 || ean13 || itf || upca || upce || aztec || dataMatrix || code39 || code128);
-}
+    recognizer.scanDataMatrix = [types containsObject:kTypeDataMatrix];
 
-- (PPBarcodeRecognizerSettings *)barcodeRecognizerSettingsWithOptions:(NSDictionary *)options
-                                                            types:(NSArray *)types {
+    recognizer.scanEAN8 = [types containsObject:kTypeEAN8];
 
-    PPBarcodeRecognizerSettings *barcodeRecognizerSettings = [[PPBarcodeRecognizerSettings alloc] init];
+    recognizer.scanEAN13 = [types containsObject:kTypeEAN13];
 
-    BOOL aztec = [types containsObject:@"Aztec"];
-    BOOL code128 = [types containsObject:@"Code 128"];
-    BOOL code39 = [types containsObject:@"Code 39"];
-    BOOL dataMatrix = [types containsObject:@"Data Matrix"];
-    BOOL ean8 = [types containsObject:@"EAN 8"];
-    BOOL ean13 = [types containsObject:@"EAN 13"];
-    BOOL itf = [types containsObject:@"ITF"];
-    BOOL qrcode = [types containsObject:@"QR Code"];
-    BOOL upca = [types containsObject:@"UPCA"];
-    BOOL upce = [types containsObject:@"UPCE"];
+    recognizer.scanITF = [types containsObject:kTypeITF];
 
-    barcodeRecognizerSettings.scanAztec = aztec;
-    barcodeRecognizerSettings.scanCode128 = code128;
-    barcodeRecognizerSettings.scanCode39 = code39;
-    barcodeRecognizerSettings.scanDataMatrix = dataMatrix;
-    barcodeRecognizerSettings.scanEAN13 = ean13;
-    barcodeRecognizerSettings.scanEAN8 = ean8;
-    barcodeRecognizerSettings.scanITF = itf;
-    barcodeRecognizerSettings.scanQR = qrcode;
-    barcodeRecognizerSettings.scanUPCA = upca;
-    barcodeRecognizerSettings.scanUPCE = upce;
+    recognizer.scanPdf417 = [types containsObject:kTypePDF417];
+
+    recognizer.scanQR = [types containsObject:kTypeQRCode];
+
+    recognizer.scanUPCA = [types containsObject:kTypeUPCA];
+
+    recognizer.scanUPCE = [types containsObject:kTypeUPCE];
+
+    // Set this to true to scan barcodes which don't have quiet zone (white area) around it
+    // Use only if necessary because it slows down the recognition process
+    NSNumber *shouldQuietZone = options[kOptionQuietZone];
+    recognizer.allowNullQuietZone = shouldQuietZone && shouldQuietZone.boolValue;
+
+    // Set this to true to scan even barcode not compliant with standards
+    // For example, malformed barcodes which were incorrectly encoded
+    // Use only if necessary because it slows down the recognition process
+    NSNumber *shouldAllowUncertain = options[kOptionUncertain];
+    recognizer.scanUncertain = shouldAllowUncertain && shouldAllowUncertain.boolValue;
 
     // Set this to YES to allow scanning barcodes with inverted intensities
     // (i.e. white barcodes on black background)
-    id scanInverse = [options objectForKey:@"inverseScanning"];
-    barcodeRecognizerSettings.scanInverse = (scanInverse && [scanInverse boolValue]);
+    NSNumber *shouldInverse = options[kOptionInverseScanning];
+    recognizer.scanInverse = shouldInverse && shouldInverse.boolValue;
 
-    return barcodeRecognizerSettings;
+    return recognizer;
 }
 
-- (PPCameraCoordinator *)coordinatorWithError:(NSError**)error {
+- (BOOL)shouldUseBarcodeRecognizerForTypes:(NSArray *)types {
 
-    /** 0. Check if scanning is supported */
+    BOOL aztec = [types containsObject:kTypeAztec];
+    BOOL code39 = [types containsObject:kTypeCode39];
+    BOOL code128 = [types containsObject:kTypeCode128];
+    BOOL dataMatrix = [types containsObject:kTypeDataMatrix];
+    BOOL ean8 = [types containsObject:kTypeEAN8];
+    BOOL ean13 = [types containsObject:kTypeEAN13];
+    BOOL itf = [types containsObject:kTypeITF];
+    BOOL pdf417 = [types containsObject:kTypePDF417];
+    BOOL qrcode = [types containsObject:kTypeQRCode];
+    BOOL upca = [types containsObject:kTypeUPCA];
+    BOOL upce = [types containsObject:kTypeUPCE];
 
-    if ([PPCameraCoordinator isScanningUnsupportedForCameraType:PPCameraTypeBack error:error]) {
-        return nil;
-    }
+    return (qrcode || ean8 || ean13 || itf || upca || upce || aztec || dataMatrix || code39 || code128 || pdf417);
+}
 
-    NSArray* types = [self.lastCommand argumentAtIndex:0];
+- (BOOL)shouldUseUSDLRecognizerForTypes:(NSArray *)types {
+    return [types containsObject:kTypeUSDL];
+}
 
-    NSDictionary* options = nil;
+- (MBBarcodeOverlaySettings *)createSettings {
+
+    [[MBMicroblinkSDK sharedInstance] setLicenseKey:[self.lastCommand argumentAtIndex:2]];
+    
+    NSArray *types = [self.lastCommand argumentAtIndex:0];
+
+    NSDictionary<NSString *, NSNumber *>* options = nil;
 
     if ([self.lastCommand arguments].count >= 2) {
         options = [self.lastCommand argumentAtIndex:1];
     }
 
+    MBBarcodeOverlaySettings *settings = [[MBBarcodeOverlaySettings alloc] init];
 
-    /** 1. Initialize the Scanning settings */
-
-    // Initialize the scanner settings object. This initialize settings with all default values.
-    PPSettings *settings = [[PPSettings alloc] init];
-
-    id highRes = [options valueForKey:@"highRes"];
-    if (highRes && [highRes boolValue]) {
-        settings.cameraSettings.cameraPreset = PPCameraPresetMax;
-    } else {
-        settings.cameraSettings.cameraPreset = PPCameraPresetOptimal;
-    }
-
-    // Set front facing camera if requested
-    id frontFace = [options objectForKey:@"frontFace"];
-    if (frontFace && [frontFace boolValue]) {
+    NSNumber *shouldUseFrontCamera = options[kOptionFrontFace];
+    if (shouldUseFrontCamera && shouldUseFrontCamera.boolValue) {
         settings.cameraSettings.cameraType = PPCameraTypeFront;
     }
 
-
-    /** 2. Setup the license key */
-
-    // Visit www.microblink.com to get the license key for your app
-    settings.licenseSettings.licenseKey = [self.lastCommand argumentAtIndex:2];
-
-    /**
-     * 3. Set up what is being scanned. See detailed guides for specific use cases.
-     * Here's an example for initializing PDF417 scanning
-     */
-
-    // Add PDF417 Recognizer setting to a list of used recognizer settings
-    if ([self shouldUsePdf417RecognizerForTypes:types]) {
-        [settings.scanSettings addRecognizerSettings:[self pdf417RecognizerSettingsWithOptions:options types:types]];
+    NSNumber *shouldUseHighRes = options[kOptionHighRes];
+    if (shouldUseHighRes && shouldUseHighRes.boolValue) {
+        settings.cameraSettings.cameraPreset = PPCameraPresetMax;
     }
+
+    NSMutableArray<MBRecognizer *> *recognizers = [[NSMutableArray alloc] init];
 
     if ([self shouldUseBarcodeRecognizerForTypes:types]) {
-        [settings.scanSettings addRecognizerSettings:[self barcodeRecognizerSettingsWithOptions:options types:types]];
+        self.barcodeRecognizer = [self barcodeRecognizerSettingsWithOptions:options types:types];
+        [recognizers addObject:self.barcodeRecognizer];
     }
 
-    if ([self shouldUseUsdlRecognizerForTypes:types]) {
-        [settings.scanSettings addRecognizerSettings:[self usdlRecognizerSettingsWithOptions:options types:types]];
+    if ([self shouldUseUSDLRecognizerForTypes:types]) {
+        self.usdlRecognizer = [self usdlRecognizerSettingsWithOption:options];
+        [recognizers addObject:self.usdlRecognizer];
     }
 
-    /** 4. Initialize the Scanning Coordinator object */
+    MBRecognizerCollection *recognizerCollection = [[MBRecognizerCollection alloc] initWithRecognizers:recognizers];
 
-    PPCameraCoordinator *coordinator = [[PPCameraCoordinator alloc] initWithSettings:settings];
-    
-    return coordinator;
+    settings.uiSettings.recognizerCollection = recognizerCollection;
+
+    return settings;
 }
 
 - (void)scan:(CDVInvokedUrlCommand*)command {
     
     [self setLastCommand:command];
 
-    /** Instantiate the scanning coordinator */
-    NSError *error;
-    PPCameraCoordinator *coordinator = [self coordinatorWithError:&error];
+    MBBarcodeOverlaySettings *settings = [self createSettings];
 
-    /** If scanning isn't supported, present an error */
-    if (coordinator == nil) {
-        NSString *messageString = [error localizedDescription];
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Warning"
-                                                                       message:messageString
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:defaultAction];
-        [[self viewController] presentViewController:alert animated:YES completion:nil];
-
-        return;
-    }
+    MBBarcodeOverlayViewController *overlayViewController = [[MBBarcodeOverlayViewController alloc] initWithSettings:settings andDelegate:self];
     
     /** Allocate and present the scanning view controller */
-    UIViewController<PPScanningViewController>* scanningViewController = [PPViewControllerFactory cameraViewControllerWithDelegate:self coordinator:coordinator error:nil];
+    UIViewController<MBRecognizerRunnerViewController>* recognizerRunnerViewController = [MBViewControllerFactory recognizerRunnerViewControllerWithOverlayViewController:overlayViewController];
 
     /** You can use other presentation methods as well */
-    [[self viewController] presentViewController:scanningViewController animated:YES completion:nil];
+    [[self viewController] presentViewController:recognizerRunnerViewController animated:YES completion:nil];
 }
 
-- (void)setDictionary:(NSMutableDictionary*)dict withPdf417RecognizerResult:(PPPdf417RecognizerResult*)data {
+- (void)setDictionary:(NSMutableDictionary*)dict withBarcodeRecognizerResult:(MBBarcodeRecognizerResult*)data {
 
-    if ([data stringUsingGuessedEncoding]) {
-        [dict setObject:[data stringUsingGuessedEncoding] forKey:@"data"];
+    NSString *output = [data stringData];
+    if (output) {
+        dict[kData] = output;
     }
     
-    [dict setObject:[PPRecognizerResult urlStringFromData:[data data]] forKey:@"raw"];
-    [dict setObject:@"PDF417" forKey:@"type"];
-    [dict setObject:@"Barcode result" forKey:@"resultType"];
+    dict[kType] = data.barcodeType == MBBarcodeTypePdf417 ? kTypePDF417 : [MBBarcodeRecognizerResult toTypeName:data.barcodeType];
+    dict[kResultType] = kBarcodeResult;
 }
 
-- (void)setDictionary:(NSMutableDictionary*)dict withBarcodeRecognizerResult:(PPBarcodeRecognizerResult*)data {
-    
-    if ([data stringUsingGuessedEncoding]) {
-        [dict setObject:[data stringUsingGuessedEncoding] forKey:@"data"];
+- (void)setDictionary:(NSMutableDictionary*)dict withUsdlRecognizerResult:(MBUsdlRecognizerResult*)usdlResult {
+
+    NSMutableArray *fields = [[NSMutableArray alloc] init];
+
+    for (NSUInteger key = DocumentType; key <= SecurityVersion; ++key) {
+        [fields addObject:[usdlResult getField:key]];
     }
-    
-    [dict setObject:[PPRecognizerResult urlStringFromData:[data data]] forKey:@"raw"];
-    [dict setObject:[PPBarcodeRecognizerResult toTypeName:data.barcodeType] forKey:@"type"];
-    [dict setObject:@"Barcode result" forKey:@"resultType"];
+
+    dict[kFields] = fields;
+    dict[kResultType] = kUSDLResult;
 }
 
-- (void)setDictionary:(NSMutableDictionary*)dict withUsdlResult:(PPUsdlRecognizerResult*)usdlResult {
-    [dict setObject:[usdlResult getAllStringElements] forKey:@"fields"];
-    [dict setObject:@"USDL result" forKey:@"resultType"];
-}
-
-- (void)returnResults:(NSArray *)results cancelled:(BOOL)cancelled {
+- (void)returnResultsCancelled:(BOOL)cancelled {
 
     NSMutableDictionary* resultDict = [[NSMutableDictionary alloc] init];
-    [resultDict setObject:[NSNumber numberWithInt: (cancelled ? 1 : 0)] forKey:@"cancelled"];
+    resultDict[kCancelled] = [NSNumber numberWithInt: (cancelled ? 1 : 0)];
 
     NSMutableArray *resultArray = [[NSMutableArray alloc] init];
 
-    for (PPRecognizerResult* result in results) {
+    if (self.barcodeRecognizer && self.barcodeRecognizer.result.resultState == MBRecognizerResultStateValid) {
+        NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+        [self setDictionary:dict withBarcodeRecognizerResult:self.barcodeRecognizer.result];
+        [resultArray addObject:dict];
+    }
 
-        if ([result isKindOfClass:[PPPdf417RecognizerResult class]]) {
-            PPPdf417RecognizerResult *pdf417Result = (PPPdf417RecognizerResult *)result;
-
-            NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-            [self setDictionary:dict withPdf417RecognizerResult:pdf417Result];
-
-            [resultArray addObject:dict];
-        }
-
-        if ([result isKindOfClass:[PPBarcodeRecognizerResult class]]) {
-            PPBarcodeRecognizerResult *barcodeResult = (PPBarcodeRecognizerResult *)result;
-
-            NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-            [self setDictionary:dict withBarcodeRecognizerResult:barcodeResult];
-
-            [resultArray addObject:dict];
-        }
-
-        if ([result isKindOfClass:[PPUsdlRecognizerResult class]]) {
-            PPUsdlRecognizerResult *usdlResult = (PPUsdlRecognizerResult *)result;
-
-            NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-            [self setDictionary:dict withUsdlResult:usdlResult];
-
-            [resultArray addObject:dict];
-        }
-    };
+    if (self.usdlRecognizer && self.usdlRecognizer.result.resultState == MBRecognizerResultStateValid) {
+        NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+        [self setDictionary:dict withUsdlRecognizerResult:self.usdlRecognizer.result];
+        [resultArray addObject:dict];
+    }
 
     if ([resultArray count] > 0) {
-        [resultDict setObject:resultArray forKey:@"resultList"];
+        resultDict[kResultList] = resultArray;
     }
-    
+
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:resultDict];
-    
-    /*
-     NSString* js = [result toSuccessCallbackString:[[self lastCommand] callbackId]];
-     
-     [self writeJavascript:js];
-     */
-    
+
     [self.commandDelegate sendPluginResult:result callbackId:self.lastCommand.callbackId];
-    
+
     // As scanning view controller is presented full screen and modally, dismiss it
     [[self viewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)returnError:(NSString*)message {
+
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                                 messageAsString:message];
-    /*
-     NSString* js = [result toErrorCallbackString:[[self lastCommand] callbackId]];
-     
-     [self writeJavascript:js];
-     */
     
     [self.commandDelegate sendPluginResult:result callbackId:self.lastCommand.callbackId];
     
@@ -311,32 +278,28 @@
     [[self viewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - PPScanDelegate delegate methods
+#pragma mark - MBBarcodeOverlayViewControllerDelegate
 
-- (void)scanningViewControllerUnauthorizedCamera:(UIViewController<PPScanningViewController> *)scanningViewController {
-    // Add any logic which handles UI when app user doesn't allow usage of the phone's camera
+- (void)barcodeOverlayViewControllerDidFinishScanning:(MBBarcodeOverlayViewController *)barcodeOverlayViewController state:(MBRecognizerResultState)state {
+    /** This callback is done on background thread and you need to be careful to not do any UI operations on it */
+    [barcodeOverlayViewController.recognizerRunnerViewController pauseScanning];
+
+    if (state != MBRecognizerResultStateValid) {
+        [barcodeOverlayViewController.recognizerRunnerViewController resumeScanningAndResetState:YES];
+        return;
+    }
+
+    [barcodeOverlayViewController.recognizerRunnerViewController playScanSuccesSound];
+
+    /** Needs to be called on main thread beacuse everything prior is on background thread */
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self returnResultsCancelled:NO];
+    });
 }
 
-- (void)scanningViewController:(UIViewController<PPScanningViewController> *)scanningViewController
-                  didFindError:(NSError *)error {
-    // Can be ignored. See description of the method
-}
-
-- (void)scanningViewControllerDidClose:(UIViewController<PPScanningViewController> *)scanningViewController {
-
-    [self returnResults:nil cancelled:YES];
-
-    // As scanning view controller is presented full screen and modally, dismiss it
-    [[self viewController] dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)scanningViewController:(UIViewController<PPScanningViewController> *)scanningViewController
-              didOutputResults:(NSArray *)results {
-
-    [self returnResults:results cancelled:(results == nil)];
-
-    // As scanning view controller is presented full screen and modally, dismiss it
-    [[self viewController] dismissViewControllerAnimated:YES completion:nil];
+- (void)barcodeOverlayViewControllerDidTapClose:(MBBarcodeOverlayViewController *)barcodeOverlayViewController {
+    // Close button tapped on overlay view controller
+    [self returnResultsCancelled:YES];
 }
 
 @end

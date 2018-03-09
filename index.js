@@ -71,75 +71,74 @@ var app = {
         // Note that each platform requires its own license key
 
         // This license key allows setting overlay views for this application ID: mobi.pdf417.demo
-        // Valid until 2017-09-26
-        var licenseiOs = "EH2K7WN6-37NURTSG-FOMNQH5Y-6B23HRXS-6GS7HQKA-S33EMK4Q-2L7RLW27-LE5OHDOE";
+        // Valid until 2018-06-04
+        var licenseiOs = "sRwAAAEQbW9iaS5wZGY0MTcuZGVtbz/roBZ34ygXMQRMupTjSPXnoj0Mz1jPfk1iRX7f78Ux6a+pfXVyW0HCjPTxl5ocxgXWF66PTrtFUbJFCDUpyznreSWY4akvhvqVFfcTYgVEKjB+UqO6vPD5iIaUCaEYhF4dVmM=";
 
         // This license is only valid for package name "mobi.pdf417.demo"
-        var licenseAndroid = "Y5AR6RJ4-PPA6ZDJ6-ABLKN4DE-XZEVSOLL-HLBOUBAE-AQCAIBAE-AQCAIBAE-AQCFKMFM";
-
-        // This license is only valid for Product ID "e2994220-6b3d-11e5-a1d6-4be717ee9e23"
-        var licenseWP8 = "5JKGDHZK-5WN4KMQO-6TZU3KDQ-I4YN67V5-XSN4FFS3-OZFAXHK7-EMETU6XD-EY74TM4T";
+        var licenseAndroid = "sRwAAAAQbW9iaS5wZGY0MTcuZGVtb2uCzTSwE5Pixw1pJL5UEN7nyXbOdXB61Ysy/sgAYt4SaB0T/g6JvisLn6HtB8LzLDmpFjULMxmB8iLsy3tFdHtMhLWOM6pr0tQmSLGyhrXfe6rVoHAxJtPrFEoCNTk4RjLltQ==";
 
         scanButton.addEventListener('click', function() {    
             cordova.plugins.pdf417Scanner.scan(
             
-           		// Register the callback handler
+                // Register the callback handler
                 function callback(scanningResult) {
                     
                     // handle cancelled scanning
                     if (scanningResult.cancelled == true) {
-						resultDiv.innerHTML = "Cancelled!";
-						return;
-					}
-					
-					// Obtain list of recognizer results
-					var resultList = scanningResult.resultList;
-					
-					// Iterate through all results
-					for (var i = 0; i < resultList.length; i++) {
+                        resultDiv.innerHTML = "Cancelled!";
+                        return;
+                    }
+                    
+                    // Obtain list of recognizer results
+                    var resultList = scanningResult.resultList;
 
+                    var resToShow = "";
+                    
+                    // Iterate through all results
+                    for (var i = 0; i < resultList.length; i++) {
                         // Get individual resilt
-						var recognizerResult = resultList[i];
+                        var recognizerResult = resultList[i];
+                        resToShow += "(Result type: " + recognizerResult.resultType + ") <br>"
                         if (recognizerResult.resultType == "Barcode result") {
                             // handle Barcode scanning result
-
                             var raw = "";
                             if (typeof(recognizerResult.raw) != "undefined" && recognizerResult.raw != null) {
                                 raw = " (raw: " + hex2a(recognizerResult.raw) + ")";
                             }
-                            resultDiv.innerHTML = "Data: " + recognizerResult.data +
-                                               raw +
-                                               " (Type: " + recognizerResult.type + ")";
-
+                            resToShow += "(Barcode type: " + recognizerResult.type + ")<br>"
+                                         + "Data: " + recognizerResult.data + "<br>"
+                                         + raw;
                         } else if (recognizerResult.resultType == "USDL result") {
                             // handle USDL parsing result
 
                             var fields = recognizerResult.fields;
 
-                            resultDiv.innerHTML = /** Personal information */
-                                               "USDL version: " + fields[kPPStandardVersionNumber] + "; " +
-                                                "Family name: " + fields[kPPCustomerFamilyName] + "; " +
-                                                "First name: " + fields[kPPCustomerFirstName] + "; " +
-                                                "Date of birth: " + fields[kPPDateOfBirth] + "; " +
-                                                "Sex: " + fields[kPPSex] + "; " +
-                                                "Eye color: " + fields[kPPEyeColor] + "; " +
-                                                "Height: " + fields[kPPHeight] + "; " +
-                                                "Street: " + fields[kPPAddressStreet] + "; " +
-                                                "City: " + fields[kPPAddressCity] + "; " +
-                                                "Jurisdiction: " + fields[kPPAddressJurisdictionCode] + "; " +
-                                                "Postal code: " + fields[kPPAddressPostalCode] + "; " +
+                            resToShow += /** Personal information */
+                                         "USDL version: " + fields[kPPStandardVersionNumber] + "; " +
+                                          "Family name: " + fields[kPPCustomerFamilyName] + "; " +
+                                          "First name: " + fields[kPPCustomerFirstName] + "; " +
+                                          "Date of birth: " + fields[kPPDateOfBirth] + "; " +
+                                          "Sex: " + fields[kPPSex] + "; " +
+                                          "Eye color: " + fields[kPPEyeColor] + "; " +
+                                          "Height: " + fields[kPPHeight] + "; " +
+                                          "Street: " + fields[kPPAddressStreet] + "; " +
+                                          "City: " + fields[kPPAddressCity] + "; " +
+                                          "Jurisdiction: " + fields[kPPAddressJurisdictionCode] + "; " +
+                                          "Postal code: " + fields[kPPAddressPostalCode] + "; " +
 
-                                                /** License information */
-                                                "Issue date: " + fields[kPPDocumentIssueDate] + "; " +
-                                                "Expiration date: " + fields[kPPDocumentExpirationDate] + "; " +
-                                                "Issuer ID: " + fields[kPPIssuerIdentificationNumber] + "; " +
-                                                "Jurisdiction version: " + fields[kPPJurisdictionVersionNumber] + "; " +
-                                                "Vehicle class: " + fields[kPPJurisdictionVehicleClass] + "; " +
-                                                "Restrictions: " + fields[kPPJurisdictionRestrictionCodes] + "; " +
-                                                "Endorsments: " + fields[kPPJurisdictionEndorsementCodes] + "; " +
-                                                "Customer ID: " + fields[kPPCustomerIdNumber] + "; ";
+                                          /** License information */
+                                          "Issue date: " + fields[kPPDocumentIssueDate] + "; " +
+                                          "Expiration date: " + fields[kPPDocumentExpirationDate] + "; " +
+                                          "Issuer ID: " + fields[kPPIssuerIdentificationNumber] + "; " +
+                                          "Jurisdiction version: " + fields[kPPJurisdictionVersionNumber] + "; " +
+                                          "Vehicle class: " + fields[kPPJurisdictionVehicleClass] + "; " +
+                                          "Restrictions: " + fields[kPPJurisdictionRestrictionCodes] + "; " +
+                                          "Endorsments: " + fields[kPPJurisdictionEndorsementCodes] + "; " +
+                                          "Customer ID: " + fields[kPPCustomerIdNumber] + "; ";
                         }
-					}
+                        resToShow += "<br><br>";
+                    }
+                    resultDiv.innerHTML = resToShow;
                 },
                 
                 // Register the error callback
@@ -147,7 +146,7 @@ var app = {
                     alert('Error: ' + err);
                 },
 
-                types, options, licenseiOs, licenseAndroid, licenseWP8
+                types, options, licenseiOs, licenseAndroid
             );
         });
 
