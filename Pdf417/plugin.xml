@@ -61,7 +61,7 @@
         
     </platform>
 
-    <hook type="after_platform_add" src="addEmbedded.js" />
+    <hook type="after_platform_add" src="scripts/addEmbedded.js"/>
 
     <platform name="ios">
         <source-file src="src/ios/sources/CDVpdf417.m" />
