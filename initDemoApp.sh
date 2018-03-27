@@ -22,16 +22,11 @@ cordova plugin add ../Pdf417 --variable CAMERA_USAGE_DESCRIPTION="Camera permiss
 cordova platform add android@7
 cordova platform add ios
 
-# copy index.html, index.js and usdl_keys.js
-cp  -f ../index.html www/index.html
-cp  -f ../index.js www/js/index.js
-cp  -f ../usdl_keys.js www/js/usdl_keys.js
-
-# add logo
-cp  -f ../logo.png www/img/logo.png
+# copy www folder
+cp  -f -r ../www .
 
 # build app
-cordova build
+cordova prepare
 
 # how to run
 echo "To run iOS demo application open Xcode project $APP_NAME.xcodeproj"
