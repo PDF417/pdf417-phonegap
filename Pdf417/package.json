@@ -1,6 +1,6 @@
 {
   "name": "pdf417-cordova",
-  "version": "7.0.0",
+  "version": "7.0.1-0",
   "description": "A small and powerful PDF417 barcode scanning library",
   "cordova": {
     "id": "mobi.pdf417.Pdf417Scanner",
