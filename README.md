@@ -1,16 +1,24 @@
+# PDF417 SDK wrapper for PhoneGap
+
+This repository contains example wrapper for PDF417 native SDKs ([iOS](https://github.com/PDF417/pdf417-ios) and [Android](https://github.com/PDF417/pdf417-android)). Not all features of native SDKs are available in PhoneGap wrapper. However, the wrapper is open source, so you can easily add features that you need. For 100% of features and maximum control, consider using native SDKs.
+
 ## Installation
 
 First generate an empty project if needed:
 
-    cordova create <path> <package> <name>
-    
+```shell
+cordova create <path> <package> <name>
+```
+
 > The shown instructions are for **Cordova**, the instructions for **PhoneGap** are practically the same, except for some slight command line argument differences.
 
 Add the **pdf417** plugin to your project:
 
-	cd <path_to_your_project>
-	
-    cordova plugin add <pdf417_plugin_path>
+```shell
+cd <path_to_your_project>
+
+cordova plugin add <pdf417_plugin_path> # or pdf417-cordova if you don't have pdf417-phonegap locally
+```
 
 ### Android
 
@@ -25,8 +33,10 @@ Currently cordova plugin uses a hook script, that runs before adding ios platfor
 
 Add iOS plaform support to the project:
 
-    cordova platform add ios
-    
+```shell
+cordova platform add ios
+```
+
 ## Sample
 
 Here's a complete example of how to create and build a project for **Android** and **iOS** using **cordova** (you can substitute equivalent commands for **phonegap**):
