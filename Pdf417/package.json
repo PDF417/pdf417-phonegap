@@ -14,12 +14,16 @@
     "url": "git+https://github.com/PDF417/pdf417-phonegap.git"
   },
   "keywords": [
-    "pdf417",
-    "barcode",
-    "usdl",
+    "scan",
+    "scanner",
+    "PDF417",
     "qr code",
-    "2d barcode",
-    "1d barcode",
+    "code39",
+    "code128",
+    "barcode",
+    "microblink",
+    "ionic",
+    "phonegap",
     "ecosystem:cordova",
     "cordova-android",
     "cordova-ios"
