@@ -61,8 +61,6 @@
         
     </platform>
 
-    <hook type="after_platform_add" src="scripts/addEmbedded.js"/>
-
     <platform name="ios">
         <source-file src="src/ios/sources/CDVpdf417.m" />
         <header-file src="src/ios/sources/CDVpdf417.h" />
@@ -95,5 +93,6 @@
         </config-file>
 
         <hook type="before_platform_add" src="scripts/initIOSFramework.sh"/>
+        
     </platform>
 </plugin>

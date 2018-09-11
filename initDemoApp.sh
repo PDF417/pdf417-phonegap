@@ -1,6 +1,6 @@
 #!/bin/bash
 
-APP_NAME="PDF417Demo"
+APP_NAME="Pdf417Demo"
 
 # position to a relative path
 HERE="$(dirname "$(test -L "$0" && readlink "$0" || echo "$0")")"
