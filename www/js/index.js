@@ -71,11 +71,11 @@ var app = {
         // Note that each platform requires its own license key
 
         // This license key allows setting overlay views for this application ID: mobi.pdf417.demo
-        // Valid until 2018-06-04
-        var licenseiOs = "sRwAAAEQbW9iaS5wZGY0MTcuZGVtbz/roBZ34ygXMQRMupTjSPXnoj0Mz1jPfk1iRX7f78Ux6a+pfXVyW0HCjPTxl5ocxgXWF66PTrtFUbJFCDUpyznreSWY4akvhvqVFfcTYgVEKjB+UqO6vPD5iIaUCaEYhF4dVmM=";
+        // Valid until 2018-12-10
+        var licenseiOs = "sRwAAAEQbW9iaS5wZGY0MTcuZGVtbz/roBZ34ygXMQRMupQDQ/15L4oOBzHQZGrIGc/f8x0QvUR7ce4TOYLxwyZRiB4hRcH2AWnk9zKGJtVLsqozHHzL2wUEaNUX1eBIalLmEq9QZgqlxePBeE0nDgGA7BpUYjbC+DU=";
 
         // This license is only valid for package name "mobi.pdf417.demo"
-        var licenseAndroid = "sRwAAAAQbW9iaS5wZGY0MTcuZGVtb2uCzTSwE5Pixw1pJL5UEN7nyXbOdXB61Ysy/sgAYt4SaB0T/g6JvisLn6HtB8LzLDmpFjULMxmB8iLsy3tFdHtMhLWOM6pr0tQmSLGyhrXfe6rVoHAxJtPrFEoCNTk4RjLltQ==";
+        var licenseAndroid = "sRwAAAAQbW9iaS5wZGY0MTcuZGVtb2uCzTSwE5Pixw1pJDqrv3T8G8jLYsNmfW+d4cayaSCjwfRtJzKqVtPhAW9bx9lGvg/VldZCWtWc+gjT/4yTY/+BDqQxT6zmNT8qRt324hvuB2FU8mimuh/otPy/fqpwtG8hxXk=";
 
         scanButton.addEventListener('click', function() {    
             cordova.plugins.pdf417Scanner.scan(
