@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="mobi.pdf417.Pdf417Scanner"
+    id="pdf417-cordova"
     version="7.0.1-0">
 
     <name>Pdf417Scanner</name>
