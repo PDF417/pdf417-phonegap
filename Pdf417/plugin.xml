@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="mobi.pdf417.Pdf417Scanner"
+    id="pdf417-cordova"
     version="7.0.1-0">
 
     <name>Pdf417Scanner</name>
@@ -92,7 +92,7 @@
             </feature>
         </config-file>
 
-        <hook type="before_platform_add" src="scripts/initIOSFramework.sh"/>
+        <hook type="before_plugin_install" src="scripts/initIOSFramework.sh"/>
         
     </platform>
 </plugin>
