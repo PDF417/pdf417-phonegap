@@ -2,7 +2,7 @@
 
 # enter into ios project folder
 HERE="$(dirname "$(test -L "$0" && readlink "$0" || echo "$0")")"
-pushd ${HERE}/../src/ios/ > /dev/null
+pushd "${HERE}/../src/ios/" > /dev/null
 
 LINK='https://github.com/PDF417/pdf417-ios/releases/download/v7.0.0/pdf417-ios_v7.0.0.zip'
 FILENAME='pdf417-ios.zip'
