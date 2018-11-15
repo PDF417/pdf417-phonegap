@@ -1,5 +1,11 @@
 # Release notes
 
+## 7.0.1
+
+- script to init iOS framework  is now ran before plugin is installed
+- removed addEmbedded script
+- renamed Microblink.* to MicroBlink.* in the init iOS framework script
+
 ## 7.0.0
 
 - removed support for WP8
