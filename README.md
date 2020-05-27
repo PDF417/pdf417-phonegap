@@ -239,6 +239,6 @@ To run Android demo application type
 cd PDF417Demo
 cordova run android
 ```
-- [Generate](https://microblink.com/login?url=/customer/generatedemolicence) a **free demo license key** to start using the SDK in your app (registration required)
+- [Generate](https://microblink.com/login?url=/customer/generatedemolicence) a **free trial license key** to start using the SDK in your app (registration required)
 
 - Get information about pricing and licensing od [microblink.com](https://microblink.com/products/pdf417?type=blink_sales#contact-us-form)
