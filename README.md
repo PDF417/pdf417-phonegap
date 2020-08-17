@@ -89,7 +89,7 @@ To use the plugin you call it in your Javascript code like the demo application:
 ```javascript
 /**
  * Scan these barcode types
- * Available: "PDF417", "USDL", "QR Code", "Code 128", "Code 39", "EAN 13", "EAN 8", "ITF", "UPCA", "UPCE", "Aztec", "Data Matrix"
+ * Available: "PDF417", "USDL", "QR Code", "Code 128", "Code 39", "EAN 13", "EAN 8", "ITF", "UPCA", "UPCE"
  */
 var types = ["PDF417", "QR Code"];
 
@@ -202,8 +202,6 @@ scanButton.addEventListener('click', function() {
     + ITF
     + UPCA
     + UPCE
-    + Aztec
-    + Data Matrix
     
 + Additionally, USDL parsing is available when types array contains "USDL" string.
 
