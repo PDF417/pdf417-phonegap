@@ -1,3 +1,11 @@
+# ⚠️ Disclaimer
+> Please note that Microblink is no longer maintaining this repository.\
+As such, there will be no additional updates or releases for this codebase. You are welcome to continue using the code, as it remains source available.\
+Furthermore, if you need to update it for a newer SDK or platform version, you can do so by forking this repository and maintaining the fork independently.\
+If you have questions regarding such, please contact our support team at support@microblink.com.
+
+---
+
 # PDF417 SDK wrapper for PhoneGap
 
 This repository contains example wrapper for PDF417 native SDKs ([iOS](https://github.com/PDF417/pdf417-ios) and [Android](https://github.com/PDF417/pdf417-android)). Not all features of native SDKs are available in PhoneGap wrapper. However, the wrapper is open source, so you can easily add features that you need. For 100% of features and maximum control, consider using native SDKs.
